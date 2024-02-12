@@ -1,0 +1,77 @@
+{% extends 'base_new_admin.html' %}
+{% load static %}
+{% block main %}
+    <div class="main-content app-content">
+        <div class="container-fluid">
+
+            <!-- Page Header -->
+            <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
+                <h1 class="page-title fw-semibold fs-18 mb-0">Add News Article</h1>
+                <div class="ms-md-1 ms-0">
+                    <nav>
+                        <ol class="breadcrumb mb-0">
+                            <li class="breadcrumb-item"><a href="javascript:void(0);">News</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Add</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+            <!-- Page Header Close -->
+
+            <div class="col-xl-12">
+                <div class="card custom-card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            Add News Article
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <form action="{% url 'add_news_article' %}" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <label for="title" class="form-label">Title</label>
+                                    <input type="text" id="title" name="title" class="form-control" placeholder="Title">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="author" class="form-label">Author</label>
+                                    <input type="text" id="author" name="author" class="form-control" placeholder="Author">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <label for="content" class="form-label">Content</label>
+                                    <textarea id="content" name="content" class="form-control" placeholder="Content"></textarea>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="featured_image" class="form-label">Featured Image</label>
+                                    <input type="file" id="featured_image" name="featured_image" class="form-control-file">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <label for="minutes_read" class="form-label">Minutes Read</label>
+                                    <input type="number" id="minutes_read" name="minutes_read" class="form-control" placeholder="Minutes Read">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="category" class="form-label">Category</label>
+                                    <input type="text" id="category" name="category" class="form-control" placeholder="Category">
+                                </div>
+                            </div>
+                            <!-- Add other form fields based on your NewsArticle model -->
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-angle-right"></i> Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- End::app-content -->
+{% endblock %}

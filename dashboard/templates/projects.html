@@ -1,0 +1,235 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block main %}
+<!-- Styles -->
+<style>
+  .chartContainer {
+    width: 80%; /* Adjust width as needed */
+    height: 450px;
+    float: left;
+    margin-right: 5%; /* Reduced space between charts */
+    margin-left: 10%; /* Wider left margin */
+  }
+
+  .clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+
+  .chartTitle {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+</style>
+
+<div class="chartContainer">
+  <div class="chartTitle">Chart 1: Daily Value Fluctuation</div>
+  <div id="chartdiv" class="chartContainer"></div>
+</div>
+
+<div class="chartContainer" style="margin-top: 30px;">
+  <div class="chartTitle">Chart 2: Country-wise Comparison</div>
+  <div id="chartdiv2" class="chartContainer"></div>
+</div>
+
+
+<div class="clearfix"></div>
+
+<!-- Resources -->
+<script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/themes/Responsive.js"></script>
+
+<!-- Chart 1 code -->
+<script>
+am5.ready(function() {
+  var root = am5.Root.new("chartdiv");
+  root.setThemes([
+    am5themes_Animated.new(root)
+  ]);
+  var chart = root.container.children.push(am5xy.XYChart.new(root, {
+    paddingLeft: 1,
+    paddingRight: 1
+  }));
+  var xRenderer = am5xy.AxisRendererX.new(root, {
+    minGridDistance: 30,
+    minorGridEnabled: true
+  });
+  xRenderer.labels.template.setAll({
+    rotation: -90,
+    centerY: am5.p50,
+    centerX: am5.p100,
+    paddingRight: 15
+  });
+  xRenderer.grid.template.setAll({
+    location: 1
+  });
+  var xAxis = chart.xAxes.push(am5xy.CategoryAxis.new(root, {
+    maxDeviation: 0.3,
+    categoryField: "country",
+    renderer: xRenderer,
+    tooltip: am5.Tooltip.new(root, {})
+  }));
+  var yRenderer = am5xy.AxisRendererY.new(root, {
+    strokeOpacity: 0.1
+  });
+  var yAxis = chart.yAxes.push(am5xy.ValueAxis.new(root, {
+    maxDeviation: 0.3,
+    renderer: yRenderer
+  }));
+  var series = chart.series.push(am5xy.ColumnSeries.new(root, {
+    name: "Series 1",
+    xAxis: xAxis,
+    yAxis: yAxis,
+    valueYField: "value",
+    sequencedInterpolation: true,
+    categoryXField: "country",
+    tooltip: am5.Tooltip.new(root, {
+      labelText: "{valueY}"
+    })
+  }));
+  series.columns.template.setAll({ cornerRadiusTL: 5, cornerRadiusTR: 5, strokeOpacity: 0 });
+  series.columns.template.adapters.add("fill", function (fill, target) {
+    return chart.get("colors").getIndex(series.columns.indexOf(target));
+  });
+  series.columns.template.adapters.add("stroke", function (stroke, target) {
+    return chart.get("colors").getIndex(series.columns.indexOf(target));
+  });
+ var data = [{
+    country: "2006",
+    value: 2025
+  }, {
+    country: "2007",
+    value: 1882
+  }, {
+    country: "2008",
+    value: 1809
+  }, {
+    country: "2009",
+    value: 1322
+  }, {
+    country: "2010",
+    value: 1122
+  }, {
+    country: "2011",
+    value: 1114
+  }, {
+    country: "2012",
+    value: 984
+  }, {
+    country: "2014",
+    value: 665
+  }, {
+    country: "2015",
+    value: 443
+  }, {
+    country: "2016",
+    value: 441
+  }];
+  xAxis.data.setAll(data);
+  series.data.setAll(data);
+  series.appear(1000);
+  chart.appear(1000, 100);
+});
+</script>
+
+<!-- Chart 2 code -->
+<script>
+am5.ready(function() {
+  var root = am5.Root.new("chartdiv2");
+  root.setThemes([
+    am5themes_Animated.new(root)
+  ]);
+  var chart = root.container.children.push(am5xy.XYChart.new(root, {
+    paddingLeft: 0,
+    paddingRight: 1
+  }));
+  var xRenderer = am5xy.AxisRendererX.new(root, {
+    minGridDistance: 30,
+    minorGridEnabled: true
+  });
+  xRenderer.labels.template.setAll({
+    rotation: -90,
+    centerY: am5.p50,
+    centerX: am5.p100,
+    paddingRight: 15
+  });
+  xRenderer.grid.template.setAll({
+    location: 1
+  });
+  var xAxis = chart.xAxes.push(am5xy.CategoryAxis.new(root, {
+    maxDeviation: 0.3,
+    categoryField: "country",
+    renderer: xRenderer,
+    tooltip: am5.Tooltip.new(root, {})
+  }));
+  var yRenderer = am5xy.AxisRendererY.new(root, {
+    strokeOpacity: 0.1
+  });
+  var yAxis = chart.yAxes.push(am5xy.ValueAxis.new(root, {
+    maxDeviation: 0.3,
+    renderer: yRenderer
+  }));
+  var series = chart.series.push(am5xy.ColumnSeries.new(root, {
+    name: "Series 1",
+    xAxis: xAxis,
+    yAxis: yAxis,
+    valueYField: "value",
+    sequencedInterpolation: true,
+    categoryXField: "country",
+    tooltip: am5.Tooltip.new(root, {
+      labelText: "{valueY}"
+    })
+  }));
+  series.columns.template.setAll({ cornerRadiusTL: 5, cornerRadiusTR: 5, strokeOpacity: 0 });
+  series.columns.template.adapters.add("fill", function (fill, target) {
+    return chart.get("colors").getIndex(series.columns.indexOf(target));
+  });
+  series.columns.template.adapters.add("stroke", function (stroke, target) {
+    return chart.get("colors").getIndex(series.columns.indexOf(target));
+  });
+  var data = [{
+    country: "2006",
+    value: 2025
+  }, {
+    country: "2007",
+    value: 1882
+  }, {
+    country: "2008",
+    value: 1809
+  }, {
+    country: "2009",
+    value: 1322
+  }, {
+    country: "2010",
+    value: 1122
+  }, {
+    country: "2011",
+    value: 1114
+  }, {
+    country: "2012",
+    value: 984
+  }, {
+    country: "Spain",
+    value: 711
+  }, {
+    country: "2014",
+    value: 665
+  }, {
+    country: "2015",
+    value: 443
+  }, {
+    country: "2016",
+    value: 441
+  }];
+  xAxis.data.setAll(data);
+  series.data.setAll(data);
+  series.appear(1000);
+  chart.appear(1000, 100);
+});
+</script>
+
+{% endblock %}

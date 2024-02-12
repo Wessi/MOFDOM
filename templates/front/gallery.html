@@ -1,0 +1,60 @@
+{% extends 'front/base.html' %}
+{% load static %}
+
+{% block resource %} active {% endblock %}
+
+{% block content %}
+<!-- Gallery -->
+<section class="section border-0 m-0 px-lg-5">
+    <div class="container">
+        <div class="row align-items-end">
+            <div class="col-lg-12">
+                <div class="d-flex align-items-center justify-content-center">
+                    <div class="overflow-hidden text-center">
+                        <h2 class="text-color-primary font-weight-semibold line-height-3 text-5 mb-0 appear-animation"
+                            data-appear-animation="maskRight" data-appear-animation-delay="500">GALLERIES
+                        </h2>
+                        <p  class="appear-animation"  data-appear-animation="maskRight" data-appear-animation-delay="600"> 
+                            PICTURES TAKEN FROM PREVIOUS ACTIVITIES
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row align-items-center justify-content-center">
+            <div class="container py-2">
+                <ul class="nav nav-pills sort-source sort-source-style-3 justify-content-center" data-sort-id="portfolio" data-option-key="filter" data-plugin-options="{'layoutMode': 'masonry', 'filter': '*'}">
+                    <li class="nav-item active" data-option-value="*"><a class="nav-link text-2-5 text-uppercase active" href="#">All Categories</a></li>
+                    {% for category, images in gallery_images_by_category.items %}
+                    <li class="nav-item d-none d-md-block d-lg-block" data-option-value=".{{ category }}"><a class="nav-link text-2-5 text-uppercase" href="#">{{ category }}</a></li>
+                    {% endfor %}
+                </ul>
+
+                <div class="sort-destination-loader sort-destination-loader-showing mt-4 pt-2">
+                    <div class="row portfolio-list sort-destination" data-sort-id="portfolio">
+                        {% for category, images in gallery_images_by_category.items %}
+                            {% for image in images %}
+                                <div class="col-sm-6 col-lg-3 isotope-item {{ category }}">
+                                    <div class="portfolio-item">
+                                        <a href="/gallery/">
+                                            <span class="thumb-info thumb-info-centered-info thumb-info-no-borders border-radius-0">
+                                                <span class="thumb-info-wrapper border-radius-0">
+                                                    <img src="{{ image.image_url }}" class="img-fluid border-radius-0" alt="{{ image.title }}">
+                                                    <span class="thumb-info-title">
+                                                        <span class="thumb-info-inner">{{ image.title }}</span>
+                                                        <span class="thumb-info-type">{{ category }}</span>
+                                                    </span>
+                                                </span>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

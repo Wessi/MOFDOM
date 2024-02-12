@@ -1,0 +1,83 @@
+{% extends 'base_new_admin.html' %}
+{% load static %}
+
+{% block main %}
+    <div class="main-content app-content">
+        <div class="container-fluid">
+
+            <!-- Page Header -->
+            <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
+                <h1 class="page-title fw-semibold fs-18 mb-0">Add Supplier</h1>
+                <div class="ms-md-1 ms-0">
+                    <nav>
+                        <ol class="breadcrumb mb-0">
+                            <li class="breadcrumb-item"><a href="javascript:void(0);">Supplier</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Add</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+            <!-- Page Header Close -->
+
+            <div class="col-xl-12">
+                <div class="card custom-card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            Add Supplier
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <form action="#" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <label for="tin" class="form-label">TIN</label>
+                                    <input type="text" id="tin" name="tin" class="form-control" placeholder="TIN">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="company_name" class="form-label">Company Name</label>
+                                    <input type="text" id="company_name" name="company_name" class="form-control" placeholder="Company Name">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <label for="legal_form" class="form-label">Legal Form</label>
+                                    <input type="text" id="legal_form" name="legal_form" class="form-control" placeholder="Legal Form">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="nationality" class="form-label">Nationality</label>
+                                    <input type="text" id="nationality" name="nationality" class="form-control" placeholder="Nationality">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <label for="area_of_business" class="form-label">Area of Business</label>
+                                    <input type="text" id="area_of_business" name="area_of_business" class="form-control" placeholder="Area of Business">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="sector" class="form-label">Sector</label>
+                                    <select id="sector" name="sector" class="select-chosen" data-placeholder="Choose a Sector..." style="width: 250px;">
+                                        <option value="Private">Private</option>
+                                        <option value="Corporate">Corporate</option>
+                                        <option value="Retail">Retail</option>
+                                        <option value="Merchant">Merchant</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- Add other form fields based on your SupplierForm -->
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-angle-right"></i> Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- End::app-content -->
+{% endblock %}

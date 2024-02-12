@@ -1,0 +1,40 @@
+{% extends 'base_new_admin.html' %}
+{% load static %}
+
+{% block main %}
+    <div class="col-xl-12">
+        <div class="row">
+            {% for blog in blogs %}
+                <div class="col-xxl-3 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="card custom-card">
+                        <a href="javascript:void(0);">
+                            <img src="{{ blog.image.url }}" class="card-img-top" alt="...">
+                        </a>
+                        <div class="card-body">
+                            <a href="{{ blog.get_absolute_url }}" class="fw-semibold fs-14 text-dark mb-1">{{ blog.title }}</a>
+                            <p class="card-text text-muted mb-3">{{ blog.summary }}</p>
+                            <a href="{{ blog.get_absolute_url }}" class="btn btn-primary-light">Read More</a>
+                        </div>
+                        <div class="card-footer">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <div class="d-flex align-items-center">
+                                    <div class="avatar avatar-sm avatar-rounded me-2">
+                                        <img src="{{ blog.author.profile_picture.url }}" alt="{{ blog.author.username }}">
+                                    </div>
+                                    <div>
+                                        <p class="mb-0 fw-semibold">{{ blog.author.get_full_name }}</p>
+                                        <p class="text-muted fs-10 mb-0">{{ blog.publish_date|date:"d,M Y - H:i" }}</p>
+                                    </div>
+                                </div>
+                                <div class="btn-list">
+                                    <button aria-label="button" type="button" class="btn btn-icon btn-light btn-sm"><i class="ri-thumb-up-line"></i></button>
+                                    <button aria-label="button" type="button" class="btn btn-icon btn-light btn-sm"><i class="ri-chat-2-line"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

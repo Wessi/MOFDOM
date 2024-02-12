@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% block main %}
+<section class="our-blog-area pt-90 pb-60">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8">
+                <!-- Start blog -->
+                <div class="blog row">
+                    <!-- Loop through blogs -->
+                    {% for blog in blogs %}
+                    <div class="col-sm-6">
+                        <div class="single-blog mb-30">
+                            <div class="blo-image-and-date">
+                                <img src="{{ blog.images.url }}" alt="{{ blog.title }}">
+                                <span class="blog-date">{{ blog.publish_date }}</span>
+                            </div>
+                            <div class="blog-info">
+                                <div class="admin">
+                                    <a href="#"><i class="fa fa-user" aria-hidden="true"></i> By: {{ blog.author }}</a>
+                                </div>
+                                <div class="comment">
+                                    <a href="#"><i class="fa fa-heart" aria-hidden="true"></i> 15</a>
+                                    <a href="#"><i class="fa fa-comment" aria-hidden="true"></i> 25</a>
+                                </div>
+                            </div>
+                            <div class="blog-text">
+                                <!-- Update anchor tag to link to detail page -->
+                                <h3><a href="{% url 'blog_detail' blog.id %}">{{ blog.title }}</a></h3>
+                                <p>{{ blog.content|slice:":300" }}</p>
+                                <a href="{% url 'blog_detail' blog.id %}">Read More...</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <!-- End loop -->
+                </div>
+                <!-- End blog -->
+            </div>
+            <!-- Start blog sidebar -->
+            <div class="col-sm-4">
+                <div class="blog-sidebar">
+                    <div class="event-sidebar">
+                        <!-- Start event popular post -->
+                        <div class="event-popular-post">
+                            <!-- Insert dynamic content here if applicable -->
+                        </div>
+                        <!-- End event popular post -->
+                        <!-- Start event categories -->
+                        <div class="event-categoris">
+                            <!-- Insert dynamic content here if applicable -->
+                        </div>
+                        <!-- End event categories -->
+                        <div class="event-tags">
+                            <!-- Insert dynamic content here if applicable -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End blog sidebar -->
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="blog-pagination">
+                    <nav>
+                        <ul>
+                            <li><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">Next page</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

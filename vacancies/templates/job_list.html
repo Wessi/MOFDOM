@@ -1,0 +1,36 @@
+{% extends 'base_new_admin.html' %}
+{% load static %}
+
+{% block main %}
+    <!-- Start::app-content -->
+    <div class="main-content app-content">
+        <div class="container-fluid">
+            <h1 class="page-title fw-semibold fs-18 mb-4">Job Listings</h1>
+
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Job Title</th>
+
+                            <!-- Add more table headers for other job details -->
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for job in jobs %}
+                            <tr>
+                                <td>{{ job.job_title }}</td>
+                                <!-- Add more table cells for other job details -->
+                                <td>
+                                    <a href="{% url 'job_detail' job.id %}" class="btn btn-primary">View Details</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- End::app-content -->
+{% endblock %}

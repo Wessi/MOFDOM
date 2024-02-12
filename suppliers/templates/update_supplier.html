@@ -1,0 +1,77 @@
+<!-- update_supplier.html -->
+
+{% extends 'base_new_admin.html' %}
+{% load static %}
+
+{% block main %}
+    <div class="main-content app-content">
+        <div class="container-fluid">
+
+            <!-- Page Header -->
+            <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
+                <h1 class="page-title fw-semibold fs-18 mb-0">Update Supplier</h1>
+                <div class="ms-md-1 ms-0">
+                    <nav>
+                        <ol class="breadcrumb mb-0">
+                            <li class="breadcrumb-item"><a href="javascript:void(0);">Supplier</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Update</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+            <!-- Page Header Close -->
+
+            <div class="col-xl-12">
+                <div class="card custom-card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            Update Supplier
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <form method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="tin" class="form-label">TIN</label>
+                                <input type="text" id="tin" name="tin" class="form-control" value="{{ form.tin.value }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="company_name" class="form-label">Company Name</label>
+                                <input type="text" id="company_name" name="company_name" class="form-control" value="{{ form.company_name.value }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="legal_form" class="form-label">Legal Form</label>
+                                <input type="text" id="legal_form" name="legal_form" class="form-control" value="{{ form.legal_form.value }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="nationality" class="form-label">Nationality</label>
+                                <input type="text" id="nationality" name="nationality" class="form-control" value="{{ form.nationality.value }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="area_of_business" class="form-label">Area of Business</label>
+                                <input type="text" id="area_of_business" name="area_of_business" class="form-control" value="{{ form.area_of_business.value }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="sector" class="form-label">Sector</label>
+                                <select id="sector" name="sector" class="select-chosen form-control" data-placeholder="Choose a Sector..." style="width: 100%;">
+                                    <option value="Private" {% if form.sector.value == 'Private' %}selected{% endif %}>Private</option>
+                                    <option value="Corporate" {% if form.sector.value == 'Corporate' %}selected{% endif %}>Corporate</option>
+                                    <option value="Retail" {% if form.sector.value == 'Retail' %}selected{% endif %}>Retail</option>
+                                    <option value="Merchant" {% if form.sector.value == 'Merchant' %}selected{% endif %}>Merchant</option>
+                                </select>
+                            </div>
+                            <!-- Repeat similar blocks for other fields -->
+
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-angle-right"></i> Update</button>
+                                <a href="{% url 'supplier_view' %}" class="btn btn-sm btn-secondary"><i class="fa fa-times"></i> Cancel</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- End::app-content -->
+{% endblock %}

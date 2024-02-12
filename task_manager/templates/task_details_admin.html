@@ -1,0 +1,162 @@
+{% extends 'base_new_admin.html' %}
+{% load static %}
+{% block main %}
+{% load custom_filters %}
+<!-- Start::app-content -->
+        <div class="main-content app-content">
+            <div class="container-fluid">
+
+                <!-- Page Header -->
+                <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
+                    <h1 class="page-title fw-semibold fs-18 mb-0">Task Details</h1>
+                    <div class="ms-md-1 ms-0">
+                        <nav>
+                            <ol class="breadcrumb mb-0">
+                                <li class="breadcrumb-item"><a href="javascript:void(0);">Task</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Task Details</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+                <!-- Page Header Close -->
+
+                <!-- Start::row-1 -->
+           <!-- task_details_admin.html -->
+<div class="row">
+    <div class="col-xl-9">
+        <div class="card custom-card">
+            <div class="card-header justify-content-between">
+                <div class="card-title">Task Summary</div>
+                <div class="btn-list">
+                    <button class="btn btn-success btn-sm btn-wave me-0">
+                        <i class="ri-edit-line me-1 align-middle"></i>Edit Task
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="fs-15 fw-semibold mb-2">Task Description :</div>
+                <p class="text-muted task-description">{{ task.task_description }}</p>
+                <div class="fs-15 fw-semibold mb-2">Key tasks :</div>
+                <div>
+            <ul class="task-details-key-tasks mb-0">
+                 {% for key_task in task|get_key_tasks %}
+                    <li>{{ key_task }}</li>
+                 {% endfor %}
+            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card-footer">
+    <div class="d-flex align-items-center justify-content-between gap-2 flex-wrap">
+        <div>
+            <span class="d-block text-muted fs-12">Assigned By</span>
+            <div class="d-flex align-items-center">
+                <div class="me-2 lh-1">
+                </div>
+                <span class="d-block fs-14 fw-semibold">{{ assigned_by_user.username }}</span>
+            </div>
+        </div>
+        <div>
+            <span class="d-block text-muted fs-12">Assigned Date</span>
+            <span class="d-block fs-14 fw-semibold">{{ task.assigned_date|date:"d,F Y" }}</span>
+        </div>
+        <div>
+            <span class="d-block text-muted fs-12">Due Date</span>
+            <span class="d-block fs-14 fw-semibold">{{ task.due_date|date:"d,F Y" }}</span>
+        </div>
+        <div class="task-details-progress">
+            <span class="d-block text-muted fs-12 mb-1">Progress</span>
+            <div class="d-flex align-items-center">
+                <div class="progress progress-xs progress-animate flex-fill me-2" role="progressbar" aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100">
+                    <div class="progress-bar bg-primary" style="width: {{ progress }}%"></div>
+                </div>
+                <div class="text-muted fs-11">{{ progress }}%</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card custom-card">
+    <div class="card-header">
+        <div class="card-title">Task Discussions</div>
+    </div>
+    <div class="card-body">
+        <ul class="list-unstyled profile-timeline">
+            {% for comment in task.comments.all %}
+            <li>
+                <div>
+                    <span class="avatar avatar-sm bg-primary-transparent avatar-rounded profile-timeline-avatar">
+                        {{ comment.user.username|first }}
+                    </span>
+                    <p class="mb-2">
+                        <b>{{ comment.user.username }}</b> Commented on this task. <span class="float-end fs-11 text-muted">{{ comment.created_at }}</span>
+                    </p>
+                    <p class="text-muted mb-0">
+                        {{ comment.content }}
+                    </p>
+                    <!-- Reply Form -->
+                    <button class="btn btn-sm btn-primary toggle-reply-form" data-target="reply-form-{{ comment.id }}">Reply</button>
+                    <form method="post" action="{% url 'reply_comment' comment.id %}" class="reply-form" id="reply-form-{{ comment.id }}" style="display: none;">
+                        {% csrf_token %}
+                        <div class="input-group mt-2">
+                            <input type="text" name="comment_content" class="form-control" placeholder="Write a reply..." aria-label="Write a reply..." required>
+                            <button class="btn btn-sm btn-primary" type="submit">Post</button>
+                        </div>
+                    </form>
+                    <!-- End Reply Form -->
+
+                    <!-- Display Replies -->
+                    <ul>
+                        {% for reply in comment.replies.all %}
+                            <li>
+                                <div>
+                                    <span class="avatar avatar-sm bg-secondary-transparent avatar-rounded profile-timeline-avatar">
+                                        {{ reply.user.username|first }}
+                                    </span>
+                                    <p class="mb-2">
+                                        <b>{{ reply.user.username }}</b> Replied to this comment. <span class="float-end fs-11 text-muted">{{ reply.created_at }}</span>
+                                    </p>
+                                    <p class="text-muted mb-0">
+                                        {{ reply.content }}
+                                    </p>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    <!-- End Display Replies -->
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="card-footer">
+        <form method="post" action="{% url 'add_comment' task.id %}">
+            {% csrf_token %}
+            <div class="input-group">
+                <input type="text" name="comment_content" class="form-control" placeholder="Write a comment..." aria-label="Write a comment..." required>
+                <button class="btn btn-sm btn-primary" type="submit">Post</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    document.querySelectorAll('.toggle-reply-form').forEach(button => {
+        button.addEventListener('click', function() {
+            const targetId = this.getAttribute('data-target');
+            const replyForm = document.getElementById(targetId);
+            if (replyForm) {
+                replyForm.style.display = replyForm.style.display === 'none' ? 'block' : 'none';
+            }
+        });
+    });
+</script>
+
+                    </div>
+                </div>
+                <!--End::row-1 -->
+            </div>
+        </div>
+        <!-- End::app-content -->
+{% endblock %}

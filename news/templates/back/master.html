@@ -1,0 +1,459 @@
+{% load static %}
+  <!-- {% if user.is_authenticated %} -->
+<!DOCTYPE html>
+ <html class="no-js" lang="en"> 
+    <head>
+        <meta charset="utf-8">
+
+        <title>Admin Panel</title>
+        <meta name="description" content="ProUI is a Responsive Bootstrap Admin Template created by pixelcave and published on Themeforest.">
+        <meta name="author" content="pixelcave">
+        <meta name="robots" content="noindex, nofollow">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0">
+
+        <!-- Icons Start -->
+        <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
+        <link rel="shortcut icon" href="{% static 'back/img/favicon.png' %}">
+        <link rel="apple-touch-icon" href="{% static 'back/img/icon57.png' %}" sizes="57x57">
+        <link rel="apple-touch-icon" href="{% static 'back/img/icon72.png' %}" sizes="72x72">
+        <link rel="apple-touch-icon" href="{% static 'back/img/icon76.png' %}" sizes="76x76">
+        <link rel="apple-touch-icon" href="{% static 'back/img/icon114.png' %}" sizes="114x114">
+        <link rel="apple-touch-icon" href="{% static 'back/img/icon120.png' %}" sizes="120x120">
+        <link rel="apple-touch-icon" href="{% static 'back/img/icon144.png' %}" sizes="144x144">
+        <link rel="apple-touch-icon" href="{% static 'back/img/icon152.png' %}" sizes="152x152">
+        <link rel="apple-touch-icon" href="{% static 'back/img/icon180.png' %}" sizes="180x180">
+        <!-- Icons End -->
+   <!-- remove this and css normal -->
+        <!-- Style Css -->
+<!-- Icons Css -->
+<link href="{% static 'dashboard/css/icons.css' %}" rel="stylesheet">
+
+<!-- Node Waves Css -->
+<link href="{% static 'dashboard/libs/node-waves/waves.min.css' %}" rel="stylesheet">
+
+<!-- Simplebar Css -->
+<link href="{% static 'dashboard/libs/simplebar/simplebar.min.css' %}" rel="stylesheet">
+
+<!-- Color Picker Css -->
+<link rel="stylesheet" href="{% static 'dashboard/libs/flatpickr/flatpickr.min.css' %}">
+<link rel="stylesheet" href="{% static 'dashboard/libs/@simonwep/pickr/themes/nano.min.css' %}">
+
+<!-- Choices Css -->
+<link rel="stylesheet" href="{% static 'dashboard/libs/choices.js/public/assets/styles/choices.min.css' %}">
+<!-- remove this and css normal -->
+        <!-- Stylesheets -->
+        <!-- Bootstrap is included in its original form, unaltered -->
+<link rel="stylesheet" href="{% static 'back/css/bootstrap.min.css' %}">
+        <!-- Add this line to include the Simple DataTables library -->
+ <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <link href="https://cdn.datatables.net/1.11.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+ <script src="https://cdn.datatables.net/1.11.6/js/jquery.dataTables.min.js"></script>
+
+<!-- ... Other head content ... -->
+        <link id="style" href="{% static 'dashboard/libs/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+        <!-- Related styles of various icon packs and plugins -->
+        <link rel="stylesheet" href="{% static 'back/css/plugins.css' %}">
+
+        <!-- The main stylesheet of this template. All Bootstrap overwrites are defined in here -->
+        <link rel="stylesheet" href="{% static 'back/css/main.css' %}">
+
+        <!-- Include a specific file here from css/themes/ folder to alter the default theme of the template -->
+
+        <!-- The themes stylesheet of this template (for using specific theme color in individual elements - must included last) -->
+        <link rel="stylesheet" href="{% static 'back/css/themes.css' %}">
+        <!-- END Stylesheets -->
+
+        <!-- Modernizr (browser feature detection library) -->
+        <script src="{% static 'back/js/vendor/modernizr.min.js' %}"></script>
+    <!-- Add Editor(CKEditor) for News Add Page(Add News) Start -->
+        {% block headblock %}
+        {% endblock %}
+    </head>
+    <body>
+    <!-- Page Wrapper Start -->
+        <div id="page-wrapper">
+        <!-- Page Container Start -->
+            <div id="page-container" class="sidebar-partial sidebar-visible-lg sidebar-no-animations">
+
+            <!-- Main Sidebar Start -->
+                <div id="sidebar">
+                <!-- Wrapper for scrolling functionality(Sidebar Scrolling) Start -->
+                    <div id="sidebar-scroll">
+                    <!-- Sidebar Content Start -->
+                        <div class="sidebar-content">
+                        <!-- Brand for sidebar Start -->
+                            <a href="/panel" class="sidebar-brand">
+                                <i class="gi gi-flash"></i><span class="sidebar-nav-mini-hide"><strong>Admin</strong>Panel</span>
+                            </a>
+                        <!-- Brand for sidebar End -->
+
+                        <!-- User Information Start -->
+                            <div class="sidebar-section sidebar-user clearfix sidebar-nav-mini-hide">
+                                <div class="sidebar-user-avatar">
+                                    <a href="page_ready_user_profile.html">
+                                        <img src="{% static 'back/img/placeholders/avatars/avatar2.jpg' %}" alt="avatar">
+                                    </a>
+                                </div>
+                                <div class="sidebar-user-name">Barok</div>
+                                <div class="sidebar-user-links">
+                                    <a href="page_ready_user_profile.html" data-toggle="tooltip" data-placement="bottom" title="Profile"><i class="gi gi-user"></i></a>
+                                    <a href="page_ready_inbox.html" data-toggle="tooltip" data-placement="bottom" title="Messages"><i class="gi gi-envelope"></i></a>
+                                    <a href="javascript:void(0)" class="enable-tooltip" data-placement="bottom" title="Settings" onclick="$('#modal-user-settings').modal('show');"><i class="gi gi-cogwheel"></i></a>
+                                    <a href="/logout" data-toggle="tooltip" data-placement="bottom" title="Logout"><i class="gi gi-exit"></i></a>
+                                </div>
+                            </div>
+                        <!-- User Information End -->
+                    <!-- Sidebar Navigation(To add category, sub category, settings etc) Start -->
+
+<script>
+    // Function to toggle submenu visibility
+    function toggleSubMenu(buttonId, submenuId) {
+        var button = document.getElementById(buttonId);
+        var submenu = document.getElementById(submenuId);
+
+        if (submenu.style.display === 'block') {
+            submenu.style.display = 'none';
+        } else {
+            submenu.style.display = 'block';
+        }
+    }
+</script>
+<a href="#">
+    <li class="sidebar-header">
+        <span class="sidebar-header-options clearfix">
+            <a href="#" data-toggle="tooltip" title="Dashboard">
+                <i class="gi gi-settings"></i>
+            </a>
+        </span>
+        <span class="sidebar-header-title">Dashboard</span>
+    </li>
+</a>
+<ul class="sidebar-nav">
+    <!-- Site Settings Button -->
+    <li class="sidebar-header" onclick="toggleSubMenu('siteSettingsButton', 'siteSettingsSubMenu')">
+        <span class="sidebar-header-options clearfix">
+            <a href="javascript:void(0)" data-toggle="tooltip" title="Quick Settings">
+                <i class="gi gi-settings"></i>
+            </a>
+        </span>
+        <span class="sidebar-header-title">Site Settings</span>
+    </li>
+
+    <!-- Site Settings Submenu -->
+    <ul id="siteSettingsSubMenu" style="display: none;">
+        <!-- Settings (Under Site Settings Panel) -->
+        <li>
+            <a href="/panel/setting/" class="">
+                <i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i>
+                <span class="sidebar-nav-mini-hide">Settings</span>
+            </a>
+        </li>
+
+        <!-- About Settings (Under Site Settings Panel) -->
+        <li>
+            <a href="/panel/about/setting/" class="">
+                <i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i>
+                <span class="sidebar-nav-mini-hide">About Settings</span>
+            </a>
+        </li>
+
+        <!-- Contact Forms (Under Site Settings Panel) -->
+        <li>
+            <a href="/panel/contactform/" class="">
+                <i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i>
+                <span class="sidebar-nav-mini-hide">Contact Forms</span>
+            </a>
+        </li>
+    </ul>
+
+    <!-- News Section Button -->
+    <li class="sidebar-header" onclick="toggleSubMenu('newsSectionButton', 'newsSectionSubMenu')">
+        <span class="sidebar-header-options clearfix">
+            <a href="javascript:void(0)" data-toggle="tooltip" title="Quick Settings">
+                <i class="gi gi-settings"></i>
+            </a>
+        </span>
+        <span class="sidebar-header-title">News Section</span>
+    </li>
+
+    <!-- News Section Submenu -->
+    <ul id="newsSectionSubMenu" style="display: none;">
+        <!-- Category (add and list) -->
+        <li>
+            <a href="/panel/category/add" class="sidebar-nav-menu">
+                <i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i>
+                <i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i>
+                <span class="sidebar-nav-mini-hide">Category</span>
+            </a>
+            <ul>
+                <li>
+                    <a href="/panel/category/list">Categories List</a>
+                </li>
+            </ul>
+        </li>
+
+        <!-- Sub-Category (add and list) -->
+        <li>
+            <a href="/panel/subcategory/add" class="sidebar-nav-menu">
+                <i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i>
+                <i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i>
+                <span class="sidebar-nav-mini-hide">SubCategory</span>
+            </a>
+            <ul>
+                <li>
+                    <a href="/panel/subcategory/list">SubCategories List</a>
+                </li>
+            </ul>
+        </li>
+
+        <!-- News (add and list) -->
+        <li>
+            <a href="/panel/news/add/" class="sidebar-nav-menu">
+                <i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i>
+                <i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i>
+                <span class="sidebar-nav-mini-hide">News</span>
+            </a>
+            <ul>
+                <li>
+                    <a href="/panel/news/list/">News List</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+
+    <!-- Blocked Supplier Button -->
+    <li class="sidebar-header" onclick="toggleSubMenu('blockedSupplierButton', 'blockedSupplierSubMenu')">
+        <span class="sidebar-header-options clearfix">
+            <a href="javascript:void(0)" data-toggle="tooltip" title="Quick Settings">
+                <i class="gi gi-settings"></i>
+            </a>
+        </span>
+        <span class="sidebar-header-title">Blocked Supplier</span>
+    </li>
+
+    <!-- Blocked Supplier Submenu -->
+    <ul id="blockedSupplierSubMenu" style="display: none;">
+        <!-- Add Supplier (Under Blocked Supplier Panel) -->
+        <li>
+            <a href="/news/panel/supplier/add" class="">
+                <i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i>
+                <span class="sidebar-nav-mini-hide">Add Supplier</span>
+            </a>
+        </li>
+
+        <!-- View Suppliers (Under Blocked Supplier Panel) -->
+        <li>
+            <a href="/news/panel/supplier/view" class="">
+                <i class="gi gi-eye_open sidebar-nav-icon"></i>
+                <span class="sidebar-nav-mini-hide">View Suppliers</span>
+            </a>
+        </li>
+    </ul>
+
+    <!-- Documents Button -->
+    <li class="sidebar-header" onclick="toggleSubMenu('documentsButton', 'documentsSubMenu')">
+        <span class="sidebar-header-options clearfix">
+            <a href="javascript:void(0)" data-toggle="tooltip" title="Quick Settings">
+                <i class="gi gi-settings"></i>
+            </a>
+        </span>
+        <span class="sidebar-header-title">Documents</span>
+    </li>
+
+    <!-- Documents Submenu -->
+    <ul id="documentsSubMenu" style="display: none;">
+        <!-- Add Documents (Under Documents Panel) -->
+        <li>
+            <a href="/panel/documents/add" class="">
+                <i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i>
+                <span class="sidebar-nav-mini-hide">Add Documents</span>
+            </a>
+        </li>
+    </ul>
+
+    <!-- Vacancies Button -->
+    <li class="sidebar-header" onclick="toggleSubMenu('vacanciesButton', 'vacanciesSubMenu')">
+        <span class="sidebar-header-options clearfix">
+            <a href="javascript:void(0)" data-toggle="tooltip" title="Quick Settings">
+                <i class="gi gi-settings"></i>
+            </a>
+        </span>
+        <span class="sidebar-header-title">Vacancies</span>
+    </li>
+
+    <!-- Vacancies Submenu -->
+    <ul id="vacanciesSubMenu" style="display: none;">
+        <!-- Add Vacancies (Under Vacancies Panel) -->
+        <li>
+            <a href="/panel/vacancies/add" class="">
+                <i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i>
+                <span class="sidebar-nav-mini-hide">Add Vacancies</span>
+            </a>
+        </li>
+    </ul>
+
+    <!-- Dashboard Button -->
+    <li class="sidebar-header" onclick="toggleSubMenu('dashboardButton', 'dashboardSubMenu')">
+        <span class="sidebar-header-options clearfix">
+            <a href="javascript:void(0)" data-toggle="tooltip" title="Quick Settings">
+                <i class="gi gi-settings"></i>
+            </a>
+        </span>
+        <span class="sidebar-header-title">Dashboard</span>
+    </li>
+
+    <!-- Dashboard Submenu -->
+    <ul id="dashboardSubMenu" style="display: none;">
+        <!-- Footers -->
+        <li>
+            <a href="/news/panel/footers/add" class="">
+                <i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i>
+                <span class="sidebar-nav-mini-hide">Footers</span>
+            </a>
+        </li>
+
+        <!-- Galleries -->
+        <li>
+            <a href="/news/panel/gallarie_image/add" class="">
+                <i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i>
+                <span class="sidebar-nav-mini-hide">Galleries</span>
+            </a>
+        </li>
+
+        <!-- FAQs -->
+        <li>
+            <a href="/news/panel/faq/add" class="">
+                <i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i>
+                <span class="sidebar-nav-mini-hide">FAQs</span>
+            </a>
+        </li>
+
+        <!-- Sliders -->
+        <li>
+            <a href="/news/panel/sliders/add" class="">
+                <i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i>
+                <span class="sidebar-nav-mini-hide">Sliders</span>
+            </a>
+        </li>
+    </ul>
+
+    <!-- Task Management Button -->
+    <li class="sidebar-header" onclick="toggleSubMenu('taskManagementButton', 'taskManagementSubMenu')">
+        <span class="sidebar-header-options clearfix">
+            <a href="javascript:void(0)" data-toggle="tooltip" title="Quick Settings">
+                <i class="gi gi-settings"></i>
+            </a>
+        </span>
+        <span class="sidebar-header-title">Task Management</span>
+    </li>
+
+    <!-- Task Management Submenu -->
+    <ul id="taskManagementSubMenu" style="display: none;">
+        <!-- View Task -->
+        <li>
+            <a href="/taskmanager/task_view/" class="">
+                <i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i>
+                <span class="sidebar-nav-mini-hide">task_list</span>
+            </a>
+        </li>
+
+        <!-- Task Details -->
+        <li>
+            <a href="/panel/task/details" class="">
+                <i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i>
+                <span class="sidebar-nav-mini-hide">Task Details</span>
+            </a>
+        </li>
+
+        <!-- Task List -->
+        <li>
+            <a href="/panel/task/list" class="">
+                <i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i>
+                <span class="sidebar-nav-mini-hide">Task</span>
+            </a>
+        </li>
+    </ul>
+</ul>
+
+</div>
+<!-- Sidebar Content End -->
+</div>
+<!-- Wrapper for scrolling functionality(Sidebar Scrolling) End -->
+</div>
+<!-- Main Sidebar End -->
+            <!-- Main Container Start -->
+                <div id="main-container">
+                <!-- Header Section Start -->
+                    <header class="navbar navbar-default">
+                    <!-- Left Header Navigation Start -->
+                        <ul class="nav navbar-nav-custom">
+                        <!-- Main Sidebar Toggle Button Start -->
+                            <li>
+                                <a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar');this.blur();">
+                                    <i class="fa fa-bars fa-fw"></i>
+                                </a>
+                            </li>
+                        <!-- Main Sidebar Toggle Button End -->                           
+                        </ul>
+                    <!-- Left Header Navigation End -->
+                    <!-- Search Form Start -->
+                        <form action="page_ready_search_results.html" method="post" class="navbar-form-custom">
+                            <div class="form-group">
+                                <input type="text" id="top-search" name="top-search" class="form-control" placeholder="Search..">
+                            </div>
+                        </form>
+                    <!-- Search Form End -->
+                    </header>
+                <!-- Header Section End -->
+                <!-- Page Content Start -->
+                    <div id="page-content">
+                        <!-- Dashboard Header -->                    
+                    {% block mainblock %}
+
+                    {% endblock %}
+                    </div>
+                <!-- Page Content End -->
+                    <!-- Footer Section Start -->
+                    <footer class="clearfix">
+                        <div class="pull-right">
+                            Design <i class=""></i> by <a href="" target="_blank">Kanenus</a>
+                        </div>
+                    </footer>
+                <!-- Footer Section End -->
+
+                </div>
+            <!-- Main Container End -->
+
+            </div>
+        <!-- Page Container End -->
+
+        </div>
+    <!-- Page Wrapper End -->
+
+        
+        <!-- Scroll to top link, initialized in js/app.js - scrollToTop() -->
+        <a href="#" id="to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+        <!-- jQuery, Bootstrap.js, jQuery plugins and Custom JS code -->
+        <script src="{% static 'back/js/vendor/jquery.min.js' %}"></script>
+        <script src="{% static 'back/js/vendor/bootstrap.min.js' %}"></script>
+        <script src="{% static 'back/js/plugins.js' %}"></script>
+        <script src="{% static 'back/js/app.js' %}"></script>
+
+        
+        <script src="https://maps.googleapis.com/maps/api/js?key="></script>
+        <script src="{% static 'back/js/helpers/gmaps.min.js' %}"></script>
+
+        {% block footerblock %}
+        {% endblock %}
+        
+    </body>
+</html>
+
+{% else %}
+
+Please Login
+
+{% endif %}    <!-- Lock admin page End -->
