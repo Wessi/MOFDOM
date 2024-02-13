@@ -100,10 +100,10 @@ def news_txt_del(request, pk, num):
 ##--#--## Delete Newsletter (Emails and Phones) Function For Back (Admin Panel - Backend) End ##--#--##
 def news_detail(request, news_id):
     try:
-        news_item = News.objects.get(pk=news_id)
-    except News.DoesNotExist:
+        news_item = NewsArticle.objects.get(id=news_id)
+    except Exception as e:
         # Handle the case where the news with the provided ID does not exist
-        return HttpResponseNotFound("News not found")
+        return redirect("news_list_visitor")
 
     news = News.objects.all().order_by('-pk')
     cat = Cat.objects.all()
@@ -116,12 +116,13 @@ def news_detail(request, news_id):
     
     
 
-    link = f"/urls/{news_item.rand}" if news_item else ""
+    # link = f"/urls/{news_item.rand}" if news_item else ""
+    link  = "/"
 
     return render(request, 'front/news_detail.html', {
         'news': news, 'cat': cat, 'subcat': subcat, 'lastnews': lastnews, 'news_item': news_item,
         'popnews': popnews, 'popnews2': popnews2, 'trending': trending, 
-        'cmcount': cmcount, 'link': link
+        'link': link
     })
 
 

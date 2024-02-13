@@ -41,6 +41,8 @@ class Comment(models.Model):
 
     def __str__(self):
         return f"Comment by {self.user.username} on {self.task.task_name}"
+
+
 class Notification(models.Model):
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='notifications')
     message = models.CharField(max_length=255)

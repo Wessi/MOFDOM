@@ -120,6 +120,26 @@
 <body>
 
     <div class="body">
+
+        {% if messages %}
+        <div  class="col-12  justify-content-end mt-5 msg-alert" style="z-index: 1100; position: absolute; right:1rem;top:3rem;">
+           
+            {% for m in messages %}
+             
+                <div id="message" class="float-end col-md-7 col-sm-12 col-xsm-12 alert  alert-{{m.tags}} alert-dismissible" role="alert">
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    <strong>
+                        {% if m.tags == 'success' %}<i class="far fa-thumbs-up"></i> Success!
+                        {% elif m.tags == 'warning' %}<i class="far fa-thumbs-down"></i> Warning!
+                        {% else %} <i class="fas fa-exclamation-triangle"></i> Error! {% endif %}
+                    </strong> {{m}}
+                </div> 
+            {% endfor %}
+            
+        </div>
+    {% endif %}
+
+
         <header id="header" class="header-effect-shrink"
             data-plugin-options="{'stickyEnabled': true, 'stickyEffect': 'shrink', 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': false, 'stickyChangeLogo': true, 'stickyStartAt': 30, 'stickyHeaderContainerHeight': 85}">
             <div class="header-body header-body-bottom-border border-top-0">
@@ -257,12 +277,12 @@
                                                 <li class="dropdown ">
                                                     <a class="dropdown-item dropdown-toggle {% block resource %} {% endblock %} " href="#">Resources</a>
                                                     <ul class="dropdown-menu">
-                                                        <li><a class="dropdown-item" href="{% url 'new_doc_view' %}">Documents</a></li>
+                                                        <li><a class="dropdown-item" href="{% url 'list_docs' %}">Documents</a></li>
                                                         <li><a class="dropdown-item" href="{% url 'gallery_view' %}">Gallery</a></li>
                                                     </ul>
                                                 </li>
                                                 
-                                                <li><a class="nav-link {% block project %} {% endblock %}">Projects</a></li>
+                                                <!-- <li><a class="nav-link {% block project %} {% endblock %}">Projects</a></li> -->
                                                 <li class="dropdown ">
                                                     <a class="dropdown-item dropdown-toggle {% block announcement %} {% endblock %}" href="#">Announcements</a>
                                                     <ul class="dropdown-menu">
@@ -273,7 +293,7 @@
                                                 
 <!-- news -->
                                                 <li class="d-block d-lg-none "><a class="nav-link {% block news %} {% endblock %}" href="{% url 'news_list_visitor' %}">News</a></li>
-
+                                                
                                                 <li class="dropdown dropdown-mega  float-end  d-none d-lg-block">
                                                     <a class="dropdown-item dropdown-toggle {% block news_mega %} {% endblock %}" href="{% url 'news_list_visitor' %}">
                                                         News
@@ -282,62 +302,31 @@
                                                         <li class="float-end bg-light border-radius-2 " style="width: 90%;">
                                                             <div class="dropdown-mega-content">
                                                                 <div class="row pt-0"  >
+                                                                    {% for art_news in recent_news_mega %}
                                                                     <div class="col-lg-3 bg-light" style="height: max-content;">
                                                                         <article class="post p-0 bg-light">
                                                                            
 
                                                                             <div class="post-image">
+                                                                                {% if art_news.featured_image %}
+                                                                                <img src="{{art_news.featured_image.url}}" style="width: 100%; height:100px;" 
+                                                                                class="img-fluid img-thumbnail img-thumbnail-no-borders" alt="" />
+                                                                                {% else %} 
                                                                                 <img src="/static/front/imgs/news/news1.jpg" style="width: 100%; height:100px;" 
                                                                                 class="img-fluid img-thumbnail img-thumbnail-no-borders" alt="" />
-                                                                                <small class="text-primary">Ethiopia Doubles Share Of Trade With the World Bank Group </small>
+                                                                                {% endif %}
+                                                                                <small class="text-primary">{{art_news.title|truncatechars:60}} </small>
                                                                             </div>
                                                                           
                                                                             <div class="post-meta">
-                                                                                <small><i class="fa fa-clock"></i>08-02-2024 </small>
-                                                                                <span class=" float-end"><a href="blog-post.html" >Read More</a></span>
+                                                                                <small><i class="fa fa-clock"></i>{{art_news.created_at|date}} </small>
+                                                                                <span class=" float-end"><a href="{% url 'news_detail' news_id=art_news.id %}" class="text-primary">Read More</a></span>
                                                                             </div>
                                                                         </article>
                                                                     </div>
+                                                                    {% endfor %}
                                                         		
-                                                                    <div class="col-lg-3 bg-light" style="height: max-content;">
-                                                                        <article class="post p-0 bg-light">
-                                                                            <div class="post-image">
-                                                                                <img src="/static/front/imgs/news/news2.jpg" style="width: 100%; height:100px;" 
-                                                                                class="img-fluid img-thumbnail img-thumbnail-no-borders" alt="" />
-                                                                                <small class="text-primary">Ethiopia Doubles Share Of Trade With the World Bank Group </small>
-                                                                            </div>
-                                                                            <div class="post-meta">
-                                                                                <small><i class="fa fa-clock"></i>08-02-2024 </small>
-                                                                                <span class=" float-end"><a href="blog-post.html" >Read More</a></span>
-                                                                            </div>
-                                                                        </article>
-                                                                    </div>
-                                                                    <div class="col-lg-3 bg-light" style="height: max-content;">
-                                                                        <article class="post p-0 bg-light">
-                                                                            <div class="post-image">
-                                                                                <img src="/static/front/imgs/news/news3.jpg" style="width: 100%; height:100px;" 
-                                                                                class="img-fluid img-thumbnail img-thumbnail-no-borders" alt="" />
-                                                                                <small class="text-primary">Ethiopia Doubles Share Of Trade With the World Bank Group </small>
-                                                                            </div>
-                                                                            <div class="post-meta">
-                                                                                <small><i class="fa fa-clock"></i>08-02-2024 </small>
-                                                                                <span class=" float-end"><a href="blog-post.html" >Read More</a></span>
-                                                                            </div>
-                                                                        </article>
-                                                                    </div>
-                                                                    <div class="col-lg-3 bg-light" style="height: max-content;">
-                                                                        <article class="post p-0 bg-light">
-                                                                            <div class="post-image">
-                                                                                <img src="/static/front/imgs/news/news4.jpeg" style="width: 100%; height:100px;" 
-                                                                                class="img-fluid img-thumbnail img-thumbnail-no-borders" alt="" />
-                                                                                <small class="text-primary">Ethiopia Doubles Share Of Trade With the World Bank Group </small>
-                                                                            </div>
-                                                                            <div class="post-meta">
-                                                                                <small><i class="fa fa-clock"></i>08-02-2024 </small>
-                                                                                <span class=" float-end"><a href="blog-post.html" >Read More</a></span>
-                                                                            </div>
-                                                                        </article>
-                                                                    </div>
+                                                                    
                                                                 
                                                                 </div>
                                                             </div>
@@ -416,6 +405,8 @@
                                                     </ul>
                                                 </li>
                                                 <!-- end privary -->
+                                                <li><a class="nav-link {% block contact_us %} {% endblock %}">Contact Us</a></li>
+                                                
 
                                                 <!-- <li class="nav-item dropdown ">
                                                     <div id="google_translate_element" class="nav-link mt-3" ></div>
@@ -486,7 +477,11 @@
                                     <script type="text/javascript" src= "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
                                                 
                                 </button>
-                                <button class=" btn btn-primary d-lg-block d-sm-none d-xsm-none" style="margin-left: 10px;">Login</button>
+                                {% if user.is_authenticated %}
+                                <a href="{% url 'admin_dashboard' %}" class=" btn btn-primary d-lg-block d-sm-none d-xsm-none" style="margin-left: 10px;">Dashboard</a>
+                                {% else %}
+                                <a href="{% url 'login' %}" class=" btn btn-primary d-lg-block d-sm-none d-xsm-none" style="margin-left: 10px;">Login</a>
+                                {% endif %}
                                 <button class="btn header-btn-collapse-nav" data-bs-toggle="collapse"
                                     data-bs-target=".header-nav-main nav">
                                     <i class="fas fa-bars"></i>
@@ -502,6 +497,8 @@
 
        
         <div role="main" class="main">
+            
+        
         {% block content %} 
         {% endblock %}
         </div>
@@ -512,7 +509,7 @@
 
    
     <!-- Vendor -->
-    <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <!-- <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script> -->
     <script src="{% static 'front/vendor/plugins/js/plugins.min.js' %}"></script>
     
     <!-- Theme Base, Components and Settings -->

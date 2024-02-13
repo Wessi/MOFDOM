@@ -24,9 +24,14 @@
                 <div class="col-xl-12">
                     <div class="card custom-card">
                         <div class="card-header">
-                            <div class="card-title">
-                                Available Job Vacancies
-                            </div>
+                            <!-- <div class="row"> -->
+                                <div class="col-lg-11">
+                                    <div class="card-title">
+                                        Available Job Vacancies
+                                        <a href="{% url 'post_job_view' %}" class="btn btn-primary float-end"> Add a Job </a>
+                                    </div>
+                                </div>
+                            <!-- </div> -->
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -60,7 +65,7 @@
                                                 <a href="#" class="btn btn-sm btn-primary">Update</a>
                                                 <form action="#" method="post" style="display: inline;">
                                                     {% csrf_token %}
-                                                    <button class="btn btn-danger btn-sm" onclick="confirmDelete('{{ job.id }}')">Delete</button>
+                                                    <button class="btn btn-danger btn-sm" onclick="confirmDelete('{{ vacancy.id }}')">Delete</button>
 
 
                                                 </form>

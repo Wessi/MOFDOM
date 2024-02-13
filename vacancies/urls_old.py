@@ -11,6 +11,5 @@ urlpatterns = [
     path('job_list_admin/', job_list_admin, name='job_list_admin'),
     path('job_list/', job_list_ytemplate, name='job_list_ytemplate'),
     path('job/<int:job_id>/delete/', delete_job, name='delete_job'),
-    path('update_job/<int:job_id>/', update_job, name='update_job'),
 ]
 

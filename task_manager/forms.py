@@ -8,11 +8,13 @@ class TaskForm(forms.ModelForm):
     # Use DateTimeInput widget for assigned_date and due_date
     assigned_date = forms.DateTimeField(widget=forms.DateTimeInput(attrs={'type': 'datetime-local'}))
     due_date = forms.DateTimeField(widget=forms.DateTimeInput(attrs={'type': 'datetime-local'}))
-
+    
     class Meta:
         model = Task
         fields = ['task_name', 'assigned_to','assigned_date', 'due_date', 'status', 'priority', 'task_description', 'key_tasks']
-
+        widgets = {
+            'assigned_to':forms.Select(attrs={'class':'form-control'})
+        }
     def clean(self):
         cleaned_data = super().clean()
         assigned_date = cleaned_data.get('assigned_date')

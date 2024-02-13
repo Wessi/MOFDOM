@@ -3,29 +3,34 @@ from .models import *
 from .forms import TaskForm
 from django.views import View
 from django.utils import timezone
-from .forms import CommentForm
+from .forms import CommentForm, TaskForm
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 def task_list_view(request):
     tasks = Task.objects.all()
     context = {
-        'tasks': tasks,
+        'tasks': tasks, 'form':TaskForm()
     }
     return render(request, 'task-list-view.html', context)
 
 def create_task(request):
     if request.method == 'POST':
+        print("--------")
         form = TaskForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('task_list_view')
-    else:
-        form = TaskForm()
+        else:
+            
+            print("not working",form.errors)
+        
+        return redirect('task_list_view')
 
-    context = {
-        'form': form,
-    }
-    return render(request, 'create_task.html', context)
+    else:
+        print("+++++")
+        form = TaskForm()
+    return redirect('task_list_view')
+
+
 def delete_task(request, task_id):
     task = get_object_or_404(Task, id=task_id)
 

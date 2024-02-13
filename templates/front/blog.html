@@ -28,159 +28,31 @@
         <div class="row appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="600">
             <div class="col">
                 <div class="row">
-
+                    {% for blog in blogs %}
                     <div class="  col-md-4 col-lg-4">
                         <article class="card p-3  post post-medium border-0 pb-0 mb-5">
                             <div class="post-image">
-                                <a href="blog-post.html">
-                                    <img src="/static/front/img/blog/medium/blog-1.jpg" class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0" alt="" />
+                                <a href="{% url 'blog_detail' blog_id=blog.id %}">
+                                    <img src="{{blog.images.url}}" class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0" alt="" />
                                 </a>
                             </div>
 
                             <div class="post-content">
-
-                                <h2 class="font-weight-semibold text-5 line-height-6 mt-3 mb-2"><a href="blog-post.html">Amazing Mountain</a></h2>
-                                <p>Euismod atras vulputate iltricies etri elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos.</p>
-
+                                <h2 class="font-weight-semibold text-5 line-height-6 mt-3 mb-2"><a href="{% url 'blog_detail' blog_id=blog.id %}">{{blog.title|truncatechars:35}}</a></h2>
+                                <p>{{blog.content|truncatechars:70}}
                                 <div class="post-meta">
-                                    <span><i class="far fa-calendar-alt "></i><a href="#"> 09-02-2024</a> </span>
-                                    <span><i class="far fa-user"></i> By <a href="#">Bob Doe</a> </span>
+                                    <span><i class="far fa-calendar-alt "></i><a href="#">{{blog.publish_date}}</a></span>
+                                    <span><i class="far fa-user"></i> By <a href="#">{{blog.author}}</a></span>
                                     <span><i class="far fa-comments"></i> <a href="#">12 Comments</a></span>
-                                    <span class="d-block mt-2 float-end mb-3"><a href="" class="btn btn-md btn-primary ">Read More <i class="fa fa-angle-right"></i></a></span>
+                                    <span class="d-block mt-2 float-end mb-3"><a href="{% url 'blog_detail' blog_id=blog.id %}" class="btn btn-md btn-primary ">Read More <i class="fa fa-angle-right"></i></a></span>
                                 </div>
 
                             </div>
                         </article>
                     </div>
+                    {% endfor %}
 
-                    <div class="  col-md-4 col-lg-4">
-                        <article class="card p-3  post post-medium border-0 pb-0 mb-5">
-                            <div class="post-image">
-                                <a href="blog-post.html">
-                                    <img src="/static/front/img/blog/medium/blog-1.jpg" class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0" alt="" />
-                                </a>
-                            </div>
-
-                            <div class="post-content">
-
-                                <h2 class="font-weight-semibold text-5 line-height-6 mt-3 mb-2"><a href="blog-post.html">Amazing Mountain</a></h2>
-                                <p>Euismod atras vulputate iltricies etri elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos.</p>
-
-                                <div class="post-meta">
-                                    <span><i class="far fa-calendar-alt "></i><a href="#"> 09-02-2024</a> </span>
-                                    
-                                    <span><i class="far fa-user"></i> By <a href="#">Bob Doe</a> </span>
-                                    <!-- <span><i class="far fa-folder"></i> <a href="#">News</a>, <a href="#">Design</a> </span> -->
-                                    <span><i class="far fa-comments"></i> <a href="#">12 Comments</a></span>
-                                    <span class="d-block mt-2 float-end mb-3"><a href="" class="btn btn-md btn-primary ">Read More <i class="fa fa-angle-right"></i></a></span>
-                                </div>
-
-                            </div>
-                        </article>
-                    </div>
-
-                    <div class="  col-md-4 col-lg-4">
-                        <article class="card p-3  post post-medium border-0 pb-0 mb-5">
-                            <div class="post-image">
-                                <a href="blog-post.html">
-                                    <img src="/static/front/img/blog/medium/blog-1.jpg" class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0" alt="" />
-                                </a>
-                            </div>
-
-                            <div class="post-content">
-
-                                <h2 class="font-weight-semibold text-5 line-height-6 mt-3 mb-2"><a href="blog-post.html">Amazing Mountain</a></h2>
-                                <p>Euismod atras vulputate iltricies etri elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos.</p>
-
-                                <div class="post-meta">
-                                    <span><i class="far fa-calendar-alt "></i><a href="#"> 09-02-2024</a> </span>
-                                    
-                                    <span><i class="far fa-user"></i> By <a href="#">Bob Doe</a> </span>
-                                    <!-- <span><i class="far fa-folder"></i> <a href="#">News</a>, <a href="#">Design</a> </span> -->
-                                    <span><i class="far fa-comments"></i> <a href="#">12 Comments</a></span>
-                                    <span class="d-block mt-2 float-end mb-3"><a href="" class="btn btn-md btn-primary ">Read More <i class="fa fa-angle-right"></i></a></span>
-                                </div>
-
-                            </div>
-                        </article>
-                    </div>
-                    
-                    <div class="  col-md-4 col-lg-4">
-                        <article class="card p-3  post post-medium border-0 pb-0 mb-5">
-                            <div class="post-image">
-                                <a href="blog-post.html">
-                                    <img src="/static/front/img/blog/medium/blog-1.jpg" class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0" alt="" />
-                                </a>
-                            </div>
-
-                            <div class="post-content">
-
-                                <h2 class="font-weight-semibold text-5 line-height-6 mt-3 mb-2"><a href="blog-post.html">Amazing Mountain</a></h2>
-                                <p>Euismod atras vulputate iltricies etri elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos.</p>
-
-                                <div class="post-meta">
-                                    <span><i class="far fa-calendar-alt "></i><a href="#"> 09-02-2024</a> </span>
-                                    <span><i class="far fa-user"></i> By <a href="#">Bob Doe</a> </span>
-                                    <!-- <span><i class="far fa-folder"></i> <a href="#">News</a>, <a href="#">Design</a> </span> -->
-                                    <span><i class="far fa-comments"></i> <a href="#">12 Comments</a></span>
-                                    <span class="d-block mt-2 float-end mb-3"><a href="" class="btn btn-md btn-primary ">Read More <i class="fa fa-angle-right"></i></a></span>
-                                </div>
-
-                            </div>
-                        </article>
-                    </div>
-
-                    <div class="  col-md-4 col-lg-4">
-                        <article class="card p-3  post post-medium border-0 pb-0 mb-5">
-                            <div class="post-image">
-                                <a href="blog-post.html">
-                                    <img src="/static/front/img/blog/medium/blog-1.jpg" class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0" alt="" />
-                                </a>
-                            </div>
-
-                            <div class="post-content">
-
-                                <h2 class="font-weight-semibold text-5 line-height-6 mt-3 mb-2"><a href="blog-post.html">Amazing Mountain</a></h2>
-                                <p>Euismod atras vulputate iltricies etri elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos.</p>
-
-                                <div class="post-meta">
-                                    <span><i class="far fa-calendar-alt "></i><a href="#"> 09-02-2024</a> </span>
-                                    <span><i class="far fa-user"></i> By <a href="#">Bob Doe</a> </span>
-                                    <!-- <span><i class="far fa-folder"></i> <a href="#">News</a>, <a href="#">Design</a> </span> -->
-                                    <span><i class="far fa-comments"></i> <a href="#">12 Comments</a></span>
-                                    <span class="d-block mt-2 float-end mb-3"><a href="" class="btn btn-md btn-primary ">Read More <i class="fa fa-angle-right"></i></a></span>
-                                </div>
-
-                            </div>
-                        </article>
-                    </div>
-                    
-                    <div class="  col-md-4 col-lg-4">
-                        <article class="card p-3  post post-medium border-0 pb-0 mb-5">
-                            <div class="post-image">
-                                <a href="blog-post.html">
-                                    <img src="/static/front/img/blog/medium/blog-1.jpg" class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0" alt="" />
-                                </a>
-                            </div>
-
-                            <div class="post-content">
-
-                                <h2 class="font-weight-semibold text-5 line-height-6 mt-3 mb-2"><a href="blog-post.html">Amazing Mountain</a></h2>
-                                <p>Euismod atras vulputate iltricies etri elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos.</p>
-
-                                <div class="post-meta">
-                                    <span><i class="far fa-calendar-alt "></i><a href="#"> 09-02-2024</a> </span>
-                                    <span><i class="far fa-user"></i> By <a href="#">Bob Doe</a> </span>
-                                    <!-- <span><i class="far fa-folder"></i> <a href="#">News</a>, <a href="#">Design</a> </span> -->
-                                    <span><i class="far fa-comments"></i> <a href="#">12 Comments</a></span>
-                                    <span class="d-block mt-2 float-end mb-3"><a href="" class="btn btn-md btn-primary ">Read More <i class="fa fa-angle-right"></i></a></span>
-                                </div>
-
-                            </div>
-                        </article>
-                    </div>
-
-                    
+ 
 
                 </div>
 
