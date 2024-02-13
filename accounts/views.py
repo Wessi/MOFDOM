@@ -58,7 +58,6 @@ class Login(View):
         # return render(request, 'front/registration/login.html', {'form':AuthenticationForm})
 
     
-
 class Logout(View):
     def get(self, request):
         logout(self.request)
@@ -86,15 +85,19 @@ def Login_Staff(request):
 
     return render(request, 'login.html')
 
+
 def Logout_Staff(request):
     logout(request)
     return redirect('Login_Staff')
 
+
 def signup(request):
     return render(request, 'signup.html')
 
+
 def Profile_view(request):
     return render(request, 'admin/profile.html')
+
 
 # views.py
 def register(request):
