@@ -45,11 +45,16 @@
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
                                                 </div>
-                                                <form method="post" action="{% url 'create_task' %}" id="task-form">
+                                                <form method="post"  action="{% url 'create_task' %}" id="task-form">
                                                 {% csrf_token %}
                                                 <div class="modal-body px-4">
                                                     <div class="row gy-2">
-                                                        <div class="col-xl-6">
+                                                        <div class="col-12">
+                                                            <label for="task-name" class="form-label">Task Assigned To</label>
+                                                            {{form.assigned_to}}
+                                                            <!-- <input type="text" class="form-control" id="id_assigned_to" name="task_name" placeholder="Task Name" required> -->
+                                                        </div>
+                                                        <div class="col-12">
                                                             <label for="task-name" class="form-label">Task Name</label>
                                                             <input type="text" class="form-control" id="task-name" name="task_name" placeholder="Task Name" required>
                                                         </div>

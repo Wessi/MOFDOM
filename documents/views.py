@@ -59,7 +59,7 @@ def document_view(request):
     return render(request, 'document_view.html', {'documents': documents})
     
 #new view for yismu template
-def new_doc_view(request):
+def list_docs_view(request):
     documents = Document.objects.all()
     categories = Document.CATEGORY_CHOICES
     documents_by_category = {}

@@ -8,10 +8,11 @@ def blog_list_admin(request):
     return render(request, 'blog_list_admin.html', {'blogs': blogs})
 
 def blog_detail(request, blog_id):
-    blog = get_object_or_404(Blog, pk=blog_id)
-    comments = blog.comment_set.all()  # Assuming you've set related_name='comment_set' in the Comment model
-    return render(request, 'blog_detail.html', {'blog': blog, 'comments': comments})
-
+    # try:
+        blog = Blog.objects.get(id=blog_id)
+        comments = blog.comment_set.all()  # Assuming you've set related_name='comment_set' in the Comment model
+        return render(request, 'front/blog_detail.html', {'blog': blog, 'comments': comments})
+    
 def add_comment(request, blog_id):
     if request.method == 'POST':
         blog = get_object_or_404(Blog, pk=blog_id)
@@ -53,7 +54,7 @@ def delete_blog(request, blog_id):
 
 def blog_list(request):
     blogs = Blog.objects.all()
-    return render(request, 'blog_list.html', {'blogs': blogs})
+    return render(request, 'front/blog.html', {'blogs': blogs})
 
 def Blogs_add(request):
     return render(request, 'add_blogs.html')

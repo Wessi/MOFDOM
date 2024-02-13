@@ -9,7 +9,7 @@ urlpatterns = [
     path('document_view/', document_view, name='document_view'),
     
     # for yismu
-    path('new_doc_view/', new_doc_view, name='new_doc_view'),
+    path('list-documents/', list_docs_view, name='list_docs'),
     path('document/<int:document_id>/delete/', delete_document, name='delete_document'),
 
 ]

@@ -16,6 +16,8 @@ urlpatterns = [
     path('add_event/', add_event, name='add_event'),
     path('add_event_back/', add_event_back, name='add_event_back'),
     path('events_list/', event_list, name='event_list'),
+    
+    path('update_event/<int:event_id>/', update_event, name='update_event'),
     path('gallery_list_view/',gallery_list_view, name='gallery_list_view'),
     path('faq_list/', faq_list, name='faq_list'),
     path('event/<int:event_id>/delete/', delete_event, name='delete_event'),

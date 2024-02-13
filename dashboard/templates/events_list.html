@@ -22,8 +22,12 @@
             <div class="col-xl-12">
                 <div class="card custom-card">
                     <div class="card-header">
-                        <div class="card-title">
-                            Uploaded Events
+                        <div class="col-lg-11">
+                            <div class="card-title">
+                                Uploaded Events
+                                
+                                <a href="{% url 'add_event' %}" class="btn btn-primary float-end">Add an Event </a>
+                            </div>
                         </div>
                     </div>
                     <div class="card-body">
@@ -45,7 +49,7 @@
                                         <td>{{ event.location }}</td>
                                         <td>
                                             <button class="btn btn-danger btn-sm" onclick="confirmDelete('{{ event.id }}')">Delete</button>
-                                            <a href="#" class="btn btn-success btn-sm">Update</a>
+                                            <a href="{% url 'update_event' event_id=event.id %}" class="btn btn-success btn-sm">Update</a>
                                         </td>
                                     </tr>
                                     {% endfor %}

@@ -5,7 +5,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.views.generic import TemplateView
 from dashboard.views import index
-from core.views import ContactUs
+from core.views import Contact
 admin.site.site_header = 'Super Adminstrator'
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -35,6 +35,6 @@ urlpatterns = [
     path('gallery/',TemplateView.as_view(template_name = 'front/gallery.html'), name="gallery"),
     path('vacancy/',TemplateView.as_view(template_name = 'front/vacancy.html'), name="vacancy"),
     #path('eveents/',TemplateView.as_view(template_name = 'front/event.html'), name="events"),
-    path("contact-us/",ContactUs.as_view(), name="contact_us"),
+    path("contact-us/",Contact.as_view(), name="contact_us"),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
