@@ -189,7 +189,7 @@ db2.sqlite3
 venv
 media/
 staticfiles/
-
+Documents/
 .sqlite3
 .sqlite321
 custom_log.txt
@@ -216,4 +216,3 @@ assets/front.zip
 
 
 .vscode/*
-assets/front/img

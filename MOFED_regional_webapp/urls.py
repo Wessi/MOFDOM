@@ -36,5 +36,7 @@ urlpatterns = [
     path('vacancy/',TemplateView.as_view(template_name = 'front/vacancy.html'), name="vacancy"),
     #path('eveents/',TemplateView.as_view(template_name = 'front/event.html'), name="events"),
     path("contact-us/",Contact.as_view(), name="contact_us"),
+    path("privacy/", TemplateView.as_view(template_name = "front/privacy.html"), name="privacy_page"),
+
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -9,7 +9,11 @@ class ContactUs(models.Model):
     sent_date =models.DateField( auto_now_add = True )
 
     def __str__(self):
-        return self.full_name
+        return f"Message from : {self.full_name}"
     
     class Meta:
         ordering = ('-id',)
+
+
+
+    

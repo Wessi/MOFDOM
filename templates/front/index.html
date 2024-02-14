@@ -228,8 +228,7 @@
                                     <span
                                         class="thumb-info-title thumb-info-title-vert-align bg-transparent w-100 text-center mw-100 p-3">
                                         <span class="anim-hover-inner-translate-top-40px transition-2ms d-inline-block">
-                                            <span class="thumb-info-inner"><em class="display-element opacity-7">{{
-                                                    recent_blogs.0.date }}</em> {{ recent_blogs.0.title }}</span>
+                                            <span class="thumb-info-inner"><em class="display-element opacity-7">{{recent_blogs.0.date }}</em> {{ recent_blogs.0.title }}</span>
                                         </span>
                                     </span>
                                     <span class="thumb-info-title bg-transparent w-100 mw-100 p-0 text-center"
@@ -265,7 +264,7 @@
                                             <span><i class="far fa-comments"></i> {{recent_blogs.1.comment_set.count}} Comments</span>
 
                                         </div>
-                                        <p class="display-element py-0 pe-5 line-height-8">{{ recent_blogs.1.excerpt }}
+                                        <p class="display-element py-0 pe-5 line-height-8">{{ recent_blogs.1.content|truncatechars:210 }}
                                         </p>
                                     </div>
                                     <span class="thumb-info-inner text-2 float-end pe-5">
@@ -292,7 +291,7 @@
                                             <span><i class="far fa-comments"></i> {{recent_blogs.2.comment_set.count}} Comments</span>
 
                                         </div>
-                                        <p class="display-element py-0 pe-5 line-height-8">{{ recent_blogs.2.excerpt }}
+                                        <p class="display-element py-0 pe-5 line-height-8">{{ recent_blogs.2.content|truncatechars:210 }}
                                         </p>
                                     </div>
                                     <span class="thumb-info-inner text-2 float-end pe-5">
@@ -310,9 +309,7 @@
                                     <span
                                         class="thumb-info-title thumb-info-title-vert-align bg-transparent w-100 text-center mw-100 p-3">
                                         <span class="anim-hover-inner-translate-top-40px transition-2ms d-inline-block">
-                                            <span class="thumb-info-inner"><em class="display-element opacity-7">{{
-                                                    recent_blogs.3.publish_date }}</em> {{ recent_blogs.3.title
-                                                }}</span>
+                                            <span class="thumb-info-inner"><em class="display-element opacity-7">{{recent_blogs.3.publish_date }}</em> {{ recent_blogs.3.title}}</span>
                                         </span>
                                     </span>
                                     <span class="thumb-info-title bg-transparent w-100 mw-100 p-0 text-center"
@@ -423,10 +420,12 @@
                     <div class="col-lg-9">
                         <div class="row">
                             {% for category, documents in documents_by_category.items %}
+                            
                             <div class="tab-pane tab-pane-navigation {% if forloop.first %}active show{% endif %}"
                                 id="tabsNavigation{{ forloop.counter }}" role="tabpanel">
                                 <div class="row">
                                     {% for document in documents %}
+                                    
                                     <div class="col-lg-4 col-md-3 col-sm-6 col-xsm-12 mb-3 p-sm-0">
                                         <div
                                             class="card border-radius-2 bg-color-light box-shadow-3 box-shadow-1-hover">
@@ -454,6 +453,7 @@
                                     {% endfor %}
                                 </div>
                             </div>
+                           
                             {% endfor %}
                         </div>
                     </div>

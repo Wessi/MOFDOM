@@ -20,7 +20,7 @@ def index(request):
     categories = Document.CATEGORY_CHOICES
     documents_by_category = {}
     for category, _ in categories:
-        documents_by_category[category] = Document.objects.filter(category=category)
+        documents_by_category[category] = Document.objects.filter(category=category)[:6]
 
     gallery_categories = GalleryImage.CATEGORY_CHOICES
     gallery_images_by_category = {}

@@ -15,12 +15,12 @@ SECRET_KEY = 'django-insecure-vl1osx-&@rl##2ogt%^kv$dri#h)tppm8)&5qg1f+i233$g$2$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', 'kanenus.com','www.kanenus.com', '127.0.0.1']
+ALLOWED_HOSTS = ['localhost', 'kanenus.com','www.kanenus.com', '127.0.0.1', '*']
 CSRF_COOKIE_SECURE = True
 # Application definition
 
 INSTALLED_APPS = [
-    
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

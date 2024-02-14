@@ -158,12 +158,12 @@
                                     <nav class="header-nav-top">
                                         <ul class="nav nav-pills " >
                                             <li class="nav-item nav-item-anim-icon d-none d-lg-block">
-                                                <a class="nav-link ps-0" href="about-us.html"><i
-                                                        class="fa fa-phone"></i> +25111987654</a>
+                                                <a class="nav-link ps-0" href="tel:+011-157-0280"><i
+                                                        class="fa fa-phone"></i> +011-157-0280</a>
                                             </li>
                                             <li class="nav-item nav-item-anim-icon d-none d-lg-block">
-                                                <a class="nav-link" href="contact-us.html"><i
-                                                        class="fa fa-envelope"></i>Email: financeaddis@financeaddis.com.et</a>
+                                                <a class="nav-link" href="mailto:info@aabof.gov.et"><i
+                                                        class="fa fa-envelope"></i>Email: info@aabof.gov.et</a>
                                             </li>
                                         </ul>
                                         <ul
@@ -193,7 +193,7 @@
                         <div class="header-column">
                             <div class="header-row">
                                 <div class="header-logo">
-                                    <a href="demo-cleaning-services.html">
+                                    <a href="/">
                                         <img src="/static/front/imgs/logo/logo-addis.png" class="img-fluid"  alt="Logo" style="width: 80px; height: 68px;" />
                                     </a>
                                 </div>
@@ -208,7 +208,7 @@
                                                 <li><a class="nav-link {% block home %} {% endblock %}" href="/">Home</a></li>
                                                 
                                                 <li class="dropdown dropdown-mega  d-ld-block d-md-block d-sm-none">
-                                                    <a class="dropdown-item dropdown-toggle {% block about_mega %} {% endblock %}" href="/">
+                                                    <a class="dropdown-item dropdown-toggle {% block about_mega %} {% endblock %}" href="{% url 'about' %}">
                                                         About Bureau
                                                     </a>
                                                     <!-- wd-lg-6 wd-md-6 wd-sm-12 -->
@@ -218,7 +218,7 @@
                                                                 <div class="row pt-0"  >
                                                                     <div class="col-lg-4 " >
                                                                         <div class="text-center border-bottom mb-3">
-                                                                            <span class="text-4  border-bottom">ABOUT BUREAU</span>
+                                                                                <span class="text-4  border-bottom">ABOUT BUREAU</span>
                                                                         </div>
                                                                             
                                                                         <div class="mt-2 tabs tabs-vertical tabs-left tabs-navigation bg-light">
@@ -336,7 +336,7 @@
                                                 
                                                 <!-- privacy -->
                                                 <li class="dropdown d-ld-none d-md-none d-sm-block">
-                                                    <a class="dropdown-item dropdown-toggle {% block privacy %} {% endblock %}" href="#">
+                                                    <a class="dropdown-item dropdown-toggle {% block privacy %} {% endblock %}" href="{% url 'privacy_page' %}">
                                                         Privacy
                                                     </a>
                                                     <ul class="dropdown-menu">
@@ -347,7 +347,7 @@
                                                     </ul>
                                                 </li>
                                                 <li class="dropdown dropdown-mega  float-end  d-ld-block d-md-block d-sm-none">
-                                                    <a class="dropdown-item dropdown-toggle {% block privacy_mega %} {% endblock %}" href="/">
+                                                    <a class="dropdown-item dropdown-toggle {% block privacy_mega %} {% endblock %}" href="{% url 'privacy_page' %}">
                                                         Privacy
                                                     </a>
                                                     <ul class="dropdown-menu  bg-transparent" style="width: fit-content;">
@@ -447,7 +447,7 @@
                                     <div class="header-nav-feature header-nav-features-search d-inline-flex ">
                                         <a href="#" class="header-nav-features-toggle text-decoration-none" data-focus="headerSearch" aria-label="Search"><i class="fas fa-search header-nav-top-icon"></i></a>
                                         <div class="header-nav-features-dropdown" id="headerTopSearchDropdown">
-                                            <form role="search" action="https://www.okler.net/previews/porto/10.0.0/page-search-results.html" method="get">
+                                            <form role="search" action="/" method="get">
                                                 <div class="simple-search input-group">
                                                     <input class="form-control text-1" id="headerSearch" name="q" type="search" value="" placeholder="Search...">
                                                     <button class="btn" type="submit" aria-label="Search">
@@ -480,6 +480,7 @@
                                 {% if user.is_authenticated %}
                                 <a href="{% url 'admin_dashboard' %}" class=" btn btn-primary d-lg-block d-sm-none d-xsm-none" style="margin-left: 10px;">Dashboard</a>
                                 {% else %}
+                                
                                 <a href="{% url 'login' %}" class=" btn btn-primary d-lg-block d-sm-none d-xsm-none" style="margin-left: 10px;">Login</a>
                                 {% endif %}
                                 <button class="btn header-btn-collapse-nav" data-bs-toggle="collapse"

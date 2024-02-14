@@ -39,12 +39,16 @@
             <div class="col-md-6 col-lg-3  d-none d-md-block d-ld-block mb-5 mb-lg-0">
                 <h5 class="text-4 text-color-light mb-3  ">QUICK LINKS</h5>
                 <ul class="list list-unstyled mb-0">
-                    <li class="mb-0"><a href=""><i class="fas fa-angle-right text-color-light"></i> About Us</a></li>
-                    <li class="mb-0"><a href=""><i class="fas fa-angle-right text-color-light"></i> Projects</a></li>
-                    <li class="mb-0"><a href=""><i class="fas fa-angle-right text-color-light"></i> Vacancies</a></li>
-                    <li class="mb-0"><a href=""><i class="fas fa-angle-right text-color-light"></i> News</a></li>
-                    <li class="mb-0"><a href=""><i class="fas fa-angle-right text-color-light"></i> Documents</a></li>
-                    <li class="mb-0"><a href=""><i class="fas fa-angle-right text-color-light"></i> Privacy Policy</a></li>
+                    <li class="mb-0"><a href="{% url 'about' %}"><i class="fas fa-angle-right text-color-light"></i> About Us</a></li>
+                    <li class="mb-0"><a href="{% url 'structure' %}"><i class="fas fa-angle-right text-color-light"></i> Our Structure</a></li>
+                    <li class="mb-0"><a href="{% url 'news_list_visitor' %}"><i class="fas fa-angle-right text-color-light"></i> News</a></li>
+                    <!--<li class="mb-0"><a href="{% url 'news_list_visitor' %}"><i class="fas fa-angle-right text-color-light"></i> Blog List</a></li>-->
+                    
+                    <li class="mb-0"><a href="{% url 'list_docs' %}"><i class="fas fa-angle-right text-color-light"></i> Documents</a></li>
+                    
+                    <li class="mb-0"><a href="{% url 'gallery_view' %}"><i class="fas fa-angle-right text-color-light"></i> Gallery</a></li>
+                    
+                    <li class="mb-0"><a href="{% url 'contact_us' %}"><i class="fas fa-angle-right text-color-light"></i> Contact Us</a></li>
                 </ul>
             </div>
             <!-- <div class="col-md-6 col-lg-2  d-none d-md-block d-ld-block mb-5 mb-md-0">
