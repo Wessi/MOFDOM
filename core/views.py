@@ -6,6 +6,7 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
 from django.core.mail import EmailMultiAlternatives, send_mail
 from django.contrib import messages
+from core.models import Settings
 
 class Contact(View):
     def get (self, *args, **kwargs):
@@ -17,7 +18,8 @@ class Contact(View):
         contact.save()
         msg = f"A visitor called {data['name']} with a phone number of {data['phone']} has sent a message with a subject of {data['subject']}. \n {data['message']}"
         messages.success(self.request,"Successfully sent your feed back to our staff. We'll get back to you soon.")
-        e = EmailMultiAlternatives(f"Visitor message : {data['subject']}",msg,from_email="Kanenus",to=['antenyismu@gmail.com']).send()
+        email = Settings.objects.first().email_for_contact_us if Settings.objects.first() else 'mukeraacc@gmail.com'
+        e = EmailMultiAlternatives(f"Visitor message : {data['subject']}",msg,from_email="Kanenus",to=[str(email)]).send()
         # e = send_mail(f"Visitor message : {data['subject']}", msg, from_email="Kanenus", recipient_list=['antenyismu@gmail.com'], fail_silently=False)
         print(e)
         return redirect(self.request.path)         

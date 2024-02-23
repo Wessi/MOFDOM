@@ -72,13 +72,8 @@ def Login_Staff(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            # Redirect based on user role
-            if user.is_superuser:
-                return redirect('admin_dashboard')
-            elif user.role == 'Admin':
-                return redirect('admin_dashboard')
-            else:
-                return redirect('admin_dashboard')  # Redirect others to a default dashboard
+            return redirect('/')
+            
         else:
             # Handle invalid login
             return render(request, 'login.html', {'error': 'Invalid login credentials'})

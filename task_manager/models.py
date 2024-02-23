@@ -32,6 +32,7 @@ class Task(models.Model):
 
     def __str__(self):
         return self.task_name
+    
 class Comment(models.Model):
     task = models.ForeignKey(Task, on_delete=models.CASCADE, related_name='comments')
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
