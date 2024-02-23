@@ -16,8 +16,13 @@ class NewsArticle(models.Model):
     category = models.CharField(max_length=100)  # Add a category field
     created_at = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        ordering = ('-id',)
+
+        
     def __str__(self):
         return self.title
+
 
 
 class News(models.Model):

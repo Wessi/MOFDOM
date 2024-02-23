@@ -2,17 +2,29 @@ from django.shortcuts import render,redirect
 from .models import *
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404
+from django.views import View
 from .forms import BlogForm
+from django.contrib import messages
 def blog_list_admin(request):
     blogs = Blog.objects.all()
     return render(request, 'blog_list_admin.html', {'blogs': blogs})
 
-def blog_detail(request, blog_id):
-    # try:
+class blog_detail(View):
+    def get(self, *args, **kwargs):
+        blog_id = self.kwargs['blog_id']
         blog = Blog.objects.get(id=blog_id)
+        
         comments = blog.comment_set.all()  # Assuming you've set related_name='comment_set' in the Comment model
-        return render(request, 'front/blog_detail.html', {'blog': blog, 'comments': comments})
+        return render(self.request, 'front/blog_detail.html', {'blog': blog, 'comments': comments})
     
+    def post(self, *args, **kwargs):
+        blog = Blog.objects.get(id = self.kwargs['blog_id'])
+        data = self.request.POST
+        co = Comment.objects.create(blog =blog, author = data['author'], email = data['email'], message = data['message'])
+        print(co)
+        messages.success(self.request, "Successfully commented!")
+        return redirect("blog_detail", blog_id= blog.id)
+     
 def add_comment(request, blog_id):
     if request.method == 'POST':
         blog = get_object_or_404(Blog, pk=blog_id)

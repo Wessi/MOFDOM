@@ -28,7 +28,7 @@ urlpatterns = [
     #path('neews/',TemplateView.as_view(template_name = 'front/news.html'), name="news"),
     #path('doocuments/',TemplateView.as_view(template_name = 'front/docs.html'), name="docs"),    
     path('hoome-2/',TemplateView.as_view(template_name = 'front/home-2.html'), name="home_2"),
-    path('aabout/', TemplateView.as_view(template_name = 'front/about.html'), name='about'),
+    #path('aabout/', TemplateView.as_view(template_name = 'front/about.html'), name='about'),
     path('structure/',TemplateView.as_view(template_name = 'front/structure.html'), name="structure"),
     path('structure/',TemplateView.as_view(template_name = 'front/structure.html'), name="structure"),
     path('bloog/',TemplateView.as_view(template_name = 'front/blog.html'), name="blog"),
@@ -36,5 +36,7 @@ urlpatterns = [
     path('vacancy/',TemplateView.as_view(template_name = 'front/vacancy.html'), name="vacancy"),
     #path('eveents/',TemplateView.as_view(template_name = 'front/event.html'), name="events"),
     path("contact-us/",Contact.as_view(), name="contact_us"),
+    path("privacy/", TemplateView.as_view(template_name = "front/privacy.html"), name="privacy_page"),
+
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

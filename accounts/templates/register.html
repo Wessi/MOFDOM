@@ -18,7 +18,11 @@
                 <div class="featured-box featured-box-primary text-start mt-0">
                     <div class="box-content">
                         <div class="text-center">
+                            {% if stg.logo %}
+                            <img class="text-center" style="height:100px" src="{{stg.logo.url}}">
+                            {% else %}
                             <img class="text-center" style="height:100px" src="{% static 'front/imgs/logo/logo-addis.png' %}">
+                            {% endif %}
                             <h4 class="color-primary font-weight-semibold text-4 text-uppercase mb-3 text-center">Register </h4>
                         </div>
                         <form action="" method="post" class=" form-fields-rounded form-with-icons">

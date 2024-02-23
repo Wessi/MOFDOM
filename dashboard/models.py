@@ -61,6 +61,23 @@ class Footer(models.Model):
     quick_links = models.TextField()
     newsletter_content = models.TextField()
     copyright_text = models.CharField(max_length=255)
+    
+    
+#2/13/2024
+class ContactInfo(models.Model):
+    address = models.CharField(max_length=255)
+    phone = models.CharField(max_length=20)
+    email = models.EmailField()
+    working_hours = models.CharField(max_length=100)  # Adding working hours
+
+class QuickLink(models.Model):
+    title = models.CharField(max_length=100)
+    url = models.URLField()
+
+class Newsletter(models.Model):
+    description = models.TextField()  # Adding description field
+
+#2/13/2024
 
 
 class Event(models.Model):

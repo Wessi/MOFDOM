@@ -4,6 +4,42 @@
 {% block content %}
 {% load static %}
 
+{% if featured_works %}
+<div class="owl-carousel owl-carousel-light owl-carousel-light-init-fadeIn owl-theme manual dots-inside dots-horizontal-center show-dots-hover nav-inside nav-inside-plus nav-dark nav-md nav-font-size-md show-nav-hover mb-0"
+    data-plugin-options="{'autoplayTimeout': 70000}" data-dynamic-height="['670px','670px','670px','550px','500px']"
+    style="height: 700px;">
+    <div class="owl-stage-outer">
+        <div class="owl-stage">
+            <!-- Dynamic Carousel Slides -->
+            {% for work in featured_works %}
+            <div class="owl-item position-relative"
+                style="background-image: url('{{ work.background_image.url }}'); background-color: #2E3136; background-size: cover; background-position: center;">
+                <div class="container position-relative z-index-1 h-100">
+                    <div
+                        class="d-flex flex-column align-items-start justify-content-lg-center justify-content-end h-100 pt-5  px-lg-5 px-md-2 px-sm-0 py-5">
+                        <h3 class="position-relative text-color-light text-4 line-height-2 font-weight-light  mb-2 appear-animation"
+                            data-appear-animation="fadeInDownShorter" data-plugin-options="{'minWindowWidth': 0}">
+                            FEATURED WORKS</h3>
+                        <h1 class="text-color-light font-weight-bold text-9 mb-5  appear-animation col-lg-5 col-md-6 col-sm-12"
+                            data-appear-animation="blurIn" data-appear-animation-delay="500"
+                            data-plugin-options="{'minWindowWidth': 0}">{{ work.description }}</h1>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            <!-- End Dynamic Carousel Slides -->
+        </div>
+    </div>
+    <div class="owl-nav">
+        <button type="button" role="presentation" class="owl-prev" aria-label="Previous"></button>
+        <button type="button" role="presentation" class="owl-next" aria-label="Next"></button>
+    </div>
+    <div class="owl-dots mb-5" style="text-align: center;">
+        <!-- Dots will be generated automatically based on the number of slides -->
+    </div>
+</div>
+{% else %} 
+
 <div class="owl-carousel owl-carousel-light owl-carousel-light-init-fadeIn owl-theme manual dots-inside dots-horizontal-center show-dots-hover nav-inside nav-inside-plus nav-dark nav-md nav-font-size-md show-nav-hover mb-0"
     data-plugin-options="{'autoplayTimeout': 70000}" data-dynamic-height="['670px','670px','670px','550px','500px']"
     style="height: 700px;">
@@ -73,15 +109,8 @@
         <button role="button" class="owl-dot"><span></span></button>
     </div>
 </div>
+{% endif %}
 
-
-
-<style>
-    p {
-        line-height: 1.5;
-        /* Adjust the value as needed */
-    }
-</style>
 
 <div class="container mt-2 mb-5 pb-5 px-lg-5 px-md-3">
     <div class="row align-items-start">
@@ -201,7 +230,7 @@
                 <p class="appear-animation" data-appear-animation="maskRight" data-appear-animation-delay="600">
                     BLOGS FROM US TO YOU
                 </p>
-            </div>
+            </div>z
             <div class="col-lg-5 col-xl-4">
                 <div class="d-flex justify-content-lg-end">
                     <a href="{% url  'blog_list' %}"
@@ -228,8 +257,7 @@
                                     <span
                                         class="thumb-info-title thumb-info-title-vert-align bg-transparent w-100 text-center mw-100 p-3">
                                         <span class="anim-hover-inner-translate-top-40px transition-2ms d-inline-block">
-                                            <span class="thumb-info-inner"><em class="display-element opacity-7">{{
-                                                    recent_blogs.0.date }}</em> {{ recent_blogs.0.title }}</span>
+                                            <span class="thumb-info-inner"><em class="display-element opacity-7">{{recent_blogs.0.date }}</em> {{ recent_blogs.0.title }}</span>
                                         </span>
                                     </span>
                                     <span class="thumb-info-title bg-transparent w-100 mw-100 p-0 text-center"
@@ -265,7 +293,7 @@
                                             <span><i class="far fa-comments"></i> {{recent_blogs.1.comment_set.count}} Comments</span>
 
                                         </div>
-                                        <p class="display-element py-0 pe-5 line-height-8">{{ recent_blogs.1.excerpt }}
+                                        <p class="display-element py-0 pe-5 line-height-8">{{ recent_blogs.1.content|truncatechars:210 }}
                                         </p>
                                     </div>
                                     <span class="thumb-info-inner text-2 float-end pe-5">
@@ -292,7 +320,7 @@
                                             <span><i class="far fa-comments"></i> {{recent_blogs.2.comment_set.count}} Comments</span>
 
                                         </div>
-                                        <p class="display-element py-0 pe-5 line-height-8">{{ recent_blogs.2.excerpt }}
+                                        <p class="display-element py-0 pe-5 line-height-8">{{ recent_blogs.2.content|truncatechars:210 }}
                                         </p>
                                     </div>
                                     <span class="thumb-info-inner text-2 float-end pe-5">
@@ -310,9 +338,7 @@
                                     <span
                                         class="thumb-info-title thumb-info-title-vert-align bg-transparent w-100 text-center mw-100 p-3">
                                         <span class="anim-hover-inner-translate-top-40px transition-2ms d-inline-block">
-                                            <span class="thumb-info-inner"><em class="display-element opacity-7">{{
-                                                    recent_blogs.3.publish_date }}</em> {{ recent_blogs.3.title
-                                                }}</span>
+                                            <span class="thumb-info-inner"><em class="display-element opacity-7">{{recent_blogs.3.publish_date }}</em> {{ recent_blogs.3.title}}</span>
                                         </span>
                                     </span>
                                     <span class="thumb-info-title bg-transparent w-100 mw-100 p-0 text-center"
@@ -532,6 +558,7 @@
 
             </div>
 </section>
+
 
 <!-- FAQ -->
 <section class="section section-with-shape-divider border-0 bg-transparent m-0 px-lg-5">

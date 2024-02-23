@@ -13,14 +13,15 @@ from django.shortcuts import get_object_or_404
 def admin_dashboard(request):
     return render(request, 'admin_home.html')
 
-#new yismu template
+
+#2/13/2024
 def index(request):
     recent_blogs = Blog.objects.order_by('-publish_date')[:4]
     recent_news = NewsArticle.objects.order_by('-created_at')[:4]
     categories = Document.CATEGORY_CHOICES
     documents_by_category = {}
     for category, _ in categories:
-        documents_by_category[category] = Document.objects.filter(category=category)
+        documents_by_category[category] = Document.objects.filter(category=category)[:6]
 
     gallery_categories = GalleryImage.CATEGORY_CHOICES
     gallery_images_by_category = {}
@@ -34,6 +35,15 @@ def index(request):
 
     # Fetch About Us data
     about_us = About_us_index.objects.first()
+
+    # Fetch Featured Works data
+    featured_works = FeaturedWork.objects.all()
+
+    # Fetch Footer data
+    contact_info = ContactInfo.objects.first()
+    quick_links = QuickLink.objects.all()
+    newsletter = Newsletter.objects.first()
+
     if about_us:
         # Split content into paragraphs
         paragraphs = about_us.content.split('\n')
@@ -47,6 +57,10 @@ def index(request):
             'faqs': faqs,
             'about_us': about_us,
             'paragraphs': paragraphs,  # Pass preprocessed paragraphs to template context
+            'featured_works': featured_works,  # Add Featured Works data to context
+            'contact_info': contact_info,  # Include footer data in context
+            'quick_links': quick_links,  # Include footer data in context
+            'newsletter': newsletter,  # Include footer data in context
         }
     else:
         context = {
@@ -56,9 +70,14 @@ def index(request):
             'documents_by_category': documents_by_category,
             'gallery_images_by_category': gallery_images_by_category,
             'faqs': faqs,
+            'featured_works': featured_works,  # Add Featured Works data to context
+            'contact_info': contact_info,  # Include footer data in context
+            'quick_links': quick_links,  # Include footer data in context
+            'newsletter': newsletter,  # Include footer data in context
         }
 
     return render(request, 'front/index.html', context)
+
 
 def gallery_list_view(request):
     images = GalleryImage.objects.all()
@@ -89,8 +108,6 @@ def delete_gallery_image(request, image_id):
 
     
     
-def custom_admin(request):
-    return render(request, 'back/master.html', {'suppliers': suppliers})
 # views.py
 @csrf_exempt
 def add_faq_api(request):

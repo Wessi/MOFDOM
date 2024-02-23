@@ -1,86 +1,71 @@
-
 {% load static %}
 
 <footer id="footer" class="footer-texts-more-lighten bg-primary border-0">
     <div class="container pt-2">
-        <div class="row  my-2">
-            <div class="col-sm-6 col-xsm-6 col-lg-2 mb-5 mb-lg-0" >
-                <img style="height: 80px; width: 110px; border-radius: 50%; " class="bg-light" src="{% static 'front/imgs/logo/logo-addis.png' %}">
-
+        <div class="row my-2">
+            <div class="col-sm-6 col-xsm-6 col-lg-3 mb-5 mb-lg-0">
+                {% if stg.logo %}
+                <img style="height: 80px; width: 110px; border-radius: 50%;" class="bg-light" src="{{stg.logo.url}}">
+                {% else %}
+                <img style="height: 80px; width: 110px; border-radius: 50%;" class="bg-light" src="{% static 'front/imgs/logo/logo-addis.png' %}">
+                {% endif %}
                 <ul class="footer-social-icons social-icons pt-4">
-                    <li class="social-icons-facebook"><a href="http://www.facebook.com/" target="_blank" title="Facebook"><i class="fab fa-facebook-f text-2"></i></a></li>
-                    <li class="social-icons-twitter"><a href="http://www.twitter.com/" target="_blank" title="Twitter"><i class="fab fa-twitter text-2"></i></a></li>
-                    <li class="social-icons-linkedin"><a href="http://www.linkedin.com/" target="_blank" title="Linkedin"><i class="fab fa-linkedin-in text-2"></i></a></li>
-                    <li class="social-icons-linkedin"><a href="http://www.google.com/" target="_blank" title="Google"><i class="fab fa-google-plus-g text-2"></i></a></li>
+                    <!-- Social media links -->
+                    <!-- Add dynamic social media links here -->
                 </ul>
-
             </div>
-            <div class="col-sm-6 col-xsm-6 col-lg-2 mb-5 mb-lg-0" >
+            <div class="col-sm-6 col-xsm-6 col-lg-3 mb-5 mb-lg-0">
                 <h5 class="text-4 text-color-light mb-3 footer-title">CONTACTS</h5>
                 <ul class="list list-unstyled">
                     <li class="pb-1 mb-2">
                         <span class="d-block font-weight-normal line-height-1 text-color-light">Address:</span> 
-                        Ethio-China, Addis Ababa.
+                        {{ stg.address }}
                     </li>
                     <li class="pb-1 mb-2">
                         <span class="d-block font-weight-normal line-height-1 text-color-light">Phone:</span>
-                        <a href="tel:+251912345678">(+251) 912 34 5678</a>
+                        <a href="tel:{{ stg1.phone }}">{{ stg.phone1 }}</a>
                     </li>
                     <li class="pb-1 mb-2">
                         <span class="d-block font-weight-normal line-height-1 text-color-light">Email:</span>
-                        <a href="mailto:mofed@gmail.com"><span class="__cf_email__" >mofed@gmail.com</span></a>
+                        <a href="mailto:{{ stg1.email }}">{{ stg.email }}</a>
                     </li>
                     <li class="pb-1 mb-2">
                         <span class="d-block font-weight-normal line-height-1 text-color-light">Working Days/Hours: </span>
-                        Mon - Fri / 8:00AM - 4:00PM
+                        {{ stg.working_hours }}
                     </li>
                 </ul>
             </div>
-            <div class="col-md-6 col-lg-2  d-none d-md-block d-ld-block mb-5 mb-lg-0">
-                <h5 class="text-4 text-color-light mb-3  ">QUICK LINKS</h5>
+            <div class="col-md-6 col-lg-3  d-none d-md-block d-ld-block mb-5 mb-lg-0">
+                <h5 class="text-4 text-color-light mb-3">QUICK LINKS</h5>
                 <ul class="list list-unstyled mb-0">
-                    <li class="mb-0"><a href=""><i class="fas fa-angle-right text-color-light"></i> About Us</a></li>
-                    <li class="mb-0"><a href=""><i class="fas fa-angle-right text-color-light"></i> Projects</a></li>
-                    <li class="mb-0"><a href=""><i class="fas fa-angle-right text-color-light"></i> Vacancies</a></li>
-                    <li class="mb-0"><a href=""><i class="fas fa-angle-right text-color-light"></i> News</a></li>
-                    <li class="mb-0"><a href=""><i class="fas fa-angle-right text-color-light"></i> Documents</a></li>
-                    <li class="mb-0"><a href=""><i class="fas fa-angle-right text-color-light"></i> Privacy Policy</a></li>
-                </ul>
-            </div>
-            <div class="col-md-6 col-lg-2  d-none d-md-block d-ld-block mb-5 mb-md-0">
-                <h5 class="text-4 text-color-light mb-3  footer-title">Projects</h5>
-                <ul class="list list-unstyled mb-0">
-                    <li class="mb-0"><a href=""><i class="fas fa-angle-right text-color-light"></i> Project 1</a></li>
-                    <li class="mb-0"><a href=""><i class="fas fa-angle-right text-color-light"></i> Project 2</a></li>
-                    <li class="mb-0"><a href=""><i class="fas fa-angle-right text-color-light"></i> Project 3</a></li>
-                    <li class="mb-0"><a href=""><i class="fas fa-angle-right text-color-light"></i> Project 4</a></li>
-                    <li class="mb-0"><a href=""><i class="fas fa-angle-right text-color-light"></i> Project 5</a></li>
-                    <li class="mb-0"><a href=""><i class="fas fa-angle-right text-color-light"></i> Project 6</a></li>
+                    {% for link in quick_links %}
+                        <li class="mb-0"><a href="{{ link.url }}"><i class="fas fa-angle-right text-color-light"></i> {{ link.title }}</a></li>
+                    {% endfor %}
                 </ul>
             </div>
             <div class="col-md-6 col-lg-3">
-                <h5 class="text-4 text-color-light mb-3  footer-title"> NEWSLETTER</h5>
-                <p class="mb-2">Get all the latest information on events, sales and offers. Sign up for newsletter:</p>
+                <h5 class="text-4 text-color-light mb-3 footer-title">NEWSLETTER</h5>
+                <p class="mb-2">{{ newsletter.description }}</p>
                 <div class="alert alert-success d-none" id="newsletterSuccess">
                     <strong>Success!</strong> You've been added to our email list.
                 </div>
                 <div class="alert alert-danger d-none" id="newsletterError"></div>
-                
-                    <form id="newsletterForm" action="" method="POST" class="me-4 mb-3 mb-md-0">
-                        <div class="input-group input-group-rounded">
-                            <input class="form-control form-control-sm bg-light" placeholder="Email Address" name="newsletterEmail" id="newsletterEmail" type="email">
-                            <button class="btn btn-primary text-color-light" type="submit" style="border: 1px solid #fff;"><strong>Subscribe</strong></button>
-                        </div>
-                    </form>
+                <form id="newsletterForm" action="#" method="POST" class="me-4 mb-3 mb-md-0">
+                    {% csrf_token %}
+                    <div class="input-group input-group-rounded">
+                        <input class="form-control form-control-sm bg-light" placeholder="Email Address" name="newsletterEmail" id="newsletterEmail" type="email">
+                        <button class="btn btn-primary text-color-light" type="submit" style="border: 1px solid #fff;"><strong>Subscribe</strong></button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
     <div class=" bg-color-grey">
         <div class="container">
-            <div class=" pt-2 pb-2">
+            <div class="pt-2 pb-2">
                 <div class="row">
-                    <div class="col-12 text-center ">
-                        <p class="mb-0 text-color-dark"> All Rights Reserved. Design <strong> Kanenus Technologies</strong> </p>
+                    <div class="col-12 text-center">
+                        <p class="mb-0 text-color-dark"> All Rights Reserved. Design <strong>Kanenus Technologies</strong> </p>
                     </div>
                 </div>
             </div>

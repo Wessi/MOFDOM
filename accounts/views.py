@@ -58,7 +58,6 @@ class Login(View):
         # return render(request, 'front/registration/login.html', {'form':AuthenticationForm})
 
     
-
 class Logout(View):
     def get(self, request):
         logout(self.request)
@@ -73,28 +72,27 @@ def Login_Staff(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            # Redirect based on user role
-            if user.is_superuser:
-                return redirect('admin_dashboard')
-            elif user.role == 'Admin':
-                return redirect('admin_dashboard')
-            else:
-                return redirect('admin_dashboard')  # Redirect others to a default dashboard
+            return redirect('/')
+            
         else:
             # Handle invalid login
             return render(request, 'login.html', {'error': 'Invalid login credentials'})
 
     return render(request, 'login.html')
 
+
 def Logout_Staff(request):
     logout(request)
     return redirect('Login_Staff')
 
+
 def signup(request):
     return render(request, 'signup.html')
 
+
 def Profile_view(request):
     return render(request, 'admin/profile.html')
+
 
 # views.py
 def register(request):
