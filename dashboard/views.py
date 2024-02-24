@@ -6,9 +6,11 @@ from .models import *
 from about_us.models import AboutUs
 from news.models import News,NewsArticle
 from blogs.models import Blog
+from vacancies.models import Job
 from documents.models import Document
 from .forms import EventForm
 from django.shortcuts import get_object_or_404
+from core.models import Settings
 
 def admin_dashboard(request):
     return render(request, 'admin_home.html')
@@ -18,6 +20,7 @@ def admin_dashboard(request):
 def index(request):
     recent_blogs = Blog.objects.order_by('-publish_date')[:4]
     recent_news = NewsArticle.objects.order_by('-created_at')[:4]
+    map = Settings.objects.first().map_link
     categories = Document.CATEGORY_CHOICES
     documents_by_category = {}
     for category, _ in categories:
@@ -61,6 +64,7 @@ def index(request):
             'contact_info': contact_info,  # Include footer data in context
             'quick_links': quick_links,  # Include footer data in context
             'newsletter': newsletter,  # Include footer data in context
+            'map':map
         }
     else:
         context = {
@@ -74,9 +78,16 @@ def index(request):
             'contact_info': contact_info,  # Include footer data in context
             'quick_links': quick_links,  # Include footer data in context
             'newsletter': newsletter,  # Include footer data in context
+            'map':map
         }
 
     return render(request, 'front/index.html', context)
+
+
+def search(request): 
+
+    return render (request, 'front/search_results.html',{})
+        
 
 
 def gallery_list_view(request):

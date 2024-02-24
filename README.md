@@ -1,4 +1,4 @@
-This web-based system is developed for MOFED to be implemented by all regional finance bureaus. It contains dynamic pages where each regional bureau can have unique pages and data uploaded by their admin users. 
+This is a web based system developed for MOFED in order to be implemented by all regional finance bureaus. It contains  
 --------------------------------------------
 
 # Running the Project Locally

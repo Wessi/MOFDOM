@@ -14,7 +14,7 @@ class blog_detail(View):
         blog_id = self.kwargs['blog_id']
         blog = Blog.objects.get(id=blog_id)
         
-        comments = blog.comment_set.all()  # Assuming you've set related_name='comment_set' in the Comment model
+        comments = blog.comment_set.filter(approved=True)  # Assuming you've set related_name='comment_set' in the Comment model
         return render(self.request, 'front/blog_detail.html', {'blog': blog, 'comments': comments})
     
     def post(self, *args, **kwargs):
