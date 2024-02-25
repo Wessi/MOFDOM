@@ -88,4 +88,4 @@ def update_vacancy(request, job_id):
         'form': form,
         'job': job,
     }
-    return render(request, 'update_vacancy.html', context
+    return render(request, 'update_vacancy.html', context)
