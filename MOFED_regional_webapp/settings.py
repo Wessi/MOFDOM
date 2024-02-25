@@ -21,6 +21,7 @@ CSRF_COOKIE_SECURE = True
 
 INSTALLED_APPS = [
     # 'jazzmin',
+    'djangocms_admin_style',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -38,12 +39,47 @@ INSTALLED_APPS = [
     'accounts',
     'templatetags',
     'core',
-    # 'imagekit',
+
+     
+    # cms
+    "django.contrib.sites",
+    "cms",
+    "menus",
+    "treebeard",
     
-    # 'jazzmin',
-    # 'modelcluster',
-    # 'taggit',
-    # 'django_extensions',
+    "sekizai",
+    'djangocms_alias',
+    # 'djangocms_versioning',
+    
+    'filer',
+    'easy_thumbnails',
+    'djangocms_text_ckeditor',
+    "djangocms_frontend",
+    "djangocms_frontend.contrib.accordion",
+    "djangocms_frontend.contrib.alert",
+    "djangocms_frontend.contrib.badge",
+    "djangocms_frontend.contrib.card",
+    "djangocms_frontend.contrib.carousel",
+    "djangocms_frontend.contrib.collapse",
+    "djangocms_frontend.contrib.content",
+    "djangocms_frontend.contrib.grid",
+    "djangocms_frontend.contrib.image",
+    "djangocms_frontend.contrib.jumbotron",
+    "djangocms_frontend.contrib.link",
+    "djangocms_frontend.contrib.listgroup",
+    "djangocms_frontend.contrib.media",
+    "djangocms_frontend.contrib.tabs",
+    "djangocms_frontend.contrib.utilities",
+
+    "djangocms_file",
+    "djangocms_picture",
+    "djangocms_video",
+    "djangocms_googlemap",
+    "djangocms_snippet",
+    "djangocms_style",
+    
+    
+  
 ]
 
 MIDDLEWARE = [
@@ -54,8 +90,15 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    #'wagtail.contrib.redirects.middleware.RedirectMiddleware',
-    # "whitenoise.middleware.WhiteNoiseMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
+
+    # cms
+    'cms.middleware.user.CurrentUserMiddleware',
+    'cms.middleware.page.CurrentPageMiddleware',
+    'cms.middleware.toolbar.ToolbarMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
+    'cms.middleware.language.LanguageCookieMiddleware',
+    
 ]
 
 ROOT_URLCONF = 'MOFED_regional_webapp.urls'
@@ -74,12 +117,22 @@ TEMPLATES = [
                 'core.context_processors.recent_news_mega',
                 'core.context_processors.stgs',
                 'core.context_processors.search_result',
+                 # cms
+                'sekizai.context_processors.sekizai',
+                'cms.context_processors.cms_settings',
                 
             ],
         },
     },
 ]
 
+
+THUMBNAIL_PROCESSORS = (
+    'easy_thumbnails.processors.colorspace',
+    'easy_thumbnails.processors.autocrop',
+    'filer.thumbnail_processors.scale_and_crop_with_subject_location',
+    'easy_thumbnails.processors.filters',
+)
 WSGI_APPLICATION = 'MOFED_regional_webapp.wsgi.application'
 
 DATABASES = {
@@ -105,18 +158,27 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en'
+
+
+LANGUAGES = [
+    ("en", "English"),
+    ('tr', "Tigrigna"),
+]
+
 
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
+USE_L10N = True
+USE_THOUSAND_SEPARATOR = True
 
 USE_TZ = True
 
 GRAPH_MODELS ={
     'all_applications': True,
     'graph_models': True,
-     }
+    }
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
@@ -130,11 +192,7 @@ MEDIA_URL = '/media/'
 # settings.py
 
 
-#WAGTAILADMIN_BASE_URL = '/admin/'
 
-#site_name
-#WAGTAIL_SITE_NAME = 'Oromia Finance bureoa'
-# Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
@@ -152,3 +210,44 @@ EMAIL_FROM ='Yismu'
 EMAIL_HOST_PASSWORD='qxnwvesqfznyozbw'
 EMAIL_USE_TLS=True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+
+
+# cms settings
+SITE_ID = 1
+
+CMS_TEMPLATES = (
+    ("front/base.html", ("Cms Base Template")),
+)
+
+# Enable permissions
+# https://docs.django-cms.org/en/release-4.1.x/topics/permissions.html
+
+CMS_PERMISSION = True
+
+CMS_CONFIRM_VERSION4 = True
+
+# Allow admin sidebar to open admin URLs
+
+X_FRAME_OPTIONS = 'SAMEORIGIN'
+
+# Enable inline editing with djangocms-text-ckeditor
+# https://github.com/django-cms/djangocms-text-ckeditor#inline-editing-feature
+
+TEXT_INLINE_EDITING = True
+
+THUMBNAIL_HIGH_RESOLUTION = True
+
+THUMBNAIL_PROCESSORS = (
+    'easy_thumbnails.processors.colorspace',
+    'easy_thumbnails.processors.autocrop',
+    'filer.thumbnail_processors.scale_and_crop_with_subject_location',
+    'easy_thumbnails.processors.filters'
+)
+
+
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
+
+DJANGOCMS_VERSIONING_ALLOW_DELETING_VERSIONS = True

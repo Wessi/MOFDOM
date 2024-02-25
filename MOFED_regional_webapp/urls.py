@@ -7,7 +7,11 @@ from django.views.generic import TemplateView
 from dashboard.views import index, search
 from core.context_processors import search_result
 from core.views import Contact
-admin.site.site_header = 'Super Administrator'
+from django.conf.urls.i18n import i18n_patterns
+from django.views.i18n import JavaScriptCatalog
+
+
+admin.site.site_header = 'Super Adminstrator'
 urlpatterns = [
 
     path('admin/', admin.site.urls),
@@ -41,5 +45,8 @@ urlpatterns = [
     path("contact-us/",Contact.as_view(), name="contact_us"),
     path("privacy/", TemplateView.as_view(template_name = "front/privacy.html"), name="privacy_page"),
 
+    path('jsi18n/', JavaScriptCatalog.as_view(), name='javascript-catalog'),
+    path('filer/', include('filer.urls')),
+    path('', include('cms.urls')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

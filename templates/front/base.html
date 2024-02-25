@@ -1,4 +1,8 @@
 {% load static %}
+{% load menu_tags %}
+{% load static cms_tags sekizai_tags  %}
+{% render_block "css" %}
+
 <!DOCTYPE html>
 <html lang="en"
     data-style-switcher-options="{'showBordersStyle': true, 'showLayoutStyle': false, 'showBackgroundColor': false, 'changeLogo': false, 'colorPrimary': '#00a1cd', 'colorSecondary': '#183f72', 'colorTertiary': '#0281d7', 'colorQuaternary': '#383f48', 'borderRadius': 4}">
@@ -12,7 +16,10 @@
     {% if stg.title %}
     <title>{{stg.title}}</title>
     {% else %}
-    <title>MOFED</title>
+    <title>
+        {% block title %}{% endblock %}
+        {% page_attribute "page_title" %}
+    </title>
     {% endif %}
 
     <meta name="keywords" content="Mofed website" />
@@ -116,6 +123,7 @@
 		</style>
 		<!-- end google translate style  -->
 
+    {% render_block "css" %}
     {% block css %}  {% endblock %}
 
 
@@ -144,6 +152,9 @@
     {% endif %}
 
 
+        
+    {% cms_toolbar %}
+    {% render_block "js" %} 
         <header id="header" class="header-effect-shrink"
             data-plugin-options="{'stickyEnabled': true, 'stickyEffect': 'shrink', 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': false, 'stickyChangeLogo': true, 'stickyStartAt': 30, 'stickyHeaderContainerHeight': 85}">
             <div class="header-body header-body-bottom-border border-top-0">
@@ -709,7 +720,8 @@
                                                 <!-- end privary -->
                                                 <li><a href="{% url 'contact_us' %}" class="nav-link {% block contact_us %} {% endblock %}">Contact Us</a></li>
                                                 
-
+                                                {% show_menu 0 100 100 100 %}
+                                                
                                             </ul>
                                             
                                             {% endif %}
