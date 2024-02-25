@@ -35,3 +35,5 @@ six==1.16.0
 # webencodings==0.5.1
 # whitenoise==6.6.0
 # Willow==1.6.3
+
+pillow django-imagekit
