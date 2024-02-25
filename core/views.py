@@ -10,7 +10,8 @@ from core.models import Settings
 
 class Contact(View):
     def get (self, *args, **kwargs):
-        return render( self.request, 'front/contact.html', {})
+        map = Settings.objects.first().map_link
+        return render( self.request, 'front/contact.html', {'map':map})
     
     def post(self, *args, **kwargs):
         data = self.request.POST

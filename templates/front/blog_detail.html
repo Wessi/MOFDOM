@@ -33,7 +33,7 @@
 
             <article class="post post-large blog-single-post border-0 m-0 p-0">
                 <div class="post-image ms-0">
-                    <a href="blog-post.html">
+                    <a href="#">
                         {% if not blog.images %}
                         <img src="{{blog.images.url}}"
                             class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0" alt="" />
@@ -57,7 +57,33 @@
                                 <img src="{% static 'front/imgs/team/user.png' %}" alt="">
                             </a>
                         </div>
-                        <p><strong class="name"><a href="#" class="text-4 pb-2 pt-2 d-block">{{blog.author}}</a></strong></p>
+
+                        
+							<div class="accordion  accordion-modern-status accordion-modern-status-borders accordion-modern-status-arrow col-lg-4 mb-2"  >
+                                
+								<div class="card card-default">
+									<div class="card-header" id="collapse12HeadingTwo">
+										<h4 class="card-title m-0">
+											<a class="accordion-toggle text-4 pb-2 pt-2 d-block" data-bs-toggle="collapse" data-bs-target="#collapse12Two" aria-expanded="false" aria-controls="collapse12Two">
+												<strong class="name ">{{blog.author}}</strong>
+											</a>
+										</h4>
+									</div>
+									<div id="collapse12Two" class="collapse" aria-labelledby="collapse12HeadingTwo" data-bs-parent="#accordion12">
+										<div class="card-body">	
+                                            <div class="post-meta">
+                                                <span class="d-block"><i class="fa fa-phone"></i> <a href="#">098739854357</a></span>
+                                                <span class="d-block"><i class="fa fa-envelope"></i>  <a href="#">{{blog.author_email}}</a> </span>
+                                                <span class="d-block"><i class="fa fa-globe"></i> <a target="_blank" href="https://debolx.com">debolx.com</a></span>
+                                            </div>
+										</div>
+									</div>
+								</div>
+
+							</div>
+
+
+                        <!-- <p><strong class="name"><a href="#" class="text-4 pb-2 pt-2 d-block">{{blog.author}}</a></strong></p> -->
                        
                     </div>
                     <div class="post-meta">
@@ -66,6 +92,13 @@
                         <span><i class="far fa-folder"></i> <a href="#">{{blog.category}}</a></span>
                         <span><i class="far fa-comments"></i> <a href="#">{{blog.comment_set.all.count}} Comments</a></span>
                     </div>
+
+
+
+                    
+
+                            
+
 
                     <p>{{blog.content|safe}}</p>
 

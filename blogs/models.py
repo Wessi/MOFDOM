@@ -21,6 +21,7 @@ class Comment(models.Model):
     email = models.EmailField()
     website = models.URLField(blank=True)
     message = models.TextField()
+    approved = models.BooleanField(default=False)
     parent = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='replies')
     created_at = models.DateTimeField(auto_now_add=True)
 

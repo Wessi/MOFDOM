@@ -29,6 +29,8 @@ class Settings(models.Model):
     linkedin = models.CharField(max_length=255, blank=True, default ="")
     address = models.CharField(max_length=255, blank=False, default ="")
     working_hours = models.CharField(max_length=100)  # Adding working hours
+    map_link = models.TextField( blank=True, null=True, help_text = "Embed the full 'iframe' tag from google maps" )
+
 
 
 class Pages(models.Model):

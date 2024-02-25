@@ -1,6 +1,8 @@
 from django.urls import path
 from .views import *  # Import the faqs_api view
 
+from django.contrib.auth import views as pw_views
+
 urlpatterns = [
     path('signup/', Signup.as_view(), name="signup"),
     path('login/', Login.as_view(), name="login"),
@@ -13,5 +15,11 @@ urlpatterns = [
     path('Profile_view/',Profile_view, name='Profile_view'),
     path('profile/', profile, name='profile'),
 
+    # reset pw urls 
+
+    path('reset_password/', pw_views.PasswordResetView.as_view(template_name='password_reset.html'), name='reset_password'),
+    path('reset_password_sent/', pw_views.PasswordResetDoneView.as_view(template_name='pw_reset_done.html'), name='password_reset_done'),
+    path('reset/<uidb64>/<token>/', pw_views.PasswordResetConfirmView.as_view(template_name='pw_reset_form.html'), name='password_reset_confirm'),
+    path('reset_password_complete/', pw_views.PasswordResetCompleteView.as_view(template_name='pw_reset_complete.html'), name='password_reset_complete'),
 ]
 

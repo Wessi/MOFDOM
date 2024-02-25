@@ -118,7 +118,7 @@
             <div class="position-relative">
                 <div data-plugin-float-element
                     data-plugin-options="{'startPos': 'top', 'speed': 0.2, 'transition': true, 'transitionDuration': 1000, 'isInsideSVG': true}">
-                    <img src="{{ about_us.image.url }}" style="border-radius: 10px;"
+                    <img src="{{ about_us.image.url }}" style="border-radius: 10px; max-height: 500px; width: 90%;"
                         class="img-fluid custom-box-shadow-1 appear-animation" data-appear-animation="fadeInLeftShorter"
                         data-appear-animation-delay="1800" alt="" />
                 </div>
@@ -541,7 +541,7 @@
                                         class="thumb-info thumb-info-centered-info thumb-info-no-borders border-radius-0">
                                         <span class="thumb-info-wrapper border-radius-0">
                                             <img src="{{ image.image_url }}" class="img-fluid border-radius-0"
-                                                alt="{{ image.title }}">
+                                                alt="{{ image.title }}"  style=" height:300px;">
                                             <span class="thumb-info-title">
                                                 <span class="thumb-info-inner">{{ image.title }}</span>
                                                 <span class="thumb-info-type">{{ category }}</span>
@@ -628,8 +628,13 @@
             <div class="row mt-0">
 
                 <div class="col-md-6 col-sm-12">
-                    <iframe width="100%" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3274.724996388625!2d38.76123931516503!3d9.145004492101012!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1635555555555555%3A0x70bba4e6e5c780f5!2sAddis%20Ababa%2C%20Ethiopia!5e0!3m2!1sen!2sin!4v1643117899813!5m2!1sen!2sin"></iframe>
+                    {% if map %}
+                        {{map|safe}}
+                    {% else %}
+                        <iframe width="100%" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3274.724996388625!2d38.76123931516503!3d9.145004492101012!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1635555555555555%3A0x70bba4e6e5c780f5!2sAddis%20Ababa%2C%20Ethiopia!5e0!3m2!1sen!2sin!4v1643117899813!5m2!1sen!2sin">
+                        </iframe>
+                    {% endif %}
                 </div>
 
                 <div class="col-md-6 col-sm-12 ">

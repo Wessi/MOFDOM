@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from .models import Document
 from .forms import DocumentForm
+
+
 def document_list(request):
     # Retrieve all documents
     documents = Document.objects.all()
@@ -14,6 +16,7 @@ def document_list(request):
     # Categorize the documents
     for document in documents:
         categorized_documents[document.category].append(document)
+        
 
     context = {
         'categorized_documents': categorized_documents,
@@ -73,3 +76,4 @@ def list_docs_view(request):
         'documents':documents,
     }
     return render(request, 'front/docs.html', context)
+

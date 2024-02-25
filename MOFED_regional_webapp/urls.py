@@ -4,13 +4,16 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.views.generic import TemplateView
-from dashboard.views import index
+from dashboard.views import index, search
+from core.context_processors import search_result
 from core.views import Contact
-admin.site.site_header = 'Super Adminstrator'
+admin.site.site_header = 'Super Administrator'
 urlpatterns = [
+
     path('admin/', admin.site.urls),
     path('test/', TemplateView.as_view(template_name='base.html')),
     path('', index, name="index"),
+    path('search', search, name='search'),
    
     
     # Include your app-specific URLs here
