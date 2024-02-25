@@ -8,6 +8,7 @@ from dashboard.views import index
 from core.views import Contact
 from django.conf.urls.i18n import i18n_patterns
 from django.views.i18n import JavaScriptCatalog
+from django.utils.translation import gettext_lazy as _
 
 
 admin.site.site_header = 'Super Adminstrator'
@@ -29,21 +30,27 @@ urlpatterns = [
     path('blogs/', include('blogs.urls')),
     
     
-    #path('neews/',TemplateView.as_view(template_name = 'front/news.html'), name="news"),
-    #path('doocuments/',TemplateView.as_view(template_name = 'front/docs.html'), name="docs"),    
-    path('hoome-2/',TemplateView.as_view(template_name = 'front/home-2.html'), name="home_2"),
-    #path('aabout/', TemplateView.as_view(template_name = 'front/about.html'), name='about'),
     path('structure/',TemplateView.as_view(template_name = 'front/structure.html'), name="structure"),
     path('structure/',TemplateView.as_view(template_name = 'front/structure.html'), name="structure"),
     path('bloog/',TemplateView.as_view(template_name = 'front/blog.html'), name="blog"),
     path('gallery/',TemplateView.as_view(template_name = 'front/gallery.html'), name="gallery"),
     path('vacancy/',TemplateView.as_view(template_name = 'front/vacancy.html'), name="vacancy"),
-    #path('eveents/',TemplateView.as_view(template_name = 'front/event.html'), name="events"),
     path("contact-us/",Contact.as_view(), name="contact_us"),
     path("privacy/", TemplateView.as_view(template_name = "front/privacy.html"), name="privacy_page"),
 
     path('jsi18n/', JavaScriptCatalog.as_view(), name='javascript-catalog'),
+    path('i18n/', include('django.conf.urls.i18n')),
+    
     path('filer/', include('filer.urls')),
+    path('translator/', include('rosetta.urls')),
     path('', include('cms.urls')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+urlpatterns += i18n_patterns(
+    path(_('home/'), index, name="home"),
+    path(_('news/'), include('news.urls')),
+    # path(_('admin/'), include(admin.site.urls)),
+    
+   #your urls
+)

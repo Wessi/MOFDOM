@@ -1,6 +1,7 @@
 
 import os
 from pathlib import Path
+from django.contrib.admin.options import ModelAdmin as DEFAULT_MODEL_ADMIN
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -19,9 +20,10 @@ ALLOWED_HOSTS = ['localhost', 'kanenus.com','www.kanenus.com', '127.0.0.1', '*']
 CSRF_COOKIE_SECURE = True
 # Application definition
 
+
 INSTALLED_APPS = [
-    # 'jazzmin',
-    'djangocms_admin_style',
+    'jazzmin',
+    # 'djangocms_admin_style',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -78,26 +80,28 @@ INSTALLED_APPS = [
     "djangocms_snippet",
     "djangocms_style",
     
-    
+    # translation
+    "parler",  
+    'rosetta'
   
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    #'wagtail.contrib.redirects.middleware.RedirectMiddleware',
     "whitenoise.middleware.WhiteNoiseMiddleware",
 
     # cms
     'cms.middleware.user.CurrentUserMiddleware',
     'cms.middleware.page.CurrentPageMiddleware',
     'cms.middleware.toolbar.ToolbarMiddleware',
-    'django.middleware.locale.LocaleMiddleware',
+    # 'django.middleware.locale.LocaleMiddleware',
     'cms.middleware.language.LanguageCookieMiddleware',
     
 ]
@@ -161,9 +165,45 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = 'en'
 
 
-LANGUAGES = [
-    ("en", "English"),
-    ('tr', "Tigrigna"),
+
+LANGUAGES = (
+    ('en', ('English')),
+    ('es', ('Spanish')),
+    ('tx', ('Tigrigna')),
+    ('ax', ('Amharic')),
+    
+
+)
+
+# implement the search field for filer 
+DEFAULT_MODEL_ADMIN.search_fields = ['']
+
+
+# Our custom languages used in Ethiopia, not defined by Django
+EXTRA_LANG_INFO = {
+    'ax': {
+        'bidi': False, # right-to-left
+        'code': 'ax',
+        'name': 'አማርኛ',
+        'name_local': u'አማርኛ',
+    },
+    'tx': {
+        'bidi': False, # right-to-left
+        'code': 'tx',
+        'name': 'ትግርኛ',
+        'name_local': u'ትግርኛ',
+    },
+    
+}
+
+# Add custom languages not provided by Django
+import django.conf.locale
+LANG_INFO = dict(django.conf.locale.LANG_INFO, **EXTRA_LANG_INFO)
+django.conf.locale.LANG_INFO = LANG_INFO
+
+
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR,'locale'),
 ]
 
 
@@ -179,8 +219,6 @@ GRAPH_MODELS ={
     'all_applications': True,
     'graph_models': True,
     }
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
@@ -189,14 +227,8 @@ STATICFILES_DIRS = [BASE_DIR, "static"]
 #media
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-# settings.py
 
 
-#WAGTAILADMIN_BASE_URL = '/admin/'
-
-#site_name
-#WAGTAIL_SITE_NAME = 'Oromia Finance bureoa'
-# Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
@@ -255,3 +287,21 @@ INTERNAL_IPS = [
 ]
 
 DJANGOCMS_VERSIONING_ALLOW_DELETING_VERSIONS = True
+
+# roseta settings
+ROSETTA_MESSAGES_PER_PAGE = 50
+
+# parler settings
+PARLER_DEFAULT_LANGUAGE_CODE = 'en'
+PARLER_LANGUAGES = {
+    # None: (
+    #     {'code': 'en',},
+    #     {'code': 'en-us',},
+    #     {'code': 'it',},
+    #     {'code': 'nl',},
+    # ),
+    'default': {
+        'fallbacks': ['en'],          # defaults to PARLER_DEFAULT_LANGUAGE_CODE
+        'hide_untranslated': False,   # the default; let .active_translations() return fallbacks too.
+    }
+}

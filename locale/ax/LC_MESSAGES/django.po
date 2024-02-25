@@ -1,0 +1,64 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-25 20:31+0300\n"
+"PO-Revision-Date: 2024-02-25 20:37+0000\n"
+"Last-Translator: Admin User <a@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Translated-Using: django-rosetta 0.10.0\n"
+
+#: .\MOFED_regional_webapp\urls.py:51
+msgid "home/"
+msgstr "ቤት"
+
+#: .\MOFED_regional_webapp\urls.py:52
+msgid "news/"
+msgstr ""
+
+#: .\dashboard\models.py:96
+msgid "Title"
+msgstr ""
+
+#: .\dashboard\models.py:97
+msgid "Description"
+msgstr ""
+
+#: .\dashboard\models.py:98
+msgid "Name"
+msgstr ""
+
+#: .\dashboard\views.py:68
+msgid "Hello"
+msgstr ""
+
+#: .\dashboard\views.py:84
+msgid "Action successfully completed!"
+msgstr "በሚገባ ሰርቷል"
+
+#: .\templates\front\base.html:224
+msgid "Home"
+msgstr "ዋና ገጽ"
+
+#: .\templates\front\base.html:230
+msgid "About Bureau"
+msgstr "ስለ ቢሯችን"
+
+#: .\templates\front\base.html:239
+msgid "ABOUT BUREAU"
+msgstr "ስለ ቢሯችን"
+
+#: .\templates\front\base.html:247
+msgid "About Us"
+msgstr "ስለ እኛ"

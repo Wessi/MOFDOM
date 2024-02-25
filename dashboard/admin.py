@@ -10,3 +10,7 @@ admin.site.register(QuickLink)
 admin.site.register(Newsletter)
 admin.site.register(Event)
 admin.site.register(About_us_index)
+admin.site.register(TestBlog)
+
+from django.middleware.locale import LocaleMiddleware
+
