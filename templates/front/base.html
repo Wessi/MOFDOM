@@ -2,6 +2,7 @@
 {% load menu_tags %}
 {% load static cms_tags sekizai_tags  %}
 {% render_block "css" %}
+{% load i18n %}
 
 <!DOCTYPE html>
 <html lang="en"
@@ -27,7 +28,7 @@
     <meta name="author" content="Kanenus Technologies">
 
     <!-- Favicon -->
-   <link rel="shortcut icon" href="{% static 'front/img/favicon.ico' %}" type="image/x-icon" />
+    <link rel="shortcut icon" href="{% static 'front/img/favicon.ico' %}" type="image/x-icon" />
     <link rel="apple-touch-icon" href="{% static 'front/img/apple-touch-icon.png' %}">
 
 
@@ -57,7 +58,7 @@
 
     <link id="skinCSS" rel="stylesheet" href="{% static 'front/css/skins/mofed.css' %}">
 
-<!-- Theme Custom CSS -->
+    <!-- Theme Custom CSS -->
     <link rel="stylesheet" href="{% static 'front/css/custom.css' %}">
 
     <style>
@@ -66,62 +67,7 @@
             width: 9%;
         }
     </style>
-    	<!-- style google translate  -->
-		<style>
-           
-            .goog-te-gadget-simple{
-				background-color: transparent !important;
-				border: none !important;
-			}
-            .goog-tooltip {
-				display: none !important;
-			}
-            .goog-te-banner-frame.skiptranslate, .goog-te-gadget-simple img {
-				display: none !important;
-            }
-            .goog-te-banner-frame{
-				display: none;
-				margin-top: -20px;
-			}
-			.goog-logo-link{
-				display: none !important;
-			}
-			.goog-te-gadget{
-				color: transparent !important;
-			}
-            .goog-tooltip:hover {
-				display: none !important;
-			}	
-			.VIpgJd-ZVi9od-ORHb-OEVmcd{
-				width: 0% !important;
-			}
-			body {
-				top: 0px !important;
-			}
-			
-            .VIpgJd-ZVi9od-xl07Ob-lTBxed span:hover{
-                color:#FFF;
-            }
-			.VIpgJd-ZVi9od-vH1Gmf-ibnC6b:hover {
-				color: #FFF !important;
-				/* background: #00a3c8 !important;
-				padding: 8px 15px 8px 23px !important; */
-			}
-            
-
-/* 
-			.translated-ltr{
-				margin-top: -40px;
-			}
-			.translated-ltr{
-				margin-top: -40px;
-			}
-			 */
-
-	
-			
-		</style>
-		<!-- end google translate style  -->
+   
 
     {% render_block "css" %}
     {% block css %}  {% endblock %}
@@ -153,7 +99,7 @@
 
 
         
-    {% cms_toolbar %}
+     <!-- cms_toolbar  -->
     {% render_block "js" %} 
         <header id="header" class="header-effect-shrink"
             data-plugin-options="{'stickyEnabled': true, 'stickyEffect': 'shrink', 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': false, 'stickyChangeLogo': true, 'stickyStartAt': 30, 'stickyHeaderContainerHeight': 85}">
@@ -274,12 +220,14 @@
 
                                             {% if pages %}
                                             <ul class="nav nav-pills" id="mainNav">
-                                                <li><a class="nav-link {% block home_dynamic %} {% endblock %}" href="/">Home</a></li>
+                                                <li><a class="nav-link {% block home_dynamic %} {% endblock %}" href="/">
+                                                    {% trans "Home" %}
+                                                </a></li>
                                                 
                                                 {% if pages.about %}
                                                 <li class="dropdown dropdown-mega  d-ld-block d-md-block d-sm-none">
                                                     <a class="dropdown-item dropdown-toggle {% block about_mega_dynamic %} {% endblock %}" href="{% url 'aboutt' %}">
-                                                        About Bureau
+                                                        {% trans "About Bureau" %}
                                                     </a>
                                                     <!-- wd-lg-6 wd-md-6 wd-sm-12 -->
                                                     <ul class="dropdown-menu  bg-transparent" style="width: fit-content;">
@@ -288,7 +236,7 @@
                                                                 <div class="row pt-0"  >
                                                                     <div class="col-lg-4 " >
                                                                         <div class="text-center border-bottom mb-3">
-                                                                                <span class="text-4  border-bottom">ABOUT BUREAU</span>
+                                                                                <span class="text-4  border-bottom">{% trans "ABOUT BUREAU" %}</span>
                                                                         </div>
                                                                             
                                                                         <div class="mt-2 tabs tabs-vertical tabs-left tabs-navigation bg-light">
@@ -296,7 +244,7 @@
                                                                             <ul class="nav nav-tabs col-sm-3" role="tablist">
                                                                                 {% if pages.about %}
                                                                                 <li class=" active  mb-2" role="presentation">
-                                                                                    <a class="nav-link header-tabs active text-3" href="#about_tab" data-bs-toggle="tab" aria-selected="true" role="tab">About Us</a>
+                                                                                    <a class="nav-link header-tabs active text-3" href="#about_tab" data-bs-toggle="tab" aria-selected="true" role="tab">{% trans "About Us" %}</a>
                                                                                 </li>
                                                                                 {% endif %}
                                                                                 {% if pages.structure %}
@@ -518,11 +466,11 @@
                                             </ul>
                                             {% else %}
                                             <ul class="nav nav-pills" id="mainNav">
-                                                <li><a class="nav-link {% block home %} {% endblock %}" href="/">Home</a></li>
+                                                <li><a class="nav-link {% block home %} {% endblock %}" href="/">{% trans "Home" %}</a></li>
                                                 
                                                 <li class="dropdown dropdown-mega  d-ld-block d-md-block d-sm-none">
                                                     <a class="dropdown-item dropdown-toggle {% block about_mega %} {% endblock %}" href="{% url 'aboutt' %}">
-                                                        About Bureau
+                                                        {% trans "ABOUT BUREAU" %}
                                                     </a>
                                                     <!-- wd-lg-6 wd-md-6 wd-sm-12 -->
                                                     <ul class="dropdown-menu  bg-transparent" style="width: fit-content;">
@@ -744,33 +692,24 @@
                                         </div>
                                     </div>
 								</div>
-                                <button class="ml-2 btn btn-sm btn-rounded btn-outline-primary" style="margin-left:4px;">
-                                    <div id="google_translate_element" class="nav-link " ></div>
-                                    <script type="text/javascript">
-                                        function googleTranslateElementInit() {
-                                            new google.translate.TranslateElement(
-                                                {defaultLanguage: 'en',
-                                                pageLanguage: 'en',
-                                                includedLanguages: 'en,am,om,ti,so',
-                                                layout: google.translate.TranslateElement.InlineLayout.SIMPLE, 
-                                                autoDisplay: true,
-                                                multilanguagePage: true,
-                                            },
-                                                'google_translate_element'
-                                            );
-                                        }
-                                    </script>
-                                    <script type="text/javascript" src= "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-                                                
-                                </button>
-                                {% if user.is_authenticated %}
-                                    {% if user.is_active and user.role != 'visitor' %}
-                                    <a href="/admin/" class=" btn btn-primary d-lg-block d-sm-none d-xsm-none" style="margin-left: 10px;">Dashboard</a>
-                                    {% endif %}
-
-                                {% else %}
-                                <a href="{% url 'login' %}" class=" btn btn-primary d-lg-block d-sm-none d-xsm-none" style="margin-left: 10px;">Login</a>
-                                {% endif %}
+                                
+                                <form  id="id_lang_selector_form" action="{% url 'set_language' %}" method="post">
+                                    {% csrf_token %}
+                                    <input name="next" type="hidden" value="{{ redirect_to }}">
+                                    <select name="language" onchange="change_lang()"  class="ml-2 btn btn-sm btn-rounded btn-outline-primary" style="margin-left:4px;">
+                                        {% get_current_language as CURRENT_LANGUAGE %}
+                                        {% get_available_languages as AVAILABLE_LANGUAGES %}
+                                        {% get_language_info_list for AVAILABLE_LANGUAGES as languages %}
+                                        {% for language in languages %}
+                                            <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                                                {{ language.name_local }}
+                                            </option>
+                                        {% endfor %}
+                                        
+                                    </select>
+                                    <!-- <button  type="submit" style="display: none;"></button> -->
+                                </form>
+                                
                                 <button class="btn header-btn-collapse-nav" data-bs-toggle="collapse"
                                     data-bs-target=".header-nav-main nav">
                                     <i class="fas fa-bars"></i>
@@ -815,17 +754,11 @@
 
     <script>
         document.getElementById('header').style['height'] = "110px"
-    </script>
-    <!-- <script>
-        function googleTranslateElementInit() {
-            new google.translate.TranslateElement(
-                {pageLanguage: 'en'},
-                'google_translate_element'
-            );
+        function change_lang(){
+            document.querySelector("#id_lang_selector_form").submit()            
         }
     </script>
-    <script src="http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
-    {% block js %}  {% endblock %}
+   {% block js %}  {% endblock %}
 
 </body>
 

@@ -2,6 +2,9 @@ from django.db import models
 from django.contrib.auth.models import User
 # Create your model
 from django.db import models
+from parler.models import TranslatableModel, TranslatedFields
+from django.utils.translation import gettext as _ 
+
 
 class GalleryImage(models.Model):
     title = models.CharField(max_length=255)

@@ -11,6 +11,9 @@ from documents.models import Document
 from .forms import EventForm
 from django.shortcuts import get_object_or_404
 from core.models import Settings
+from django.utils.translation import gettext as _
+from django.contrib import messages
+
 
 def admin_dashboard(request):
     return render(request, 'admin_home.html')
@@ -18,17 +21,18 @@ def admin_dashboard(request):
 
 #2/13/2024
 def index(request):
+    print(request.LANGUAGE_CODE)
     recent_blogs = Blog.objects.order_by('-publish_date')[:4]
     recent_news = NewsArticle.objects.order_by('-created_at')[:4]
     map = Settings.objects.first().map_link
     categories = Document.CATEGORY_CHOICES
     documents_by_category = {}
-    for category, _ in categories:
+    for category, data in categories:
         documents_by_category[category] = Document.objects.filter(category=category)[:6]
 
     gallery_categories = GalleryImage.CATEGORY_CHOICES
     gallery_images_by_category = {}
-    for category, _ in gallery_categories:
+    for category, data in gallery_categories:
         images = GalleryImage.objects.filter(category=category)
         image_data = [{'title': img.title, 'image_url': img.image.url} for img in images]
         gallery_images_by_category[category] = image_data
@@ -65,6 +69,7 @@ def index(request):
             'quick_links': quick_links,  # Include footer data in context
             'newsletter': newsletter,  # Include footer data in context
             'map':map
+            
         }
     else:
         context = {
@@ -81,6 +86,7 @@ def index(request):
             'map':map
         }
 
+    messages.success(request, _("Action successfully completed!"))
     return render(request, 'front/index.html', context)
 
 
