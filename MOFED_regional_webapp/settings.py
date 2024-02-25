@@ -22,8 +22,8 @@ CSRF_COOKIE_SECURE = True
 
 
 INSTALLED_APPS = [
-    'jazzmin',
-    # 'djangocms_admin_style',
+    # 'jazzmin',
+    'djangocms_admin_style',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -81,8 +81,11 @@ INSTALLED_APPS = [
     "djangocms_style",
     
     # translation
-    "parler",  
-    'rosetta'
+    # "parler",  
+    'rosetta',
+    "modeltranslation",  # dynamic translation
+
+
   
 ]
 
@@ -294,12 +297,11 @@ ROSETTA_MESSAGES_PER_PAGE = 50
 # parler settings
 PARLER_DEFAULT_LANGUAGE_CODE = 'en'
 PARLER_LANGUAGES = {
-    # None: (
-    #     {'code': 'en',},
-    #     {'code': 'en-us',},
-    #     {'code': 'it',},
-    #     {'code': 'nl',},
-    # ),
+    None: (
+        {'code': 'en',},
+        {'code': 'ax',},
+        {'code': 'tx',},
+    ),
     'default': {
         'fallbacks': ['en'],          # defaults to PARLER_DEFAULT_LANGUAGE_CODE
         'hide_untranslated': False,   # the default; let .active_translations() return fallbacks too.

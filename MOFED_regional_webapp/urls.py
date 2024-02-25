@@ -6,9 +6,9 @@ from django.conf.urls.static import static
 from django.views.generic import TemplateView
 from dashboard.views import index
 from core.views import Contact
-from django.conf.urls.i18n import i18n_patterns
 from django.views.i18n import JavaScriptCatalog
 from django.utils.translation import gettext_lazy as _
+from django.conf.urls.i18n import i18n_patterns
 
 
 admin.site.site_header = 'Super Adminstrator'
@@ -45,12 +45,8 @@ urlpatterns = [
     path('translator/', include('rosetta.urls')),
     path('', include('cms.urls')),
 
+]
+urlpatterns = [
+    *i18n_patterns(*urlpatterns, prefix_default_language=False),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-urlpatterns += i18n_patterns(
-    path(_('home/'), index, name="home"),
-    path(_('news/'), include('news.urls')),
-    # path(_('admin/'), include(admin.site.urls)),
-    
-   #your urls
-)

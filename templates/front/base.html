@@ -692,15 +692,24 @@
                                         </div>
                                     </div>
 								</div>
-                                {% get_current_language as CURRENT_LANGUAGE %}
-                                {% get_available_languages as AVAILABLE_LANGUAGES %}
-                                {% get_language_info_list for AVAILABLE_LANGUAGES as languages %}
                                 
-                                <select id="id_lang_selector" onchange="change_lang()" class="ml-2 btn btn-sm btn-rounded btn-outline-primary" style="margin-left:4px;">
-                                    {% for language in languages %}
-                                    <option  value="{{language.code}}" {% if language.code == CURRENT_LANGUAGE %} selected {% endif %} >{{ language.name_local }}</option>
-                                    {% endfor %}
-                                </select>
+                                <form  id="id_lang_selector_form" action="{% url 'set_language' %}" method="post">
+                                    {% csrf_token %}
+                                    <input name="next" type="hidden" value="{{ redirect_to }}">
+                                    <select name="language" onchange="change_lang()"  class="ml-2 btn btn-sm btn-rounded btn-outline-primary" style="margin-left:4px;">
+                                        {% get_current_language as CURRENT_LANGUAGE %}
+                                        {% get_available_languages as AVAILABLE_LANGUAGES %}
+                                        {% get_language_info_list for AVAILABLE_LANGUAGES as languages %}
+                                        {% for language in languages %}
+                                            <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                                                {{ language.name_local }}
+                                            </option>
+                                        {% endfor %}
+                                        
+                                    </select>
+                                    <!-- <button  type="submit" style="display: none;"></button> -->
+                                </form>
+                                
                                 <button class="btn header-btn-collapse-nav" data-bs-toggle="collapse"
                                     data-bs-target=".header-nav-main nav">
                                     <i class="fas fa-bars"></i>
@@ -746,24 +755,10 @@
     <script>
         document.getElementById('header').style['height'] = "110px"
         function change_lang(){
-            let c = document.querySelector("#id_lang_selector").value
-            if (c){
-                document.cookie = "django_language="+c ;
-            window.location.reload();
-            }
-            
+            document.querySelector("#id_lang_selector_form").submit()            
         }
     </script>
-    <!-- <script>
-        function googleTranslateElementInit() {
-            new google.translate.TranslateElement(
-                {pageLanguage: 'en'},
-                'google_translate_element'
-            );
-        }
-    </script>
-    <script src="http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
-    {% block js %}  {% endblock %}
+   {% block js %}  {% endblock %}
 
 </body>
 

@@ -90,15 +90,3 @@ class Event(models.Model):
     location = models.CharField(max_length=100)
     description = models.TextField()
     date = models.DateField()
-
-class TestBlog(TranslatableModel):
-    translations = TranslatedFields(
-        title = models.CharField(_("Title"), max_length=200),
-        desc = models.CharField(_("Description"), max_length=200),
-        name = models.CharField(_("Name"), max_length=200),
-        
-        
-    )
-
-    def __unicode__(self):
-        return self.title
