@@ -1,0 +1,65 @@
+{% extends 'base_new_admin.html' %}
+{% load static %}
+
+{% block main %}
+    <div class="main-content app-content">
+        <div class="container-fluid">
+
+            <!-- Page Header -->
+            <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
+                <h1 class="page-title fw-semibold fs-18 mb-0">Update Gallery Image</h1>
+                <div class="ms-md-1 ms-0">
+                    <nav>
+                        <ol class="breadcrumb mb-0">
+                            <li class="breadcrumb-item"><a href="{% url 'gallery_list_view' %}">Gallery Images</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Update</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+            <!-- Page Header Close -->
+
+            <div class="col-xl-12">
+                <div class="card custom-card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            Update Gallery Image
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="title" class="form-label">Title</label>
+                                <input type="text" id="title" name="title" class="form-control" value="{{ form.title.value }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="category" class="form-label">Category</label>
+                                <select id="category" name="category" class="select-chosen form-control" data-placeholder="Choose a Category..." style="width: 100%;">
+                                    {% for category, label in form.fields.category.choices %}
+                                        <option value="{{ category }}" {% if form.category.value == category %}selected{% endif %}>{{ label }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="image" class="form-label">Image</label>
+                                <input type="file" id="image" name="image" class="form-control-file">
+                                {% if form.image.value %}
+                                    <img src="{{ form.image.url }}" alt="Current Image" class="mt-2" style="max-width: 100%;">
+                                {% endif %}
+                            </div>
+                            <!-- Add similar blocks for other fields -->
+
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-angle-right"></i> Update</button>
+                                <a href="{% url 'gallery_list_view' %}" class="btn btn-sm btn-secondary"><i class="fa fa-times"></i> Cancel</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- End::app-content -->
+{% endblock %}

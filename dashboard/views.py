@@ -13,10 +13,28 @@ from django.shortcuts import get_object_or_404
 from core.models import Settings
 from django.utils.translation import gettext as _
 from django.contrib import messages
+from .forms import FAQForm
 
 
 def admin_dashboard(request):
     return render(request, 'admin_home.html')
+
+def update_gallery_image(request, image_id):
+    image = get_object_or_404(GalleryImage, id=image_id)
+
+    if request.method == 'POST':
+        form = GalleryImageForm(request.POST, request.FILES, instance=image)
+        if form.is_valid():
+            form.save()
+            return redirect('gallery_list_view')
+    else:
+        form = GalleryImageForm(instance=image)
+
+    context = {
+        'form': form,
+        'image': image,
+    }
+    return render(request, 'update_gallery_image.html', context)
 
 
 #2/13/2024
@@ -25,10 +43,12 @@ def index(request):
     recent_blogs = Blog.objects.order_by('-publish_date')[:4]
     recent_news = NewsArticle.objects.order_by('-created_at')[:4]
     map = Settings.objects.first().map_link
-    categories = Document.CATEGORY_CHOICES
-    documents_by_category = {}
-    for category, data in categories:
-        documents_by_category[category] = Document.objects.filter(category=category)[:6]
+    # categories = Document.CATEGORY_CHOICES
+    # documents_by_category = {}
+    # for category, data in categories:
+    #     documents_by_category[category] = Document.objects.filter(category=category)[:6]
+    # Fetch only recent 9 documents
+    recent_documents = Document.objects.order_by('-upload_date')[:9]
 
     gallery_categories = GalleryImage.CATEGORY_CHOICES
     gallery_images_by_category = {}
@@ -58,8 +78,9 @@ def index(request):
         context = {
             'recent_blogs': recent_blogs,
             'recent_news': recent_news,
-            'categories': categories,
-            'documents_by_category': documents_by_category,
+            # 'categories': categories,
+            # 'documents_by_category': documents_by_category,
+            'recent_documents': recent_documents,
             'gallery_images_by_category': gallery_images_by_category,
             'faqs': faqs,
             'about_us': about_us,
@@ -75,8 +96,9 @@ def index(request):
         context = {
             'recent_blogs': recent_blogs,
             'recent_news': recent_news,
-            'categories': categories,
-            'documents_by_category': documents_by_category,
+            # 'categories': categories,
+            # 'documents_by_category': documents_by_category,
+            'recent_documents': recent_documents,
             'gallery_images_by_category': gallery_images_by_category,
             'faqs': faqs,
             'featured_works': featured_works,  # Add Featured Works data to context
@@ -126,21 +148,23 @@ def delete_gallery_image(request, image_id):
     
     
 # views.py
-@csrf_exempt
-def add_faq_api(request):
-    if request.method == 'POST':
-        question = request.POST.get('question')
-        answer = request.POST.get('answer')
+# @csrf_exempt
+# def add_faq_api(request):
+#     if request.method == 'POST':
+#         question = request.POST.get('question')
+#         answer = request.POST.get('answer')
 
-        if question and answer:
-            new_faq = FAQ(question=question, answer=answer)
-            new_faq.save()
+#         if question and answer:
+#             new_faq = FAQ(question=question, answer=answer)
+#             new_faq.save()
 
-            return JsonResponse({'status': 'success'})
-        else:
-            return JsonResponse({'status': 'error', 'message': 'Missing required data'})
+#             return JsonResponse({'status': 'success'})
+#         else:
+#             return JsonResponse({'status': 'error', 'message': 'Missing required data'})
 
-    return JsonResponse({'status': 'error', 'message': 'Invalid request method'})
+#     return JsonResponse({'status': 'error', 'message': 'Invalid request method'})
+
+
 def faqs_api(request):
     faqs = FAQ.objects.all()
     faqs_list = [{'question': faq.question, 'answer': faq.answer} for faq in faqs]
@@ -211,6 +235,32 @@ def add_gallarie_image_back(request):
 
     return render(request, 'back_add_gallary.html', {'form': form})
 
+def add_FAQ(request):
+    if request.method == 'POST':
+        form = FAQForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('faq_list')  # Assuming you have a URL pattern named 'faq_list' for listing FAQs
+    else:
+        form = FAQForm()
+
+    return render(request, 'add_FAQs.html', {'form': form})
+
+
+def update_FAQ(request, faq_id):
+    faq = get_object_or_404(FAQ, id=faq_id)
+
+    if request.method == 'POST':
+        form = FAQForm(request.POST, instance=faq)
+        if form.is_valid():
+            form.save()
+            return redirect('faq_list')  # Assuming you have a URL pattern named 'faq_list' for listing FAQs
+    else:
+        form = FAQForm(instance=faq)
+
+    return render(request, 'update_faq.html', {'form': form, 'faq': faq})
+
+
 
 def add_event(request):
     if request.method == 'POST':
@@ -241,7 +291,8 @@ def update_event(request, event_id):
         'event': event,
         'edit':True
     }
-    return render(request, 'add_event.html', context)
+    return render(request, 'update_event.html', {'form': form, 'event': event})
+
 
     
 #from yismu    

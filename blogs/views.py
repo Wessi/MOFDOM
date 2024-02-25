@@ -13,9 +13,9 @@ class blog_detail(View):
     def get(self, *args, **kwargs):
         blog_id = self.kwargs['blog_id']
         blog = Blog.objects.get(id=blog_id)
-        
+        recent_blogs = Blog.objects.all().order_by('-pk')[:4]
         comments = blog.comment_set.filter(approved=True)  # Assuming you've set related_name='comment_set' in the Comment model
-        return render(self.request, 'front/blog_detail.html', {'blog': blog, 'comments': comments})
+        return render(self.request, 'front/blog_detail.html', {'blog': blog,'recent_blogs':recent_blogs, 'comments': comments})
     
     def post(self, *args, **kwargs):
         blog = Blog.objects.get(id = self.kwargs['blog_id'])
@@ -59,14 +59,32 @@ def delete_blog(request, blog_id):
         blog.delete()  # Delete the Blog object
         return redirect('blog_list_admin')  # Redirect to the blog list view
 
-    context = {
-        'blog': blog,
-    }
-    return render(request, 'delete_blog.html', context)  # Render the delete_blog.html template 
+    return render(request, 'delete_blog.html', {'blog': blog})
 
 def blog_list(request):
     blogs = Blog.objects.all()
     return render(request, 'front/blog.html', {'blogs': blogs})
 
 def Blogs_add(request):
-    return render(request, 'add_blogs.html')
+    if request.method == 'POST':
+        form = BlogForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('blog_list_admin')  # Redirect to the blog list view
+    else:
+        form = BlogForm()
+
+    return render(request, 'add_blogs.html', {'form': form})
+
+def update_blog(request, blog_id):
+    blog = get_object_or_404(Blog, id=blog_id)
+
+    if request.method == 'POST':
+        form = BlogForm(request.POST, request.FILES, instance=blog)
+        if form.is_valid():
+            form.save()
+            return redirect('blog_list_admin')  # Assuming you have a URL pattern named 'blog_list' for listing blogs
+    else:
+        form = BlogForm(instance=blog)
+
+    return render(request, 'update_blog.html', {'form': form, 'blog': blog})

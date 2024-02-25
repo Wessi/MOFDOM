@@ -39,7 +39,7 @@
                                         <a href="{{ image.image_url }}" target="_blank">
                                             <span class="thumb-info thumb-info-centered-info thumb-info-no-borders border-radius-0">
                                                 <span class="thumb-info-wrapper border-radius-0">
-                                                    <img src="{{ image.image_url }}" class="img-fluid border-radius-0" alt="{{ image.title }}" style=" height:300px;">
+                                                    <img src="{{ image.image_url }}" class="img-fluid border-radius-0 default-resolution" alt="{{ image.title }}" style=" height:300px;">
                                                     <span class="thumb-info-title">
                                                         <span class="thumb-info-inner">{{ image.title }}</span>
                                                         <span class="thumb-info-type">{{ category }}</span>
@@ -57,4 +57,12 @@
         </div>
     </div>
 </section>
+
+<style>
+    /* Set default width and height for images with class "default-resolution" */
+    .default-resolution {
+        width: 300px; /* Set your default width */
+        height: 200px; /* Set your default height */
+    }
+</style>
 {% endblock %}

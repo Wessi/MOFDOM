@@ -4,7 +4,7 @@ from .models import Footer
 from django import forms
 from .models import GalleryImage
 from . import models
-from .models import Event
+from .models import *
 
 #for admin signup
 class AdminSigupForm(forms.ModelForm):
@@ -38,3 +38,13 @@ class EventForm(forms.ModelForm):
     class Meta:
         model = Event
         fields = ['title', 'image', 'time', 'location', 'description', 'date']
+
+class FAQForm(forms.ModelForm):
+    class Meta:
+        model = FAQ
+        fields = ['question', 'answer']
+
+        widgets = {
+            'question': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your question'}),
+            'answer': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Enter your answer'}),
+        }

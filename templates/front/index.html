@@ -433,58 +433,34 @@
         <div class="row appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="600">
             <div class="col">
                 <div class="row">
-                    <div class="col-lg-3">
-                        <div class="tabs tabs-vertical tabs-left tabs-navigation bg-light">
-                            <ul class="nav nav-tabs col-sm-3" role="tablist">
-                                {% for category, _ in categories %}
-                                <li class="nav-item border-bottom {% if forloop.first %}active{% endif %}"
-                                    role="presentation">
-                                    <a class="nav-link {% if forloop.first %}active{% endif %}"
-                                        href="#tabsNavigation{{ forloop.counter }}" data-bs-toggle="tab"
-                                        aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
-                                        role="tab">{{ category }}</a>
-                                </li>
-                                {% endfor %}
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-9">
-                        <div class="row">
-                            {% for category, documents in documents_by_category.items %}
-                            <div class="tab-pane tab-pane-navigation {% if forloop.first %}active show{% endif %}"
-                                id="tabsNavigation{{ forloop.counter }}" role="tabpanel">
-                                <div class="row">
-                                    {% for document in documents %}
-                                    <div class="col-lg-4 col-md-3 col-sm-6 col-xsm-12 mb-3 p-sm-0">
-                                        <div
-                                            class="card border-radius-2 bg-color-light box-shadow-3 box-shadow-1-hover">
-                                            <div class="feature-box py-2 px-1">
-                                                <div class="border-radius-2">
-                                                    {% if document.file_extension == '.pdf' %}
-                                                    <img src="{% static 'front/imgs/docs/pdf.png' %}"
-                                                        style="width: 40px; height: 40px;">
-                                                    {% elif document.file_extension == '.csv' %}
-                                                    <img src="{% static 'front/imgs/docs/excel.png' %}"
-                                                        style="width: 40px; height: 40px;">
-                                                    {% else %}
-                                                    <!-- Default image if the file extension is not pdf or csv -->
-                                                    <img src="{% static 'path_to_default_image.png' %}"
-                                                        style="width: 40px; height: 40px;">
-                                                    {% endif %}
-                                                </div>
-                                                <div class="feature-box-info">
-                                                    <a href="{{ document.file.url }}" class="mb-0 border-bottom">{{document.title }}</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    {% endfor %}
+                    
+                    {% for document in recent_documents %}
+                    <div class="col-lg-4 col-md-3 col-sm-6 col-xsm-12 mb-3 p-sm-0">
+                        <div
+                            class="card border-radius-2 bg-color-light box-shadow-3 box-shadow-1-hover">
+                            <div class="feature-box py-2 px-1">
+                                <div class="border-radius-2">
+                                    {% if document.file_extension == '.pdf' %}
+                                    <img src="{% static 'front/imgs/docs/pdf.png' %}"
+                                        style="width: 40px; height: 40px;">
+                                    {% elif document.file_extension == '.csv' %}
+                                    <img src="{% static 'front/imgs/docs/excel.png' %}"
+                                        style="width: 40px; height: 40px;">
+                                    {% else %}
+                                    <!-- Default image if the file extension is not pdf or csv -->
+                                    <img src="{% static 'path_to_default_image.png' %}"
+                                        style="width: 40px; height: 40px;">
+                                    {% endif %}
+                                </div>
+                                <div class="feature-box-info">
+                                    <a href="{{ document.file.url }}" class="mb-0 border-bottom">{{document.title }}</a>
                                 </div>
                             </div>
-                            {% endfor %}
                         </div>
                     </div>
+
+                    {% endfor %}                            
+                        
                 </div>
             </div>
         </div>
@@ -521,22 +497,11 @@
         <div class="row align-items-center justify-content-center">
             <div class="container py-2">
 
-                <ul class="nav nav-pills sort-source sort-source-style-3 justify-content-center"
-                    data-sort-id="portfolio" data-option-key="filter"
-                    data-plugin-options="{'layoutMode': 'masonry', 'filter': '*'}">
-                    <li class="nav-item active" data-option-value="*"><a class="nav-link text-2-5 text-uppercase active"
-                            href="#">All Categories</a></li>
-                    {% for category, images in gallery_images_by_category.items %}
-                    <li class="nav-item d-none d-md-block d-lg-block" data-option-value=".{{ category }}"><a
-                            class="nav-link text-2-5 text-uppercase" href="#">{{ category }}</a></li>
-                    {% endfor %}
-                </ul>
+                <div class="owl-carousel owl-theme" id="gallery-carousel">
 
-                <div class="sort-destination-loader sort-destination-loader-showing mt-4 pt-2">
-                    <div class="row portfolio-list sort-destination" data-sort-id="portfolio">
-                        {% for category, images in gallery_images_by_category.items %}
+                    {% for category, images in gallery_images_by_category.items %}
                         {% for image in images %}
-                        <div class="col-sm-6 col-lg-3 isotope-item {{ category }}">
+                        <div class="item">
                             <div class="portfolio-item">
                                 <a href="{% url 'gallery_view' %}">
                                     <span
@@ -555,8 +520,11 @@
                         </div>
                         {% endfor %}
                         {% endfor %}
-                    </div>
                 </div>
+                
+                  
+
+               
 
             </div>
 </section>
@@ -708,6 +676,46 @@
         </div>
     </div>
 </section>
+
+
+<style>
+    /* Add margin between dynamically generated images */
+    .owl-carousel .item {
+        margin: 10px; /* Adjust the margin as needed */
+    }
+
+    /* Set default width and height for images with class "default-resolution" */
+    .default-resolution {
+        width: 300px; /* Set your default width */
+        height: 200px; /* Set your default height */
+    }
+</style>
+
+<script>
+    $(document).ready(function(){
+        $('#gallery-carousel').owlCarousel({
+            loop:true,
+            margin:20, // Adjust the margin to add space between images
+            nav:true,
+            responsive:{
+                0:{
+                    items:1
+                },
+                600:{
+                    items:3
+                },
+                1000:{
+                    items:5
+                }
+            }
+        });
+    });
+</script>
+
+
+<!-- FAQ -->
+<section class="section section-with-shape-divider border-0 bg-transparent m-0 px-lg-5">
+
 
 
 

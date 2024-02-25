@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Document
 from .forms import DocumentForm
+from django.shortcuts import render, redirect, get_object_or_404
 
 
 def document_list(request):
@@ -38,7 +39,10 @@ def delete_document(request, document_id):
     context = {
         'document': document,
     }
-    return render(request, 'delete_doc.html', context)
+    return render(request, 'delete_doc.html', {'document': document})
+
+
+
 def doc_view_menu(request):
     # Fetch all documents grouped by category
     document_categories = {}
@@ -48,12 +52,15 @@ def doc_view_menu(request):
 
     return render(request, 'base.html', {'document_categories': document_categories})
 
-def upload_document(request):
+def add_document(request):
     if request.method == 'POST':
         form = DocumentForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            # No redirection here
+            print("Document saved successfully")
+            return redirect('document_view')
+        else:
+            print("Form has errors:", form.errors)
     else:
         form = DocumentForm()
     return render(request, 'doecument_add.html', {'form': form})
@@ -77,3 +84,20 @@ def list_docs_view(request):
     }
     return render(request, 'front/docs.html', context)
 
+
+def update_document(request, document_id):
+    document = get_object_or_404(Document, id=document_id)
+
+    if request.method == 'POST':
+        form = DocumentForm(request.POST, instance=document)
+        if form.is_valid():
+            form.save()
+            return redirect('document_view')
+    else:
+        form = DocumentForm(instance=document)
+
+    context = {
+        'form': form,
+        'document': document,
+    }
+    return render(request, 'update_document.html', context)

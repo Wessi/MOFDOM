@@ -1,0 +1,78 @@
+
+<!-- update_vacancy.html -->
+{% extends 'base_new_admin.html' %}
+{% load static %}
+{% block main %}
+    <div class="main-content app-content">
+        <div class="container-fluid">
+
+            <!-- Page Header -->
+            <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
+                <h1 class="page-title fw-semibold fs-18 mb-0">Update Job</h1>
+                <div class="ms-md-1 ms-0">
+                    <nav>
+                        <ol class="breadcrumb mb-0">
+                            <li class="breadcrumb-item"><a href="{% url 'job_list_admin' %}">Jobs</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Update</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+            <!-- Page Header Close -->
+
+            <div class="col-xl-12">
+                <div class="card custom-card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            Update Job
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <form method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="job_title" class="form-label">Job Title</label>
+                                <input type="text" id="job_title" name="job_title" class="form-control" value="{{ form.job_title.value }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="job_type" class="form-label">Job Type</label>
+                                {{ form.job_type }}
+                            </div>
+                            <div class="form-group">
+                                <label for="vacancies" class="form-label">Vacancies</label>
+                                {{ form.vacancies }}
+                            </div>
+                            <div class="form-group">
+                                <label for="skills" class="form-label">Skills</label>
+                                <input type="text" id="skills" name="skills" class="form-control" value="{{ form.skills.value }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="job_deadline" class="form-label">Job Deadline</label>
+                                {{ form.job_deadline }}
+                            </div>
+                            <div class="form-group">
+                                <label for="locationn" class="form-label">Location</label>
+                                <input type="text" id="locationn" name="locationn" class="form-control" value="{{ form.locationn.value }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="level" class="form-label">Level</label>
+                                {{ form.level }}
+                            </div>
+                            <div class="form-group">
+                                <label for="job_description" class="form-label">Job Description</label>
+                                {{ form.job_description }}
+                            </div>
+
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-angle-right"></i> Update</button>
+                                <a href="{% url 'job_list_admin' %}" class="btn btn-sm btn-secondary"><i class="fa fa-times"></i> Cancel</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- End::app-content -->
+{% endblock %}

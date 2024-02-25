@@ -62,13 +62,9 @@
                                             <td>{{ vacancy.locationn }}</td>
                                             <td>{{ vacancy.level }}</td>
                                             <td>
-                                                <a href="#" class="btn btn-sm btn-primary">Update</a>
-                                                <form action="#" method="post" style="display: inline;">
-                                                    {% csrf_token %}
-                                                    <button class="btn btn-danger btn-sm" onclick="confirmDelete('{{ vacancy.id }}')">Delete</button>
-
-
-                                                </form>
+                                                <a href="{% url 'update_vacancy' vacancy.id %}" class="btn btn-success btn-sm">Update</a>
+                                                <button class="btn btn-danger btn-sm" onclick="confirmDelete('{{ vacancy.id }}')">Delete</button>
+                                                
                                             </td>
                                         </tr>
                                         {% endfor %}

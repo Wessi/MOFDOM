@@ -531,7 +531,7 @@
                                          </div>
                                          <div class="flex-grow-1 d-flex align-items-center justify-content-between">
                                             <div>
-                                                <p class="mb-0 fw-semibold"><a href="notifications.html">Your are added in a task </a></p>
+                                                <p class="mb-0 fw-semibold"><a href="">Your are added in a task </a></p>
                                                 <span class="text-muted fw-normal fs-12 header-notification-text">Taks:id 34453</span>
                                             </div>
                                             <div>
@@ -547,7 +547,7 @@
                                          </div>
                                          <div class="flex-grow-1 d-flex align-items-center justify-content-between">
                                             <div>
-                                                <p class="mb-0 fw-semibold"><a href="notifications.html">TR</a></p>
+                                                <p class="mb-0 fw-semibold"><a href="">TR</a></p>
                                                 <span class="text-muted fw-normal fs-12 header-notification-text">TR</span>
                                             </div>
                                             <div>
@@ -559,7 +559,7 @@
                             </ul>
                             <div class="p-3 empty-header-item1 border-top">
                                 <div class="d-grid">
-                                    <a href="notifications.html" class="btn btn-primary">View All</a>
+                                    <a href="" class="btn btn-primary">View All</a>
                                 </div>
                             </div>
                             <div class="p-5 empty-item1 d-none">
@@ -605,18 +605,51 @@
         </header>
         <aside class="app-sidebar sticky" id="sidebar">
             <div class="main-sidebar-header">
-                <a href="index.html" class="header-logo">
+                <a href="" class="header-logo">
                     <h3>Admin </h3>
                 </a>
             </div>
             <div class="main-sidebar" id="sidebar-scroll">
                 <nav class="main-menu-container nav nav-pills flex-column sub-open">
                     <div class="slide-left" id="slide-left">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191" width="24" height="24" viewBox="0 0 24 24"> <path d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"></path> </svg>
+                        <svg xmlns="" fill="#7b8191" width="24" height="24" viewBox="0 0 24 24"> <path d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"></path> </svg>
                     </div>
                     <ul class="main-menu">
+                        <li class="slide">
+                            <a href="{% url 'news_list' %}" class="side-menu__item">
+                                <i class="bx bx-file side-menu__icon"></i>
+                                <span class="side-menu__label">News</span>
+                            </a>
+                        </li>
+                        <li class="slide">
+                            <a href="{% url 'blog_list_admin' %}" class="side-menu__item">
+                                <i class="bx bx-images side-menu__icon"></i>
+                                <span class="side-menu__label">Blogs</span>
+                            </a>
+                        </li>
                         
+                        <li class="slide">
+                            <a href="{% url 'task_list_view' %}" class="side-menu__item">
+                                <i class="bx bx-task side-menu__icon"></i>
+                                <span class="side-menu__label">Task</span>
+                            </a>
+                        </li>
+                        <li class="slide">
+                            <a href="{% url 'supplier_view' %}" class="side-menu__item">
+                                <i class="bx bx-block side-menu__icon"></i>
+                                <span class="side-menu__label">Blocked Supplier</span>
+                            </a>
+                        </li>
                         
+                        <li class="slide__category"><span class="category-name">Blog/News/events</span></li>
+                        <li class="slide">
+                            <a href="{% url 'news_list' %}" class="side-menu__item">
+                                <i class="bx bx-file side-menu__icon"></i>
+                                <span class="side-menu__label">Blogs</span>
+                            </a>
+                        </li>
+
+
                         <li class="slide__category"><span class="category-name">Internal</span></li>
                         
                         <li class="slide">
@@ -632,6 +665,7 @@
                             </a>
                         </li>
 
+                        
                         <li class="slide__category"><span class="category-name">User Manager</span></li>
                         
                         <li class="slide">
@@ -689,7 +723,7 @@
                        
                         
                     </ul>
-                    <div class="slide-right" id="slide-right"><svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191" width="24" height="24" viewBox="0 0 24 24"> <path d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z"></path> </svg></div>
+                    <div class="slide-right" id="slide-right"><svg xmlns="" fill="#7b8191" width="24" height="24" viewBox="0 0 24 24"> <path d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z"></path> </svg></div>
                 </nav>
             </div>
         </aside>

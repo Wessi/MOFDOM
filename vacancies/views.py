@@ -38,24 +38,6 @@ def post_job_view(request):
     return render(request, 'job_post_add.html', {'form': form})
 
 
-def update_job(request, job_id):
-    job = get_object_or_404(Job, id=job_id)
-
-    if request.method == 'POST':
-        form = JobForm(request.POST, request.FILES, instance=job)
-        if form.is_valid():
-            form.save()
-            return redirect('job_list_admin')
-    else:
-        form = JobForm(instance=job)
-
-    context = {
-        'form': form,
-        'job': job,
-        'edit':True
-    }
-    return render(request, 'job_post_add.html', context)
-
 
 
 
@@ -86,3 +68,24 @@ def job_list_admin(request):
     vacancies = Job.objects.all()
     return render(request, 'job_list_admin.html', {'vacancies': vacancies})
 
+
+def jobs_apply(request):
+    return render(request, 'front/vacancy_apply.html' )
+
+
+def update_vacancy(request, job_id):
+    job = get_object_or_404(Job, id=job_id)
+
+    if request.method == 'POST':
+        form = JobForm(request.POST, instance=job)
+        if form.is_valid():
+            form.save()
+            return redirect('job_list_admin')
+    else:
+        form = JobForm(instance=job)
+
+    context = {
+        'form': form,
+        'job': job,
+    }
+    return render(request, 'update_vacancy.html', context

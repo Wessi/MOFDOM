@@ -69,6 +69,25 @@ def news_letter(request):
                 return redirect('home')
 
     return redirect('home')
+
+
+
+def update_news(request, news_id):
+    news_article = get_object_or_404(NewsArticle, id=news_id)
+
+    if request.method == 'POST':
+        form = NewsArticleForm(request.POST, request.FILES, instance=news_article)
+        if form.is_valid():
+            form.save()
+            return redirect('news_list')  # Assuming you have a URL pattern named 'news_list' for listing news
+    else:
+        form = NewsArticleForm(instance=news_article)
+
+    return render(request, 'update_news.html', {'form': form, 'news_article': news_article})
+
+
+
+
 def news_emails(request):
     # Login check Start
     if not request.user.is_authenticated:

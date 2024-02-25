@@ -60,6 +60,8 @@
                             <p><strong><i class="fa fa-calendar"></i> Deadline:</strong> {{ job.job_deadline }}</p>
                             <p class="card-text">{{ job.job_description }}</p>
                             <p><strong><i class="fa fa-map-marker"></i> Location:</strong> {{ job.locationn }}</p>
+                             <!-- Add Apply button -->
+                             <a href="{% url 'jobs_apply' %}" class="btn btn-primary btn-sm">Apply</a>
                         </div>
                     </div>
                 </div>
