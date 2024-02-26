@@ -1,4 +1,8 @@
 {% load static %}
+{% load menu_tags %}
+{% load static cms_tags sekizai_tags  %}
+{% render_block "css" %}
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr" data-nav-layout="vertical" data-theme-mode="light" data-header-styles="light" data-menu-styles="dark" data-toggled="close">
 <head>
@@ -19,9 +23,15 @@
     <link rel="stylesheet" href="{% static 'dashboard/libs/jsvectormap/css/jsvectormap.min.css' %}">
     <link rel="stylesheet" href="{% static 'dashboard/libs/swiper/swiper-bundle.min.css' %}">
     <link rel="stylesheet" href="{% static 'dashboard/libs/choices.js/public/assets/styles/choices.min.css' %}">
+    {% render_block "css" %}
+    {% block css %}  {% endblock %}
 </head>
+    {%  cms_toolbar  %}
+    {% render_block "js" %}
 <body>
     <!-- Start Switcher -->
+
+    
     <div class="offcanvas offcanvas-end" tabindex="-1" id="switcher-canvas" aria-labelledby="offcanvasRightLabel">
         <div class="offcanvas-header border-bottom">
             <h5 class="offcanvas-title text-default" id="offcanvasRightLabel">Switcher</h5>
@@ -459,9 +469,13 @@
         </div>
     </div>
     <!-- End Switcher -->
+     
+   
     <div class="page">
          <!-- app-header -->
-         <header class="app-header">
+        
+         
+        <header class="app-header" style="position: relative;">
             <!-- Start::main-header-container -->
             <div class="main-header-container container-fluid">
                 <!-- Start::header-content-left -->
@@ -727,9 +741,9 @@
                 </nav>
             </div>
         </aside>
-{% block main%}
+        {% block main%}
 
-{% endblock %}
+        {% endblock %}
         <!-- Footer Start -->
         <footer class="footer mt-auto py-3 bg-white text-center">
             <div class="container">

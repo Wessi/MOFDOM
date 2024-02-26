@@ -1,0 +1,46 @@
+! make sure django-modeltranslation is installed and configured properly
+https://django-modeltranslation.readthedocs.io/en/
+
+
+# Add translatable fields to an app model Eg. News
+
+1. create translation.py file 
+
+
+2.  Add the following
+
+from .models import NewsArticle, News
+from modeltranslation.translator import TranslationOptions, register
+
+class NewsArticleTranslationOptions(TranslationOptions):
+    fields = ("title", )
+
+translator.register(NewsArticle, NewsArticleTranslationOptions)
+
+3.  run makemigrations on the app 
+4.  migrate the app 
+5.  If the database had data prior to translation, in order to copy the existing data to
+    the default language,  
+    run python manage.py update_translation_fields
+
+6. Inside news.admin.py, register the translation admin 
+
+from django.contrib import admin
+from .models import *
+from modeltranslation.admin import TranslationAdmin
+
+# admin.site.register(NewsArticle)
+
+@admin.register(NewsArticle)
+class NewsArticleAdmin(TranslationAdmin):
+    list_display = ("title",)
+
+_______
+At this stage, u should have translatable fields for each field u wanted
+
+
+
+
+
+
+

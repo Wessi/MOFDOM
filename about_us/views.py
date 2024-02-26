@@ -2,7 +2,7 @@
 
 from django.shortcuts import render
 from .models import *
-from dashboard.models import ContactInfo, QuickLink, Newsletter  
+from dashboard.models import ContactInfo, QuickLink
 #def about_us(request):
     #about_us_data = AboutUs.objects.first()  # Assuming there is only one About Us entry
     #return render(request, 'about_us/about_us.html', {'about_us_data': about_us_data})
@@ -36,6 +36,6 @@ def bureau_structure(request):
     # Fetch Footer data
     contact_info = ContactInfo.objects.first()
     quick_links = QuickLink.objects.all()
-    newsletter = Newsletter.objects.first()
     
-    return render(request, 'front/structure.html', {'structure_data': structure_data, 'contact_info': contact_info, 'quick_links': quick_links, 'newsletter': newsletter})
+    
+    return render(request, 'front/structure.html', {'structure_data': structure_data, 'contact_info': contact_info, 'quick_links': quick_links, })

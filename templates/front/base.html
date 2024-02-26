@@ -98,7 +98,7 @@
     {% endif %}
     
     
-    <!-- cms_toolbar  -->
+    {% cms_toolbar %} 
     {% render_block "js" %} 
         <header id="header" class="header-effect-shrink"
             data-plugin-options="{'stickyEnabled': true, 'stickyEffect': 'shrink', 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': false, 'stickyChangeLogo': true, 'stickyStartAt': 30, 'stickyHeaderContainerHeight': 85}">
@@ -750,7 +750,6 @@
     <script>
         document.getElementById('header').style['height'] = "110px"
         function change_lang(s){
-            alert(s.value)
             document.querySelector("#id_lang_selector_form").submit()            
         }
     </script>

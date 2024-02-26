@@ -24,17 +24,7 @@ class GalleryImage(models.Model):
     def __str__(self):
         return self.title
 
-class Slider(models.Model):
-    title = models.CharField(max_length=255)
-    subtitle = models.CharField(max_length=255)
-    content = models.TextField()
-    button_text = models.CharField(max_length=50)
-    image = models.ImageField(upload_to='slider_images/')
-    order = models.PositiveIntegerField(default=0)
 
-    def __str__(self):
-        return self.title
-        
 class About_us_index(models.Model):
     title = models.CharField(max_length=255)
     content = models.TextField()
@@ -77,11 +67,7 @@ class QuickLink(models.Model):
     title = models.CharField(max_length=100)
     url = models.URLField()
 
-class Newsletter(models.Model):
-    description = models.TextField()  # Adding description field
-
 #2/13/2024
-
 
 class Event(models.Model):
     title = models.CharField(max_length=100)

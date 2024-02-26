@@ -24,12 +24,11 @@ def recent_news_mega(request):
 def stgs(request):
     contact_info = ContactInfo.objects.first()
     quick_links = QuickLink.objects.all()
-    newsletter = Newsletter.objects.first()
+    
     pages = Pages.objects.first()
     return {
         'contact_info': contact_info,  # Include footer data in context
         'quick_links': quick_links,  # Include footer data in context
-        'newsletter': newsletter,  # Include footer data in context
         'stg':Settings.objects.first(),
         'pages': pages
     }

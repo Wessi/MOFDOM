@@ -39,15 +39,9 @@ def update_gallery_image(request, image_id):
 
 #2/13/2024
 def index(request):
-    print(request.LANGUAGE_CODE)
     recent_blogs = Blog.objects.order_by('-publish_date')[:4]
     recent_news = NewsArticle.objects.order_by('-created_at')[:4]
     map = Settings.objects.first().map_link if Settings.objects.first() else ''
-    # categories = Document.CATEGORY_CHOICES
-    # documents_by_category = {}
-    # for category, data in categories:
-    #     documents_by_category[category] = Document.objects.filter(category=category)[:6]
-    # Fetch only recent 9 documents
     recent_documents = Document.objects.order_by('-upload_date')[:9]
 
     gallery_categories = GalleryImage.CATEGORY_CHOICES
@@ -69,8 +63,7 @@ def index(request):
     # Fetch Footer data
     contact_info = ContactInfo.objects.first()
     quick_links = QuickLink.objects.all()
-    newsletter = Newsletter.objects.first()
-
+    
     if about_us:
         # Split content into paragraphs
         paragraphs = about_us.content.split('\n')
@@ -78,8 +71,6 @@ def index(request):
         context = {
             'recent_blogs': recent_blogs,
             'recent_news': recent_news,
-            # 'categories': categories,
-            # 'documents_by_category': documents_by_category,
             'recent_documents': recent_documents,
             'gallery_images_by_category': gallery_images_by_category,
             'faqs': faqs,
@@ -88,7 +79,6 @@ def index(request):
             'featured_works': featured_works,  # Add Featured Works data to context
             'contact_info': contact_info,  # Include footer data in context
             'quick_links': quick_links,  # Include footer data in context
-            'newsletter': newsletter,  # Include footer data in context
             'map':map
             
         }
@@ -104,7 +94,6 @@ def index(request):
             'featured_works': featured_works,  # Add Featured Works data to context
             'contact_info': contact_info,  # Include footer data in context
             'quick_links': quick_links,  # Include footer data in context
-            'newsletter': newsletter,  # Include footer data in context
             'map':map
         }
 
