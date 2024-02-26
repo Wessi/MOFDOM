@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-25 20:31+0300\n"
-"PO-Revision-Date: 2024-02-25 20:37+0000\n"
-"Last-Translator: Admin User <a@gmail.com>\n"
+"POT-Creation-Date: 2024-02-26 13:33+0300\n"
+"PO-Revision-Date: 2024-02-26 13:38+0000\n"
+"Last-Translator: Admin User <adminuser@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -19,46 +19,53 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Translated-Using: django-rosetta 0.10.0\n"
 
-#: .\MOFED_regional_webapp\urls.py:51
-msgid "home/"
-msgstr "ቤት"
+#: .\accounts\password_manager.py:53
+msgid "New password"
+msgstr "አዲስ የይለፍ ቃል"
 
-#: .\MOFED_regional_webapp\urls.py:52
-msgid "news/"
+#: .\accounts\password_manager.py:63
+msgid "New password confirmation"
+msgstr "የይለፍ ቃሉን በድጋሚ ያስገቡ"
+
+#: .\accounts\password_manager.py:86
+msgid "Enter new password"
 msgstr ""
 
-#: .\dashboard\models.py:96
-msgid "Title"
-msgstr ""
+#: .\accounts\templates\password_reset.html:24
+msgid "Reset Password"
+msgstr "አዲስ የይለፍ ቃል"
 
-#: .\dashboard\models.py:97
-msgid "Description"
-msgstr ""
-
-#: .\dashboard\models.py:98
-msgid "Name"
-msgstr ""
-
-#: .\dashboard\views.py:68
-msgid "Hello"
-msgstr ""
-
-#: .\dashboard\views.py:84
+#: .\dashboard\views.py:100
 msgid "Action successfully completed!"
-msgstr "በሚገባ ሰርቷል"
+msgstr "በሚገባ ተሳክቱል"
 
-#: .\templates\front\base.html:224
+#: .\templates\front\base.html:90
+msgid "Success"
+msgstr "ስኬት"
+
+#: .\templates\front\base.html:91
+msgid "Warning"
+msgstr "ማሳሰቢያ"
+
+#: .\templates\front\base.html:92
+msgid "Error"
+msgstr "ችግር"
+
+#: .\templates\front\base.html:223 .\templates\front\base.html:465
 msgid "Home"
 msgstr "ዋና ገጽ"
 
-#: .\templates\front\base.html:230
+#: .\templates\front\base.html:229
 msgid "About Bureau"
 msgstr "ስለ ቢሯችን"
 
-#: .\templates\front\base.html:239
+#: .\templates\front\base.html:238 .\templates\front\base.html:469
 msgid "ABOUT BUREAU"
 msgstr "ስለ ቢሯችን"
 
-#: .\templates\front\base.html:247
+#: .\templates\front\base.html:246
 msgid "About Us"
 msgstr "ስለ እኛ"
+
+#~ msgid "home/"
+#~ msgstr "ቤት"
