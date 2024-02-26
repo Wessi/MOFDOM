@@ -2,9 +2,15 @@ from .forms import MyUserRegistrationForm
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.hashers import check_password
+
 from django.views import View
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
+from.models import UserProfile
+from .forms import *
+from task_manager.models import Task
+from blogs.models import Blog
 
 
 
@@ -107,6 +113,53 @@ def register(request):
     return render(request, 'signup.html', {'form': form})
 
 
-@login_required
-def profile(request):
-    return render(request, 'admin/profile.html', {'user': request.user})
+# @login_required
+
+class Profile(View):
+    def get(self, request, id):
+
+        user = UserProfile.objects.get(id=id)
+        form = EditProfileForm(instance=user)
+        password_form = ChangePasswordForm()
+        tasks = Task.objects.filter(assigned_to=user)[:5]
+        blogs = Blog.objects.all()[:3]
+        return render(request, 'admin/accounts/profile.html', {'user': user, 'tasks':tasks, 'blogs':blogs, 'form':form,'password_form':password_form })
+    
+    def post(self,request, id):
+        user = UserProfile.objects.get(id=id)
+        form = EditProfileForm(instance=user, data=self.request.POST, files=self.request.FILES)
+        if form.is_valid():
+            user.save()
+            return redirect( 'profile', id=id)
+        else:
+            print(form.errors, "$$$$$$$$$$$$$$$$$$$$$$$")
+            return render(request, 'admin/accounts/profile.html', {'user':user})
+
+
+
+class ChangePassword(View):
+
+    def post(self, request, id):
+        user = UserProfile.objects.get(id=id)
+        password_form = ChangePasswordForm(data=self.request.POST)
+        
+        if password_form.is_valid():
+            if check_password(password_form.data['current_password'],user.password): 
+                if password_form.data['new_password'] == password_form.data['retype_new_password']: 
+                    new_pw = password_form.data['new_password']
+                    user.set_password(new_pw)
+                    user.save()
+                    messages.success(self.request,'successfully changed ur pw')
+                    return redirect ('profile', id=id)
+                
+                else:
+                    messages.warning(self.request,'new pw dont match')
+                    return redirect ('profile', id=id)
+            else:
+                messages.warning(self.request,'old pw dont match')
+                return redirect ('profile', id=id)
+        else:
+            messages.warning(self.request,'recheck ur input')
+            # return redirect ('change_password', pk=user.id)
+            return render(request, 'admin/accounts/profile.html',{'user':user, 'password_form':password_form})
+    

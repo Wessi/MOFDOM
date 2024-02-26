@@ -37,3 +37,27 @@ class MyUserRegistrationForm(forms.ModelForm):
             myuser.save()
         return myuser
     
+
+class EditProfileForm(forms.ModelForm):
+
+    class Meta:
+        model = UserProfile 
+        fields = ['email', 'first_name','last_name','role', 'profile_pic', 'phonenumber',  ]
+        widgets = {
+            'email':forms.EmailInput(attrs={'class':'form-control form-control-light','placeholder':'Enter Email'}),
+            'first_name':forms.TextInput(attrs={'class':'form-control form-control-light','placeholder':'Enter First Name',}),
+            'last_name':forms.TextInput(attrs={'class':'form-control form-control-light','placeholder':'Enter Last Name',}),
+            'role':forms.Select(attrs={'class':'form-control form-control-light', 'placeholder':'Select Role', 'type':'dropdown'}),
+            'profile_pic':forms.FileInput(attrs={'class':'form-control form-control-light'}),
+            'phonenumber':forms.TextInput(attrs={'class':'form-control form-control-light','placeholder':'Enter Phone number',}),
+        }
+
+
+class ChangePasswordForm(forms.Form):
+    current_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control form-control-light','placeholder': 'Current password','minlength': "8",}))
+    new_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control form-control-light','placeholder': 'New password','minlength': "8",}))
+    retype_new_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control form-control-light','placeholder': 'Confirm new password','minlength': "8",}))
+
+    class Meta:
+        fields = ['current_password', 'new_password', 'retype_new_password']
+
