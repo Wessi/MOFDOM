@@ -22,9 +22,7 @@ CSRF_COOKIE_SECURE = True
 
 
 INSTALLED_APPS = [
-    # 'jazzmin',
-    'djangocms_admin_style',
-    'django.contrib.admin',
+   
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -41,7 +39,10 @@ INSTALLED_APPS = [
     'accounts',
     'templatetags',
     'core',
-
+     # 'jazzmin',
+    'djangocms_admin_style',
+    'modeltranslation', # dynamic translation
+    'django.contrib.admin',
      
     # cms
     "django.contrib.sites",
@@ -83,7 +84,7 @@ INSTALLED_APPS = [
     # translation
     # "parler",  
     'rosetta',
-    "modeltranslation",  # dynamic translation
+    
 
 
   
@@ -307,6 +308,9 @@ PARLER_DEFAULT_LANGUAGE_CODE = 'en'
 #         'hide_untranslated': False,   # the default; let .active_translations() return fallbacks too.
 #     }
 # }
+
+MODELTRANSLATION_DEFAULT_LANGUAGE = 'en'
+MODELTRANSLATION_LANGUAGES = ('en', 'ax', 'tx')
 
 JAZZMIN_SETTINGS = {
     # title of the window (Will default to current_admin_site.site_title if absent or None)
