@@ -319,21 +319,18 @@
                                                         {% if pages.documents %}
                                                         <li><a class="dropdown-item" href="{% url 'list_docs' %}">Documents</a></li>
                                                         {% endif %}
-                                                        {% if pages.gallery %}
-                                                        <li><a class="dropdown-item" href="{% url 'gallery_view' %}">Gallery</a></li>
-                                                        {% endif %}
                                                     </ul>
                                                 </li>
                                                 {% endif %}
                                                 
-                                                {% if pages.vacancy or pages.event %}
+                                                {% if pages.vacancy or pages.events %}
                                                 <li class="dropdown ">
                                                     <a class="dropdown-item dropdown-toggle {% block announcement_dynamic %} {% endblock %}" href="#">Announcements</a>
                                                     <ul class="dropdown-menu">
                                                         {% if pages.vacancy %}
                                                         <li><a class="dropdown-item" href="{% url 'job_list_ytemplate' %}">Vacancies</a></li>
                                                         {% endif %}
-                                                        {% if pages.event %}
+                                                        {% if pages.events %}
                                                         <li><a class="dropdown-item" href="{% url 'events_list_new' %}">Events</a></li>
                                                         {% endif %}
                                                     </ul>
@@ -458,8 +455,8 @@
                                                 </li>
                                                 {% endif %}
                                                 <!-- end privary -->
-                                                {% if pages.contact_us %}
-                                                <li><a href="{% url 'contact_us' %}" class="nav-link {% block contact_us_dynamic %} {% endblock %}">Contact Us</a></li>
+                                                {% if pages.gallery %}
+                                                <li><a href="{% url 'gallery_view' %}" class="nav-link {% block gallery_page_dynamic %} {% endblock %}">Gallery</a></li>
                                                 {% endif %}
 
                                            
@@ -538,7 +535,6 @@
                                                     <a class="dropdown-item dropdown-toggle {% block resource %} {% endblock %} " href="#">Resources</a>
                                                     <ul class="dropdown-menu">
                                                         <li><a class="dropdown-item" href="{% url 'list_docs' %}">Documents</a></li>
-                                                        <li><a class="dropdown-item" href="{% url 'gallery_view' %}">Gallery</a></li>
                                                     </ul>
                                                 </li>
                                                 
@@ -665,7 +661,7 @@
                                                     </ul>
                                                 </li>
                                                 <!-- end privary -->
-                                                <li><a href="{% url 'contact_us' %}" class="nav-link {% block contact_us %} {% endblock %}">Contact Us</a></li>
+                                                <li><a href="{% url 'gallery_view' %}" class="nav-link {% block gallery_page %} {% endblock %}">Contact Us</a></li>
                                                 
                                             
                                             {% endif %}
