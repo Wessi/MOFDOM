@@ -42,7 +42,7 @@ def index(request):
     print(request.LANGUAGE_CODE)
     recent_blogs = Blog.objects.order_by('-publish_date')[:4]
     recent_news = NewsArticle.objects.order_by('-created_at')[:4]
-    map = Settings.objects.first().map_link
+    map = Settings.objects.first().map_link if Settings.objects.first() else ''
     # categories = Document.CATEGORY_CHOICES
     # documents_by_category = {}
     # for category, data in categories:

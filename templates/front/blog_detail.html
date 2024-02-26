@@ -29,135 +29,166 @@
     </div>
 
     <div class="container ">
-        <div class="blog-posts single-post">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="blog-posts single-post">
 
-            <article class="post post-large blog-single-post border-0 m-0 p-0">
-                <div class="post-image ms-0">
-                    <a href="#">
-                        {% if  blog.images %}
-                        <img src="{{blog.images.url}}"
-                            class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0" alt="" />
-                        {% else %}
-                        <img src="{% static 'front/imgs/blog/blog-1.jpg' %}"
-                            class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0" alt="" />
-                        {% endif %}
-
-                    </a>
-                </div>
-
-                
-
-                <div class="post-content ms-0">
-
-                    <h2 class="font-weight-semi-bold"><a href="#">{{blog.title}}</a></h2>
-                    <div class="post-block mt-4 pt-2 post-author">
-                        <h4 class="text-4 mb-3">Author</h4>
-                        <div class="img-thumbnail img-thumbnail-no-borders d-block pb-3">
+                    <article class="post post-large blog-single-post border-0 m-0 p-0">
+                        <div class="post-image ms-0">
                             <a href="#">
-                                <img src="{% static 'front/imgs/team/user.png' %}" alt="">
+                                {% if  blog.images %}
+                                <img src="{{blog.images.url}}"
+                                    class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0" alt="" />
+                                {% else %}
+                                <img src="{% static 'front/imgs/blog/blog-1.jpg' %}"
+                                    class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0" alt="" />
+                                {% endif %}
+
                             </a>
                         </div>
 
                         
-                        <div class="accordion  accordion-modern-status accordion-modern-status-borders accordion-modern-status-arrow col-lg-4 mb-2"  >
-                            
-                            <div class="card card-default">
-                                <div class="card-header" id="collapse12HeadingTwo">
-                                    <h4 class="card-title m-0">
-                                        <a class="accordion-toggle text-4 pb-2 pt-2 d-block" data-bs-toggle="collapse" data-bs-target="#collapse12Two" aria-expanded="false" aria-controls="collapse12Two">
-                                            <strong class="name ">{{blog.author}}</strong>
-                                        </a>
-                                    </h4>
+
+                        <div class="post-content ms-0">
+
+                            <h2 class="font-weight-semi-bold"><a href="#">{{blog.title}}</a></h2>
+                            <div class="post-block mt-4 pt-2 post-author">
+                                <h4 class="text-4 mb-3">Author</h4>
+                                <div class="img-thumbnail img-thumbnail-no-borders d-block pb-3">
+                                    <a href="#">
+                                        <img src="{% static 'front/imgs/team/user.png' %}" alt="">
+                                    </a>
                                 </div>
-                                <div id="collapse12Two" class="collapse" aria-labelledby="collapse12HeadingTwo" data-bs-parent="#accordion12">
-                                    <div class="card-body">	
-                                        <div class="post-meta">
-                                            <span class="d-block"><i class="fa fa-phone"></i> <a href="#">098739854357</a></span>
-                                            <span class="d-block"><i class="fa fa-envelope"></i>  <a href="#">{{blog.author_email}}</a> </span>
-                                            <span class="d-block"><i class="fa fa-globe"></i> <a target="_blank" href="https://debolx.com">debolx.com</a></span>
+
+                                
+                                <div class="accordion  accordion-modern-status accordion-modern-status-borders accordion-modern-status-arrow col-lg-4 mb-2"  >
+                                    
+                                    <div class="card card-default">
+                                        <div class="card-header" id="collapse12HeadingTwo">
+                                            <h4 class="card-title m-0">
+                                                <a class="accordion-toggle text-4 pb-2 pt-2 d-block" data-bs-toggle="collapse" data-bs-target="#collapse12Two" aria-expanded="false" aria-controls="collapse12Two">
+                                                    <strong class="name ">{{blog.author}}</strong>
+                                                </a>
+                                            </h4>
                                         </div>
+                                        <div id="collapse12Two" class="collapse" aria-labelledby="collapse12HeadingTwo" data-bs-parent="#accordion12">
+                                            <div class="card-body">	
+                                                <div class="post-meta">
+                                                    <span class="d-block"><i class="fa fa-phone"></i> <a href="#">098739854357</a></span>
+                                                    <span class="d-block"><i class="fa fa-envelope"></i>  <a href="#">{{blog.author_email}}</a> </span>
+                                                    <span class="d-block"><i class="fa fa-globe"></i> <a target="_blank" href="https://debolx.com">debolx.com</a></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                                <!-- <p><strong class="name"><a href="#" class="text-4 pb-2 pt-2 d-block">{{blog.author}}</a></strong></p> -->
+                            
+                            </div>
+                            <div class="post-meta">
+                                <span><i class="far fa-clock"></i> <a href="#">{{blog.publish_date|date}}</a></span>
+                                <span><i class="far fa-user"></i> By <a href="#">{{blog.author}}</a> </span>
+                                <span><i class="far fa-folder"></i> <a href="#">{{blog.category}}</a></span>
+                                <span><i class="far fa-comments"></i> <a href="#">{{blog.comment_set.all.count}} Comments</a></span>
+                            </div>
+
+
+                            <p>{{blog.content|safe}}</p>
+
+                        </div>
+                    </article>
+
+                    <div id="comments" class="post-block mt-5 post-comments">
+                        <h4 class="mb-3">Comments ({{comments.count}})</h4>
+
+                        <ul class="comments">
+                            {% for c in comments %}
+                            <li>
+                                <div class="comment">
+                                    <div
+                                        class="img-thumbnail img-thumbnail-no-borders d-none d-sm-block">
+                                        <img class="avatar" alt="" src="{% static 'front/imgs/team/user.png' %}">
+                                    </div>
+                                    <div class="comment-block">
+                                        <div class="comment-arrow"></div>
+                                        <span class="comment-by">
+                                            <strong>{{c.author}}</strong>
+                                        </span>
+                                        <p>{{c.message}}</p>
+                                        <span class="date float-end">{{c.created_at}}</span>
+                                    </div>
+                                </div>
+
+                                
+                            </li>
+                            {% endfor %}
+                        
+                        </ul>
+
+                    </div>
+
+                    <div class="post-block mt-5 post-leave-comment">
+                        <h4 class="mb-3">Leave a comment</h4>
+
+                        <form class=" p-4 rounded bg-color-grey" action="" method="POST" enctype="multipart/form-data">			
+                            {% csrf_token %}
+                            <div class="p-2">
+                                <div class="row">
+                                    <div class="form-group col-lg-6">
+                                        <label class="form-label required font-weight-bold text-dark">Full Name</label>
+                                        <input type="text" value="" data-msg-required="Please enter your name." maxlength="100" class="form-control" name="author" required="">
+                                    </div>
+                                    <div class="form-group col-lg-6">
+                                        <label class="form-label required font-weight-bold text-dark">Email Address</label>
+                                        <input type="email" value="" data-msg-required="Please enter your email address." data-msg-email="Please enter a valid email address." maxlength="100" class="form-control" name="email" required="">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col">
+                                        <label class="form-label required font-weight-bold text-dark">Comment</label>
+                                        <textarea maxlength="5000" data-msg-required="Please enter your message." rows="8" class="form-control" name="message" required=""></textarea>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col mb-0">
+
+                                        <button type="submit"  class="btn btn-primary btn-modern" >Post Comments</button>
                                     </div>
                                 </div>
                             </div>
-
-                        </div>
-
-
-                        <!-- <p><strong class="name"><a href="#" class="text-4 pb-2 pt-2 d-block">{{blog.author}}</a></strong></p> -->
-                       
+                        </form>
                     </div>
-                    <div class="post-meta">
-                        <span><i class="far fa-clock"></i> <a href="#">{{blog.publish_date|date}}</a></span>
-                        <span><i class="far fa-user"></i> By <a href="#">{{blog.author}}</a> </span>
-                        <span><i class="far fa-folder"></i> <a href="#">{{blog.category}}</a></span>
-                        <span><i class="far fa-comments"></i> <a href="#">{{blog.comment_set.all.count}} Comments</a></span>
-                    </div>
-
-
-                    <p>{{blog.content|safe}}</p>
 
                 </div>
-            </article>
-
-            <div id="comments" class="post-block mt-5 post-comments">
-                <h4 class="mb-3">Comments ({{comments.count}})</h4>
-
-                <ul class="comments">
-                    {% for c in comments %}
-                    <li>
-                        <div class="comment">
-                            <div
-                                class="img-thumbnail img-thumbnail-no-borders d-none d-sm-block">
-                                <img class="avatar" alt="" src="{% static 'front/imgs/team/user.png' %}">
-                            </div>
-                            <div class="comment-block">
-                                <div class="comment-arrow"></div>
-                                <span class="comment-by">
-                                    <strong>{{c.author}}</strong>
-                                </span>
-                                <p>{{c.message}}</p>
-                                <span class="date float-end">{{c.created_at}}</span>
-                            </div>
-                        </div>
-
-                        
-                    </li>
-                    {% endfor %}
-                   
-                </ul>
-
             </div>
 
-            <div class="post-block mt-5 post-leave-comment">
-                <h4 class="mb-3">Leave a comment</h4>
-
-                <form class=" p-4 rounded bg-color-grey" action="" method="POST" enctype="multipart/form-data">			
-                    {% csrf_token %}
-                    <div class="p-2">
-                        <div class="row">
-                            <div class="form-group col-lg-6">
-                                <label class="form-label required font-weight-bold text-dark">Full Name</label>
-                                <input type="text" value="" data-msg-required="Please enter your name." maxlength="100" class="form-control" name="author" required="">
-                            </div>
-                            <div class="form-group col-lg-6">
-                                <label class="form-label required font-weight-bold text-dark">Email Address</label>
-                                <input type="email" value="" data-msg-required="Please enter your email address." data-msg-email="Please enter a valid email address." maxlength="100" class="form-control" name="email" required="">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-group col">
-                                <label class="form-label required font-weight-bold text-dark">Comment</label>
-                                <textarea maxlength="5000" data-msg-required="Please enter your message." rows="8" class="form-control" name="message" required=""></textarea>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-group col mb-0">
-
-                                <button type="submit"  class="btn btn-primary btn-modern" >Post Comments</button>
-                            </div>
-                        </div>
+            <div class="col-lg-4">
+                <div class="widget latest-posts border border-transparent p-3" style="border-radius: 10px;">
+                    <header>
+                        <h3 class="h6">Recent Posts</h3>
+                    </header>
+                    <div class="blog-posts">
+                        {% for recent_blog_item in recent_blogs %}
+                            <a href="{% url 'blog_detail' blog_id=recent_blog_item.id %}">
+                                <div class="item d-flex align-items-center mb-3">
+                                    <div class="image me-3">
+                                        <img src="{{ recent_blog_item.images.url }}"
+                                            class="img-fluid rounded" style="width: 120px; height: 80px; object-fit: cover;" alt="">
+                                    </div>
+                                    <div class="title">
+                                        <strong>{{ recent_blog_item.title|truncatechars:30 }}</strong>
+                                        <div class="d-flex align-items-center">
+                                            <div class="comments"><i class="far fa-clock"></i> {{ recent_blog_item.publish_date|date }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        {% endfor %}
                     </div>
-                </form>
+                </div>
             </div>
 
         </div>

@@ -96,10 +96,9 @@
             
         </div>
     {% endif %}
-
-
-        
-     <!-- cms_toolbar  -->
+    
+    
+    <!-- cms_toolbar  -->
     {% render_block "js" %} 
         <header id="header" class="header-effect-shrink"
             data-plugin-options="{'stickyEnabled': true, 'stickyEffect': 'shrink', 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': false, 'stickyChangeLogo': true, 'stickyStartAt': 30, 'stickyHeaderContainerHeight': 85}">
@@ -217,9 +216,9 @@
                                 <div class="header-nav header-nav-links">
                                     <div class="header-nav-main header-nav-main-text-capitalize header-nav-main-effect-2 header-nav-main-sub-effect-1">
                                         <nav class="collapse">
-
-                                            {% if pages %}
                                             <ul class="nav nav-pills" id="mainNav">
+                                            {% if pages %}
+                                            
                                                 <li><a class="nav-link {% block home_dynamic %} {% endblock %}" href="/">
                                                     {% trans "Home" %}
                                                 </a></li>
@@ -463,9 +462,9 @@
                                                 <li><a href="{% url 'contact_us' %}" class="nav-link {% block contact_us_dynamic %} {% endblock %}">Contact Us</a></li>
                                                 {% endif %}
 
-                                            </ul>
+                                           
                                             {% else %}
-                                            <ul class="nav nav-pills" id="mainNav">
+                                            
                                                 <li><a class="nav-link {% block home %} {% endblock %}" href="/">{% trans "Home" %}</a></li>
                                                 
                                                 <li class="dropdown dropdown-mega  d-ld-block d-md-block d-sm-none">
@@ -668,11 +667,11 @@
                                                 <!-- end privary -->
                                                 <li><a href="{% url 'contact_us' %}" class="nav-link {% block contact_us %} {% endblock %}">Contact Us</a></li>
                                                 
-                                                {% show_menu 0 100 100 100 %}
-                                                
-                                            </ul>
                                             
                                             {% endif %}
+
+                                            {% show_menu 0 100 100 100 %}
+                                            </ul>
                                         </nav>
                                     </div>
                                 </div>
@@ -696,12 +695,12 @@
                                 <form  id="id_lang_selector_form" action="{% url 'set_language' %}" method="post">
                                     {% csrf_token %}
                                     <input name="next" type="hidden" value="{{ redirect_to }}">
-                                    <select name="language" onchange="change_lang()"  class="ml-2 btn btn-sm btn-rounded btn-outline-primary" style="margin-left:4px;">
+                                    <select name="language" onchange="change_lang(this)"  class="ml-2 btn btn-sm btn-rounded btn-outline-primary" style="margin-left:4px;">
                                         {% get_current_language as CURRENT_LANGUAGE %}
                                         {% get_available_languages as AVAILABLE_LANGUAGES %}
                                         {% get_language_info_list for AVAILABLE_LANGUAGES as languages %}
                                         {% for language in languages %}
-                                            <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                                            <option value="{{ language.code }}"{% if language.code == CURRENT_LANGUAGE %} selected{% endif %}>
                                                 {{ language.name_local }}
                                             </option>
                                         {% endfor %}
@@ -754,7 +753,8 @@
 
     <script>
         document.getElementById('header').style['height'] = "110px"
-        function change_lang(){
+        function change_lang(s){
+            alert(s.value)
             document.querySelector("#id_lang_selector_form").submit()            
         }
     </script>

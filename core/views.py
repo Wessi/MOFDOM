@@ -10,7 +10,7 @@ from core.models import Settings
 
 class Contact(View):
     def get (self, *args, **kwargs):
-        map = Settings.objects.first().map_link
+        map = Settings.objects.first().map_link if Settings.objects.first() else ''
         return render( self.request, 'front/contact.html', {'map':map})
     
     def post(self, *args, **kwargs):

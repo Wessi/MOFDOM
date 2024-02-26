@@ -296,17 +296,17 @@ ROSETTA_MESSAGES_PER_PAGE = 50
 
 # parler settings
 PARLER_DEFAULT_LANGUAGE_CODE = 'en'
-PARLER_LANGUAGES = {
-    None: (
-        {'code': 'en',},
-        {'code': 'ax',},
-        {'code': 'tx',},
-    ),
-    'default': {
-        'fallbacks': ['en'],          # defaults to PARLER_DEFAULT_LANGUAGE_CODE
-        'hide_untranslated': False,   # the default; let .active_translations() return fallbacks too.
-    }
-}
+# PARLER_LANGUAGES = {
+#     None: (
+#         {'code': 'en',},
+#         {'code': 'ax',},
+#         {'code': 'tx',},
+#     ),
+#     'default': {
+#         'fallbacks': ['en'],          # defaults to PARLER_DEFAULT_LANGUAGE_CODE
+#         'hide_untranslated': False,   # the default; let .active_translations() return fallbacks too.
+#     }
+# }
 
 JAZZMIN_SETTINGS = {
     # title of the window (Will default to current_admin_site.site_title if absent or None)

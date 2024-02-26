@@ -216,3 +216,4 @@ assets/front.zip
 
 
 .vscode/*
+*.sqlite

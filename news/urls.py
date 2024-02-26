@@ -12,8 +12,11 @@ urlpatterns = [
     path('newsarticle/', views.news_article_list, name='news_article_list'),
     path('add_news_article/', views.add_news_article, name='add_news_article'),
     path('news_add_back/', views.news_add_back, name='news_add_back'),
+    path('update_news/<int:news_id>/', views.update_news, name='news_update'),
+
     
     path('news_view/', views.news_list_visitor, name='news_list_visitor'),
     path('news-article/<int:article_id>/delete/', views.delete_news_article, name='delete_news_article'),
+    
     
 ]
