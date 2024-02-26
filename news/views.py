@@ -1,13 +1,7 @@
 
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import News
-from django.core.files.storage import FileSystemStorage  # for upload image
-import datetime  # for date and time
-
 from.models import NewsArticle
 from .forms import NewsArticleForm
-import random
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 #for the yismu template
@@ -23,8 +17,6 @@ def delete_news_article(request, article_id):
         return redirect('news_list')
     return render(request, 'delete_news.html', {'article': article})    
     
-
-
 def update_news(request, news_id):
     news_article = get_object_or_404(NewsArticle, id=news_id)
 
