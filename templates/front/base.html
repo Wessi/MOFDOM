@@ -87,9 +87,9 @@
                 <div id="message" class="float-end col-md-7 col-sm-12 col-xsm-12 alert  alert-{{m.tags}} alert-dismissible" role="alert">
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     <strong>
-                        {% if m.tags == 'success' %}<i class="far fa-thumbs-up"></i> Success!
-                        {% elif m.tags == 'warning' %}<i class="far fa-thumbs-down"></i> Warning!
-                        {% else %} <i class="fas fa-exclamation-triangle"></i> Error! {% endif %}
+                        {% if m.tags == 'success' %}<i class="far fa-thumbs-up"></i> {% trans "Success" %}!
+                        {% elif m.tags == 'warning' %}<i class="far fa-thumbs-down"></i> {% trans "Warning" %}!
+                        {% else %} <i class="fas fa-exclamation-triangle"></i> {% trans "Error" %}! {% endif %}
                     </strong> {{m}}
                 </div> 
             {% endfor %}
