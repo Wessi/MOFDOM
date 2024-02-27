@@ -132,7 +132,7 @@ class Profile(View):
             user.save()
             return redirect( 'profile', id=id)
         else:
-            print(form.errors, "$$$$$$$$$$$$$$$$$$$$$$$")
+            
             return render(request, 'admin/accounts/profile.html', {'user':user})
 
 
