@@ -15,6 +15,6 @@ urlpatterns = [
     path('update_job/<int:job_id>/', update_vacancy, name='update_vacancy'),
     
     #2/22/2024
-    path('job_apply/', jobs_apply, name = 'jobs_apply'),
+    path('job_apply/<int:pk>/', jobs_apply.as_view(), name = 'jobs_apply'),
 ]
 

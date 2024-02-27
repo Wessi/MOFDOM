@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'accounts',
     'templatetags',
     'core',
-     # 'jazzmin',
+    # 'jazzmin',
     'djangocms_admin_style',
     'modeltranslation', # dynamic translation
     'django.contrib.admin',
@@ -175,10 +175,15 @@ LANGUAGES = (
     ('es', ('Spanish')),
     ('tx', ('Tigrigna')),
     ('ax', ('Amharic')),
-    
 
 )
 
+LANGS = {
+    'en':'English',
+    'ax':'Amharic',
+    'tx':'Tigrigna'
+
+}
 # implement the search field for filer 
 DEFAULT_MODEL_ADMIN.search_fields = ['']
 

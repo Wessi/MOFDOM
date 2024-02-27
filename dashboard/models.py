@@ -8,7 +8,7 @@ from django.utils.translation import gettext as _
 
 class GalleryImage(models.Model):
     title = models.CharField(max_length=255)
-    image = models.ImageField(upload_to='gallery_images/', help_text="Please select an image with close width and height resolution.")
+    image = models.ImageField(upload_to='gallery_images/', help_text="Please select an image with close width and height resolution (400p x 300px).")
 
     CATEGORY_CHOICES = [
         ('LEADERSHIP', 'LEADERSHIP'),

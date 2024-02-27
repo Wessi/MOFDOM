@@ -11,5 +11,6 @@ admin.site.register(BureauStructure)
 @admin.register(About)
 class AboutAdmin(TranslationAdmin):
     list_display = ("title",)
+    add_form_template = "add_news_article_back.html"
 
 

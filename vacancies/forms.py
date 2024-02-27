@@ -1,5 +1,5 @@
 from django import forms
-from .models import Job
+from .models import Job, Application
 
 class JobForm(forms.ModelForm):
     class Meta:
@@ -15,4 +15,14 @@ class JobForm(forms.ModelForm):
             'locationn': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Location'}),
             'level': forms.Select(attrs={'class': 'form-control'}),
             'job_description':forms.Textarea(attrs={'class': 'form-control','placeholder': 'description'})
+        }
+
+class ApplicationForm(forms.ModelForm):
+    class Meta:
+        model = Application 
+        exclude = ['job','created_date']
+        widgets = {
+            'name':forms.TextInput(attrs={'class':'form-control', 'label':'Full Name', 'placeholder': 'Full Name'}),
+            'email':forms.EmailInput(attrs={'class':'form-control', 'label':'Email', 'placeholder': 'Email'}),
+            'cv':forms.FileInput(attrs={'class':'form-control', 'label':'Cover Letter Document', 'placeholder': 'Document'})
         }

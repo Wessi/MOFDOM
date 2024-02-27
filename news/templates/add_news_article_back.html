@@ -3,7 +3,6 @@
 {% block main %}
     <div class="main-content app-content">
         <div class="container-fluid">
-
             <!-- Page Header -->
             <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
                 <h1 class="page-title fw-semibold fs-18 mb-0">Add News Article</h1>
@@ -28,11 +27,16 @@
                     <div class="card-body">
                         <form action="{% url 'add_news_article' %}" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered">
                             {% csrf_token %}
+                            {% for field in form %}
+                            <div class="col-md-6">
+                                <label for="title" class="form-label">{{field.label}}</label>
+                                {{field}}
+                                {{field.errorrs}}
+                                <!-- <input type="text" id="title" name="title" class="form-control" placeholder="Title"> -->
+                            </div>
+                            {% endfor %}
                             <div class="form-group">
-                                <div class="col-md-6">
-                                    <label for="title" class="form-label">Title</label>
-                                    <input type="text" id="title" name="title" class="form-control" placeholder="Title">
-                                </div>
+                               
                                 <div class="col-md-6">
                                     <label for="author" class="form-label">Author</label>
                                     <input type="text" id="author" name="author" class="form-control" placeholder="Author">

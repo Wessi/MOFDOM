@@ -55,13 +55,14 @@
                             <div class="post-block mt-4 pt-2 post-author">
                                 <h4 class="text-4 mb-3">Author</h4>
                                 <div class="img-thumbnail img-thumbnail-no-borders d-block pb-3">
-                                    <a href="#">
+                                    <a href="#" title="{{blog.author}} : {{blog.author_email}}">
                                         <img src="{% static 'front/imgs/team/user.png' %}" alt="">
                                     </a>
+
                                 </div>
 
                                 
-                                <div class="accordion  accordion-modern-status accordion-modern-status-borders accordion-modern-status-arrow col-lg-4 mb-2"  >
+                                <!-- <div class="accordion  accordion-modern-status accordion-modern-status-borders accordion-modern-status-arrow col-lg-4 mb-2"  >
                                     
                                     <div class="card card-default">
                                         <div class="card-header" id="collapse12HeadingTwo">
@@ -82,7 +83,7 @@
                                         </div>
                                     </div>
 
-                                </div>
+                                </div> -->
 
 
                                 <!-- <p><strong class="name"><a href="#" class="text-4 pb-2 pt-2 d-block">{{blog.author}}</a></strong></p> -->
@@ -95,6 +96,17 @@
                                 <span><i class="far fa-comments"></i> <a href="#">{{blog.comment_set.all.count}} Comments</a></span>
                             </div>
 
+                            <!-- AddToAny BEGIN -->
+                            <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
+                                <a class="a2a_button_facebook"></a>
+                                <a class="a2a_button_email"></a>
+                                <a class="a2a_button_linkedin"></a>
+                                <a class="a2a_button_telegram"></a>
+                                <a class="a2a_button_twitter"></a>
+                                <a class="a2a_button_x"></a>
+                            </div>
+                            <script async src="https://static.addtoany.com/menu/page.js"></script>
+    
 
                             <p>{{blog.content|safe}}</p>
 

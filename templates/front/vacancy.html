@@ -61,7 +61,10 @@
                             <p class="card-text">{{ job.job_description }}</p>
                             <p><strong><i class="fa fa-map-marker"></i> Location:</strong> {{ job.locationn }}</p>
                              <!-- Add Apply button -->
-                             <a href="{% url 'jobs_apply' %}" class="btn btn-primary btn-sm">Apply</a>
+                            {% if job.Status == 'Active' %}
+                             <a href="{% url 'jobs_apply' pk=job.id %}" class="btn btn-primary btn-sm">Apply</a>
+                             {% endif %}
+                              
                         </div>
                     </div>
                 </div>
