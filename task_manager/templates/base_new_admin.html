@@ -598,8 +598,8 @@
                                     {% endif %}
                                 </div>
                                 <div class="d-sm-block d-none">
-                                    <p class="fw-semibold mb-0 lh-1">Barok Frew</p>
-                                    <span class="op-7 fw-normal d-block fs-11">Web Designer</span>
+                                    <p class="fw-semibold mb-0 lh-1">{{user.first_name}}</p>
+                                    <span class="op-7 fw-normal d-block fs-11">{{user.role}}</span>
                                 </div>
                             </div>
                         </a>
@@ -642,11 +642,36 @@
                             </a>
                         </li>
                         
-                        <li class="slide">
-                            <a href="{% url 'task_list_view' %}" class="side-menu__item">
+                        <!-- <li class="slide">
+                            <a href="{% url 'task_list_view' type='All' %}" class="side-menu__item">
                                 <i class="bx bx-task side-menu__icon"></i>
                                 <span class="side-menu__label">Task</span>
                             </a>
+                        </li> -->
+                        
+                        <li class="slide has-sub">
+                            <a href="javascript:void(0);" class="side-menu__item">
+                                <i class="bx bx-task side-menu__icon"></i>
+                                <span class="side-menu__label">Tasks</span>
+                                <i class="fe fe-chevron-right side-menu__angle"></i>
+                            </a>
+                            <ul class="slide-menu child1">
+                                <!-- <li class="slide side-menu__label1">
+                                    <a href="{% url 'task_list_view' type='All' %}">Task</a>
+                                </li> -->
+                                <!-- <li class="slide">
+                                    <a href="javascript:void(0);" class="side-menu__item">Create Task</a>
+                                </li> -->
+                                <li class="slide">
+                                    <a href="{% url 'task_list_view' type='All' %}" class="side-menu__item">All Tasks</a>
+                                </li>
+                                <li class="slide">
+                                    <a href="{% url 'task_list_view' type='Assigned' %}" class="side-menu__item">Assigned Tasks</a>
+                                </li>
+                                <li class="slide">
+                                    <a href="{% url 'task_list_view' type='Monitoring' %}" class="side-menu__item">Monitoring Tasks</a>
+                                </li>
+                            </ul>
                         </li>
                         <li class="slide">
                             <a href="{% url 'supplier_view' %}" class="side-menu__item">
@@ -667,7 +692,7 @@
                         <li class="slide__category"><span class="category-name">Internal</span></li>
                         
                         <li class="slide">
-                            <a href="{% url 'task_list_view' %}" class="side-menu__item">
+                            <a href="{% url 'task_list_view' type='All' %}" class="side-menu__item">
                                 <i class="bx bx-home side-menu__icon"></i>
                                 <span class="side-menu__label">Task</span>
                             </a>
@@ -791,5 +816,9 @@
 <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 <script src="{% static 'dashboard/js/datatables.js' %}"></script>
+<script src="{% static 'dashboard/js/choices.js' %}"></script>
+
+
+{% block js %} {% endblock %}
 </body>
 </html>

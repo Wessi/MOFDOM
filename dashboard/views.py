@@ -14,6 +14,7 @@ from core.models import Settings
 from django.utils.translation import gettext as _
 from django.contrib import messages
 from .forms import FAQForm
+from suppliers.models import Supplier
 
 
 def admin_dashboard(request):

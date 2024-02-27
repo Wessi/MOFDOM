@@ -39,12 +39,12 @@ class MyUserRegistrationForm(forms.ModelForm):
     
 
 class EditProfileForm(forms.ModelForm):
-
+    email = forms.CharField(required=False, disabled=True, widget=forms.EmailInput(attrs={'class':'form-control form-control-light','placeholder':'Enter Email'}),)
     class Meta:
         model = UserProfile 
         fields = ['email', 'first_name','last_name','role', 'profile_pic', 'phonenumber',  ]
         widgets = {
-            'email':forms.EmailInput(attrs={'class':'form-control form-control-light','placeholder':'Enter Email'}),
+            # 'email':forms.EmailInput(attrs={'class':'form-control form-control-light','placeholder':'Enter Email'}),
             'first_name':forms.TextInput(attrs={'class':'form-control form-control-light','placeholder':'Enter First Name',}),
             'last_name':forms.TextInput(attrs={'class':'form-control form-control-light','placeholder':'Enter Last Name',}),
             'role':forms.Select(attrs={'class':'form-control form-control-light', 'placeholder':'Select Role', 'type':'dropdown'}),

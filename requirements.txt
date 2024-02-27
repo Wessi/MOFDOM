@@ -1,6 +1,6 @@
 anyascii==0.3.2
 asgiref==3.7.2
-backports.zoneinfo==0.2.1
+# backports.zoneinfo==0.2.1
 beautifulsoup4==4.11.2
 certifi==2023.11.17
 chardet==5.2.0

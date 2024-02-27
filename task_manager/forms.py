@@ -5,23 +5,24 @@ class TaskForm(forms.ModelForm):
     task_description = forms.CharField(widget=forms.Textarea(attrs={'rows': 3}), required=False)
     key_tasks = forms.CharField(widget=forms.Textarea(attrs={'rows': 3}), required=False)
 
-    # Use DateTimeInput widget for assigned_date and due_date
-    assigned_date = forms.DateTimeField(widget=forms.DateTimeInput(attrs={'type': 'datetime-local'}))
+    # Use DateTimeInput widget for start_date and due_date
+    start_date = forms.DateTimeField(widget=forms.DateTimeInput(attrs={'type': 'datetime-local'}))
     due_date = forms.DateTimeField(widget=forms.DateTimeInput(attrs={'type': 'datetime-local'}))
     
     class Meta:
         model = Task
-        fields = ['task_name', 'assigned_to','assigned_date', 'due_date', 'status', 'priority', 'task_description', 'key_tasks']
+        fields = ['task_name', 'assigned_to', 'monitoring', 'start_date', 'due_date',  'priority', 'task_description', 'key_tasks']
         widgets = {
-            'assigned_to':forms.Select(attrs={'class':'form-control'})
+            'assigned_to':forms.SelectMultiple(attrs={'class':'form-control','multiple':'true'}),
+            'monitoring':forms.SelectMultiple(attrs={'class':'form-control', 'multiple':'true'})
         }
     def clean(self):
         cleaned_data = super().clean()
-        assigned_date = cleaned_data.get('assigned_date')
+        start_date = cleaned_data.get('start_date')
         due_date = cleaned_data.get('due_date')
 
         # Ensure start date is less than end date
-        if assigned_date and due_date and assigned_date >= due_date:
+        if start_date and due_date and start_date >= due_date:
             raise forms.ValidationError("The start date must be less than the end date.")
 
         return cleaned_data

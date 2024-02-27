@@ -6,12 +6,19 @@ from django.utils import timezone
 from .forms import CommentForm, TaskForm
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
-def task_list_view(request):
-    tasks = Task.objects.all()
+def task_list_view(request, type):
+    user = request.user
+    if type == 'Assigned':
+        tasks = user.assigned_tasks.all()
+    elif type == 'Monitoring':
+        tasks = user.monitoring_tasks.all()
+    elif type == 'All':
+        tasks = Task.objects.all()
     context = {
-        'tasks': tasks, 'form':TaskForm()
+        'tasks': tasks, 'form':TaskForm(), 'type':type
     }
     return render(request, 'task-list-view.html', context)
+    # return render(request, 'some.html', context)
 
 def create_task(request):
     if request.method == 'POST':

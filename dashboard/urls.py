@@ -33,6 +33,8 @@ urlpatterns = [
     path('delete_gallery_image/<int:image_id>/', delete_gallery_image, name='delete_gallery_image'),
     path('faq/<int:faq_id>/delete/', delete_faq, name='delete_faq'),
 
+    
+
 
     
     
