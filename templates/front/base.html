@@ -97,9 +97,7 @@
         </div>
     {% endif %}
     
-    {% placeholder some_content %}
-    {% cms_toolbar %} 
-    {% placeholder some_content %}
+ {% cms_toolbar %} 
     {% render_block "js" %} 
         <header id="header" class="header-effect-shrink"
             data-plugin-options="{'stickyEnabled': true, 'stickyEffect': 'shrink', 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': false, 'stickyChangeLogo': true, 'stickyStartAt': 30, 'stickyHeaderContainerHeight': 85}">
@@ -725,6 +723,8 @@
             
         
         {% block content %} 
+         <!-- placeholder some_content  -->
+    
         {% endblock %}
         </div>
 

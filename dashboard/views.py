@@ -98,7 +98,6 @@ def index(request):
             'map':map
         }
 
-    messages.success(request, _("Action successfully completed!"))
     return render(request, 'front/index.html', context)
 
 
