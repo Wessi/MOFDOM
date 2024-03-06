@@ -1,9 +1,25 @@
 {% extends 'front/base.html' %}
 {% load static %}
-{% block home %} active {% endblock %}
-{% block content %}
+{% load custom_filters %}
 {% load static %}
 {% load i18n %}
+{% block css %}
+<style>
+    /* Add margin between dynamically generated images */
+    .owl-carousel .item {
+        margin: 10px; /* Adjust the margin as needed */
+    }
+
+    /* Set default width and height for images with class "default-resolution" */
+    .default-resolution {
+        width: 300px; /* Set your default width */
+        height: 200px; /* Set your default height */
+    }
+</style>
+{% endblock %}
+
+{% block home %} active {% endblock %}
+{% block content %}
 
 
 {% if featured_works %}
@@ -447,17 +463,24 @@
                             class="card border-radius-2 bg-color-light box-shadow-3 box-shadow-1-hover">
                             <div class="feature-box py-2 px-1">
                                 <div class="border-radius-2">
-                                    {% if document.file_extension == '.pdf' %}
-                                    <img src="{% static 'front/imgs/docs/pdf.png' %}"
-                                        style="width: 40px; height: 40px;">
-                                    {% elif document.file_extension == '.csv' %}
-                                    <img src="{% static 'front/imgs/docs/excel.png' %}"
-                                        style="width: 40px; height: 40px;">
+                                    {% with doc=document.file.url|get_file_name %}
+                                    {% if doc %}
+                                        <embed src="/documents/pdf/{{document.file.url|get_file_name}}" width="60px" height="60px">
+                                        
                                     {% else %}
-                                    <!-- Default image if the file extension is not pdf or csv -->
-                                    <img src="{% static 'path_to_default_image.png' %}"
-                                        style="width: 40px; height: 40px;">
+                                        {% if document.file_extension == '.pdf' %}
+                                        <img src="{% static 'front/imgs/docs/pdf.png' %}"
+                                            style="width: 40px; height: 40px;">
+                                        {% elif document.file_extension == '.csv' %}
+                                        <img src="{% static 'front/imgs/docs/excel.png' %}"
+                                            style="width: 40px; height: 40px;">
+                                        {% else %}
+                                        <!-- Default image if the file extension is not pdf or csv -->
+                                        <img src="{% static 'path_to_default_image.png' %}"
+                                            style="width: 40px; height: 40px;">
+                                        {% endif %}
                                     {% endif %}
+                                    {% endwith %}
                                 </div>
                                 <div class="feature-box-info">
                                     <a href="{{ document.file.url }}" class="mb-0 border-bottom">{{document.title }}</a>
@@ -584,7 +607,7 @@
 
 
 <!-- Contact Us -->
-<section class="section border-0 bg-light py-4 m-0 px-lg-5">
+<section class="section border-0 bg-light p-0 m-0 px-lg-5">
     <div class="container">
         <div class="row align-items-end pb-3 ">
             <div class="col-lg-7 col-xl-8  ">
@@ -684,19 +707,9 @@
     </div>
 </section>
 
+{% endblock %}
+{% block js %}
 
-<style>
-    /* Add margin between dynamically generated images */
-    .owl-carousel .item {
-        margin: 10px; /* Adjust the margin as needed */
-    }
-
-    /* Set default width and height for images with class "default-resolution" */
-    .default-resolution {
-        width: 300px; /* Set your default width */
-        height: 200px; /* Set your default height */
-    }
-</style>
 
 <script>
     $(document).ready(function(){
@@ -718,12 +731,5 @@
         });
     });
 </script>
-
-
-<!-- FAQ -->
-<section class="section section-with-shape-divider border-0 bg-transparent m-0 px-lg-5">
-
-
-
 
 {% endblock %}

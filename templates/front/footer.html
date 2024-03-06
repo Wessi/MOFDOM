@@ -3,7 +3,7 @@
 <footer id="footer" class="footer-texts-more-lighten bg-primary border-0">
     <div class="container pt-2">
         <div class="row my-2">
-            <div class="col-sm-6 col-xsm-6 col-lg-3 mb-5 mb-lg-0">
+            <div class="col-sm-12 col-xsm-12 col-lg-3  mb-lg-0">
                 {% if stg.logo %}
                 <img style="height: 80px; width: 110px; border-radius: 50%;" class="bg-light" src="{{stg.logo.url}}">
                 {% else %}
@@ -14,7 +14,7 @@
                     <!-- Add dynamic social media links here -->
                 </ul>
             </div>
-            <div class="col-sm-6 col-xsm-6 col-lg-3 mb-5 mb-lg-0">
+            <div class="col-sm-12 col-xsm-12 col-lg-3 mb-5 mb-lg-0">
                 <h5 class="text-4 text-color-light mb-3 footer-title">CONTACTS</h5>
                 <ul class="list list-unstyled">
                     <li class="pb-1 mb-2">
@@ -29,10 +29,7 @@
                         <span class="d-block font-weight-normal line-height-1 text-color-light">Email:</span>
                         <a href="mailto:{{ stg1.email }}">{{ stg.email }}</a>
                     </li>
-                    <li class="pb-1 mb-2">
-                        <span class="d-block font-weight-normal line-height-1 text-color-light">Working Days/Hours: </span>
-                        {{ stg.working_hours }}
-                    </li>
+                    
                 </ul>
             </div>
             <div class="col-md-6 col-lg-3  d-none d-md-block d-ld-block mb-5 mb-lg-0">
@@ -57,6 +54,19 @@
                         <button class="btn btn-primary text-color-light" type="submit" style="border: 1px solid #fff;"><strong>Subscribe</strong></button>
                     </div>
                 </form>
+                <div class="mt-3">
+                    <p class="text-color-light">
+                        Addis Ababa City Administration Bureau of Finance
+                    </p>
+                    
+                    <p class="d-block font-weight-normal  text-color-light">
+                        Working Days : {{ stg.working_hours }}
+                    </p>
+
+                    
+                    
+                </div>
+                
             </div>
         </div>
     </div>
@@ -69,6 +79,7 @@
                     </div>
                 </div>
             </div>
+            
         </div>
     </div>
 </footer>

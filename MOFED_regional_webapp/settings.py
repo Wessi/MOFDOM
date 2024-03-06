@@ -85,6 +85,7 @@ INSTALLED_APPS = [
     # "parler",  
     'rosetta',
     
+    
 
 
   
@@ -238,6 +239,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 
+
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
@@ -362,3 +364,16 @@ JAZZMIN_SETTINGS = {
 
   
 }
+
+CORS_ORIGIN_ALLOW_ALL = True
+CSP_MIDDLEWARE = [
+    'csp.middleware.CSPMiddleware',
+    # Other middleware classes...
+]
+
+CSP_DEFAULT_SRC = ("'self'",)  # Allow resources from the same origin
+
+# Allow embedding from specific domains
+CSP_FRAME_SRC = ("'self'",)
+
+X_FRAME_OPTIONS = 'SAMEORIGIN'  # Allow embedding from the same origin

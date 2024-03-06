@@ -9,6 +9,7 @@ admin.site.register(FAQ)
 admin.site.register(QuickLink)
 admin.site.register(Event)
 admin.site.register(About_us_index)
+admin.site.register(GalleryVideo)
 
 
 

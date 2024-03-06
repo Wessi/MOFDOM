@@ -11,6 +11,13 @@ html {
     }
 }
 
+.cms-icon-logo:before {
+    content:"../imgs/logo/logo.png"
+  }
+
+
+
+
 body {
     background-color: #eeeee4;
     color: var(--default);
@@ -281,7 +288,7 @@ li {
 
 #header .header-logo {
     margin: 16px 0;
-    margin: 1rem 0;
+    margin: 0rem 0;
     position: relative;
     z-index: 1
 }

@@ -7,13 +7,20 @@
 <!DOCTYPE html>
 <html lang="en"
     data-style-switcher-options="{'showBordersStyle': true, 'showLayoutStyle': false, 'showBackgroundColor': false, 'changeLogo': false, 'colorPrimary': '#00a1cd', 'colorSecondary': '#183f72', 'colorTertiary': '#0281d7', 'colorQuaternary': '#383f48', 'borderRadius': 4}">
-
+    
 <head>
 
     <!-- Basic -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BFKWP9GTGX"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-BFKWP9GTGX');
+    </script>
     {% if stg.title %}
     <title>{{stg.title}}</title>
     {% else %}
@@ -66,6 +73,11 @@
             border-bottom: 2px solid #fff;
             width: 9%;
         }
+        div.cms .cms-toolbar-item-logo a:before{
+            content:none !important;
+            font-size: medium;
+            font-weight: 600;
+        }
     </style>
    
 
@@ -97,7 +109,8 @@
         </div>
     {% endif %}
     
- {% cms_toolbar %} 
+    {% cms_toolbar %} 
+    
     {% render_block "js" %} 
         <header id="header" class="header-effect-shrink"
             data-plugin-options="{'stickyEnabled': true, 'stickyEffect': 'shrink', 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': false, 'stickyChangeLogo': true, 'stickyStartAt': 30, 'stickyHeaderContainerHeight': 85}">
@@ -200,11 +213,11 @@
                                 <div class="header-logo">
                                     {% if stg.logo %}
                                     <a href="/">
-                                        <img src="{{stg.logo.url}}" class="img-fluid"  alt="Logo" style="width: 80px; height: 68px;" />
+                                        <img src="{{stg.logo.url}}" class="img-fluid"  alt="Logo" style="width: 75px; height: 60px;" />
                                     </a>
                                     {% else %} 
                                     <a href="/">
-                                        <img src="/static/front/imgs/logo/logo-addis.png" class="img-fluid"  alt="Logo" style="width: 80px; height: 68px;" />
+                                        <img src="/static/front/imgs/logo/logo-addis.png" class="img-fluid"  alt="Logo" style="width: 75px; height: 60px;" />
                                     </a>
                                     {% endif %}
                                 </div>
@@ -241,18 +254,21 @@
                                                                             
                                                                             <ul class="nav nav-tabs col-sm-3" role="tablist">
                                                                                 {% if pages.about %}
-                                                                                <li class=" active  mb-2" role="presentation">
-                                                                                    <a class="nav-link header-tabs active text-3" href="#about_tab" data-bs-toggle="tab" aria-selected="true" role="tab">{% trans "About Us" %}</a>
+                                                                                <li class="   mb-2" role="presentation">
+                                                                                    <a class="nav-link header-tabs active text-3 hover-active" href="#about_tab" data-bs-toggle="tab" aria-selected="true" role="tab">{% trans "About Us" %}</a>
                                                                                 </li>
                                                                                 {% endif %}
                                                                                 {% if pages.structure %}
                                                                                 <li class="  mb-2" role="presentation">
-                                                                                    <a class="nav-link header-tabs text-3" href="#structure_tab" data-bs-toggle="tab" aria-selected="false" tabindex="-1" role="tab">Our Structure</a>
+                                                                                    <a class="nav-link header-tabs text-3 hover-active" href="#structure_tab" data-bs-toggle="tab" aria-selected="false" tabindex="-1" role="tab">Our Structure</a>
                                                                                 </li>
                                                                                 {% endif %}
                                                                                 {% if pages.directorate %}
-                                                                                <li class=" header-tabs  mb-2" role="presentation">
+                                                                                <!-- <li class=" hover-active header-tabs  mb-2" role="presentation">
                                                                                     <a class="nav-link text-3" href="#direct_tab" data-bs-toggle="tab" aria-selected="false" tabindex="-1" role="tab">Our Directories</a>
+                                                                                </li> -->
+                                                                                <li class="  mb-2" role="presentation">
+                                                                                    <a class="nav-link header-tabs  text-3 hover-active" href="#direct_tab"  data-bs-toggle="tab" aria-selected="true" role="tab">{% trans "Our Directories" %}</a>
                                                                                 </li>
                                                                                 {% endif %}
                                                                                
@@ -311,7 +327,7 @@
                                                 </li>
                                                 {% endif %}
                                                 
-                                                {% if pages.documents or pages.gallery %}
+                                                {% if pages.documents  %}
                                                 <li class="dropdown ">
                                                     <a class="dropdown-item dropdown-toggle {% block resource_dynamic %} {% endblock %} " href="#">Resources</a>
                                                     <ul class="dropdown-menu">
@@ -456,7 +472,14 @@
                                                 {% endif %}
                                                 <!-- end privary -->
                                                 {% if pages.gallery %}
-                                                <li><a href="{% url 'gallery_view' %}" class="nav-link {% block gallery_page_dynamic %} {% endblock %}">Gallery</a></li>
+                                                <li class="dropdown ">
+                                                    <a class="dropdown-item dropdown-toggle {% block gallery_dynamic %} {% endblock %}" href="#">Gallery</a>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a class="dropdown-item {% block gallery_page_dynamic %} {% endblock %}" href="{% url 'gallery_view' %}" >Images</a></li>
+                                                        <li><a class="dropdown-item" href="{% url 'gallery_videos' %}">Videos</a></li>
+                                                    </ul>
+                                                </li>
+                                                
                                                 {% endif %}
 
                                            
@@ -480,13 +503,13 @@
                                                                             
                                                                         <div class="mt-2 tabs tabs-vertical tabs-left tabs-navigation bg-light">
                                                                             <ul class="nav nav-tabs col-sm-3" role="tablist">
-                                                                                <li class=" active  mb-2" role="presentation">
+                                                                                <li class=" active mb-2 hover-active"  role="presentation">
                                                                                     <a class="nav-link header-tabs active text-3" href="#about_tab" data-bs-toggle="tab" aria-selected="true" role="tab">About Us</a>
                                                                                 </li>
-                                                                                <li class="  mb-2" role="presentation">
+                                                                                <li class="  mb-2 hover-active" role="presentation">
                                                                                     <a class="nav-link header-tabs text-3" href="#structure_tab" data-bs-toggle="tab" aria-selected="false" tabindex="-1" role="tab">Our Structure</a>
                                                                                 </li>
-                                                                                <li class=" header-tabs  mb-2" role="presentation">
+                                                                                <li class=" header-tabs  mb-2 hover-active" role="presentation">
                                                                                     <a class="nav-link text-3" href="#direct_tab" data-bs-toggle="tab" aria-selected="false" tabindex="-1" role="tab">Our Directories</a>
                                                                                 </li>
                                                                                
@@ -661,7 +684,13 @@
                                                     </ul>
                                                 </li>
                                                 <!-- end privary -->
-                                                <li><a href="{% url 'gallery_view' %}" class="nav-link {% block gallery_page %} {% endblock %}">Contact Us</a></li>
+                                                <li class="dropdown ">
+                                                    <a class="dropdown-item dropdown-toggle {% block gallery %} {% endblock %}" href="#">Gallery</a>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a class="dropdown-item {% block gallery_page %} {% endblock %}" href="{% url 'gallery_view' %}" >Images</a></li>
+                                                        <li><a class="dropdown-item" href="{% url 'gallery_view' %}">Videos</a></li>
+                                                    </ul>
+                                                </li>
                                                 
                                             
                                             {% endif %}
@@ -724,6 +753,9 @@
         
         {% block content %} 
          <!-- placeholder some_content  -->
+            {% placeholder "feature" %}
+            {% placeholder "content" %}
+            {% placeholder "splashbox" %}
     
         {% endblock %}
         </div>
@@ -736,7 +768,13 @@
     <!-- Vendor -->
     <!-- <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script> -->
     <script src="{% static 'front/vendor/plugins/js/plugins.min.js' %}"></script>
-    
+    <script>
+    $('.child').each(function(){
+            $(this).addClass("dropdown");
+            $(this).find("ul").addClass("dropdown-menu")
+        });
+    </script>
+
     <!-- Theme Base, Components and Settings -->
     <script src="{% static 'front/js/theme.js' %}"></script>
     
@@ -750,10 +788,28 @@
     <script src="{% static 'front/js/theme.init.js' %}"></script>
 
     <script>
-        document.getElementById('header').style['height'] = "110px"
+        document.getElementById('header').style['height'] = "110px";
+        
         function change_lang(s){
             document.querySelector("#id_lang_selector_form").submit()            
         }
+
+        $('.hover-active').hover(function() { 
+            $('.hover-active').each(function(){
+                $(this).removeClass("active");
+                $($(this).attr("href")).removeClass("active");
+            });
+
+            $(this).addClass("active");
+            $($(this).attr("href")).addClass("active");    
+        });
+
+        
+       
+        
+        // $(".hover-active").on("hover",function(){
+            
+        // })
     </script>
    {% block js %}  {% endblock %}
 

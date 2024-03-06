@@ -15,6 +15,7 @@ from django.utils.translation import gettext as _
 from django.contrib import messages
 from .forms import FAQForm
 from suppliers.models import Supplier
+from django.views import View
 
 
 def admin_dashboard(request):
@@ -45,7 +46,7 @@ def index(request):
     map = Settings.objects.first().map_link if Settings.objects.first() else ''
     recent_documents = Document.objects.order_by('-upload_date')[:9]
 
-    gallery_categories = GalleryImage.CATEGORY_CHOICES
+    gallery_categories = CATEGORY_CHOICES
     gallery_images_by_category = {}
     for category, data in gallery_categories:
         images = GalleryImage.objects.filter(category=category)
@@ -113,7 +114,7 @@ def gallery_list_view(request):
 
 #new yismu template
 def gallery_view(request):
-    gallery_categories = GalleryImage.CATEGORY_CHOICES
+    gallery_categories = CATEGORY_CHOICES
     gallery_images_by_category = {}
     for category, _ in gallery_categories:
         images = GalleryImage.objects.filter(category=category)
@@ -135,24 +136,10 @@ def delete_gallery_image(request, image_id):
     return render(request, 'delete_gallery_image.html', context)
 
     
-    
-# views.py
-# @csrf_exempt
-# def add_faq_api(request):
-#     if request.method == 'POST':
-#         question = request.POST.get('question')
-#         answer = request.POST.get('answer')
-
-#         if question and answer:
-#             new_faq = FAQ(question=question, answer=answer)
-#             new_faq.save()
-
-#             return JsonResponse({'status': 'success'})
-#         else:
-#             return JsonResponse({'status': 'error', 'message': 'Missing required data'})
-
-#     return JsonResponse({'status': 'error', 'message': 'Invalid request method'})
-
+class GalleryVideoPage(View):
+    def get(self, *args, **kwargs):
+        gallery_videos = GalleryVideo.objects.all()
+        return render(self.request, 'front/videos.html', {'gallery_videos':gallery_videos, 'categories':CATEGORY_CHOICES})
 
 def faqs_api(request):
     faqs = FAQ.objects.all()

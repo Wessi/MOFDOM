@@ -1,7 +1,11 @@
+import os
 from django.shortcuts import render, redirect
 from .models import Document
 from .forms import DocumentForm
 from django.shortcuts import render, redirect, get_object_or_404
+from django.http import FileResponse
+from django.conf import settings
+
 
 
 def document_list(request):
@@ -83,6 +87,16 @@ def list_docs_view(request):
         'documents':documents,
     }
     return render(request, 'front/docs.html', context)
+
+
+def pdf_view(request, pk):
+    try:
+        url='documents/' + pk
+        file_path = os.path.join(settings.MEDIA_ROOT, url)
+        return FileResponse(open(file_path, 'rb'), content_type='application/pdf')
+    except:
+        pass
+
 
 
 def update_document(request, document_id):

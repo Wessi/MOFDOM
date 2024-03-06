@@ -19,6 +19,7 @@ class Document(models.Model):
 
     def __str__(self):
         return self.title
+        
     def file_extension(self):
         return get_file_extension(self.file.name)
     

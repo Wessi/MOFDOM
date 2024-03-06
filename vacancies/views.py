@@ -16,7 +16,7 @@ from django.core.mail import EmailMultiAlternatives, send_mail
 #new from yismu
 
 def job_list_ytemplate(request):
-    jobs = Job.objects.all()
+    jobs = Job.objects.filter(Status = 'Active')
     return render(request, 'front/vacancy.html', {'jobs': jobs})
     
 def delete_job(request, job_id):
@@ -67,6 +67,8 @@ def jobs_detail(request, job_id):
     except Job.DoesNotExist:
         # Job not found, render an empty page or display a message
         return render(request, 'job_list.html')  
+
+
 def job_list_admin(request):
     vacancies = Job.objects.all()
     return render(request, 'job_list_admin.html', {'vacancies': vacancies})

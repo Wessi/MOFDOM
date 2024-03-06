@@ -23,6 +23,13 @@
     <link rel="stylesheet" href="{% static 'dashboard/libs/jsvectormap/css/jsvectormap.min.css' %}">
     <link rel="stylesheet" href="{% static 'dashboard/libs/swiper/swiper-bundle.min.css' %}">
     <link rel="stylesheet" href="{% static 'dashboard/libs/choices.js/public/assets/styles/choices.min.css' %}">
+    <style>
+        div.cms .cms-toolbar-item-logo a:before{
+            content:none!important;
+            font-size: medium;
+            font-weight: 600;
+        }
+    </style>
     {% render_block "css" %}
     {% block css %}  {% endblock %}
 </head>
@@ -629,7 +636,7 @@
                         <svg xmlns="" fill="#7b8191" width="24" height="24" viewBox="0 0 24 24"> <path d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"></path> </svg>
                     </div>
                     <ul class="main-menu">
-                        <li class="slide">
+                        <!-- <li class="slide">
                             <a href="{% url 'news_list' %}" class="side-menu__item">
                                 <i class="bx bx-file side-menu__icon"></i>
                                 <span class="side-menu__label">News</span>
@@ -640,7 +647,7 @@
                                 <i class="bx bx-images side-menu__icon"></i>
                                 <span class="side-menu__label">Blogs</span>
                             </a>
-                        </li>
+                        </li> -->
                         
                         <!-- <li class="slide">
                             <a href="{% url 'task_list_view' type='All' %}" class="side-menu__item">
@@ -648,6 +655,10 @@
                                 <span class="side-menu__label">Task</span>
                             </a>
                         </li> -->
+
+
+                        
+                        <li class="slide__category"><span class="category-name">Internal</span></li>
                         
                         <li class="slide has-sub">
                             <a href="javascript:void(0);" class="side-menu__item">
@@ -655,6 +666,7 @@
                                 <span class="side-menu__label">Tasks</span>
                                 <i class="fe fe-chevron-right side-menu__angle"></i>
                             </a>
+
                             <ul class="slide-menu child1">
                                 <!-- <li class="slide side-menu__label1">
                                     <a href="{% url 'task_list_view' type='All' %}">Task</a>
@@ -679,19 +691,19 @@
                                 <span class="side-menu__label">Blocked Supplier</span>
                             </a>
                         </li>
-                        
+                    
+                    <!--                         
                         <li class="slide__category"><span class="category-name">Blog/News/events</span></li>
                         <li class="slide">
                             <a href="{% url 'news_list' %}" class="side-menu__item">
                                 <i class="bx bx-file side-menu__icon"></i>
                                 <span class="side-menu__label">Blogs</span>
                             </a>
-                        </li>
+                        </li> -->
 
 
-                        <li class="slide__category"><span class="category-name">Internal</span></li>
                         
-                        <li class="slide">
+                        <!-- <li class="slide">
                             <a href="{% url 'task_list_view' type='All' %}" class="side-menu__item">
                                 <i class="bx bx-home side-menu__icon"></i>
                                 <span class="side-menu__label">Task</span>
@@ -702,7 +714,7 @@
                                 <i class="bx bx-home side-menu__icon"></i>
                                 <span class="side-menu__label">Blocked Supplier</span>
                             </a>
-                        </li>
+                        </li> -->
 
                         
                         <!-- <li class="slide__category"><span class="category-name">User Manager</span></li>
@@ -766,14 +778,17 @@
                 </nav>
             </div>
         </aside>
+
         {% block main%}
+            <!-- placeholder some_content  -->
+            
 
         {% endblock %}
         <!-- Footer Start -->
         <footer class="footer mt-auto py-3 bg-white text-center">
             <div class="container">
                 <span class="text-muted"> Copyright © <span id="year"></span> <a
-                        href="javascript:void(0);" class="text-dark fw-semibold">BOFED</a>.
+                        href="javascript:void(0);" class="text-dark fw-semibold">MOFED</a>.
                     Designed with <span class="bi bi-heart-fill text-danger"></span> by <a href="javascript:void(0);">
                         <span class="fw-semibold text-primary text-decoration-underline">Kanenus</span>
                     </a> All

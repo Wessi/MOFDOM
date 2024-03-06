@@ -29,6 +29,7 @@ urlpatterns = [
     
     #new yismu template
     path('gallery_view/', gallery_view, name='gallery_view'),
+    path('gallery-videos/', GalleryVideoPage.as_view(), name='gallery_videos'),
     path('events_list_new/', events_list_new, name='events_list_new'),
     path('delete_gallery_image/<int:image_id>/', delete_gallery_image, name='delete_gallery_image'),
     path('faq/<int:faq_id>/delete/', delete_faq, name='delete_faq'),

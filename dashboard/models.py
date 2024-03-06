@@ -5,22 +5,28 @@ from django.db import models
 from parler.models import TranslatableModel, TranslatedFields
 from django.utils.translation import gettext as _ 
 
-
-class GalleryImage(models.Model):
-    title = models.CharField(max_length=255)
-    image = models.ImageField(upload_to='gallery_images/', help_text="Please select an image with close width and height resolution (400p x 300px).")
-
-    CATEGORY_CHOICES = [
+CATEGORY_CHOICES = (
         ('LEADERSHIP', 'LEADERSHIP'),
         ('MEETINGS', 'MEETINGS'),
         ('EVENTS/SEMINARS', 'EVENTS/SEMINARS'),
         ('EMPLOYEES', 'EMPLOYEES'),
         ('OFFICE', 'OFFICE'),
         ('channal one', 'channal one'),
-    ]
+)
 
+class GalleryImage(models.Model):
+    title = models.CharField(max_length=255)
+    image = models.ImageField(upload_to='gallery_images/', help_text="Please select an image with close width and height resolution (400p x 300px).")
     category = models.CharField(max_length=50, choices=CATEGORY_CHOICES)
 
+    def __str__(self):
+        return self.title
+
+class GalleryVideo(models.Model):
+    title = models.CharField(max_length =255)
+    video = models.FileField(upload_to="Gallery/Videos")
+    category = models.CharField(max_length=50, choices=CATEGORY_CHOICES)
+    
     def __str__(self):
         return self.title
 

@@ -16,5 +16,6 @@ urlpatterns = [
     # for yismu
     path('list-documents/', list_docs_view, name='list_docs'),
     path('document/<int:document_id>/delete/', delete_document, name='delete_document'),
+    path('pdf/<str:pk>/', pdf_view, name='pdf-view'),
 
 ]

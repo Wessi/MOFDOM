@@ -24,13 +24,14 @@ class FooterForm(forms.ModelForm):
     class Meta:
         model = Footer
         fields = '__all__'
+        
 class GalleryImageForm(forms.ModelForm):
     class Meta:
         model = GalleryImage
         fields = ['title', 'category', 'image']
 
     # Adding a custom widget for the 'category' field
-    category = forms.ChoiceField(choices=GalleryImage.CATEGORY_CHOICES, widget=forms.Select(attrs={'class': 'form-select'}))
+    category = forms.ChoiceField(choices=CATEGORY_CHOICES, widget=forms.Select(attrs={'class': 'form-select'}))
 
 
 
