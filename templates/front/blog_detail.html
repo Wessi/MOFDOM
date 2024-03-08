@@ -108,71 +108,10 @@
                             <script async src="https://static.addtoany.com/menu/page.js"></script>
     
 
-                            <p>{{blog.content|safe}}</p>
 
                         </div>
                     </article>
 
-                    <div id="comments" class="post-block mt-5 post-comments">
-                        <h4 class="mb-3">Comments ({{comments.count}})</h4>
-
-                        <ul class="comments">
-                            {% for c in comments %}
-                            <li>
-                                <div class="comment">
-                                    <div
-                                        class="img-thumbnail img-thumbnail-no-borders d-none d-sm-block">
-                                        <img class="avatar" alt="" src="{% static 'front/imgs/team/user.png' %}">
-                                    </div>
-                                    <div class="comment-block">
-                                        <div class="comment-arrow"></div>
-                                        <span class="comment-by">
-                                            <strong>{{c.author}}</strong>
-                                        </span>
-                                        <p>{{c.message}}</p>
-                                        <span class="date float-end">{{c.created_at}}</span>
-                                    </div>
-                                </div>
-
-                                
-                            </li>
-                            {% endfor %}
-                        
-                        </ul>
-
-                    </div>
-
-                    <div class="post-block mt-5 post-leave-comment">
-                        <h4 class="mb-3">Leave a comment</h4>
-
-                        <form class=" p-4 rounded bg-color-grey" action="" method="POST" enctype="multipart/form-data">			
-                            {% csrf_token %}
-                            <div class="p-2">
-                                <div class="row">
-                                    <div class="form-group col-lg-6">
-                                        <label class="form-label required font-weight-bold text-dark">Full Name</label>
-                                        <input type="text" value="" data-msg-required="Please enter your name." maxlength="100" class="form-control" name="author" required="">
-                                    </div>
-                                    <div class="form-group col-lg-6">
-                                        <label class="form-label required font-weight-bold text-dark">Email Address</label>
-                                        <input type="email" value="" data-msg-required="Please enter your email address." data-msg-email="Please enter a valid email address." maxlength="100" class="form-control" name="email" required="">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="form-group col">
-                                        <label class="form-label required font-weight-bold text-dark">Comment</label>
-                                        <textarea maxlength="5000" data-msg-required="Please enter your message." rows="8" class="form-control" name="message" required=""></textarea>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="form-group col mb-0">
-
-                                        <button type="submit"  class="btn btn-primary btn-modern" >Post Comments</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
 
                 </div>
             </div>
@@ -200,9 +139,82 @@
                             </a>
                         {% endfor %}
                     </div>
+
+                    <div class="widget twitter-feed border border-transparent p-3" style="border-radius: 10px;">
+                        <header>
+                            <h3 class="h6">Twitter Feed</h3>
+                        </header>
+                        <div class="tweets">
+                            <a class="twitter-timeline" href="https://twitter.com/PMEthiopia?ref_src=twsrc%5Etfw" data-height="300">Tweets by PMEthiopia</a>
+                        </div>
+                    </div>
                 </div>
             </div>
 
+            <div class="col-12 mt-4 px-lg-5" >
+                <p>{{blog.content|safe}}</p>
+
+                <div id="comments" class="post-block mt-5 post-comments">
+                    <h4 class="mb-3">Comments ({{comments.count}})</h4>
+
+                    <ul class="comments">
+                        {% for c in comments %}
+                        <li>
+                            <div class="comment">
+                                <div
+                                    class="img-thumbnail img-thumbnail-no-borders d-none d-sm-block">
+                                    <img class="avatar" alt="" src="{% static 'front/imgs/team/user.png' %}">
+                                </div>
+                                <div class="comment-block">
+                                    <div class="comment-arrow"></div>
+                                    <span class="comment-by">
+                                        <strong>{{c.author}}</strong>
+                                    </span>
+                                    <p>{{c.message}}</p>
+                                    <span class="date float-end">{{c.created_at}}</span>
+                                </div>
+                            </div>
+
+                            
+                        </li>
+                        {% endfor %}
+                    
+                    </ul>
+
+                </div>
+
+                <div class="post-block mt-5 post-leave-comment">
+                    <h4 class="mb-3">Leave a comment</h4>
+
+                    <form class=" p-4 rounded bg-color-grey" action="" method="POST" enctype="multipart/form-data">			
+                        {% csrf_token %}
+                        <div class="p-2">
+                            <div class="row">
+                                <div class="form-group col-lg-6">
+                                    <label class="form-label required font-weight-bold text-dark">Full Name</label>
+                                    <input type="text" value="" data-msg-required="Please enter your name." maxlength="100" class="form-control" name="author" required="">
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label class="form-label required font-weight-bold text-dark">Email Address</label>
+                                    <input type="email" value="" data-msg-required="Please enter your email address." data-msg-email="Please enter a valid email address." maxlength="100" class="form-control" name="email" required="">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col">
+                                    <label class="form-label required font-weight-bold text-dark">Comment</label>
+                                    <textarea maxlength="5000" data-msg-required="Please enter your message." rows="8" class="form-control" name="message" required=""></textarea>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col mb-0">
+
+                                    <button type="submit"  class="btn btn-primary btn-modern" >Post Comments</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
 
     </div>

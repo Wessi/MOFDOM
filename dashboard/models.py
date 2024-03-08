@@ -21,14 +21,21 @@ class GalleryImage(models.Model):
 
     def __str__(self):
         return self.title
+    
+    class Meta:
+        ordering = ("-id",)
 
 class GalleryVideo(models.Model):
     title = models.CharField(max_length =255)
-    video = models.FileField(upload_to="Gallery/Videos")
+    video = models.FileField(upload_to="Gallery/Videos", blank=True, null=True)
+    link = models.CharField(max_length=10000, blank=True,default="")
     category = models.CharField(max_length=50, choices=CATEGORY_CHOICES)
     
     def __str__(self):
         return self.title
+    
+    class Meta:
+        ordering = ("-id",)
 
 
 class About_us_index(models.Model):
@@ -52,6 +59,9 @@ class FAQ(models.Model):
     answer = models.TextField()
     def __str__(self):
         return self.question
+    
+    class Meta:
+        ordering = ("-id",)
 
 class Footer(models.Model):
     about_us_content = models.TextField()

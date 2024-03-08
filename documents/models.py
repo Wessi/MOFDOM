@@ -17,6 +17,9 @@ class Document(models.Model):
     upload_date = models.DateTimeField(auto_now_add=True)
     file = models.FileField(upload_to='documents/')
 
+    class Meta:
+        ordering = ("-id",)
+
     def __str__(self):
         return self.title
         

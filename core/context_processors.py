@@ -13,7 +13,7 @@ from documents.models import Document
 from dashboard.models import *      # GalleryImage, Event
 from core.models import Settings, Pages
 from django.db.models import Q
-
+from core.models import Visitors
 
 def recent_news_mega(request):
     recent_news = NewsArticle.objects.order_by('-created_at')
@@ -30,7 +30,8 @@ def stgs(request):
         'contact_info': contact_info,  # Include footer data in context
         'quick_links': quick_links,  # Include footer data in context
         'stg':Settings.objects.first(),
-        'pages': pages
+        'pages': pages,
+        'visitors':Visitors.objects.count()
     }
 
 

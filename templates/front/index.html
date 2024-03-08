@@ -24,14 +24,14 @@
 
 {% if featured_works %}
 <div class="owl-carousel owl-carousel-light owl-carousel-light-init-fadeIn owl-theme manual dots-inside dots-horizontal-center show-dots-hover nav-inside nav-inside-plus nav-dark nav-md nav-font-size-md show-nav-hover mb-0"
-    data-plugin-options="{'autoplayTimeout': 70000}" data-dynamic-height="['670px','670px','670px','550px','500px']"
-    style="height: 700px;">
+    data-plugin-options="{'autoplayTimeout': 7000}" data-dynamic-height="['670px','670px','670px','550px','500px']"
+    style="height: 650px;">
     <div class="owl-stage-outer">
         <div class="owl-stage">
             <!-- Dynamic Carousel Slides -->
             {% for work in featured_works %}
             <div class="owl-item position-relative"
-                style="background-image: url('{{ work.background_image.url }}'); background-color: #2E3136; background-size: cover; background-position: center; max-height: 700px;">
+                style="background-image: url('{{ work.background_image.url }}'); background-color: #2E3136; background-size: cover; background-position: center; max-height: 600px;">
                 <div class="container position-relative z-index-1 h-100">
                     <div
                         class="d-flex flex-column align-items-start justify-content-lg-center justify-content-end h-100 pt-5  px-lg-5 px-md-2 px-sm-0 py-5">
@@ -161,13 +161,15 @@
 
             {% for paragraph in paragraphs %}
             <p class="custom-font-secondary mb-3 appear-animation" data-appear-animation="fadeInUpShorter"
-                data-appear-animation-delay="700">
-                {{ paragraph }}
+                data-appear-animation-delay="700" >
+                {{ paragraph}}
             </p>
             {% endfor %}
-
+            <a style="display: inline; margin-left: 1rem;" class="btn btn-arrow-effect-1 btn-primary" href="{% url 'about_detail' %}">Read More</a>
+            <p></p>
             <a class="float-end appear-animation" data-appear-animation="fadeInUpShorter"
-                data-appear-animation-delay="1800">{{ about_us.button_text }}</a>
+                data-appear-animation-delay="1800">{{ about_us.button_text }}
+            </a>
         </div>
     </div>
 </div>
@@ -204,7 +206,7 @@
         </div>
         <div class="row appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="600">
             <div class="col">
-                <div class="blog-posts mt-0">
+                <div class="blog-posts mt-0 ">
                     <div class="row mt-0">
                         <!-- Article Loop -->
                         {% for article in recent_news %}
@@ -220,7 +222,7 @@
                                     <h2 class="font-weight-light text-4 line-height-6 mt-3 mb-2">
                                         <a href="{% url 'news_detail' news_id=article.id %}">{{article.title|truncatechars:50 }}</a>
                                     </h2>
-                                    <p>{{ article.content|truncatechars:150 }}</p>
+                                    <p>{{ article.content|truncatechars:145 }}</p>
                                     <div class="post-meta">
                                         <span><i class="far fa-clock"></i> {{ article.created_at|date:'d-m-Y' }}</span>
                                         <span class=" float-end"><a href="{% url 'news_detail' news_id=article.id %}"
@@ -531,14 +533,14 @@
 
                     {% for category, images in gallery_images_by_category.items %}
                         {% for image in images %}
-                        <div class="item">
+                        <div class="item" style="width:280px;">
                             <div class="portfolio-item">
                                 <a href="{% url 'gallery_view' %}">
                                     <span
                                         class="thumb-info thumb-info-centered-info thumb-info-no-borders border-radius-0">
                                         <span class="thumb-info-wrapper border-radius-0">
                                             <img src="{{ image.image_url }}" class="img-fluid border-radius-0"
-                                                alt="{{ image.title }}"  style=" height:300px;">
+                                                alt="{{ image.title }}"  style="width:280px; height:300px;">
                                             <span class="thumb-info-title">
                                                 <span class="thumb-info-inner">{{ image.title }}</span>
                                                 <span class="thumb-info-type">{{ category }}</span>

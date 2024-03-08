@@ -72,13 +72,22 @@
                             
                             <blockquote class="blockquote-primary">
                                 <h2 class="font-weight-semi-bold"><a href="">{{news_item.title}}</a></h2>
-        
                                 <div class="post-meta">
-                                    <span><i class="far fa-user"></i> By <a href="#">{{news_item.author}}</a> </span>
+                                    <span><i class="far fa-user"></i> By <a href="#" title="{{news_item.author}}">{{news_item.author|truncatechars:10}}</a> </span>
                                     <span><i class="far fa-folder"></i> <a href="#">{{news_item.category}}</a> </span>
                                     <span><i class="far fa-calendar"></i> <a href="#">{{news_item.created_at|date}}</a></span>
                                 </div>
                             </blockquote>
+                            <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
+                                <a class="a2a_button_facebook"></a>
+                                <a class="a2a_button_email"></a>
+                                <a class="a2a_button_linkedin"></a>
+                                <a class="a2a_button_telegram"></a>
+                                <a class="a2a_button_twitter"></a>
+                                <a class="a2a_button_x"></a>
+                            </div>
+                            <script async src="https://static.addtoany.com/menu/page.js"></script>
+    
 
 
                             <p>{{news_item.content|safe}}</p>
@@ -90,7 +99,7 @@
             </div>
                        <!-- Recent News Section (Right 30%) -->
             <div class="col-lg-4">
-                <div class="widget latest-posts border border-transparent p-3" style="border-radius: 10px;">
+                <div class="widget mb-5 latest-posts border border-transparent p-3" style="border-radius: 10px;">
                     <header>
                         <h3 class="h6">Recent Posts</h3>
                     </header>
@@ -112,10 +121,7 @@
                         {% endfor %}
                     </div>
                 </div>
-            </div>
 
-
-            <div class="col-lg-4 offset-lg-8 mt-3 mb-5" style="margin-bottom: 90px;">
                 <div class="widget twitter-feed border border-transparent p-3" style="border-radius: 10px;">
                     <header>
                         <h3 class="h6">Twitter Feed</h3>
@@ -125,6 +131,9 @@
                     </div>
                 </div>
             </div>
+
+
+            
 
 
         </div>

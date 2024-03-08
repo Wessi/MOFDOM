@@ -14,6 +14,8 @@ class Blog(models.Model):
 
     def __str__(self):
         return self.title
+    class Meta:
+        ordering = ("-id",)
 
 class Comment(models.Model):
     blog = models.ForeignKey(Blog, on_delete=models.CASCADE)
@@ -25,6 +27,9 @@ class Comment(models.Model):
     parent = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='replies')
     created_at = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        ordering = ("-id",)
+
     def __str__(self):
         return f'Comment by {self.author} on {self.blog.title}'
 
@@ -35,3 +40,6 @@ class tweets(models.Model):
     is_active = models.BooleanField(default=True)
     def __str__(self):
         return self.tweet_text
+    
+    class Meta:
+        ordering = ("-id",)

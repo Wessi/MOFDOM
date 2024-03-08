@@ -9,6 +9,11 @@
                 {% else %}
                 <img style="height: 80px; width: 110px; border-radius: 50%;" class="bg-light" src="{% static 'front/imgs/logo/logo-addis.png' %}">
                 {% endif %}
+                <div class="counter counters counters-sm text-white px-4 mt-4">
+                    <strong data-to="{{visitors}}" class="text-white" data-append="+">{{visitors}}+</strong>
+                    <label class="text-white">Total visitors</label>
+                </div>
+                
                 <ul class="footer-social-icons social-icons pt-4">
                     <!-- Social media links -->
                     <!-- Add dynamic social media links here -->

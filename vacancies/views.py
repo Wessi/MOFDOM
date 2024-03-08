@@ -16,8 +16,13 @@ from django.core.mail import EmailMultiAlternatives, send_mail
 #new from yismu
 
 def job_list_ytemplate(request):
-    jobs = Job.objects.filter(Status = 'Active')
-    return render(request, 'front/vacancy.html', {'jobs': jobs})
+    search = request.GET.get('search', None)
+    if search:
+        jobs = Job.objects.filter(Status = 'Active', job_title__icontains = search, 
+                                  job_description__icontains=search, skills__icontains = search )
+    else:
+        jobs = Job.objects.filter(Status = 'Active')
+    return render(request, 'front/vacancy.html', {'jobs': jobs, 'search':search})
     
 def delete_job(request, job_id):
     job = get_object_or_404(Job, id=job_id)
@@ -76,9 +81,11 @@ def job_list_admin(request):
 
 class jobs_apply(View):
     def get(self, *args, **kwargs):
+        self.request.path
         job = Job.objects.get(id = self.kwargs['pk'])
         form = ApplicationForm()
         return render(self.request, 'front/vacancy_apply.html', {'form':form, 'job':job} )
+    
     def post(self, *args, **kwargs):
         form = ApplicationForm(self.request.POST, self.request.FILES)
         if form.is_valid():

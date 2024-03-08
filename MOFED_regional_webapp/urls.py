@@ -4,7 +4,7 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.views.generic import TemplateView
-from dashboard.views import index, search
+from dashboard.views import index, search, about_detail
 from core.context_processors import search_result
 from core.views import Contact
 from django.views.i18n import JavaScriptCatalog
@@ -18,8 +18,12 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('test/', TemplateView.as_view(template_name='base.html')),
     path('', index, name="index"),
+    path('about-detail', about_detail, name="about_detail"),
     path('search', search, name='search'),
-   
+
+    path('services/', TemplateView.as_view(template_name = "front/services.html"), name='services'),
+    path('bids/', TemplateView.as_view(template_name = "front/bid.html"), name='bid'),
+    
     
     # Include your app-specific URLs here
     path('news/', include('news.urls')),

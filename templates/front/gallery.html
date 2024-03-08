@@ -26,32 +26,31 @@
             <div class="container py-2">
                 <ul class="nav nav-pills sort-source sort-source-style-3 justify-content-center" data-sort-id="portfolio" data-option-key="filter" data-plugin-options="{'layoutMode': 'masonry', 'filter': '*'}">
                     <li class="nav-item active" data-option-value="*"><a class="nav-link text-2-5 text-uppercase active" href="#">All Categories</a></li>
-                    {% for category, images in gallery_images_by_category.items %}
+                    {% for category in categories %}
                     <li class="nav-item d-none d-md-block d-lg-block" data-option-value=".{{ category }}"><a class="nav-link text-2-5 text-uppercase" href="#">{{ category }}</a></li>
                     {% endfor %}
                 </ul>
 
                 <div class="sort-destination-loader sort-destination-loader-showing mt-4 pt-2">
                     <div class="row portfolio-list sort-destination" data-sort-id="portfolio">
-                        {% for category, images in gallery_images_by_category.items %}
-                            {% for image in images %}
-                                <div class="col-sm-6 col-lg-3 isotope-item {{ category }}">
-                                    <div class="portfolio-item">
-                                        <a href="{{ image.image_url }}" target="_blank">
-                                            <span class="thumb-info thumb-info-centered-info thumb-info-no-borders border-radius-0">
-                                                <span class="thumb-info-wrapper border-radius-0">
-                                                    <img src="{{ image.image_url }}" class="img-fluid border-radius-0 default-resolution" alt="{{ image.title }}" style=" height:300px;">
-                                                    <span class="thumb-info-title">
-                                                        <span class="thumb-info-inner">{{ image.title }}</span>
-                                                        <span class="thumb-info-type">{{ category }}</span>
-                                                    </span>
+                        {% for image in images %}
+                            <div class="col-sm-6 col-lg-3 isotope-item {{ image.category }}">
+                                <div class="portfolio-item">
+                                    <a href="{{ image.image.url }}" target="_blank">
+                                        <span class="thumb-info thumb-info-centered-info thumb-info-no-borders border-radius-0">
+                                            <span class="thumb-info-wrapper border-radius-0">
+                                                <img src="{{ image.image.url }}" class="img-fluid border-radius-0 default-resolution" alt="{{ image.title }}" style=" height:300px;">
+                                                <span class="thumb-info-title">
+                                                    <span class="thumb-info-inner">{{ image.title }}</span>
+                                                    <span class="thumb-info-type">{{ image.category }}</span>
                                                 </span>
                                             </span>
-                                        </a>
-                                    </div>
+                                        </span>
+                                    </a>
                                 </div>
-                            {% endfor %}
+                            </div>
                         {% endfor %}
+                       
                     </div>
                 </div>
             </div>

@@ -26,22 +26,29 @@
             <div class="container py-2">
                 <ul class="nav nav-pills sort-source sort-source-style-3 justify-content-center" data-sort-id="portfolio" data-option-key="filter" data-plugin-options="{'layoutMode': 'masonry', 'filter': '*'}">
                     <li class="nav-item active" data-option-value="*"><a class="nav-link text-2-5 text-uppercase active" href="#">All Categories</a></li>
-                    {% for category, cat in categories.items %}
-                    <li class="nav-item d-none d-md-block d-lg-block" data-option-value=".{{ category }}"><a class="nav-link text-2-5 text-uppercase" href="#">{{ category }}</a></li>
+                    {% for category in categories %}
+                    <li class="nav-item d-none d-md-block d-lg-block" data-option-value=".{{ category.0 }}"><a class="nav-link text-2-5 text-uppercase" href="#">{{ category.0 }}</a></li>
                     {% endfor %}
                 </ul>
 
                 <div class="sort-destination-loader sort-destination-loader-showing mt-4 pt-2">
                     <div class="row portfolio-list sort-destination" data-sort-id="portfolio">
                         {% for video in gallery_videos %}
-                            <div class="col-sm-12 col-lg-6 isotope-item {{ category }}">
-                                {% if video.video %}
-
-                                <div class="row mb-5">
+                            <div class="col-sm-12 col-lg-6 isotope-item {{ video.category }}">
+                                <div class="ratio ratio-16x9 ratio-borders">
+                                   
+                                    {{video.link|safe}}
+                                    <!-- <iframe  frameborder="0" allowfullscreen   src="https://youtu.be/z7mnAuAIQMM" 
+                                    
+                                    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    ></iframe> -->
+                                    <!-- <iframe frameborder="0" allowfullscreen="" src="http://www.youtube.com/embed/l-epKcOA7RQ?showinfo=0&amp;wmode=opaque"></iframe> -->
+                                </div>
+                                <!-- <div class="row mb-5">
                 
                                     <div class="col-lg-6">
                                         <video width='100%' controls>
-                                            <source src="{{video.video.url}}" type='video/mp4'>
+                                            <source src="video.video.url" type='video/mp4'>
                                             Your browser does not support the video tag.
                                         </video>                    
                                     </div>
@@ -60,10 +67,9 @@
                                     
                                     </div>
                 
-                                </div>
+                                </div> -->
                 
-                                {% endif %}
-                                
+
                             </div>
                         {% endfor %}
                     </div>

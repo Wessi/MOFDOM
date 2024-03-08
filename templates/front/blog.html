@@ -33,16 +33,16 @@
                         <article class="card p-3  post post-medium border-0 pb-0 mb-5">
                             <div class="post-image">
                                 <a href="{% url 'blog_detail' blog_id=blog.id %}">
-                                    <img src="{{blog.images.url}}" class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0" alt="" />
+                                    <img src="{{blog.images.url}}" class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0" style="width: 360px; height: 250px;" alt="" />
                                 </a>
                             </div>
 
                             <div class="post-content">
-                                <h2 class="font-weight-semibold text-5 line-height-6 mt-3 mb-2"><a href="{% url 'blog_detail' blog_id=blog.id %}">{{blog.title|truncatechars:35}}</a></h2>
+                                <h2 class="font-weight-semibold text-5 line-height-6 mt-3 mb-2"><a href="{% url 'blog_detail' blog_id=blog.id %}">{{blog.title|truncatechars:30}}</a></h2>
                                 <p>{{blog.content|truncatechars:70}}
                                 <div class="post-meta">
                                     <span><i class="far fa-calendar-alt "></i><a href="#">{{blog.publish_date}}</a></span>
-                                    <span><i class="far fa-user"></i> By <a href="#">{{blog.author}}</a></span>
+                                    <span><i class="far fa-user"></i> By <a href="#"  title="{{blog.author}} : {{blog.author_email}}">{{blog.author}}</a></span>
                                     <span><i class="far fa-comments"></i> <a href="#">12 Comments</a></span>
                                     <span class="d-block mt-2 float-end mb-3"><a href="{% url 'blog_detail' blog_id=blog.id %}" class="btn btn-md btn-primary ">Read More <i class="fa fa-angle-right"></i></a></span>
                                 </div>

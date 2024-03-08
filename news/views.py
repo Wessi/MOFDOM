@@ -41,6 +41,7 @@ def news_detail(request, news_id):
 
     return render(request, 'front/news_detail.html', {
         'news_item': news_item, 
+        'lastnews':NewsArticle.objects.exclude(id = news_item.id)
         
     })
 

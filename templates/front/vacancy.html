@@ -16,12 +16,12 @@
                 <div class="d-flex align-items-center mb-2  justify-content-center">
                     <div class="overflow-hidden text-center">
                         <h2 class="text-color-primary text-9 text-center font-weight-semibold line-height-3 text-5 mb-0 appear-animation"
-                            data-appear-animation="maskRight" data-appear-animation-delay="300">RECENT VACANCIES
+                            data-appear-animation="maskRight" data-appear-animation-delay="300">{% if search %} RELATED {% else %} RECENT {% endif %} VACANCIES
                         </h2>
                     </div>
                 </div>
                 <p  class="appear-animation text-center"  data-appear-animation="maskRight" data-appear-animation-delay="400"> 
-                    List of recent vacancies from MOFED
+                    List of {% if search %} related {% else %} recent {% endif %} vacancies.
                 </p>
             </div>
         </div>
@@ -32,13 +32,18 @@
                 <div class="col-lg-6">
                     <h2 class="font-weight-normal text-7 mb-2 "> </h2>
                 </div>
+                
                 <div class="col-lg-5 col-md-8">
+                    <form action="" method="get">
                     <div class="input-group ">
-                        <input type="text" class="form-control" placeholder="Search for vacancies">
-                        <span class="input-group-text">
+                        
+                        <input type="text " name="search" class="form-control" placeholder="Search for vacancies">
+                        <button type="submit" class="input-group-text">
                             <i class="fas fa-search"></i>
-                        </span>
+                        </button>
+                        
                     </div>
+                </form>
                 </div>
                 <div class="col-lg-1 col-md-4">
                     <select class="form-control mb-3">
@@ -50,8 +55,12 @@
             </div>
     
             <!-- Loop through jobs and display dynamically -->
-            {% for job in jobs %}
+           
             <div class="row mb-2 pb-2">
+                {% if search and not jobs %}
+                <h5 class="text-center mt-4 mb-5">No related vacancies related with keyword <strong>'{{search}}'</strong></h5>
+                {% endif %}
+                {% for job in jobs %}
                 <div class="col-lg-12 col-md-6 mb-4 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="600">
                     <div class="card border-2 box-shadow-1 bg-color-light">
                         <div class="card-body">
@@ -68,22 +77,23 @@
                         </div>
                     </div>
                 </div>
+                {% endfor %}
             </div>
-            {% endfor %}
+            
 
             <!-- pagination -->
             <div class="row">
                 <div class="col-12">
                     <ul class="pagination text-center justify-content-center">
-                        <li class="page-item"><a class="page-link m-1" href="#"><i class="fas fa-angle-left"></i></a></li>
+                        <!-- <li class="page-item"><a class="page-link m-1" href="#"><i class="fas fa-angle-left"></i></a></li> -->
                         <li class="page-item active"><a class="page-link m-1" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link m-1" href="#">2</a></li>
+                        <!-- <li class="page-item"><a class="page-link m-1" href="#">2</a></li>
                         <li class="page-item"><a class="page-link m-1" href="#">3</a></li>
                         <li class="page-item"><a class="page-link m-1" href="#">4</a></li>
                         <li class="page-item"><a class="page-link m-1" href="#">5</a></li>
                         <li class="page-item"><a class="page-link m-1" href="#">...</a></li>
                         <li class="page-item"><a class="page-link m-1" href="#">12</a></li>
-                        <li class="page-item"><a class="page-link m-1" href="#"><i class="fas fa-angle-right"></i></a></li>
+                        <li class="page-item"><a class="page-link m-1" href="#"><i class="fas fa-angle-right"></i></a></li> -->
                     </ul>
                 </div>
             </div>

@@ -31,6 +31,8 @@ class Job(models.Model):
         ('Expert', 'Expert'),
     ])
 
+    class Meta:
+        ordering = ("-id",)
     def __str__(self):
         return self.job_title
 

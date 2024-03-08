@@ -68,8 +68,10 @@ def index(request):
     
     if about_us:
         # Split content into paragraphs
-        paragraphs = about_us.content.split('\n')
+        # paragraphs = about_us.content.split('\n')
 
+        paragraphs = about_us.content[:800] + "..."
+        paragraphs = paragraphs.split('\n')
         context = {
             'recent_blogs': recent_blogs,
             'recent_news': recent_news,
@@ -102,12 +104,17 @@ def index(request):
     return render(request, 'front/index.html', context)
 
 
-def search(request): 
+def about_detail(request):
+    about_us = About_us_index.objects.first()
+    paragraphs = about_us.content.split("\n")
+    
+    return render(request, 'front/about_detail.html',{'about_us':about_us, 'paragraphs':paragraphs})
 
-    return render (request, 'front/search_results.html',{})
+def search(request): 
+    return render (request, 'front/search_results.html',)
         
 
-
+    
 def gallery_list_view(request):
     images = GalleryImage.objects.all()
     return render(request, 'gallaries_list_admin.html', {'images': images})    
@@ -116,13 +123,15 @@ def gallery_list_view(request):
 def gallery_view(request):
     gallery_categories = CATEGORY_CHOICES
     gallery_images_by_category = {}
-    for category, _ in gallery_categories:
-        images = GalleryImage.objects.filter(category=category)
-        image_data = [{'title': img.title, 'image_url': img.image.url} for img in images]
-        gallery_images_by_category[category] = image_data
+    # for category, _ in gallery_categories:
+    #     images = GalleryImage.objects.filter(category=category)
+    #     image_data = [{'title': img.title, 'image_url': img.image.url} for img in images]
+    #     gallery_images_by_category[category] = image_data
     
     context = {
-        'gallery_images_by_category': gallery_images_by_category,
+        'images':GalleryImage.objects.all(),
+        'categories':[c[0] for c in CATEGORY_CHOICES],
+        # 'gallery_images_by_category': gallery_images_by_category,
     }
     return render(request, 'front/gallery.html', context)
     

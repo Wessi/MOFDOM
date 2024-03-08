@@ -41,8 +41,11 @@
                             <h4 class="mb-0">{{ structure_data.management_board_title }}</h4>
                         </div>
                     </div>
-                    <p>{{ structure_data.management_board_content }}</p>
+                    <p>{{ structure_data.management_board_content|truncatechars:2000 }}</p>
 
+                    
+                </div>
+                <div class="col-lg-12">
                     <div class="mt-5">
                         <div class="row">
                             <div class="col-lg-6">
@@ -52,7 +55,7 @@
                                         <h4 class="mb-0">{{ structure_data.execution_team_title }}</h4>
                                     </div>
                                 </div>
-                                <p>{{ structure_data.execution_team_content }}</p>
+                                <p>{{ structure_data.execution_team_content|truncatechars:1400 }}</p>
                             </div>
                             <div class="col-lg-6 position-relative">
                                 <div class="text-center" >
@@ -61,6 +64,7 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
