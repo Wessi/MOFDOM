@@ -77,7 +77,7 @@ This section explains how to launch the development server and access your appli
         * `makemigrations`: Analyzes your models and generates migration files.
        
         ``` bash
-        $ python manage.py makemigrations
+        $ py manage.py makemigrations about_us accounts blogs core dashboard documents news suppliers task_manager vacancies
         ```
 
         * `migrate`: Applies the generated migrations to your database.
