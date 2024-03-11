@@ -82,7 +82,7 @@ This section explains how to launch the development server and access your appli
 
         * `migrate`: Applies the generated migrations to your database.
         ``` bash
-        $ python manage.py makemigrations
+        $ python manage.py migrate
         ```
             
         ## Then check if migration files are created in all apps. In some cases, the makemigrations command might not generate migration files for some app. If such thing happens, use the following command to add the name of apps whose migration files are not generated
