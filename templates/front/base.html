@@ -35,8 +35,14 @@
     <meta name="author" content="Kanenus Technologies">
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="{% static 'front/img/favicon.ico' %}" type="image/x-icon" />
-    <link rel="apple-touch-icon" href="{% static 'front/img/apple-touch-icon.png' %}">
+    <link rel="shortcut icon" 
+        {% if stg.logo %} href="{{stg.logo.url}}"
+        {% else %} href="/static/front/imgs/logo/logo-addis.png" {% endif %}
+        type="image/x-icon" />
+
+    <link   rel="apple-touch-icon" 
+            {% if stg.logo %} href="{{stg.logo.url}}"
+            {% else %} href="/static/front/imgs/logo/logo-addis.png" {% endif %}>
 
 
     <!-- Mobile Metas -->
@@ -114,7 +120,7 @@
     {% render_block "js" %} 
         <header id="header" class="header-effect-shrink"
             data-plugin-options="{'stickyEnabled': true, 'stickyEffect': 'shrink', 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': false, 'stickyChangeLogo': true, 'stickyStartAt': 30, 'stickyHeaderContainerHeight': 85}">
-            <div class="header-body header-body-bottom-border border-top-0">
+            <div class="header-body header-body-bottom-border border-top-0" style="position:fixed; top:0;">
                 <div class="header-top header-top-bottom-containered-border bg-primary">
                     <div class="container">
                         <div class="header-row">
@@ -236,79 +242,10 @@
                                                 </a></li>
                                                 
                                                 {% if pages.about %}
-                                                <li class="dropdown dropdown-mega  d-ld-block d-md-block d-sm-none">
-                                                    <a class="dropdown-item dropdown-toggle {% block about_mega_dynamic %} {% endblock %}" href="{% url 'aboutt' %}">
-                                                        {% trans "About Bureau" %}
-                                                    </a>
-                                                    <!-- wd-lg-6 wd-md-6 wd-sm-12 -->
-                                                    <ul class="dropdown-menu  bg-transparent" style="width: fit-content;">
-                                                        <li class="float-end bg-light border-radius-2 " style="width: 60%;">
-                                                            <div class="dropdown-mega-content">
-                                                                <div class="row pt-0"  >
-                                                                    <div class="col-lg-4 " >
-                                                                        <div class="text-center border-bottom mb-3">
-                                                                                <span class="text-4  border-bottom">{% trans "ABOUT BUREAU" %}</span>
-                                                                        </div>
-                                                                            
-                                                                        <div class="mt-2 tabs tabs-vertical tabs-left tabs-navigation bg-light">
-                                                                            
-                                                                            <ul class="nav nav-tabs col-sm-3" role="tablist">
-                                                                                {% if pages.about %}
-                                                                                <li class="   mb-2" role="presentation">
-                                                                                    <a class="nav-link header-tabs active text-3 hover-active" href="#about_tab" data-bs-toggle="tab" aria-selected="true" role="tab">{% trans "About Us" %}</a>
-                                                                                </li>
-                                                                                {% endif %}
-                                                                                {% if pages.structure %}
-                                                                                <li class="  mb-2" role="presentation">
-                                                                                    <a class="nav-link header-tabs text-3 hover-active" href="#structure_tab" data-bs-toggle="tab" aria-selected="false" tabindex="-1" role="tab">Our Structure</a>
-                                                                                </li>
-                                                                                {% endif %}
-                                                                                {% if pages.directorate %}
-                                                                                <!-- <li class=" hover-active header-tabs  mb-2" role="presentation">
-                                                                                    <a class="nav-link text-3" href="#direct_tab" data-bs-toggle="tab" aria-selected="false" tabindex="-1" role="tab">Our Directories</a>
-                                                                                </li> -->
-                                                                                <li class="  mb-2" role="presentation">
-                                                                                    <a class="nav-link header-tabs  text-3 hover-active" href="#direct_tab"  data-bs-toggle="tab" aria-selected="true" role="tab">{% trans "Our Directories" %}</a>
-                                                                                </li>
-                                                                                {% endif %}
-                                                                               
-                                                                            </ul>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-lg-8 pt-0">
-                                                                        {% if pages.about %}
-                                                                        <div class="tab-pane tab-pane-navigation active pt-0" id="about_tab" role="tabpanel">
-                                                                            <span>About Us</span>
-                                                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pellentesque neque eget diam posuere porta. Quisque ut nulla at .</p>
-                                                                            <a href="{% url 'aboutt' %}"  class="float-end text-primary">Read More</a>
-                                                                        </div>
-                                                                        {% endif %}
-                                                                        {% if pages.structure %}
-                                                                        <div class="tab-pane tab-pane-navigation pt-0" id="structure_tab" role="tabpanel">
-                                                                            <span>Our Structure</span>
-                                                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pellentesque neque eget diam posuere porta. Quisque ut nulla at .</p>
-                                                                            <a href="{% url 'bureau_structure' %}"  class="float-end text-primary">Read More</a>
-                                                                        </div>
-                                                                        {% endif %} 
-                                                                        {% if pages.directorate %}
-                                                                        <div class="tab-pane tab-pane-navigation pt-0" id="direct_tab" role="tabpanel">
-                                                                            <span>Directories</span>
-                                                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pellentesque neque eget diam posuere porta. Quisque ut nulla at .</p>
-                                                                            <a href="#"  class="float-end text-primary">Read More</a>
-                                                                        </div>
-                                                                        {% endif %}
-                                                                        
-                                                                    </div>
-
-                                                                    
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </li>
+                                                
                                                 
 
-                                               <li class="dropdown d-ld-none d-md-none d-sm-block">
+                                               <li class="dropdown ">
                                                     <a class="dropdown-item dropdown-toggle {% block about_dynamic %} {% endblock %}" href="#">
                                                         About Bureau
                                                     </a>
@@ -364,121 +301,21 @@
                                                 
                                                 <!-- news -->
                                                 {% if pages.news %}
-                                                <li class="d-block d-lg-none "><a class="nav-link {% block news_dynamic %} {% endblock %}" href="{% url 'news_list_visitor' %}">News</a></li>
-                                                
-                                                <li class="dropdown dropdown-mega  float-end  d-none d-lg-block">
-                                                    <a class="dropdown-item dropdown-toggle {% block news_mega_dynamic %} {% endblock %}" href="{% url 'news_list_visitor' %}">
-                                                        News
-                                                    </a>
-                                                    <ul class="dropdown-menu  bg-transparent" style="width: fit-content;">
-                                                        <li class="float-end bg-light border-radius-2 " style="width: 90%;">
-                                                            <div class="dropdown-mega-content">
-                                                                <div class="row pt-0"  >
-                                                                    {% for art_news in recent_news_mega %}
-                                                                    <div class="col-lg-3 bg-light" style="height: max-content;">
-                                                                        <article class="post p-0 bg-light">
-                                                                           
-
-                                                                            <div class="post-image">
-                                                                                {% if art_news.featured_image %}
-                                                                                <img src="{{art_news.featured_image.url}}" style="width: 100%; height:100px;" 
-                                                                                class="img-fluid img-thumbnail img-thumbnail-no-borders" alt="" />
-                                                                                {% else %} 
-                                                                                <img src="/static/front/imgs/news/news1.jpg" style="width: 100%; height:100px;" 
-                                                                                class="img-fluid img-thumbnail img-thumbnail-no-borders" alt="" />
-                                                                                {% endif %}
-                                                                                <small class="text-primary">{{art_news.title|truncatechars:60}} </small>
-                                                                            </div>
-                                                                          
-                                                                            <div class="post-meta">
-                                                                                <small><i class="fa fa-clock"></i>{{art_news.created_at|date}} </small>
-                                                                                <span class=" float-end"><a href="{% url 'news_detail' news_id=art_news.id %}" class="text-primary">Read More</a></span>
-                                                                            </div>
-                                                                        </article>
-                                                                    </div>
-                                                                    {% endfor %}
-                                                        		
-                                                                    
-                                                                
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                                {% endif %}
-                                                
-                                                <!-- privacy -->
-                                                {% if pages.privacy %}
+                                                <li class="d-block  "><a class="nav-link {% block news_dynamic %} {% endblock %}" href="{% url 'news_list_visitor' %}">News</a></li>
                                                 <!-- <li class="dropdown d-ld-none d-md-none d-sm-block">
-                                                    <a class="dropdown-item dropdown-toggle {% block privacy_dynamic %} {% endblock %}" href="{% url 'privacy_page' %}">
-                                                        Privacy
+                                                    <a class="dropdown-item dropdown-toggle " href="#">
+                                                        News & Blogs
                                                     </a>
                                                     <ul class="dropdown-menu">
-                                                        <li><a class="dropdown-item" href="/">Privacy & Security</a></li>
-                                                        <li><a class="dropdown-item" href="/">Legal Information</a></li>
-                                                        <li><a class="dropdown-item" href="/">Terms & Conditions</a></li>
+                                                        <li><a class="dropdown-item" href="{% url 'news_list_visitor' %}">News</a></li>
+                                                        <li><a class="dropdown-item" href="{% url 'bureau_structure' %}">Blogs</a></li>
                                                 
                                                     </ul>
-                                                </li>
-                                                <li class="dropdown dropdown-mega  float-end  d-ld-block d-md-block d-sm-none">
-                                                    <a class="dropdown-item dropdown-toggle {% block privacy_mega_dyanmic %} {% endblock %}" href="{% url 'privacy_page' %}">
-                                                        Privacy
-                                                    </a>
-                                                    <ul class="dropdown-menu  bg-transparent" style="width: fit-content;">
-                                                        <li class="float-end bg-light border-radius-2 " style="width: 70%;">
-                                                            <div class="dropdown-mega-content">
-                                                                <div class="row float-end pt-0"  >
-                                                                    <div class="col-lg-4 " style="border-right:2px solid  var(text-color-primary);">
-                                                                        <div class="text-center border-bottom mb-3">
-                                                                            <span class="text-4  border-bottom">PRIVACY</span>
-                                                                        </div>
-                                                                            
-                                                                        <div class="mt-2 tabs tabs-vertical tabs-left tabs-navigation bg-light">
-                                                                            <ul class="nav nav-tabs col-sm-3" role="tablist">
-                                                                              
-                                                                                <li class=" active  mb-2" role="presentation">
-                                                                                    <a class="nav-link header-tabs active text-3" href="#privacy_tab" data-bs-toggle="tab" aria-selected="true" role="tab">Privacy and Security</a>
-                                                                                </li>
-                                                                                <li class="  mb-2" role="presentation">
-                                                                                    <a class="nav-link header-tabs text-3" href="#legal_tab" data-bs-toggle="tab" aria-selected="false" tabindex="-1" role="tab">Legal Information</a>
-                                                                                </li>
-                                                                                <li class=" header-tabs  mb-2" role="presentation">
-                                                                                    <a class="nav-link text-3" href="#terms_tab" data-bs-toggle="tab" aria-selected="false" tabindex="-1" role="tab">Terms & Conditions</a>
-                                                                                </li>
-                                                                               
-                                                                            </ul>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-lg-8 pt-0">
-                                                                        <div class="tab-pane tab-pane-navigation active pt-0" id="privacy_tab" role="tabpanel">
-                                                                            <span>PRIVACY AND SECURITY</span>
-                                                                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vel laudantium ex illo iusto sint dolore, dolorum earum aliquam quidem porro odio dignissimos nam mollitia neque veniam ullam ad culpa iste!
-                                                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pellentesque neque eget diam posuere porta. Quisque ut nulla at .</p>
-                                                                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit aperiam recusandae cum rem beatae, fuga ipsum! Velit, nihil, qui hic aliquid enim tempore quibusdam totam alias voluptatibus at soluta eaque!</p>
-                                                                        </div>
-                                                                        <div class="tab-pane tab-pane-navigation pt-0" id="legal_tab" role="tabpanel">
-                                                                            <span>LEGAL INFORMATION</span>
-                                                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At vel consectetur ipsum dolor dicta? Quo deserunt consequatur suscipit ad quae corporis dignissimos, placeat exercitationem facilis architecto magni ipsam, dicta soluta!
-                                                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pellentesque neque eget diam posuere porta. Quisque ut nulla at .</p>
-                                                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pellentesque neque eget diam posuere porta. Quisque ut nulla at .</p>
-                                                                        
-                                                                        </div>
-                                                                        <div class="tab-pane tab-pane-navigation pt-0" id="terms_tab" role="tabpanel">
-                                                                            <span>TERMS AND CONDITIONS</span>
-                                                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae beatae, incidunt sequi nisi itaque minima labore totam nemo eligendi. Vero adipisci omnis atque minima, quas soluta magni eligendi laborum quos?
-                                                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pellentesque neque eget diam posuere porta. Quisque ut nulla at .</p>
-                                                                        
-                                                                        </div>
-                                                                        
-                                                                    </div>
-
-                                                                    
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
                                                 </li> -->
+                                               
                                                 {% endif %}
+                                                
+                                                
                                                 <!-- end privary -->
                                                 {% if pages.gallery %}
                                                 <li class="dropdown ">
@@ -499,61 +336,6 @@
                                             
                                                 <li><a class="nav-link {% block home %} {% endblock %}" href="/">{% trans "Home" %}</a></li>
                                                 
-                                                <li class="dropdown dropdown-mega  d-ld-block d-md-block d-sm-none">
-                                                    <a class="dropdown-item dropdown-toggle {% block about_mega %} {% endblock %}" href="{% url 'aboutt' %}">
-                                                        {% trans "ABOUT BUREAU" %}
-                                                    </a>
-                                                    <!-- wd-lg-6 wd-md-6 wd-sm-12 -->
-                                                    <ul class="dropdown-menu  bg-transparent" style="width: fit-content;">
-                                                        <li class="float-end bg-light border-radius-2 " style="width: 60%;">
-                                                            <div class="dropdown-mega-content">
-                                                                <div class="row pt-0"  >
-                                                                    <div class="col-lg-4 " >
-                                                                        <div class="text-center border-bottom mb-3">
-                                                                                <span class="text-4  border-bottom">ABOUT BUREAU</span>
-                                                                        </div>
-                                                                            
-                                                                        <div class="mt-2 tabs tabs-vertical tabs-left tabs-navigation bg-light">
-                                                                            <ul class="nav nav-tabs col-sm-3" role="tablist">
-                                                                                <li class=" active mb-2 hover-active"  role="presentation">
-                                                                                    <a class="nav-link header-tabs active text-3" href="#about_tab" data-bs-toggle="tab" aria-selected="true" role="tab">About Us</a>
-                                                                                </li>
-                                                                                <li class="  mb-2 hover-active" role="presentation">
-                                                                                    <a class="nav-link header-tabs text-3" href="#structure_tab" data-bs-toggle="tab" aria-selected="false" tabindex="-1" role="tab">Our Structure</a>
-                                                                                </li>
-                                                                                <li class=" header-tabs  mb-2 hover-active" role="presentation">
-                                                                                    <a class="nav-link text-3" href="#direct_tab" data-bs-toggle="tab" aria-selected="false" tabindex="-1" role="tab">Our Directories</a>
-                                                                                </li>
-                                                                               
-                                                                            </ul>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-lg-8 pt-0">
-                                                                        <div class="tab-pane tab-pane-navigation active pt-0" id="about_tab" role="tabpanel">
-                                                                            <span>About Us</span>
-                                                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pellentesque neque eget diam posuere porta. Quisque ut nulla at .</p>
-                                                                            <a href="{% url 'aboutt' %}"  class="float-end text-primary">Read More</a>
-                                                                        </div>
-                                                                        <div class="tab-pane tab-pane-navigation pt-0" id="structure_tab" role="tabpanel">
-                                                                            <span>Our Structure</span>
-                                                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pellentesque neque eget diam posuere porta. Quisque ut nulla at .</p>
-                                                                            <a href="{% url 'bureau_structure' %}"  class="float-end text-primary">Read More</a>
-                                                                        </div>
-                                                                        <div class="tab-pane tab-pane-navigation pt-0" id="direct_tab" role="tabpanel">
-                                                                            <span>Directories</span>
-                                                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pellentesque neque eget diam posuere porta. Quisque ut nulla at .</p>
-                                                                            <a href="#"  class="float-end text-primary">Read More</a>
-                                                                        </div>
-                                                                        
-                                                                    </div>
-
-                                                                    
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-
                                                <li class="dropdown d-ld-none d-md-none d-sm-block">
                                                     <a class="dropdown-item dropdown-toggle {% block about %} {% endblock %}" href="#">
                                                         About Bureau
@@ -561,8 +343,6 @@
                                                     <ul class="dropdown-menu">
                                                         <li><a class="dropdown-item" href="{% url 'aboutt' %}">About Us</a></li>
                                                         <li><a class="dropdown-item" href="{% url 'bureau_structure' %}">Structure</a></li>
-                                                        <li><a class="dropdown-item" href="/">Directories</a></li>
-                                                
                                                     </ul>
                                                 </li>
                                                 
@@ -766,14 +546,12 @@
          <!-- include 'front/header.html'  -->
 
        
-        <div role="main" class="main">
+        <div role="main" class="main ">
             
         
         {% block content %} 
          <!-- placeholder some_content  -->
-            {% placeholder "feature" %}
-            {% placeholder "content" %}
-            {% placeholder "splashbox" %}
+            
     
         {% endblock %}
         </div>
@@ -806,7 +584,7 @@
     <script src="{% static 'front/js/theme.init.js' %}"></script>
 
     <script>
-        document.getElementById('header').style['height'] = "70px";
+        document.getElementById('header').style['height'] = "65px;";
         
         function change_lang(s){
             document.querySelector("#id_lang_selector_form").submit()            

@@ -1,8 +1,15 @@
 from django.db import models
 
+class BlogCategory(models.Model):
+    name = models.CharField(max_length=100)
+    def __str__(self):
+        return self.name
+    
 class Blog(models.Model):
     title = models.CharField(max_length=255)
-    category = models.CharField(max_length=100, choices=[('Nature', 'Nature'), ('Sports', 'Sports'), ('Food', 'Food'), ('Travel', 'Travel'), ('Fashion', 'Fashion'), ('Beauty', 'Beauty')])
+    # category = models.CharField(max_length=100, null=True,
+    #                             choices=[('Nature', 'Nature'), ('Sports', 'Sports'), ('Food', 'Food'), ('Travel', 'Travel'), ('Fashion', 'Fashion'), ('Beauty', 'Beauty')])
+    blog_category = models.ForeignKey(BlogCategory, on_delete = models.SET_NULL, null=True)
     author = models.CharField(max_length=255)
     author_email = models.EmailField()
     publish_date = models.DateField()
@@ -12,10 +19,15 @@ class Blog(models.Model):
     blog_type = models.CharField(max_length=10, choices=[('Free', 'Free'), ('Paid', 'Paid')])
     images = models.ImageField(upload_to='blog_images/')
 
-    def __str__(self):
-        return self.title
     class Meta:
         ordering = ("-id",)
+
+    def __str__(self):
+        return self.title
+    
+    def category(self):
+        return self.blog_category if self.blog_category else ""
+    
 
 class Comment(models.Model):
     blog = models.ForeignKey(Blog, on_delete=models.CASCADE)

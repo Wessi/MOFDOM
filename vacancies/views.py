@@ -81,7 +81,7 @@ def job_list_admin(request):
 
 class jobs_apply(View):
     def get(self, *args, **kwargs):
-        self.request.path
+        
         job = Job.objects.get(id = self.kwargs['pk'])
         form = ApplicationForm()
         return render(self.request, 'front/vacancy_apply.html', {'form':form, 'job':job} )

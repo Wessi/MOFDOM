@@ -8,3 +8,5 @@ class BlogAdmin(TranslationAdmin):
 
 # admin.site.register(Blog)
 admin.site.register(Comment)
+admin.site.register(BlogCategory)
+

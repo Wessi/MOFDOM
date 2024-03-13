@@ -14,30 +14,44 @@ CATEGORY_CHOICES = (
         ('channal one', 'channal one'),
 )
 
+class GalleryCategory(models.Model):
+    name = models.CharField(max_length=100)
+    def __str__(self):
+        return self.name
+    
+
 class GalleryImage(models.Model):
     title = models.CharField(max_length=255)
     image = models.ImageField(upload_to='gallery_images/', help_text="Please select an image with close width and height resolution (400p x 300px).")
-    category = models.CharField(max_length=50, choices=CATEGORY_CHOICES)
+    # category = models.CharField(max_length=50, choices=CATEGORY_CHOICES)
+    gallery_category = models.ForeignKey(GalleryCategory, on_delete = models.SET_NULL, null=True) 
+    
+    class Meta:
+        ordering = ("-id",)
 
     def __str__(self):
         return self.title
     
-    class Meta:
-        ordering = ("-id",)
+    def category(self):
+        return self.gallery_category if self.gallery_category else ""
+    
 
 class GalleryVideo(models.Model):
     title = models.CharField(max_length =255)
     video = models.FileField(upload_to="Gallery/Videos", blank=True, null=True)
     link = models.CharField(max_length=10000, blank=True,default="")
-    category = models.CharField(max_length=50, choices=CATEGORY_CHOICES)
-    
-    def __str__(self):
-        return self.title
+    # category = models.CharField(max_length=50, choices=CATEGORY_CHOICES)
+    gallery_category = models.ForeignKey(GalleryCategory, on_delete = models.SET_NULL, null=True) 
     
     class Meta:
         ordering = ("-id",)
 
-
+    def __str__(self):
+        return self.title
+    
+    def category(self):
+        return self.gallery_category if self.gallery_category else ""
+    
 class About_us_index(models.Model):
     title = models.CharField(max_length=255)
     content = models.TextField()

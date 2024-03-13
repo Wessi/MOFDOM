@@ -5,9 +5,9 @@ from modeltranslation.admin import TranslationAdmin
 
 @admin.register(NewsArticle)
 class NewsArticleAdmin(TranslationAdmin):
-    list_display = ("title",)
+    list_display = ("title","content")
 
 
-# admin.site.register(NewsArticle)
+admin.site.register(NewsCategory)
 # admin.site.register(News)
 # admin.site.register(Trending)

@@ -25,7 +25,7 @@
 {% if featured_works %}
 <div class="owl-carousel owl-carousel-light owl-carousel-light-init-fadeIn owl-theme manual dots-inside dots-horizontal-center show-dots-hover nav-inside nav-inside-plus nav-dark nav-md nav-font-size-md show-nav-hover mb-0"
     data-plugin-options="{'autoplayTimeout': 7000}" data-dynamic-height="['670px','670px','670px','550px','500px']"
-    style="height: 650px;">
+    style="height: 350px;">
     <div class="owl-stage-outer">
         <div class="owl-stage">
             <!-- Dynamic Carousel Slides -->
@@ -530,34 +530,26 @@
             <div class="container py-2">
 
                 <div class="owl-carousel owl-theme" id="gallery-carousel">
-
-                    {% for category, images in gallery_images_by_category.items %}
-                        {% for image in images %}
-                        <div class="item" style="width:280px;">
-                            <div class="portfolio-item">
-                                <a href="{% url 'gallery_view' %}">
-                                    <span
-                                        class="thumb-info thumb-info-centered-info thumb-info-no-borders border-radius-0">
-                                        <span class="thumb-info-wrapper border-radius-0">
-                                            <img src="{{ image.image_url }}" class="img-fluid border-radius-0"
-                                                alt="{{ image.title }}"  style="width:280px; height:300px;">
-                                            <span class="thumb-info-title">
-                                                <span class="thumb-info-inner">{{ image.title }}</span>
-                                                <span class="thumb-info-type">{{ category }}</span>
-                                            </span>
+                    {% for image in gallery_images %}
+                    <div class="item" style="width:280px;">
+                        <div class="portfolio-item">
+                            <a href="{% url 'gallery_view' %}">
+                                <span
+                                    class="thumb-info thumb-info-centered-info thumb-info-no-borders border-radius-0">
+                                    <span class="thumb-info-wrapper border-radius-0">
+                                        <img src="{{ image.image.url }}" class="img-fluid border-radius-0"
+                                            alt="{{ image.title }}"  style="width:280px; height:300px;">
+                                        <span class="thumb-info-title">
+                                            <span class="thumb-info-inner">{{ image.title }}</span>
+                                            <span class="thumb-info-type">{{ image.category }}</span>
                                         </span>
                                     </span>
-                                </a>
-                            </div>
+                                </span>
+                            </a>
                         </div>
-                        {% endfor %}
-                        {% endfor %}
+                    </div>
+                    {% endfor %}   
                 </div>
-                
-                  
-
-               
-
             </div>
 </section>
 

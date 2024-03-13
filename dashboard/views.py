@@ -46,13 +46,7 @@ def index(request):
     map = Settings.objects.first().map_link if Settings.objects.first() else ''
     recent_documents = Document.objects.order_by('-upload_date')[:9]
 
-    gallery_categories = CATEGORY_CHOICES
-    gallery_images_by_category = {}
-    for category, data in gallery_categories:
-        images = GalleryImage.objects.filter(category=category)
-        image_data = [{'title': img.title, 'image_url': img.image.url} for img in images]
-        gallery_images_by_category[category] = image_data
-
+    gallery_images = GalleryImage.objects.all()[:7]
     # Fetch FAQs data
     faqs = FAQ.objects.all()
 
@@ -67,16 +61,13 @@ def index(request):
     quick_links = QuickLink.objects.all()
     
     if about_us:
-        # Split content into paragraphs
-        # paragraphs = about_us.content.split('\n')
-
         paragraphs = about_us.content[:800] + "..."
         paragraphs = paragraphs.split('\n')
         context = {
             'recent_blogs': recent_blogs,
             'recent_news': recent_news,
             'recent_documents': recent_documents,
-            'gallery_images_by_category': gallery_images_by_category,
+            'gallery_images': gallery_images,
             'faqs': faqs,
             'about_us': about_us,
             'paragraphs': paragraphs,  # Pass preprocessed paragraphs to template context
@@ -90,10 +81,8 @@ def index(request):
         context = {
             'recent_blogs': recent_blogs,
             'recent_news': recent_news,
-            # 'categories': categories,
-            # 'documents_by_category': documents_by_category,
             'recent_documents': recent_documents,
-            'gallery_images_by_category': gallery_images_by_category,
+            'gallery_images': gallery_images,
             'faqs': faqs,
             'featured_works': featured_works,  # Add Featured Works data to context
             'contact_info': contact_info,  # Include footer data in context
@@ -120,18 +109,10 @@ def gallery_list_view(request):
     return render(request, 'gallaries_list_admin.html', {'images': images})    
 
 #new yismu template
-def gallery_view(request):
-    gallery_categories = CATEGORY_CHOICES
-    gallery_images_by_category = {}
-    # for category, _ in gallery_categories:
-    #     images = GalleryImage.objects.filter(category=category)
-    #     image_data = [{'title': img.title, 'image_url': img.image.url} for img in images]
-    #     gallery_images_by_category[category] = image_data
-    
+def gallery_view(request): 
     context = {
         'images':GalleryImage.objects.all(),
-        'categories':[c[0] for c in CATEGORY_CHOICES],
-        # 'gallery_images_by_category': gallery_images_by_category,
+        'categories':[cat.name for cat in GalleryCategory.objects.all()],
     }
     return render(request, 'front/gallery.html', context)
     
@@ -148,7 +129,8 @@ def delete_gallery_image(request, image_id):
 class GalleryVideoPage(View):
     def get(self, *args, **kwargs):
         gallery_videos = GalleryVideo.objects.all()
-        return render(self.request, 'front/videos.html', {'gallery_videos':gallery_videos, 'categories':CATEGORY_CHOICES})
+        categories = [cat.name for cat in GalleryCategory.objects.all()]
+        return render(self.request, 'front/videos.html', {'gallery_videos':gallery_videos, 'categories':categories})
 
 def faqs_api(request):
     faqs = FAQ.objects.all()

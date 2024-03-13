@@ -265,7 +265,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 SITE_ID = 1
 
 CMS_TEMPLATES = (
-    ("front/base.html", ("Cms Base Template")),
+    ("front/cms_base.html", ("Cms Base Template")),
 )
 
 # Enable permissions
