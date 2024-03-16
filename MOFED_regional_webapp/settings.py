@@ -126,8 +126,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'core.context_processors.recent_news_mega',
                 'core.context_processors.stgs',
-                'core.context_processors.search_result',
-                 # cms
+                # cms
                 'sekizai.context_processors.sekizai',
                 'cms.context_processors.cms_settings',
                 

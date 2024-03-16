@@ -3,7 +3,6 @@ from django.views.decorators.csrf import csrf_exempt
 from .forms import *
 from django.shortcuts import render,redirect
 from .models import *
-from about_us.models import AboutUs
 from news.models import News,NewsArticle
 from blogs.models import Blog
 from vacancies.models import Job
@@ -16,6 +15,7 @@ from django.contrib import messages
 from .forms import FAQForm
 from suppliers.models import Supplier
 from django.views import View
+from django.db.models import Q
 
 
 def admin_dashboard(request):
@@ -93,14 +93,34 @@ def index(request):
     return render(request, 'front/index.html', context)
 
 
-def about_detail(request):
-    about_us = About_us_index.objects.first()
-    paragraphs = about_us.content.split("\n")
-    
-    return render(request, 'front/about_detail.html',{'about_us':about_us, 'paragraphs':paragraphs})
-
 def search(request): 
-    return render (request, 'front/search_results.html',)
+    if "searched_item" in request.GET:
+        searched_term = request.GET["searched_item"]
+
+        news = NewsArticle.objects.filter(Q(title__icontains=searched_term) | Q(news_category__name__icontains=searched_term) | Q(author__icontains=searched_term))
+        blogs = Blog.objects.filter(Q(title__icontains=searched_term) | Q(blog_category__name__icontains=searched_term) | Q(author__icontains=searched_term))
+        jobs = Job.objects.filter(Q(job_title__icontains=searched_term) | Q(job_type__icontains=searched_term) | Q(Status__icontains=searched_term), Status='Active')
+        gallery = GalleryImage.objects.filter(Q(title__icontains=searched_term) | Q(gallery_category__name__icontains=searched_term))
+        documents = Document.objects.filter(Q(title__icontains=searched_term) | Q(category__icontains=searched_term))
+        events = Event.objects.filter(Q(title__icontains=searched_term) | Q(location__icontains=searched_term))
+        
+        if news.count() == 0 and blogs.count() == 0 and jobs.count() == 0 and gallery.count() == 0 and documents.count() == 0 and events.count() == 0:
+            data =  {'no_result':True}
+        else:
+            data =  { 
+                "news_articles": news,
+                "blogs": blogs, 
+                "images": gallery, 
+                "jobs": jobs, 
+                "documents": documents, 
+                "events": events, 
+                "term": searched_term,
+            }
+        
+    else:
+        data =  {'no_result':True}
+
+    return render (request, 'front/search_results.html',data)
         
 
     

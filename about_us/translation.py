@@ -1,5 +1,5 @@
 from modeltranslation.translator import translator, TranslationOptions
-from .models import AboutUs , About
+from .models import About
 
 
 class AboutTranslationOptions(TranslationOptions):

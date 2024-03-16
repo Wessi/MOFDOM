@@ -4,8 +4,6 @@ from .views import *  # Import the faqs_api view
 urlpatterns = [
 
     path('', admin_dashboard, name='admin_dashboard'),
-    # path('panel/faq/add', add_FAQs, name='faq_add'),
-    # path('faq_add/', add_FAQs, name='faq_add'),#used
     path('add_FAQ', add_FAQ, name='add_FAQ'),
     path('update_faq/<int:faq_id>/', update_FAQ, name='faq_update'),
 
@@ -35,10 +33,5 @@ urlpatterns = [
     path('faq/<int:faq_id>/delete/', delete_faq, name='delete_faq'),
 
     
-
-
-    
-    
-
 ]
 

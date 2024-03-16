@@ -214,6 +214,7 @@ assets/front.zip
 *.bat
 *.zip
 
+template_holder
 
 .vscode/*
 *.sqlite

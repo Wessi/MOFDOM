@@ -86,7 +86,7 @@ class Footer(models.Model):
     copyright_text = models.CharField(max_length=255)
     
     
-#2/13/2024
+
 class ContactInfo(models.Model):
     address = models.CharField(max_length=255)
     phone = models.CharField(max_length=20)
@@ -97,7 +97,6 @@ class QuickLink(models.Model):
     title = models.CharField(max_length=100)
     url = models.URLField()
 
-#2/13/2024
 
 class Event(models.Model):
     title = models.CharField(max_length=100)

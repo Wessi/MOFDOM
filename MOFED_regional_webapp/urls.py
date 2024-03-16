@@ -4,7 +4,7 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.views.generic import TemplateView
-from dashboard.views import index, search, about_detail
+from dashboard.views import index, search
 from core.context_processors import search_result
 from core.views import Contact
 from django.views.i18n import JavaScriptCatalog
@@ -14,37 +14,27 @@ from django.conf.urls.i18n import i18n_patterns
 
 admin.site.site_header = 'Super Adminstrator'
 urlpatterns = [
-
     path('admin/', admin.site.urls),
-    path('test/', TemplateView.as_view(template_name='base.html')),
     path('', index, name="index"),
-    path('about-detail', about_detail, name="about_detail"),
-    path('search', search, name='search'),
 
-    path('services/', TemplateView.as_view(template_name = "front/services.html"), name='services'),
-    path('bids/', TemplateView.as_view(template_name = "front/bid.html"), name='bid'),
-    
-    
     # Include your app-specific URLs here
     path('news/', include('news.urls')),
     path('accounts/', include('accounts.urls')),
-    path('about_us/', include('about_us.urls')),
+    path('about-us/', include('about_us.urls')),
     path('dashboard/', include('dashboard.urls')),# Replace 'news.urls' with your actual news app URLs
     path('documents/', include('documents.urls')),  # Replace 'documents.urls' with your actual documents app URLs
     path('taskmanager/', include('task_manager.urls')),
     path('suppliers/', include('suppliers.urls')),
     path('vacancies/', include('vacancies.urls')),
     path('blogs/', include('blogs.urls')),
-    
-    
-    path('structure/',TemplateView.as_view(template_name = 'front/structure.html'), name="structure"),
-    path('structure/',TemplateView.as_view(template_name = 'front/structure.html'), name="structure"),
-    path('bloog/',TemplateView.as_view(template_name = 'front/blog.html'), name="blog"),
-    path('gallery/',TemplateView.as_view(template_name = 'front/gallery.html'), name="gallery"),
-    path('vacancy/',TemplateView.as_view(template_name = 'front/vacancy.html'), name="vacancy"),
-    path("contact-us/",Contact.as_view(), name="contact_us"),
-    path("privacy/", TemplateView.as_view(template_name = "front/privacy.html"), name="privacy_page"),
 
+    # direct pages
+    path('search/', search, name='search'), #header search functionality
+    path("contact-us/",Contact.as_view(), name="contact_us"),
+    path('services/', TemplateView.as_view(template_name = "front/services.html"), name='services'),
+    path('bids/', TemplateView.as_view(template_name = "front/bid.html"), name='bid'),
+    
+    
     path('jsi18n/', JavaScriptCatalog.as_view(), name='javascript-catalog'),
     path('i18n/', include('django.conf.urls.i18n')),
     
