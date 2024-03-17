@@ -20,7 +20,6 @@ ALLOWED_HOSTS = ['localhost', 'kanenus.com','www.kanenus.com', '127.0.0.1', '*']
 CSRF_COOKIE_SECURE = True
 # Application definition
 
-
 INSTALLED_APPS = [
    
     'django.contrib.auth',
@@ -80,15 +79,11 @@ INSTALLED_APPS = [
     "djangocms_googlemap",
     "djangocms_snippet",
     "djangocms_style",
-    
     # translation
     # "parler",  
-    'rosetta',
+    'rosetta', #For generating language translating dashboard
     
-    
-
-
-  
+     
 ]
 
 MIDDLEWARE = [
@@ -169,22 +164,18 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en'
 
-
-
 LANGUAGES = (
     ('en', ('English')),
-    ('es', ('Spanish')),
-    ('tx', ('Tigrigna')),
     ('ax', ('Amharic')),
-
 )
 
 LANGS = {
     'en':'English',
     'ax':'Amharic',
-    'tx':'Tigrigna'
+    # 'tx':'Tigrigna'
 
 }
+
 # implement the search field for filer 
 DEFAULT_MODEL_ADMIN.search_fields = ['']
 
@@ -197,12 +188,12 @@ EXTRA_LANG_INFO = {
         'name': 'አማርኛ',
         'name_local': u'አማርኛ',
     },
-    'tx': {
-        'bidi': False, # right-to-left
-        'code': 'tx',
-        'name': 'ትግርኛ',
-        'name_local': u'ትግርኛ',
-    },
+    # 'tx': {
+    #     'bidi': False, # right-to-left
+    #     'code': 'tx',
+    #     'name': 'ትግርኛ',
+    #     'name_local': u'ትግርኛ',
+    # },
     
 }
 
@@ -215,7 +206,6 @@ django.conf.locale.LANG_INFO = LANG_INFO
 LOCALE_PATHS = [
     os.path.join(BASE_DIR,'locale'),
 ]
-
 
 TIME_ZONE = 'UTC'
 
@@ -239,7 +229,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 
-
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
@@ -248,7 +237,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'accounts.UserProfile'
 
 # STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-
 
 EMAIL_HOST='smtp.gmail.com'
 EMAIL_PORT = '587'
@@ -262,29 +250,22 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 # cms settings
 SITE_ID = 1
-
 CMS_TEMPLATES = (
     ("front/cms_base.html", ("Cms Base Template")),
 )
-
-# Enable permissions
-# https://docs.django-cms.org/en/release-4.1.x/topics/permissions.html
 
 CMS_PERMISSION = True
 
 CMS_CONFIRM_VERSION4 = True
 
-# Allow admin sidebar to open admin URLs
-
+# Allow admin sidebar to open admin URLs | Allow embedding from the same origin
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 # Enable inline editing with djangocms-text-ckeditor
 # https://github.com/django-cms/djangocms-text-ckeditor#inline-editing-feature
 
 TEXT_INLINE_EDITING = True
-
 THUMBNAIL_HIGH_RESOLUTION = True
-
 THUMBNAIL_PROCESSORS = (
     'easy_thumbnails.processors.colorspace',
     'easy_thumbnails.processors.autocrop',
@@ -292,15 +273,12 @@ THUMBNAIL_PROCESSORS = (
     'easy_thumbnails.processors.filters'
 )
 
-
-INTERNAL_IPS = [
-    "127.0.0.1",
-]
+INTERNAL_IPS = ["127.0.0.1",]
 
 DJANGOCMS_VERSIONING_ALLOW_DELETING_VERSIONS = True
 
 # roseta settings
-ROSETTA_MESSAGES_PER_PAGE = 50
+ROSETTA_MESSAGES_PER_PAGE = 100
 
 # parler settings
 PARLER_DEFAULT_LANGUAGE_CODE = 'en'
@@ -316,8 +294,10 @@ PARLER_DEFAULT_LANGUAGE_CODE = 'en'
 #     }
 # }
 
+# Settings for model translation
 MODELTRANSLATION_DEFAULT_LANGUAGE = 'en'
-MODELTRANSLATION_LANGUAGES = ('en', 'ax', 'tx')
+MODELTRANSLATION_LANGUAGES = ('en', 'ax', )
+
 
 JAZZMIN_SETTINGS = {
     # title of the window (Will default to current_admin_site.site_title if absent or None)
@@ -365,6 +345,7 @@ JAZZMIN_SETTINGS = {
   
 }
 
+
 CORS_ORIGIN_ALLOW_ALL = True
 CSP_MIDDLEWARE = [
     'csp.middleware.CSPMiddleware',
@@ -375,5 +356,3 @@ CSP_DEFAULT_SRC = ("'self'",)  # Allow resources from the same origin
 
 # Allow embedding from specific domains
 CSP_FRAME_SRC = ("'self'",)
-
-X_FRAME_OPTIONS = 'SAMEORIGIN'  # Allow embedding from the same origin

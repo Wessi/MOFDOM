@@ -16,6 +16,7 @@ class About(models.Model):
     def __str__(self):
         return f"About Page Content {self.id}"
 
+
 class TeamMember(models.Model):
     # Model for the section inside the about us, which lists Management experts
     name = models.CharField(max_length=100)
