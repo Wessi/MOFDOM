@@ -1,4 +1,4 @@
-from .models import NewsArticle, News
+from .models import NewsArticle
 from modeltranslation.translator import TranslationOptions, register
 
 @register(NewsArticle)

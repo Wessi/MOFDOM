@@ -7,12 +7,8 @@ from django.contrib.auth.models import AnonymousUser
 #         return { 'user_perms':[]}
 
 from news.models import NewsArticle
-from blogs.models import Blog
-from vacancies.models import Job
-from documents.models import Document
 from dashboard.models import *      # GalleryImage, Event
 from core.models import Settings, Pages
-from django.db.models import Q
 from core.models import Visitors
 
 def recent_news_mega(request):
@@ -22,12 +18,9 @@ def recent_news_mega(request):
     
 
 def stgs(request):
-    contact_info = ContactInfo.objects.first()
     quick_links = QuickLink.objects.all()
-    
     pages = Pages.objects.first()
     return {
-        'contact_info': contact_info,  # Include footer data in context
         'quick_links': quick_links,  # Include footer data in context
         'stg':Settings.objects.first(),
         'pages': pages,

@@ -1,12 +1,101 @@
 from django.shortcuts import render, redirect
 from django.views import View 
-from.models import ContactUs
-import threading
-from django.contrib.sites.shortcuts import get_current_site
-from django.template.loader import render_to_string
-from django.core.mail import EmailMultiAlternatives, send_mail
 from django.contrib import messages
+from django.views import View
+from django.db.models import Q
+from django.shortcuts import render
+from django.utils.translation import gettext as _
+
 from core.models import Settings
+from .models import ContactUs
+
+from dashboard.forms import *
+from dashboard.models import *
+from blogs.models import Blog
+from core.models import Settings
+from vacancies.models import Job
+from news.models import NewsArticle
+from documents.models import Document
+
+
+def index(request):
+    recent_blogs = Blog.objects.order_by('-publish_date')[:4]
+    recent_news = NewsArticle.objects.order_by('-created_at')[:4]
+    map = Settings.objects.first().map_link if Settings.objects.first() else ''
+    recent_documents = Document.objects.order_by('-upload_date')[:9]
+    gallery_images = GalleryImage.objects.all()[:7]
+    faqs = FAQ.objects.all()
+    about_us = DirectorateMessage.objects.first()
+    featured_works = FeaturedWork.objects.all()
+    
+    paragraphs = about_us.content[:800] + "..."
+    paragraphs = paragraphs.split('\n')
+    context = {
+        'recent_blogs': recent_blogs,
+        'recent_news': recent_news,
+        'recent_documents': recent_documents,
+        'gallery_images': gallery_images,
+        'faqs': faqs,
+        'about_us': about_us,
+        'paragraphs': paragraphs,  # Pass preprocessed paragraphs to template context
+        'featured_works': featured_works,  # Add Featured Works data to context
+        'map':map
+        
+    }
+    return render(request, 'front/index.html', context)
+
+
+def search(request): 
+    if "searched_item" in request.GET:
+        searched_term = request.GET["searched_item"]
+
+        news = NewsArticle.objects.filter(Q(title__icontains=searched_term) | Q(news_category__name__icontains=searched_term) | Q(author__icontains=searched_term))
+        blogs = Blog.objects.filter(Q(title__icontains=searched_term) | Q(blog_category__name__icontains=searched_term) | Q(author__icontains=searched_term))
+        jobs = Job.objects.filter(Q(job_title__icontains=searched_term) | Q(job_type__icontains=searched_term) | Q(Status__icontains=searched_term), Status='Active')
+        gallery = GalleryImage.objects.filter(Q(title__icontains=searched_term) | Q(gallery_category__name__icontains=searched_term))
+        documents = Document.objects.filter(Q(title__icontains=searched_term) | Q(category__icontains=searched_term))
+        events = Event.objects.filter(Q(title__icontains=searched_term) | Q(location__icontains=searched_term))
+        
+        if news.count() == 0 and blogs.count() == 0 and jobs.count() == 0 and gallery.count() == 0 and documents.count() == 0 and events.count() == 0:
+            data =  {'no_result':True}
+        else:
+            data =  { 
+                "news_articles": news,
+                "blogs": blogs, 
+                "images": gallery, 
+                "jobs": jobs, 
+                "documents": documents, 
+                "events": events, 
+                "term": searched_term,
+            }
+        
+    else:
+        data =  {'no_result':True}
+
+    return render (request, 'front/search_results.html',data)
+        
+
+class GalleryImagePage(View): 
+    def get(self, request):
+        context = {
+            'images':GalleryImage.objects.all(),
+            'categories':[cat.name for cat in GalleryCategory.objects.all()],
+        }
+        return render(request, 'front/gallery.html', context)
+    
+    
+class GalleryVideoPage(View):
+    def get(self, *args, **kwargs):
+        gallery_videos = GalleryVideo.objects.all()
+        categories = [cat.name for cat in GalleryCategory.objects.all()]
+        return render(self.request, 'front/videos.html', {'gallery_videos':gallery_videos, 'categories':categories})
+
+    
+class EventListPage(View):
+    def get(self,*args, **kwargs):
+        events = Event.objects.all()
+        return render(self.request, 'front/event.html', {'events': events})
+
 
 class Contact(View):
     def get (self, *args, **kwargs):
@@ -24,30 +113,3 @@ class Contact(View):
         # e = send_mail(f"Visitor message : {data['subject']}", msg, from_email="Kanenus", recipient_list=['antenyismu@gmail.com'], fail_silently=False)
         print(e)
         return redirect(self.request.path)         
-
-
-class AccountVerifiedThread(threading.Thread):
-    def __init__(self, data, request):
-        self.data = data 
-        self.request= request
-        threading.Thread.__init__(self) 
-
-
-    def run(self):
-        try:
-            current_site = get_current_site(self.request)
-            mail_subject = 'Your Medstore account is verified.'
-            message = render_to_string('email/accounts/account_validated.html', {
-                'user': self.user,
-                'domain': current_site.domain,
-            })
-            to_email = self.user.email
-            email = EmailMultiAlternatives(mail_subject, message, "Kanenus", [to_email],)
-            email.attach_alternative(message, 'text/html')
-            email = email.send()
-            print(f"sent account verified email to {self.user.email}", email)
-            return (True, "sent email" ) 
-        
-        except Exception as e:
-            print("Email Exception ", e)
-            return (False, e)

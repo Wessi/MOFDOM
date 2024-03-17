@@ -272,7 +272,6 @@
                                                     <a class="dropdown-item dropdown-toggle {% block resource_dynamic %} {% endblock %} " href="#">Resources</a>
                                                     <ul class="dropdown-menu">
                                                         {% if pages.documents %}
-                                                        <li><a class="dropdown-item" href="{% url 'blog_list' %}">Blogs</a></li>
                                                         <li><a class="dropdown-item" href="{% url  'list_docs' %}">Documents</a></li>
                                                         <li><a class="dropdown-item" href="{% url 'supplier_list' %}">Blocked Suppliers </a></li>
                                                         {% endif %}
@@ -288,7 +287,7 @@
                                                         <li><a class="dropdown-item" href="{% url 'bid' %}">Bids</a></li>
                                                         {% endif %}
                                                         {% if pages.events %}
-                                                        <li><a class="dropdown-item" href="{% url 'events_list_new' %}">Events</a></li>
+                                                        <li><a class="dropdown-item" href="{% url 'events_list' %}">Events</a></li>
                                                         {% endif %}
                                                         {% if pages.vacancy %}
                                                         <li><a class="dropdown-item" href="{% url 'job_list_ytemplate' %}">Vacancies</a></li>
@@ -300,28 +299,24 @@
                                                 {% endif %}
                                                 
                                                 <!-- news -->
-                                                {% if pages.news %}
-                                                <li class="d-block  "><a class="nav-link {% block news_dynamic %} {% endblock %}" href="{% url 'news_list_visitor' %}">News</a></li>
-                                                <!-- <li class="dropdown d-ld-none d-md-none d-sm-block">
-                                                    <a class="dropdown-item dropdown-toggle " href="#">
-                                                        News & Blogs
+                                                {% if pages.news or pages.blogs %}
+                                                <li class="dropdown">
+                                                    <a class="dropdown-item dropdown-toggle {% block news_dynamic %} {% endblock %}" href="#">
+                                                        News
                                                     </a>
                                                     <ul class="dropdown-menu">
                                                         <li><a class="dropdown-item" href="{% url 'news_list_visitor' %}">News</a></li>
-                                                        <li><a class="dropdown-item" href="{% url 'bureau_structure' %}">Blogs</a></li>
-                                                
+                                                        <li><a class="dropdown-item" href="{% url  'blog_list' %}">Blogs</a></li>
                                                     </ul>
-                                                </li> -->
-                                               
+                                                </li>
                                                 {% endif %}
                                                 
                                                 
-                                                <!-- end privary -->
                                                 {% if pages.gallery %}
                                                 <li class="dropdown ">
                                                     <a class="dropdown-item dropdown-toggle {% block gallery_dynamic %} {% endblock %}" href="#">Gallery</a>
                                                     <ul class="dropdown-menu">
-                                                        <li><a class="dropdown-item {% block gallery_page_dynamic %} {% endblock %}" href="{% url 'gallery_view' %}" >Images</a></li>
+                                                        <li><a class="dropdown-item {% block gallery_page_dynamic %} {% endblock %}" href="{% url 'gallery_images' %}" >Images</a></li>
                                                         <li><a class="dropdown-item" href="{% url 'gallery_videos' %}">Videos</a></li>
                                                     </ul>
                                                 </li>
@@ -349,7 +344,6 @@
                                                 <li class="dropdown ">
                                                     <a class="dropdown-item dropdown-toggle {% block resource %} {% endblock %} " href="#">Resources</a>
                                                     <ul class="dropdown-menu">
-                                                        <li><a class="dropdown-item" href="{% url  'blog_list' %}">Blogs</a></li>
                                                         <li><a class="dropdown-item" href="{% url 'list_docs' %}">Documents</a></li>
                                                         <li><a class="dropdown-item" href="{% url 'supplier_list' %}">Blocked Suppliers </a></li>
                                                         
@@ -357,138 +351,33 @@
                                                     </ul>
                                                 </li>
                                                 
-                                                <!-- <li><a class="nav-link {% block project %} {% endblock %}">Projects</a></li> -->
                                                 <li class="dropdown ">
                                                     <a class="dropdown-item dropdown-toggle {% block announcement %} {% endblock %}" href="#">Announcements</a>
                                                     <ul class="dropdown-menu">
                                                         <li><a class="dropdown-item" href="{% url 'job_list_ytemplate' %}">Vacancies</a></li>
-                                                        <li><a class="dropdown-item" href="{% url 'events_list_new' %}">Events</a></li>
+                                                        <li><a class="dropdown-item" href="{% url 'events_list' %}">Events</a></li>
                                                     </ul>
                                                 </li>
                                                 
-<!-- news -->
-                                                <li class="d-block d-lg-none "><a class="nav-link {% block news %} {% endblock %}" href="{% url 'news_list_visitor' %}">News</a></li>
-                                                
-                                                <li class="dropdown dropdown-mega  float-end  d-none d-lg-block">
-                                                    <a class="dropdown-item dropdown-toggle {% block news_mega %} {% endblock %}" href="{% url 'news_list_visitor' %}">
+                                                <li class="dropdown">
+                                                    <a class="dropdown-item dropdown-toggle {% block news %} {% endblock %}" href="#">
                                                         News
                                                     </a>
-                                                    <ul class="dropdown-menu  bg-transparent" style="width: fit-content;">
-                                                        <li class="float-end bg-light border-radius-2 " style="width: 90%;">
-                                                            <div class="dropdown-mega-content">
-                                                                <div class="row pt-0"  >
-                                                                    {% for art_news in recent_news_mega %}
-                                                                    <div class="col-lg-3 bg-light" style="height: max-content;">
-                                                                        <article class="post p-0 bg-light">
-                                                                           
-
-                                                                            <div class="post-image">
-                                                                                {% if art_news.featured_image %}
-                                                                                <img src="{{art_news.featured_image.url}}" style="width: 100%; height:100px;" 
-                                                                                class="img-fluid img-thumbnail img-thumbnail-no-borders" alt="" />
-                                                                                {% else %} 
-                                                                                <img src="/static/front/imgs/news/news1.jpg" style="width: 100%; height:100px;" 
-                                                                                class="img-fluid img-thumbnail img-thumbnail-no-borders" alt="" />
-                                                                                {% endif %}
-                                                                                <small class="text-primary">{{art_news.title|truncatechars:60}} </small>
-                                                                            </div>
-                                                                          
-                                                                            <div class="post-meta">
-                                                                                <small><i class="fa fa-clock"></i>{{art_news.created_at|date}} </small>
-                                                                                <span class=" float-end"><a href="{% url 'news_detail' news_id=art_news.id %}" class="text-primary">Read More</a></span>
-                                                                            </div>
-                                                                        </article>
-                                                                    </div>
-                                                                    {% endfor %}
-                                                        		
-                                                                    
-                                                                
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                                
-                                                <!-- privacy -->
-                                                <!-- <li class="dropdown d-ld-none d-md-none d-sm-block">
-                                                    <a class="dropdown-item dropdown-toggle {% block privacy %} {% endblock %}" href="{% url 'privacy_page' %}">
-                                                        Privacy
-                                                    </a>
                                                     <ul class="dropdown-menu">
-                                                        <li><a class="dropdown-item" href="/">Privacy & Security</a></li>
-                                                        <li><a class="dropdown-item" href="/">Legal Information</a></li>
-                                                        <li><a class="dropdown-item" href="/">Terms & Conditions</a></li>
-                                                
+                                                        <li><a class="dropdown-item" href="{% url 'news_list_visitor' %}">News</a></li>
+                                                        <li><a class="dropdown-item" href="{% url  'blog_list' %}">Blogs</a></li>
                                                     </ul>
                                                 </li>
-                                                <li class="dropdown dropdown-mega  float-end  d-ld-block d-md-block d-sm-none">
-                                                    <a class="dropdown-item dropdown-toggle {% block privacy_mega %} {% endblock %}" href="{% url 'privacy_page' %}">
-                                                        Privacy
-                                                    </a>
-                                                    <ul class="dropdown-menu  bg-transparent" style="width: fit-content;">
-                                                        <li class="float-end bg-light border-radius-2 " style="width: 70%;">
-                                                            <div class="dropdown-mega-content">
-                                                                <div class="row float-end pt-0"  >
-                                                                    <div class="col-lg-4 " style="border-right:2px solid  var(text-color-primary);">
-                                                                        <div class="text-center border-bottom mb-3">
-                                                                            <span class="text-4  border-bottom">PRIVACY</span>
-                                                                        </div>
-                                                                            
-                                                                        <div class="mt-2 tabs tabs-vertical tabs-left tabs-navigation bg-light">
-                                                                            <ul class="nav nav-tabs col-sm-3" role="tablist">
-                                                                              
-                                                                                <li class=" active  mb-2" role="presentation">
-                                                                                    <a class="nav-link header-tabs active text-3" href="#privacy_tab" data-bs-toggle="tab" aria-selected="true" role="tab">Privacy and Security</a>
-                                                                                </li>
-                                                                                <li class="  mb-2" role="presentation">
-                                                                                    <a class="nav-link header-tabs text-3" href="#legal_tab" data-bs-toggle="tab" aria-selected="false" tabindex="-1" role="tab">Legal Information</a>
-                                                                                </li>
-                                                                                <li class=" header-tabs  mb-2" role="presentation">
-                                                                                    <a class="nav-link text-3" href="#terms_tab" data-bs-toggle="tab" aria-selected="false" tabindex="-1" role="tab">Terms & Conditions</a>
-                                                                                </li>
-                                                                               
-                                                                            </ul>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-lg-8 pt-0">
-                                                                        <div class="tab-pane tab-pane-navigation active pt-0" id="privacy_tab" role="tabpanel">
-                                                                            <span>PRIVACY AND SECURITY</span>
-                                                                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vel laudantium ex illo iusto sint dolore, dolorum earum aliquam quidem porro odio dignissimos nam mollitia neque veniam ullam ad culpa iste!
-                                                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pellentesque neque eget diam posuere porta. Quisque ut nulla at .</p>
-                                                                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit aperiam recusandae cum rem beatae, fuga ipsum! Velit, nihil, qui hic aliquid enim tempore quibusdam totam alias voluptatibus at soluta eaque!</p>
-                                                                        </div>
-                                                                        <div class="tab-pane tab-pane-navigation pt-0" id="legal_tab" role="tabpanel">
-                                                                            <span>LEGAL INFORMATION</span>
-                                                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At vel consectetur ipsum dolor dicta? Quo deserunt consequatur suscipit ad quae corporis dignissimos, placeat exercitationem facilis architecto magni ipsam, dicta soluta!
-                                                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pellentesque neque eget diam posuere porta. Quisque ut nulla at .</p>
-                                                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pellentesque neque eget diam posuere porta. Quisque ut nulla at .</p>
-                                                                        
-                                                                        </div>
-                                                                        <div class="tab-pane tab-pane-navigation pt-0" id="terms_tab" role="tabpanel">
-                                                                            <span>TERMS AND CONDITIONS</span>
-                                                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae beatae, incidunt sequi nisi itaque minima labore totam nemo eligendi. Vero adipisci omnis atque minima, quas soluta magni eligendi laborum quos?
-                                                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pellentesque neque eget diam posuere porta. Quisque ut nulla at .</p>
-                                                                        
-                                                                        </div>
-                                                                        
-                                                                    </div>
 
-                                                                    
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </li> -->
-                                                <!-- end privary -->
+                                                
                                                 <li class="dropdown ">
                                                     <a class="dropdown-item dropdown-toggle {% block gallery %} {% endblock %}" href="#">Gallery</a>
                                                     <ul class="dropdown-menu">
-                                                        <li><a class="dropdown-item {% block gallery_page %} {% endblock %}" href="{% url 'gallery_view' %}" >Images</a></li>
-                                                        <li><a class="dropdown-item" href="{% url 'gallery_view' %}">Videos</a></li>
+                                                        <li><a class="dropdown-item {% block gallery_page %} {% endblock %}" href="{% url 'gallery_images' %}" >Images</a></li>
+                                                        <li><a class="dropdown-item" href="{% url 'gallery_images' %}">Videos</a></li>
                                                     </ul>
                                                 </li>
                                                 <li><a class="nav-link {% block contact_us %} {% endblock %}" href="/contact-us/">{% trans "Contact Us" %}</a></li>
-                                                
                                                 
                                             
                                             {% endif %}

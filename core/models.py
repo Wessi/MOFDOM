@@ -32,7 +32,6 @@ class Settings(models.Model):
     map_link = models.TextField( blank=True, null=True, help_text = "Embed the full 'iframe' tag from google maps" )
 
 
-
 class Pages(models.Model):
     about = models.BooleanField(default = True)
     structure = models.BooleanField(default = True)

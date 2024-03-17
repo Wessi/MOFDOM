@@ -6,6 +6,8 @@ from django.utils import timezone
 from .forms import CommentForm, TaskForm
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
+
+
 def task_list_view(request, type):
     user = request.user
     if type == 'Assigned':
@@ -20,9 +22,9 @@ def task_list_view(request, type):
     return render(request, 'task-list-view.html', context)
     # return render(request, 'some.html', context)
 
+
 def create_task(request):
     if request.method == 'POST':
-        print("--------")
         form = TaskForm(request.POST)
         if form.is_valid():
             form.save()
@@ -49,12 +51,16 @@ def delete_task(request, task_id):
         'task': task,
     }
     return render(request, 'delete_task.html', context)
+
+
 def task_details(request, task_id):
     task = get_object_or_404(Task, id=task_id)
     context = {
         'task': task,
     }
     return render(request, 'task_details_admin.html', context)
+
+
 class TaskDetailsView(View):
     template_name = 'task_details_admin.html'
 
@@ -81,8 +87,11 @@ class TaskDetailsView(View):
         context = self.get_context_data(task_id)
         return render(request, self.template_name, context)
 
+
 def get_key_tasks(task):
     return task.key_tasks.split('\n') if task.key_tasks else []
+
+
 @login_required
 def add_comment(request, task_id):
     task = Task.objects.get(id=task_id)
@@ -100,6 +109,7 @@ def add_comment(request, task_id):
         'form': form,
     }
     return render(request, 'task_details_admin.html', context)
+
 
 @login_required
 def reply_comment(request, comment_id):
@@ -121,15 +131,3 @@ def reply_comment(request, comment_id):
         'task': task,  # Pass the task object to the template context
     }
     return render(request, 'task_details_admin.html', context)
-
-
-def notifications_view(request):
-    # Retrieve notifications for the current user and order them by creation date
-    notifications = Notification.objects.filter(user=request.user).order_by('-created_at')
-
-    # Pass notifications to the template
-    context = {
-        'notifications': notifications,
-    }
-
-    return render(request, 'base_new_admin.html', context)
