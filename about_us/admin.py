@@ -1,6 +1,8 @@
 from django.contrib import admin
 from .models import *
 from modeltranslation.admin import TranslationAdmin
+from modeltranslation.translator import Translator
+
 
 @admin.register(About)
 class AboutAdmin(TranslationAdmin):

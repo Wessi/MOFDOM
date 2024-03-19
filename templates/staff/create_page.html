@@ -1,0 +1,48 @@
+{% extends 'staff/admin_base.html' %}
+{% load static %}
+{% load custom_filters %}
+{% block main %}
+<div class="main-content app-content">
+    <div class="container-fluid">
+         <!-- Page Header -->
+         {% if errors %}
+            <p class="errornote">
+            {% if errors|length == 1 %} Please correct the error below. {% else %}Please correct the errors below.{% endif %}
+            </p>
+            {{ .form.non_field_errors }}
+        {% endif %}
+         <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
+            <h1 class="page-title fw-semibold fs-18 mb-0">
+                {% if not is_single %}
+                    {% if add %} Add New {% else %} Update {% endif %}
+                {% endif %} 
+                {{model_name}}
+            </h1>
+            
+        </div>
+        <div class="col-xl-12">
+            <div class="card custom-card">
+                <div class="card-body  col-md-8 col-sm-12">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {% for field in form %}
+                        <div class="form-group mt-2 mb-4 ">
+                            <label class="form-label">{{field.label}}</label>
+                            {{field}}
+                            {{field.errors}}
+                            
+                            <small class="fw-semibold mb-1 text-muted">{{field.help_text}}</small>
+                            
+                        </div>
+                        {% endfor %}
+                       
+                        <button type="submit">Submit</button>
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+       
+    </div>
+</div>
+{% endblock %}

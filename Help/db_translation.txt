@@ -39,6 +39,29 @@ _______
 At this stage, u should have translatable fields for each field u wanted
 
 
+Advanced
+1. Required fields, 
+Model translation does not support to set translated fields like field_en or field_ax to be required even if 
+the original field is set to null=False. To over come this just use one of the fields, example _en as default
+
+- settings.py 
+# Django settings
+LANGUAGE_CODE = 'en'
+LANGUAGES = (
+    ('en', ('English')),
+    ('ax', ('Amharic')),
+    ('tx', ('Tigrigna')),
+)
+
+# modeltranslation setting
+MODELTRANSLATION_LANGUAGES = ('ax', 'tx')
+
+* with the above setting, only the Amharic and Tigrigna translations will be auto-generated will be generated,
+and the original field will be considered as the default language which is en. 
+
+original field can be set as required.
+
+1. Not having field_en fields 
 
 
 

@@ -1,10 +1,15 @@
 from modeltranslation.translator import translator, register,TranslationOptions
-from .models import About, BureauStructure
+from .models import About, TeamMember, BureauStructure
 
 @register(About)
-class AboutTranslationOptions(TranslationOptions):
+class AboutTranslationOption(TranslationOptions):
     fields = ('title',"content")
 
+@register(TeamMember)
+class TeamMemberTranslationOption(TranslationOptions):
+    fields = ('name', 'role' )
+
 @register(BureauStructure)
-class StructureTO(TranslationOptions):
+class StructureTranslationOption(TranslationOptions):
     fields = ('title', 'content', 'management_board_title')
+

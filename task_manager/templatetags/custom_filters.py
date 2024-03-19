@@ -16,6 +16,10 @@ def get_task_count_by_status(status):
 def get_key_tasks(task):
     return task.key_tasks.split('\n') if task.key_tasks else []
 
+@register.filter(name='show_attrs')
+def show_attrs(obj):
+    # print("*"*20,"\n", dir(obj),"*"*20,"\n")
+    return None
 
 @register.filter()
 def get_file_name(pdf_url):

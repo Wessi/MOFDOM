@@ -1,8 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
-# Create your model
 from django.db import models
-from parler.models import TranslatableModel, TranslatedFields
 from django.utils.translation import gettext as _ 
 
 CATEGORY_CHOICES = (
@@ -19,6 +16,9 @@ class GalleryCategory(models.Model):
     name = models.CharField(max_length=100)
     def __str__(self):
         return self.name
+
+    def has_many():return True
+
     
 
 class GalleryImage(models.Model):
@@ -54,6 +54,8 @@ class GalleryVideo(models.Model):
 
 class DirectorateMessage(models.Model):
     # A message from the bureau director displayed at the homepage
+    is_single = True # Tells if the model should have multiple or single objects
+
     title = models.CharField(max_length=255)
     content = models.TextField()
     button_text = models.CharField(max_length=250)
@@ -69,10 +71,18 @@ class FeaturedWork(models.Model):
     background_image = models.ImageField(upload_to='featured_work_backgrounds/')
     description = models.TextField()
 
+    class Meta:
+        ordering = ("-id",)
+        verbose_name = _("Home Page Sliders")
+        verbose_name_plural = _("Home Page Sliders")
+    
+    # Tells if multiple objects can be created for this model 
+    def has_many():return True
+
     def __str__(self):
         return self.title
     
-
+    
 class FAQ(models.Model):
     # List of Frequently Asked Questions with their corresponding answers
     question = models.CharField(max_length=255)

@@ -1,21 +1,26 @@
-# models.py
-
 from django.db import models
 
 class About(models.Model):
     # Model for the detail page of about us page
-    title = models.CharField(max_length=100)
+    is_single = True # Tells if the model should have multiple or single objects
+
+    title = models.CharField(max_length=100, help_text= "Max of 100 Characters.")
     content = models.TextField()
     mission = models.TextField()
     vision = models.TextField()
     values = models.TextField()
-    image_one = models.ImageField(upload_to='about_images/', blank=False)
+    image_one = models.ImageField(upload_to='about_images/', blank=False, help_text="Make sure to submit 200 X 300 images.")
     image_two = models.ImageField(upload_to='about_images/', blank=False)
     image_three = models.ImageField(upload_to='about_images/', blank=False)
-
+    
+    class Meta:
+        verbose_name = "About Us"
+        verbose_name_plural = "About Us"
+    
+    
     def __str__(self):
-        return f"About Page Content {self.id}"
-
+        return f"About Page Content"
+    
 
 class TeamMember(models.Model):
     # Model for the section inside the about us, which lists Management experts
@@ -31,6 +36,7 @@ class TeamMember(models.Model):
 
 
 class BureauStructure(models.Model):
+    is_single = True # Tells if the model should have multiple or single objects
     # Model for the Bureau structure page
     title = models.CharField(max_length=100)
     content = models.TextField()
@@ -42,4 +48,4 @@ class BureauStructure(models.Model):
     execution_team_image = models.ImageField(upload_to='bureau_structure_images/')
 
     def __str__(self):
-        return f"Bureau Structure Content {self.id}"
+        return f"Bureau Structure Content "

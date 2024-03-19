@@ -1,8 +1,17 @@
 from django.urls import path
-from .views import *  # Import the faqs_api view
+from .views import * 
+from about_us.views import CreateAbout
 
 urlpatterns = [
     path('', Dashboard.as_view(), name='admin_dashboard'),
+
+    # About us views
+    path('create-about/', CreateAbout.as_view(), name="create_about"),
+    path('create/<str:model_name>/', CreateView.as_view(), name="create_view"),
+    path('change/<str:model_name>/<int:pk>/', ChangeView.as_view(), name="change_view"),
+    path('list/<str:model_name>/', ListView.as_view(), name="list_view"),
+    
+
     # path('events_list/', event_list, name='event_list'),
     # path('gallery_list_view/',gallery_list_view, name='gallery_list_view'),
     # path('update_gallery_image/<int:image_id>/', update_gallery_image, name='update_gallery_image'),

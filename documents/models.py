@@ -3,6 +3,8 @@ import os
 
 def get_file_extension(filename):
     return os.path.splitext(filename)[1]
+
+    
 class Document(models.Model):
     CATEGORY_CHOICES = (
         ('BPR Documentations', 'BPR Documentations'),

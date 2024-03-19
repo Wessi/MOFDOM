@@ -16,6 +16,8 @@ class ContactUs(models.Model):
 
 
 class Settings(models.Model):
+    is_single = True # Tells if the model should have multiple or single objects
+
     title = models.CharField(max_length=255, blank=False, default ="Bureau of Finance")
     logo = models.ImageField(upload_to="Logo")
     phone1 = models.CharField(max_length=255, blank=False, )
@@ -31,8 +33,10 @@ class Settings(models.Model):
     working_hours = models.CharField(max_length=100)  # Adding working hours
     map_link = models.TextField( blank=True, null=True, help_text = "Embed the full 'iframe' tag from google maps" )
 
-
+    
 class Pages(models.Model):
+    is_single = True # Tells if the model should have multiple or single objects
+
     about = models.BooleanField(default = True)
     structure = models.BooleanField(default = True)
     directorate = models.BooleanField(default = True)
@@ -44,7 +48,7 @@ class Pages(models.Model):
     resource = models.BooleanField(default = True)
     contact_us = models.BooleanField(default = True)
     privacy = models.BooleanField(default = True)
-    
+
 
     def __str__(self):
         return f"Page Controller {self.id}"

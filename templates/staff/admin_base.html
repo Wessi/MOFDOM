@@ -29,6 +29,9 @@
             font-size: medium;
             font-weight: 600;
         }
+        .errorlist li{
+            color: red;
+        }
     </style>
     {% render_block "css" %}
     {% block css %}  {% endblock %}
@@ -36,9 +39,8 @@
     {%  cms_toolbar  %}
     {% render_block "js" %}
 <body>
-    <!-- Start Switcher -->
-
     
+    <!-- Start Switcher -->
     <div class="offcanvas offcanvas-end" tabindex="-1" id="switcher-canvas" aria-labelledby="offcanvasRightLabel">
         <div class="offcanvas-header border-bottom">
             <h5 class="offcanvas-title text-default" id="offcanvasRightLabel">Switcher</h5>
@@ -636,26 +638,124 @@
                         <svg xmlns="" fill="#7b8191" width="24" height="24" viewBox="0 0 24 24"> <path d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"></path> </svg>
                     </div>
                     <ul class="main-menu">
-                        <!-- <li class="slide">
-                            <a href="{% url 'news_list' %}" class="side-menu__item">
-                                <i class="bx bx-file side-menu__icon"></i>
-                                <span class="side-menu__label">News</span>
-                            </a>
-                        </li>
-                        <li class="slide">
-                            <a href="{% url 'blog_list_admin' %}" class="side-menu__item">
-                                <i class="bx bx-images side-menu__icon"></i>
-                                <span class="side-menu__label">Blogs</span>
-                            </a>
-                        </li> -->
-                        
-                        <!-- <li class="slide">
-                            <a href="{% url 'task_list_view' type='All' %}" class="side-menu__item">
-                                <i class="bx bx-task side-menu__icon"></i>
-                                <span class="side-menu__label">Task</span>
-                            </a>
-                        </li> -->
+                        <li class="slide__category"><span class="category-name">Web Manager</span></li>
 
+                        <!-- Start::Home page -->
+                        <li class="slide has-sub">
+                            <a href="javascript:void(0);" class="side-menu__item">
+                                <i class="bx bx-home side-menu__icon"></i>
+                                <span class="side-menu__label">Home Page</span>
+                                <i class="fe fe-chevron-right side-menu__angle"></i>
+                            </a>
+                            <ul class="slide-menu child1">
+                                <li class="slide"><a href="task-kanban-board.html" class="side-menu__item">Sliders</a></li>
+                                <li class="slide"><a href="task-list-view.html" class="side-menu__item">Director Message</a></li>
+                            </ul>
+                        </li>
+                        <!-- End -->
+                        
+                        <!-- Start::About Us -->
+                        <li class="slide has-sub">
+                            <a href="javascript:void(0);" class="side-menu__item">
+                                <i class="bx bx-medal side-menu__icon"></i>
+                                <span class="side-menu__label">About Us</span>
+                                <i class="fe fe-chevron-right side-menu__angle"></i>
+                            </a>
+                            <ul class="slide-menu child1">
+                                <li class="slide"><a href="task-list-view.html" class="side-menu__item">Team</a></li>
+                                <li class="slide"><a href="task-list-view.html" class="side-menu__item">Services</a></li>
+                                <li class="slide"><a href="task-kanban-board.html" class="side-menu__item">About Us</a></li>
+                                <li class="slide"><a href="task-list-view.html" class="side-menu__item">Bureau Structure</a></li>
+
+                                
+                            </ul>
+                        </li>
+                        <!-- End -->
+
+                        <!-- Start::Resources -->
+                        <li class="slide has-sub">
+                            <a href="javascript:void(0);" class="side-menu__item">
+                                <i class="bx bx-file-blank side-menu__icon"></i>
+                                <span class="side-menu__label">Resources</span>
+                                <i class="fe fe-chevron-right side-menu__angle"></i>
+                            </a>
+                            <ul class="slide-menu child1">
+                                <li class="slide"><a href="task-kanban-board.html" class="side-menu__item">Documents</a></li>
+                                <li class="slide"><a href="task-list-view.html" class="side-menu__item">Blocked Suppliers</a></li>
+                            </ul>
+                        </li>
+                        <!-- End -->
+
+                        <!-- Start::Announcements -->
+                        <li class="slide has-sub">
+                            <a href="javascript:void(0);" class="side-menu__item">
+                                <i class="bx bx-task side-menu__icon"></i>
+                                <span class="side-menu__label">Announcements </span>
+                                <i class="fe fe-chevron-right side-menu__angle"></i>
+                            </a>
+                            <ul class="slide-menu child1">
+                                <li class="slide"><a href="task-kanban-board.html" class="side-menu__item">Bids</a></li>
+                                <li class="slide"><a href="task-list-view.html" class="side-menu__item">Events</a></li>
+                                <li class="slide"><a href="task-list-view.html" class="side-menu__item">Vacancies</a></li>
+                                
+                            </ul>
+                        </li>
+                        <!-- End -->
+
+                        <!-- Start::News & blogs -->
+                        <li class="slide has-sub">
+                            <a href="javascript:void(0);" class="side-menu__item">
+                                <i class="bx bx-news side-menu__icon"></i>
+                                <span class="side-menu__label">News & Blogs </span>
+                                <i class="fe fe-chevron-right side-menu__angle"></i>
+                            </a>
+                            <ul class="slide-menu child1">
+                                <li class="slide"><a href="task-kanban-board.html" class="side-menu__item">News</a></li>
+                                
+                                <li class="slide has-sub">
+                                    <a href="javascript:void(0);" class="side-menu__item">Blogs
+                                        <i class="fe fe-chevron-right side-menu__angle"></i></a>
+                                    <ul class="slide-menu child2">
+                                        <li class="slide"><a href="javascript:void(0);" class="side-menu__item">Blogs</a></li>
+                                        <li class="slide"><a href="javascript:void(0);" class="side-menu__item">Categories</a></li>
+                                        
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- End -->
+
+                        <!-- Start::Gallery -->
+                        <li class="slide has-sub">
+                            <a href="javascript:void(0);" class="side-menu__item">
+                                <i class="bx bx-image side-menu__icon"></i>
+                                <span class="side-menu__label">Gallery </span>
+                                <i class="fe fe-chevron-right side-menu__angle"></i>
+                            </a>
+                            <ul class="slide-menu child1">
+                                <li class="slide"><a href="task-kanban-board.html" class="side-menu__item">Images</a></li>
+                                <li class="slide"><a href="task-list-view.html" class="side-menu__item">Videos</a></li>
+                                <li class="slide"><a href="task-list-view.html" class="side-menu__item">Categories</a></li>
+                                
+                            </ul>
+                        </li>
+                        <!-- End -->
+
+                        <!-- Start::Contact Us -->
+                        <li class="slide has-sub">
+                            <a href="javascript:void(0);" class="side-menu__item">
+                                <i class="bx bxs-envelope side-menu__icon"></i>
+                                <span class="side-menu__label">Contact Us </span>
+                                <i class="fe fe-chevron-right side-menu__angle"></i>
+                            </a>
+                            <ul class="slide-menu child1">
+                                <li class="slide"><a href="task-list-view.html" class="side-menu__item">FAQs</a></li>
+                                <li class="slide"><a href="task-list-view.html" class="side-menu__item">Quick Links</a></li>
+                                <li class="slide"><a href="task-kanban-board.html" class="side-menu__item">Contact Us Messages</a></li>
+                                
+                            </ul>
+                        </li>
+                        <!-- End -->
 
                         
                         <li class="slide__category"><span class="category-name">Internal</span></li>
@@ -692,86 +792,41 @@
                             </a>
                         </li>
                     
-                    <!--                         
-                        <li class="slide__category"><span class="category-name">Blog/News/events</span></li>
+                    
+                        <li class="slide__category"><span class="category-name">Web Settings</span></li>
                         <li class="slide">
-                            <a href="{% url 'news_list' %}" class="side-menu__item">
-                                <i class="bx bx-file side-menu__icon"></i>
-                                <span class="side-menu__label">Blogs</span>
-                            </a>
-                        </li> -->
-
-
-                        
-                        <!-- <li class="slide">
-                            <a href="{% url 'task_list_view' type='All' %}" class="side-menu__item">
-                                <i class="bx bx-home side-menu__icon"></i>
-                                <span class="side-menu__label">Task</span>
+                            <a href="{% url 'supplier_list' %}" class="side-menu__item">
+                                <i class="bx bx-cog side-menu__icon"></i>
+                                <span class="side-menu__label">Configuration</span>
                             </a>
                         </li>
                         <li class="slide">
                             <a href="{% url 'supplier_list' %}" class="side-menu__item">
-                                <i class="bx bx-home side-menu__icon"></i>
-                                <span class="side-menu__label">Blocked Supplier</span>
+                                <i class="bx bx-list-check side-menu__icon"></i>
+                                <span class="side-menu__label">Page Controller</span>
                             </a>
-                        </li> -->
-
+                        </li>
                         
-                        <!-- <li class="slide__category"><span class="category-name">User Manager</span></li>
+                        <li class="slide__category"><span class="category-name">User Manager</span></li>
                         
                         <li class="slide">
                             <a href="{% url 'admin_dashboard' %}" class="side-menu__item">
-                                <i class="bx bx-home side-menu__icon"></i>
+                                <i class="bx bx-user side-menu__icon"></i>
                                 <span class="side-menu__label">Users</span>
                             </a>
                         </li>
-                        <li class="slide">
+                        <!-- <li class="slide">
                             <a href="{% url 'admin_dashboard' %}" class="side-menu__item">
                                 <i class="bx bx-home side-menu__icon"></i>
                                 <span class="side-menu__label">Permissions</span>
                             </a>
-                        </li>
+                        </li> -->
                         <li class="slide">
                             <a href="{% url 'admin_dashboard' %}" class="side-menu__item">
                                 <i class="bx bx-home side-menu__icon"></i>
                                 <span class="side-menu__label">Role Types</span>
                             </a>
-                        </li> -->
-
-
-                        <!-- <li class="slide__category"><span class="category-name">Settings</span></li>
-                        
-                        <li class="slide">
-                            <a href="{% url 'admin_dashboard' %}" class="side-menu__item">
-                                <i class="bx bx-home side-menu__icon"></i>
-                                <span class="side-menu__label">Log</span>
-                            </a>
                         </li>
-                        <li class="slide">
-                            <a href="{% url 'admin_dashboard' %}" class="side-menu__item">
-                                <i class="bx bx-home side-menu__icon"></i>
-                                <span class="side-menu__label">Privacy</span>
-                            </a>
-                        </li>
-                        <li class="slide">
-                            <a href="{% url 'admin_dashboard' %}" class="side-menu__item">
-                                <i class="bx bx-home side-menu__icon"></i>
-                                <span class="side-menu__label">Partners</span>
-                            </a>
-                        </li>
-
-                        
-                        <li class="slide">
-                            <a href="{% url 'admin_dashboard' %}" class="side-menu__item">
-                                <i class="bx bx-home side-menu__icon"></i>
-                                <span class="side-menu__label">Contact Us</span>
-                            </a>
-                        </li> -->
-
-
-
-                      
-                       
                         
                     </ul>
                     <div class="slide-right" id="slide-right"><svg xmlns="" fill="#7b8191" width="24" height="24" viewBox="0 0 24 24"> <path d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z"></path> </svg></div>
@@ -779,7 +834,7 @@
             </div>
         </aside>
 
-        {% block main%}
+        {% block main %}
             <!-- placeholder some_content  -->
             
 
@@ -802,8 +857,10 @@
         <span class="arrow"><i class="fa fa-user"></i></span>
     </div>
 <div id="responsive-overlay"></div>
+<!-- <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script> -->
+<script src="{% static 'dashboard/js/jquery.min.js' %}"></script>
+<script>$("input,textarea").addClass("form-control")</script>
 <script src="{% static 'dashboard/libs/flatpickr/flatpickr.min.js' %}"></script>
-<script src="{% static 'dashboard/js/jobs-post.js' %}"></script>
 <script src="{% static 'dashboard/libs/@popperjs/core/umd/popper.min.js' %}"></script>
 <script src="{% static 'dashboard/libs/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 <script src="{% static 'dashboard/js/defaultmenu.min.js' %}"></script>
@@ -812,15 +869,15 @@
 <script src="{% static 'dashboard/libs/simplebar/simplebar.min.js' %}"></script>
 <script src="{% static 'dashboard/js/simplebar.js' %}"></script>
 <script src="{% static 'dashboard/libs/@simonwep/pickr/pickr.es5.min.js' %}"></script>
-<script src="{% static 'dashboard/libs/jsvectormap/js/jsvectormap.min.js' %}"></script>
-<script src="{% static 'dashboard/libs/jsvectormap/maps/world-merc.js' %}"></script>
+<script src="{% static 'dashboard/libs/jsvectormap/js/jsvectormap.min.js' "></script>
+<script src="{% static 'dashboard/libs/jsvectormap/maps/world-merc.js'"></script>
 <script src="{% static 'dashboard/libs/apexcharts/apexcharts.min.js' %}"></script>
-<script src="{% static 'dashboard/libs/chart.js/chart.min.js' %}"></script>
-<script src="{% static 'dashboard/js/crm-dashboard.js' %}"></script>
+<script src="{% static 'dashboard/libs/chart.js/chart.min.js' "></script>
+<script src="{% static 'dashboard/js/crm-dashboard.js' "></script>
 <script src="{% static 'dashboard/js/custom.js' %}"></script>
-<script src="{% static 'dashboard/js/hrm-dashboard.js' %}"></script>
+<script src="{% static 'dashboard/js/hrm-dashboard.js' "></script>
 <script src="{% static 'dashboard/js/custom-switcher.min.js' %}"></script>
-<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+<!-- 
 <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
@@ -829,9 +886,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.6/pdfmake.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
 <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script> 
+-->
 <script src="{% static 'dashboard/js/datatables.js' %}"></script>
 <script src="{% static 'dashboard/js/choices.js' %}"></script>
+<script src="{% static 'dashboard/js/jobs-post.js' %}"></script>
 
 
 {% block js %} {% endblock %}

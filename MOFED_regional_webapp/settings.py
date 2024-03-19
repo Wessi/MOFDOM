@@ -169,16 +169,6 @@ LANGUAGES = (
     ('ax', ('Amharic')),
 )
 
-LANGS = {
-    'en':'English',
-    'ax':'Amharic',
-    # 'tx':'Tigrigna'
-
-}
-
-# implement the search field for filer 
-DEFAULT_MODEL_ADMIN.search_fields = ['']
-
 
 # Our custom languages used in Ethiopia, not defined by Django
 EXTRA_LANG_INFO = {
@@ -203,9 +193,14 @@ LANG_INFO = dict(django.conf.locale.LANG_INFO, **EXTRA_LANG_INFO)
 django.conf.locale.LANG_INFO = LANG_INFO
 
 
-LOCALE_PATHS = [
-    os.path.join(BASE_DIR,'locale'),
-]
+## Settings for model translation
+MODELTRANSLATION_DEFAULT_LANGUAGE = 'en'
+MODELTRANSLATION_LANGUAGES = ('en','ax',) # Only amharic fields will be created, skipping en fields
+MODELTRANSLATION_ENABLE_FALLBACKS = True
+MODELTRANSLATION_FALLBACK_LANGUAGES = ('en',)
+
+
+LOCALE_PATHS = [ os.path.join(BASE_DIR,'locale'), ]
 
 TIME_ZONE = 'UTC'
 
@@ -247,8 +242,9 @@ EMAIL_USE_TLS=True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 
+# Package settings
 
-# cms settings
+## cms settings
 SITE_ID = 1
 CMS_TEMPLATES = (
     ("front/cms_base.html", ("Cms Base Template")),
@@ -277,26 +273,8 @@ INTERNAL_IPS = ["127.0.0.1",]
 
 DJANGOCMS_VERSIONING_ALLOW_DELETING_VERSIONS = True
 
-# roseta settings
+## Roseta settings
 ROSETTA_MESSAGES_PER_PAGE = 100
-
-# parler settings
-PARLER_DEFAULT_LANGUAGE_CODE = 'en'
-# PARLER_LANGUAGES = {
-#     None: (
-#         {'code': 'en',},
-#         {'code': 'ax',},
-#         {'code': 'tx',},
-#     ),
-#     'default': {
-#         'fallbacks': ['en'],          # defaults to PARLER_DEFAULT_LANGUAGE_CODE
-#         'hide_untranslated': False,   # the default; let .active_translations() return fallbacks too.
-#     }
-# }
-
-# Settings for model translation
-MODELTRANSLATION_DEFAULT_LANGUAGE = 'en'
-MODELTRANSLATION_LANGUAGES = ('en', 'ax', )
 
 
 JAZZMIN_SETTINGS = {
@@ -356,3 +334,7 @@ CSP_DEFAULT_SRC = ("'self'",)  # Allow resources from the same origin
 
 # Allow embedding from specific domains
 CSP_FRAME_SRC = ("'self'",)
+
+# implement the search field for filer package 
+DEFAULT_MODEL_ADMIN.search_fields = ['']
+
