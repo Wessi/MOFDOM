@@ -1,11 +1,14 @@
 from django.db import models
-from django.contrib.postgres.indexes import GinIndex
 
 class NewsCategory(models.Model):
     name = models.CharField(max_length=100)
     def __str__(self):
         return self.name
     
+    def get_list_fields():
+        return ['name']
+    
+    list_fields = get_list_fields()
 
 class NewsArticle(models.Model):
     title = models.CharField(max_length=255)
@@ -26,4 +29,7 @@ class NewsArticle(models.Model):
     def category(self):
         return self.news_category if self.news_category else ""
     
-
+    def get_list_fields():
+        return ['title', 'author', 'minutes_read', 'news_category', 'created_at']
+    
+    list_fields = get_list_fields()

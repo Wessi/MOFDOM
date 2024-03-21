@@ -12,7 +12,7 @@ class JobForm(forms.ModelForm):
             'vacancies': forms.Select(attrs={'class': 'form-control'}),
             'skills': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Skills'}),
             'job_deadline': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
-            'locationn': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Location'}),
+            'location': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Location'}),
             'level': forms.Select(attrs={'class': 'form-control'}),
             'job_description':forms.Textarea(attrs={'class': 'form-control','placeholder': 'description'})
         }

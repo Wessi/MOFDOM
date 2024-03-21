@@ -118,20 +118,19 @@
     {% cms_toolbar %} 
     
     {% render_block "js" %} 
-        <header id="header" class="header-effect-shrink"
+        <header id="header" style="max-height: 65px; height:65px;" class="header-effect-shrink"
             data-plugin-options="{'stickyEnabled': true, 'stickyEffect': 'shrink', 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': false, 'stickyChangeLogo': true, 'stickyStartAt': 30, 'stickyHeaderContainerHeight': 85}">
-            <div class="header-body header-body-bottom-border border-top-0" style="position:fixed; top:0;">
+            <div id="top-header" class="header-body header-body-bottom-border border-top-0" 
+                style="position:relative!important; top:0;">
                 <div class="header-top header-top-bottom-containered-border bg-primary">
                     <div class="container">
                         <div class="header-row">
                             <div class="header-column justify-content-start">
                                 <div class="header-row">
                                     <span class="text-light ">
-                                        {% if stg.title %}
-                                        {{stg.title}}
-                                        {% else %}
-                                        Addis Ababa Bureau of Finance
-                                        {% endif %}</span>
+                                        {% if stg.title %} {{stg.title}}
+                                        {% else %}Bureau of Finance{% endif %}
+                                    </span>
 
                                 </div>
                             </div>
@@ -143,7 +142,8 @@
                                             {% if stg.phone1 %}
                                             <li class="nav-item nav-item-anim-icon d-none d-lg-block">
                                                 <a class="nav-link ps-0" href="tel:{{stg.phone1}}"><i
-                                                        class="fa fa-phone"></i> {{stg.phone1}}</a>
+                                                        class="fa fa-phone"></i> {{stg.phone1}}
+                                                </a>
                                             </li>
                                             {% else %}
                                             <li class="nav-item nav-item-anim-icon d-none d-lg-block">
@@ -247,7 +247,7 @@
 
                                                <li class="dropdown ">
                                                     <a class="dropdown-item dropdown-toggle {% block about_dynamic %} {% endblock %}" href="#">
-                                                        About Bureau
+                                                       {% trans "About Bureau" %}
                                                     </a>
                                                     <ul class="dropdown-menu">
                                                         {% if pages.about %}
@@ -454,26 +454,13 @@
     <!-- <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script> -->
     <script src="{% static 'front/vendor/plugins/js/plugins.min.js' %}"></script>
     <script>
+        
     $('.child').each(function(){
             $(this).addClass("dropdown");
             $(this).find("ul").addClass("dropdown-menu")
         });
-    </script>
-
-    <!-- Theme Base, Components and Settings -->
-    <script src="{% static 'front/js/theme.js' %}"></script>
-    
-    <!-- Current Page Vendor and Views -->
-    <script src="{% static 'front/js/views/view.contact.js' %}"></script>
-    
-    <!-- Demo -->
-    <script src="{% static 'front/js/demos/demo-cleaning-services.js' %}"></script>
-    
-    <!-- Theme Initialization Files -->
-    <script src="{% static 'front/js/theme.init.js' %}"></script>
-
-    <script>
-        document.getElementById('header').style['height'] = "65px;";
+        document.getElementById('header').style['max-height'] = "65px;";
+        document.getElementById('top-header').style['position'] = "relative!important";
         
         function change_lang(s){
             document.querySelector("#id_lang_selector_form").submit()            
@@ -489,8 +476,19 @@
             $($(this).attr("href")).addClass("active");    
         });
 
-        
-     </script>
+    </script>
+
+    <!-- Theme Base, Components and Settings -->
+    <script src="{% static 'front/js/theme.js' %}"></script>
+    
+    <!-- Current Page Vendor and Views -->
+    <script src="{% static 'front/js/views/view.contact.js' %}"></script>
+    
+    <!-- Demo -->
+    <!-- <script src=" static 'front/js/demos/demo-cleaning-services.js' "></script> -->
+    
+    <!-- Theme Initialization Files -->
+    <script src="{% static 'front/js/theme.init.js' %}"></script>
    {% block js %}  {% endblock %}
 
 </body>

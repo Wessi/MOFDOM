@@ -2,7 +2,7 @@
 {% load static %}
 {% load custom_filters %}
 {% block main %}
-<div class="main-content app-content">
+
     <div class="container-fluid">
          <!-- Page Header -->
          {% if errors %}
@@ -21,28 +21,40 @@
             
         </div>
         <div class="col-xl-12">
-            <div class="card custom-card">
-                <div class="card-body  col-md-8 col-sm-12">
-                    <form method="post" enctype="multipart/form-data">
-                        {% csrf_token %}
-                        {% for field in form %}
-                        <div class="form-group mt-2 mb-4 ">
-                            <label class="form-label">{{field.label}}</label>
-                            {{field}}
-                            {{field.errors}}
-                            
-                            <small class="fw-semibold mb-1 text-muted">{{field.help_text}}</small>
-                            
-                        </div>
-                        {% endfor %}
-                       
-                        <button type="submit">Submit</button>
-                    </form>
-                    
+            <form method="post" enctype="multipart/form-data">
+                <div class="card custom-card">
+                    <div class="card-body  col-md-8 col-sm-12">
+                        
+                            {% csrf_token %}
+                            {% for field in form %}
+                            <div class="form-group mt-2 mb-4 form-check form-switch">
+                                <label class="form-label">{{forloop.counter}}. {{field.label}} </label>
+                                {% if field.field.widget.input_type == 'checkbox' %}
+                                <div class="form-check form-switch " style="display: inline-flex;margin-left: 1rem;">
+                                    {{field}}
+                                </div>
+                                {% else %}
+                                    {{field}}
+                                {% endif %}
+                                {{field.errors}}
+                                
+                                <small class="fw-semibold mb-1 text-muted">{{field.help_text}}</small>
+                                
+                            </div>
+                            {% endfor %}
+
+                    </div>
+                    <div class="card-footer px-5">
+
+                        <button type="submit" class="btn btn-primary float-end m-2"
+                            {% if not add %} onclick="return confirm('Are you sure you want to update this {{model_name}}')" {% endif %}>Submit</button>
+                        <button type="button" class="btn btn-secondary btn-outline float-end m-2" >Cancel</button>
+                        
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
        
     </div>
-</div>
+
 {% endblock %}

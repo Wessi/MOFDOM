@@ -1,9 +1,8 @@
 from django.db import models
 
 class About(models.Model):
-    # Model for the detail page of about us page
+    """ Model for the detail page of about us page"""
     is_single = True # Tells if the model should have multiple or single objects
-
     title = models.CharField(max_length=100, help_text= "Max of 100 Characters.")
     content = models.TextField()
     mission = models.TextField()
@@ -24,6 +23,7 @@ class About(models.Model):
 
 class TeamMember(models.Model):
     # Model for the section inside the about us, which lists Management experts
+    
     name = models.CharField(max_length=100)
     role = models.CharField(max_length=100)
     image = models.ImageField(upload_to='team_members/')
@@ -31,10 +31,17 @@ class TeamMember(models.Model):
     social_twitter = models.URLField(blank=True)
     social_google_plus = models.URLField(blank=True)
 
+    class Meta:
+        ordering = ('-id',)
+
     def __str__(self):
         return f"{self.name} | {self.role}"
 
-
+    def get_list_fields():
+        return ['name', 'role',]
+    list_fields = get_list_fields()
+    
+    
 class BureauStructure(models.Model):
     is_single = True # Tells if the model should have multiple or single objects
     # Model for the Bureau structure page

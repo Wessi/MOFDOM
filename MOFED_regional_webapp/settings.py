@@ -27,6 +27,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
+
     'about_us',
     'documents',
     'news',
@@ -36,12 +38,12 @@ INSTALLED_APPS = [
     'task_manager',
     'blogs',
     'accounts',
-    'templatetags',
     'core',
+
     # 'jazzmin',
     'djangocms_admin_style',
     'modeltranslation', # dynamic translation
-    'django.contrib.admin',
+    'django.contrib.admin', 
      
     # cms
     "django.contrib.sites",
@@ -79,12 +81,24 @@ INSTALLED_APPS = [
     "djangocms_googlemap",
     "djangocms_snippet",
     "djangocms_style",
-    # translation
-    # "parler",  
     'rosetta', #For generating language translating dashboard
+    'visit_counter', #Track user visits
     
-     
 ]
+
+CUSTOM_INSTALLED_APPS = [
+    'about_us',
+    'documents',
+    'news',
+    'suppliers',
+    'vacancies',
+    'dashboard',
+    'task_manager',
+    'blogs',
+    'accounts',
+    'core',   
+]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -96,8 +110,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     "whitenoise.middleware.WhiteNoiseMiddleware",
-    'core.middleware.VisitorMiddleware',
-
+    'visit_counter.middleware.UserVisitMiddleware',
+    
     # cms
     'cms.middleware.user.CurrentUserMiddleware',
     'cms.middleware.page.CurrentPageMiddleware',
@@ -167,6 +181,7 @@ LANGUAGE_CODE = 'en'
 LANGUAGES = (
     ('en', ('English')),
     ('ax', ('Amharic')),
+ 
 )
 
 
@@ -195,7 +210,7 @@ django.conf.locale.LANG_INFO = LANG_INFO
 
 ## Settings for model translation
 MODELTRANSLATION_DEFAULT_LANGUAGE = 'en'
-MODELTRANSLATION_LANGUAGES = ('en','ax',) # Only amharic fields will be created, skipping en fields
+MODELTRANSLATION_LANGUAGES = ('en','ax') # Only amharic fields will be created, skipping en fields
 MODELTRANSLATION_ENABLE_FALLBACKS = True
 MODELTRANSLATION_FALLBACK_LANGUAGES = ('en',)
 

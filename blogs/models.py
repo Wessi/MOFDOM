@@ -4,6 +4,10 @@ class BlogCategory(models.Model):
     name = models.CharField(max_length=100)
     def __str__(self):
         return self.name
+
+    def get_list_fields():
+        return ['name']
+    list_fields = get_list_fields()
     
     
 class Blog(models.Model):
@@ -24,6 +28,12 @@ class Blog(models.Model):
     def __str__(self):
         return self.title
     
+    def get_list_fields():
+        return ['title', 'blog_category','author','publish_date','published_status' ]
+    
+    list_fields = get_list_fields()
+    
+    
     def category(self):
         return self.blog_category if self.blog_category else ""
     
@@ -43,5 +53,11 @@ class Comment(models.Model):
 
     def __str__(self):
         return f'Comment by {self.author} on {self.blog.title}'
+
+    def get_list_fields():
+        return ['blog', 'author', 'email', 'approved' ]
+    
+    list_fields = get_list_fields()
+    
 
 

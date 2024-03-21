@@ -1,5 +1,6 @@
 
 {% extends 'front/base.html' %}
+{% load static %}
 {% block resource_dynamic %} active {% endblock %}
 {% block content %} 
 
@@ -22,7 +23,7 @@
                     </div>
                 </div>
                 <p  class="appear-animation text-center"  data-appear-animation="maskRight" data-appear-animation-delay="400"> 
-                    Find Out who the blocked suppliers are
+                    The following are list of suppliers registered as blocked suppliers by our bureau. 
                 </p>
             </div>
         </div>
@@ -41,49 +42,57 @@
                                 <i class="fas fa-search header-nav-top-icon"></i>
                             </button>
                         </div>
-                        <!-- <div class="input-group ">
-                            <input  class="form-control"  name="searched_item" type="search"  placeholder="Search for blocked suppliers">
-                            <span class="input-group-text " type="submit" >
-                                <i class="fas fa-search"></i>
-                            </span>
-                        </div> -->
                     </form>
                 </div>
             </div>
-    
-            <!-- Loop through suppliers and display dynamically -->
-                <div class="row mb-2 pb-2">
-                {% for supplier in suppliers %}
-                    <div class="col-lg-6 col-md-6 mb-4 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="600">
-                        <div class="card border-2 box-shadow-1 bg-color-light">
-                            <div class="card-body">
-                                <h4 class="card-title mb-1 text-5 font-weight-bold d-inline-block">{{forloop.counter}}. {{ supplier.company_name }}</h4>
-                                <p class="mb-0"><strong><i class="fa fa-check"></i> TIN:</strong> {{ supplier.tin }}</p>
-                                <p class="mb-0"><strong><i class="fa fa-check"></i> Sector:</strong> {{ supplier.sector }}</p>
-                                <p class="mb-0"><strong><i class="fa fa-check"></i> Area of Business:</strong> {{ supplier.area_of_business }}</p>
-                                
-                            </div>
-                        </div>
-                    </div>
-                {% endfor %}
+            <div class="table-responsive col-12 mt-3">
+                       
+                <table id="file-export" class="table table-bordered text-nowrap w-100">
+                <!-- <table class="table table-striped"> -->
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Company Name</th>
+                            <th>Tin Number</th>
+                            <th>Sector</th>
+                            <th>Business Area</th>    
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for supplier in suppliers %}
+                        <tr>
+                            <td>{{forloop.counter}}.</td>
+                            <td>{{ supplier.company_name }}</td>
+                            <td>{{ supplier.tin }}</td>
+                            <td>{{ supplier.sector }}</td>
+                            <td>{{ supplier.area_of_business }}</td>
+                        </tr>
+                        {% endfor %}
+                    
+                    </tbody>
+                </table>
             </div>
+        
 
-            <!-- pagination -->
-            <div class="row">
-                <div class="col-12">
-                    <ul class="pagination text-center justify-content-center">
-                        <li class="page-item"><a class="page-link m-1" href="#"><i class="fas fa-angle-left"></i></a></li>
-                        <li class="page-item active"><a class="page-link m-1" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link m-1" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link m-1" href="#"><i class="fas fa-angle-right"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-            <!-- end pagination -->
+            
+
+            
         </div>
     </div>
 </section>
 
 {% endblock %}
+
 {% block js %}
+    <script src="{% static 'dashboard/js/datatables.js' %}"></script>
+    <!-- Datatables Cdn -->
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.6/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script> 
 {% endblock %}

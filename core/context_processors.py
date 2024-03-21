@@ -9,7 +9,7 @@ from django.contrib.auth.models import AnonymousUser
 from news.models import NewsArticle
 from dashboard.models import *      # GalleryImage, Event
 from core.models import Settings, Pages
-from core.models import Visitors
+from visit_counter.models import UserVisit
 
 def recent_news_mega(request):
     recent_news = NewsArticle.objects.order_by('-created_at')
@@ -24,6 +24,6 @@ def stgs(request):
         'quick_links': quick_links,  # Include footer data in context
         'stg':Settings.objects.first(),
         'pages': pages,
-        'visitors':Visitors.objects.count()
+        'visitors':UserVisit.objects.count()
     }
 

@@ -31,7 +31,7 @@ class TranslatedForm(forms.ModelForm):
                     else: #For other types of languages, just update the label name
                         new_label = str(field.label).replace(f" [{lang_code}]", f" {LANGS[lang_code]}")
                         setattr(field,"label", new_label)
-        
+
         # Exclude original fields
         for name in to_exclude:
             self.fields.pop(name)

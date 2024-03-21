@@ -16,10 +16,10 @@ class GalleryCategory(models.Model):
     name = models.CharField(max_length=100)
     def __str__(self):
         return self.name
-
-    def has_many():return True
-
+    def get_list_fields():
+        return ['name']
     
+    list_fields = get_list_fields()
 
 class GalleryImage(models.Model):
     title = models.CharField(max_length=255)
@@ -35,6 +35,10 @@ class GalleryImage(models.Model):
     def category(self):
         return self.gallery_category if self.gallery_category else ""
     
+    def get_list_fields():
+        return ['title', 'gallery_category']
+    
+    list_fields = get_list_fields()
 
 class GalleryVideo(models.Model):
     title = models.CharField(max_length =255)
@@ -51,6 +55,10 @@ class GalleryVideo(models.Model):
     def category(self):
         return self.gallery_category if self.gallery_category else ""
     
+    def get_list_fields():
+        return ['title', 'gallery_category']
+    
+    list_fields = get_list_fields()
 
 class DirectorateMessage(models.Model):
     # A message from the bureau director displayed at the homepage
@@ -65,6 +73,7 @@ class DirectorateMessage(models.Model):
         return self.title
 
 
+
 class FeaturedWork(models.Model):
     # Slider contents displayed at the home page
     title = models.CharField(max_length=255)
@@ -76,11 +85,13 @@ class FeaturedWork(models.Model):
         verbose_name = _("Home Page Sliders")
         verbose_name_plural = _("Home Page Sliders")
     
-    # Tells if multiple objects can be created for this model 
-    def has_many():return True
-
     def __str__(self):
         return self.title
+    
+    def get_list_fields():
+        return ['title', 'description']
+    
+    list_fields = get_list_fields()
     
     
 class FAQ(models.Model):
@@ -94,10 +105,20 @@ class FAQ(models.Model):
     class Meta:
         ordering = ("-id",)
     
+    def get_list_fields():
+        return ['question', 'answer']
+    
+    list_fields = get_list_fields()
+    
     
 class QuickLink(models.Model):
     title = models.CharField(max_length=100)
     url = models.URLField()
+
+    def get_list_fields():
+        return ['title', 'url']
+    
+    list_fields = get_list_fields()
 
 
 class Event(models.Model):
@@ -107,3 +128,8 @@ class Event(models.Model):
     location = models.CharField(max_length=100)
     description = models.TextField()
     date = models.DateField()
+
+    def get_list_fields():
+        return ['title', 'time', 'location', 'date']
+    
+    list_fields = get_list_fields()

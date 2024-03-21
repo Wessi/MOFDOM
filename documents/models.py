@@ -28,3 +28,7 @@ class Document(models.Model):
     def file_extension(self):
         return get_file_extension(self.file.name)
     
+    def get_list_fields():
+        return ['title', 'category', 'upload_date']
+    
+    list_fields = get_list_fields()

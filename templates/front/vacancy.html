@@ -68,7 +68,7 @@
                             <span class="btn btn-sm {% if job.Status == 'Active' %}btn-success{% else %}btn-danger{% endif %} float-end">{{ job.Status }}</span>
                             <p><strong><i class="fa fa-calendar"></i> Deadline:</strong> {{ job.job_deadline }}</p>
                             <p class="card-text">{{ job.job_description }}</p>
-                            <p><strong><i class="fa fa-map-marker"></i> Location:</strong> {{ job.locationn }}</p>
+                            <p><strong><i class="fa fa-map-marker"></i> Location:</strong> {{ job.location }}</p>
                              <!-- Add Apply button -->
                             {% if job.Status == 'Active' %}
                              <a href="{% url 'jobs_apply' pk=job.id %}" class="btn btn-primary btn-sm">Apply</a>

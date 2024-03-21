@@ -6178,6 +6178,23 @@ section.page-header.custom-product {
 }
 
 /* custom code */
+.dt-button {
+    font-size: 12.8px;
+    font-size: .8rem;
+    padding: 4.8px 10.4px;
+    padding: 0.3rem 0.65rem;
+    --hover: var(--primary--200);
+    background-color: var(--primary);
+    border-color: var(--primary) var(--primary) var(--primary-300);
+    color: var(--primary-inverse);
+    display: inline-block;
+    margin-bottom: 1rem;
+    text-align: center;
+    vertical-align: middle;
+    border: var(--bs-btn-border-width) solid var(--bs-btn-border-color);
+    border-radius: var(--bs-btn-border-radius);
+        transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
 article .post .post-medium{
     border-radius: 10px 10px 0 0;
 }

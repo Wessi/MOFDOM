@@ -482,7 +482,6 @@
    
     <div class="page">
          <!-- app-header -->
-        
          
         <header class="app-header" style="position: relative;">
             <!-- Start::main-header-container -->
@@ -626,6 +625,7 @@
                 </div>
             </div>
         </header>
+        
         <aside class="app-sidebar sticky" id="sidebar">
             <div class="main-sidebar-header">
                 <a href="" class="header-logo">
@@ -635,9 +635,17 @@
             <div class="main-sidebar" id="sidebar-scroll">
                 <nav class="main-menu-container nav nav-pills flex-column sub-open">
                     <div class="slide-left" id="slide-left">
-                        <svg xmlns="" fill="#7b8191" width="24" height="24" viewBox="0 0 24 24"> <path d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"></path> </svg>
+                        <svg xmlns="" fill="#7b8191" width="24" height="24" viewBox="0 0 24 24"> 
+                            <path d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"></path> 
+                        </svg>
                     </div>
                     <ul class="main-menu">
+                        <li class="slide">
+                            <a href="{% url 'admin_dashboard' %}" class="side-menu__item">
+                                <i class="bx bx-user-admin side-menu__icon"></i>
+                                <span class="side-menu__label">Dashboard</span>
+                            </a>
+                        </li>
                         <li class="slide__category"><span class="category-name">Web Manager</span></li>
 
                         <!-- Start::Home page -->
@@ -648,8 +656,8 @@
                                 <i class="fe fe-chevron-right side-menu__angle"></i>
                             </a>
                             <ul class="slide-menu child1">
-                                <li class="slide"><a href="task-kanban-board.html" class="side-menu__item">Sliders</a></li>
-                                <li class="slide"><a href="task-list-view.html" class="side-menu__item">Director Message</a></li>
+                                <li class="slide"><a href="{% url 'list_view' model_name='FeaturedWork' %}" class="side-menu__item">Sliders</a></li>
+                                <li class="slide"><a href="{% url 'list_view' model_name='DirectorateMessage' %}" class="side-menu__item">Director Message</a></li>
                             </ul>
                         </li>
                         <!-- End -->
@@ -662,10 +670,10 @@
                                 <i class="fe fe-chevron-right side-menu__angle"></i>
                             </a>
                             <ul class="slide-menu child1">
-                                <li class="slide"><a href="task-list-view.html" class="side-menu__item">Team</a></li>
-                                <li class="slide"><a href="task-list-view.html" class="side-menu__item">Services</a></li>
-                                <li class="slide"><a href="task-kanban-board.html" class="side-menu__item">About Us</a></li>
-                                <li class="slide"><a href="task-list-view.html" class="side-menu__item">Bureau Structure</a></li>
+                                <li class="slide"><a href="{% url 'list_view' model_name='TeamMember' %}" class="side-menu__item">Team</a></li>
+                                <li class="slide"><a href="{% url 'list_view' model_name='FeaturedWork' %}" class="side-menu__item">Services</a></li>
+                                <li class="slide"><a href="{% url 'list_view' model_name='About' %}" class="side-menu__item">About Us</a></li>
+                                <li class="slide"><a href="{% url 'list_view' model_name='BureauStructure' %}" class="side-menu__item">Bureau Structure</a></li>
 
                                 
                             </ul>
@@ -680,8 +688,8 @@
                                 <i class="fe fe-chevron-right side-menu__angle"></i>
                             </a>
                             <ul class="slide-menu child1">
-                                <li class="slide"><a href="task-kanban-board.html" class="side-menu__item">Documents</a></li>
-                                <li class="slide"><a href="task-list-view.html" class="side-menu__item">Blocked Suppliers</a></li>
+                                <li class="slide"><a href="{% url 'list_view' model_name='Document' %}" class="side-menu__item">Documents</a></li>
+                                <li class="slide"><a href="{% url 'list_view' model_name='Supplier' %}" class="side-menu__item">Blocked Suppliers</a></li>
                             </ul>
                         </li>
                         <!-- End -->
@@ -694,9 +702,9 @@
                                 <i class="fe fe-chevron-right side-menu__angle"></i>
                             </a>
                             <ul class="slide-menu child1">
-                                <li class="slide"><a href="task-kanban-board.html" class="side-menu__item">Bids</a></li>
-                                <li class="slide"><a href="task-list-view.html" class="side-menu__item">Events</a></li>
-                                <li class="slide"><a href="task-list-view.html" class="side-menu__item">Vacancies</a></li>
+                                <li class="slide"><a href="{% url 'list_view' model_name='Supplier' %}" class="side-menu__item">Bids</a></li>
+                                <li class="slide"><a href="{% url 'list_view' model_name='Event' %}" class="side-menu__item">Events</a></li>
+                                <li class="slide"><a href="{% url 'list_view' model_name='Job' %}" class="side-menu__item">Vacancies</a></li>
                                 
                             </ul>
                         </li>
@@ -710,14 +718,23 @@
                                 <i class="fe fe-chevron-right side-menu__angle"></i>
                             </a>
                             <ul class="slide-menu child1">
-                                <li class="slide"><a href="task-kanban-board.html" class="side-menu__item">News</a></li>
+                                <li class="slide has-sub">
+                                    <a href="javascript:void(0);" class="side-menu__item">News
+                                        <i class="fe fe-chevron-right side-menu__angle"></i></a>
+                                    <ul class="slide-menu child2">
+                                        <li class="slide"><a href="{% url 'list_view' model_name='NewsArticle' %}" class="side-menu__item">News</a></li>
+                                        <li class="slide"><a href="{% url 'list_view' model_name='NewsCategory' %}" class="side-menu__item">News Categories</a></li>
+                                        
+                                    </ul>
+                                </li>
                                 
                                 <li class="slide has-sub">
                                     <a href="javascript:void(0);" class="side-menu__item">Blogs
                                         <i class="fe fe-chevron-right side-menu__angle"></i></a>
                                     <ul class="slide-menu child2">
-                                        <li class="slide"><a href="javascript:void(0);" class="side-menu__item">Blogs</a></li>
-                                        <li class="slide"><a href="javascript:void(0);" class="side-menu__item">Categories</a></li>
+                                        <li class="slide"><a href="{% url 'list_view' model_name='Blog' %}" class="side-menu__item">Blogs</a></li>
+                                        <li class="slide"><a href="{% url 'list_view' model_name='Comment' %}" class="side-menu__item">Blog Comments</a></li>
+                                        <li class="slide"><a href="{% url 'list_view' model_name='BlogCategory' %}" class="side-menu__item">Blog Categories</a></li>
                                         
                                     </ul>
                                 </li>
@@ -733,9 +750,9 @@
                                 <i class="fe fe-chevron-right side-menu__angle"></i>
                             </a>
                             <ul class="slide-menu child1">
-                                <li class="slide"><a href="task-kanban-board.html" class="side-menu__item">Images</a></li>
-                                <li class="slide"><a href="task-list-view.html" class="side-menu__item">Videos</a></li>
-                                <li class="slide"><a href="task-list-view.html" class="side-menu__item">Categories</a></li>
+                                <li class="slide"><a href="{% url 'list_view' model_name='GalleryImage' %}" class="side-menu__item">Images</a></li>
+                                <li class="slide"><a href="{% url 'list_view' model_name='GalleryVideo' %}" class="side-menu__item">Videos</a></li>
+                                <li class="slide"><a href="{% url 'list_view' model_name='GalleryCategory' %}" class="side-menu__item">Categories</a></li>
                                 
                             </ul>
                         </li>
@@ -749,9 +766,9 @@
                                 <i class="fe fe-chevron-right side-menu__angle"></i>
                             </a>
                             <ul class="slide-menu child1">
-                                <li class="slide"><a href="task-list-view.html" class="side-menu__item">FAQs</a></li>
-                                <li class="slide"><a href="task-list-view.html" class="side-menu__item">Quick Links</a></li>
-                                <li class="slide"><a href="task-kanban-board.html" class="side-menu__item">Contact Us Messages</a></li>
+                                <li class="slide"><a href="{% url 'list_view' model_name='FAQ' %}" class="side-menu__item">FAQs</a></li>
+                                <li class="slide"><a href="{% url 'list_view' model_name='QuickLink' %}" class="side-menu__item">Quick Links</a></li>
+                                <li class="slide"><a href="{% url 'list_view' model_name='ContactUs' %}" class="side-menu__item">Contact Us Messages</a></li>
                                 
                             </ul>
                         </li>
@@ -785,28 +802,32 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="slide">
-                            <a href="{% url 'supplier_list' %}" class="side-menu__item">
-                                <i class="bx bx-block side-menu__icon"></i>
-                                <span class="side-menu__label">Blocked Supplier</span>
-                            </a>
-                        </li>
+                        
                     
                     
                         <li class="slide__category"><span class="category-name">Web Settings</span></li>
                         <li class="slide">
-                            <a href="{% url 'supplier_list' %}" class="side-menu__item">
+                            <a href="{% url 'list_view' model_name='Settings' %}" class="side-menu__item">
                                 <i class="bx bx-cog side-menu__icon"></i>
-                                <span class="side-menu__label">Configuration</span>
+                                <span class="side-menu__label">Main Setting</span>
                             </a>
                         </li>
                         <li class="slide">
-                            <a href="{% url 'supplier_list' %}" class="side-menu__item">
+                            <a href="{% url 'list_view' model_name='Pages' %}" class="side-menu__item">
                                 <i class="bx bx-list-check side-menu__icon"></i>
                                 <span class="side-menu__label">Page Controller</span>
                             </a>
                         </li>
+                        <li class="slide">
+                            <a href="/dashboard/translator/" class="side-menu__item">
+                                <i class="bx bx-cog side-menu__icon"></i>
+                                <span class="side-menu__label">Translation Dictionary</span>
+                            </a>
+                        </li>
                         
+
+
+                        <!-- user management -->
                         <li class="slide__category"><span class="category-name">User Manager</span></li>
                         
                         <li class="slide">
@@ -833,12 +854,20 @@
                 </nav>
             </div>
         </aside>
-
-        {% block main %}
-            <!-- placeholder some_content  -->
-            
-
-        {% endblock %}
+        
+        <div class="main-content app-content">
+            {% if messages %}
+                {% for m in messages %}
+                <div class="alert alert-{{m.tags}} alert-dismissible fade show custom-alert-icon shadow-sm" role="alert">
+                    {{m|safe}}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"><i class="bx bx-cross"></i></button>
+                </div>
+                {% endfor %}
+            {% endif %}
+            {% block main %}{% endblock %}
+        </div>
+        
+        
         <!-- Footer Start -->
         <footer class="footer mt-auto py-3 bg-white text-center">
             <div class="container">
@@ -859,7 +888,11 @@
 <div id="responsive-overlay"></div>
 <!-- <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script> -->
 <script src="{% static 'dashboard/js/jquery.min.js' %}"></script>
-<script>$("input,textarea").addClass("form-control")</script>
+<script>
+$("input,textarea,select").addClass("form-control");
+// <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked="">
+$("input[type='checkbox']").removeClass("form-control").addClass("form-check-input").attr("role", "switch")
+</script>
 <script src="{% static 'dashboard/libs/flatpickr/flatpickr.min.js' %}"></script>
 <script src="{% static 'dashboard/libs/@popperjs/core/umd/popper.min.js' %}"></script>
 <script src="{% static 'dashboard/libs/bootstrap/js/bootstrap.bundle.min.js' %}"></script>

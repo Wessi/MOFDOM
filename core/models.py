@@ -13,11 +13,16 @@ class ContactUs(models.Model):
     
     class Meta:
         ordering = ('-id',)
+    
+    def get_list_fields():
+        return ['full_name', 'email','subject','sent_date']
+    
+    list_fields = get_list_fields()
+    
 
 
 class Settings(models.Model):
     is_single = True # Tells if the model should have multiple or single objects
-
     title = models.CharField(max_length=255, blank=False, default ="Bureau of Finance")
     logo = models.ImageField(upload_to="Logo")
     phone1 = models.CharField(max_length=255, blank=False, )

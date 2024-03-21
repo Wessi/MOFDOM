@@ -22,7 +22,7 @@ class Job(models.Model):
     ])
     skills = models.CharField(max_length=255)
     job_deadline = models.DateField()
-    locationn = models.CharField(max_length=255, default='')  # Assuming location is a character field
+    location = models.CharField(max_length=255, default='')  # Assuming location is a character field
 
     level = models.CharField(max_length=255, choices=[
         ('Junior', 'Junior'),
@@ -35,6 +35,11 @@ class Job(models.Model):
         ordering = ("-id",)
     def __str__(self):
         return self.job_title
+
+    def get_list_fields():
+        return ['job_title', 'job_type', 'Status', 'job_deadline']
+    
+    list_fields = get_list_fields()
 
 
 class Application(models.Model):

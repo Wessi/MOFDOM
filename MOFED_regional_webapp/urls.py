@@ -40,7 +40,6 @@ urlpatterns = [
     path('i18n/', include('django.conf.urls.i18n')),
     
     path('filer/', include('filer.urls')),
-    path('translator/', include('rosetta.urls')),
     path('', include('cms.urls')),
 
 ]

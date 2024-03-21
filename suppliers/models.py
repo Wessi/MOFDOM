@@ -1,12 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.translation import gettext as _
 
 class Supplier(models.Model):
     SECTOR_CHOICES = [
-        ('Private', 'Private'),
-        ('Corporate', 'Corporate'),
-        ('Retail', 'Retail'),
-        ('Merchant', 'Merchant'),
+        ('Private', _('Private')),
+        ('Corporate', _('Corporate')),
+        ('Retail', _('Retail')),
+        ('Merchant', _('Merchant')),
     ]
     tin = models.CharField(max_length=20)
     company_name = models.CharField(max_length=100)
@@ -25,6 +26,10 @@ class Supplier(models.Model):
 
     def __str__(self):
         return self.company_name
+    def get_list_fields():
+        return ['company_name', 'tin', 'nationality', 'area_of_business']
+    
+    list_fields = get_list_fields()
     
     
 class BlockedSupplier(models.Model):
