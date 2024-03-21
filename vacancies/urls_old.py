@@ -9,7 +9,7 @@ urlpatterns = [
     path('vacancy_board/', vacancy_board, name='vacancy_board'),
     path('jobs_detail/<int:job_id>/', jobs_detail, name='jobs_detail'),
     path('job_list_admin/', job_list_admin, name='job_list_admin'),
-    path('job_list/', job_list_ytemplate, name='job_list_ytemplate'),
+    path('job_list/', job_list, name='job_list'),
     path('job/<int:job_id>/delete/', delete_job, name='delete_job'),
 ]
 

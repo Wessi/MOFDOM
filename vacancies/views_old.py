@@ -12,7 +12,7 @@ from django.shortcuts import get_object_or_404
 
 #new from yismu
 
-def job_list_ytemplate(request):
+def job_list(request):
     jobs = Job.objects.all()
     return render(request, 'front/vacancy.html', {'jobs': jobs})
     

@@ -1,7 +1,7 @@
 from django.db import models
 
 class NewsCategory(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100,help_text="Make sure to submit a max of 100 characters.")
     def __str__(self):
         return self.name
     
@@ -11,10 +11,11 @@ class NewsCategory(models.Model):
     list_fields = get_list_fields()
 
 class NewsArticle(models.Model):
-    title = models.CharField(max_length=255)
-    author = models.CharField(max_length=100)
+    title = models.CharField(max_length=255,help_text="Make sure to submit a max of 255 characters.")
+    author = models.CharField(max_length=100,help_text="Make sure to submit a max of 100 characters.")
     content = models.TextField()
-    featured_image = models.ImageField(upload_to='news_images/')
+    featured_image = models.ImageField(upload_to='news_images/',
+                                       help_text="Make sure to submit an image of 400 X 300.")
     minutes_read = models.IntegerField()
     likes = models.IntegerField(default=0)
     news_category = models.ForeignKey(NewsCategory, on_delete = models.SET_NULL, null=True) 

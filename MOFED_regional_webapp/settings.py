@@ -87,6 +87,7 @@ INSTALLED_APPS = [
 ]
 
 CUSTOM_INSTALLED_APPS = [
+    'django.contrib.auth',
     'about_us',
     'documents',
     'news',

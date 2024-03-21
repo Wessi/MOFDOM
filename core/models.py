@@ -23,8 +23,9 @@ class ContactUs(models.Model):
 
 class Settings(models.Model):
     is_single = True # Tells if the model should have multiple or single objects
-    title = models.CharField(max_length=255, blank=False, default ="Bureau of Finance")
-    logo = models.ImageField(upload_to="Logo")
+    title = models.CharField(max_length=255, blank=False, default ="Bureau of Finance", 
+                             help_text="Make sure to submit a max of 255 characters.")
+    logo = models.ImageField(upload_to="Logo",help_text="Make sure to submit an image of equal width and height preferably with empty background.")
     phone1 = models.CharField(max_length=255, blank=False, )
     phone2 = models.CharField(max_length=255, blank=True,default = "" )
     email = models.EmailField(blank=True)
@@ -38,6 +39,10 @@ class Settings(models.Model):
     working_hours = models.CharField(max_length=100)  # Adding working hours
     map_link = models.TextField( blank=True, null=True, help_text = "Embed the full 'iframe' tag from google maps" )
 
+    main_color = models.CharField(max_length=15, default="", blank=True)
+    main_reverse_color = models.CharField(max_length=15, default="", blank=True)
+    grey = models.CharField(max_length=15, default="", blank=True)
+    
     
 class Pages(models.Model):
     is_single = True # Tells if the model should have multiple or single objects

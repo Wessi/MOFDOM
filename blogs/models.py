@@ -1,7 +1,7 @@
 from django.db import models
 
 class BlogCategory(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100,help_text="Make sure to submit a max of 100 characters.")
     def __str__(self):
         return self.name
 
@@ -11,7 +11,7 @@ class BlogCategory(models.Model):
     
     
 class Blog(models.Model):
-    title = models.CharField(max_length=255)
+    title = models.CharField(max_length=255,help_text="Make sure to submit a max of 255 characters.")
     blog_category = models.ForeignKey(BlogCategory, on_delete = models.SET_NULL, null=True)
     author = models.CharField(max_length=255)
     author_email = models.EmailField()
@@ -20,7 +20,7 @@ class Blog(models.Model):
     published_status = models.CharField(max_length=20, choices=[('Published', 'Published'), ('Hold', 'Hold')])
     content = models.TextField()
     blog_type = models.CharField(max_length=10, choices=[('Free', 'Free'), ('Paid', 'Paid')])
-    images = models.ImageField(upload_to='blog_images/')
+    images = models.ImageField(upload_to='blog_images/',help_text="Make sure to submit an image of 500 X 300.")
 
     class Meta:
         ordering = ("-id",)

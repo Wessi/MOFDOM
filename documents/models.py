@@ -13,9 +13,9 @@ class Document(models.Model):
         ('Annual Report', 'Annual Report'),
         ('Other', 'Other'),
     )
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=200,help_text="Make sure to submit a max of 200 characters.")
     category = models.CharField(max_length=200, choices=CATEGORY_CHOICES, default='OTH')
-    description = models.TextField()
+    description = models.TextField(help_text="Make sure to submit a max of 255 characters.")
     upload_date = models.DateTimeField(auto_now_add=True)
     file = models.FileField(upload_to='documents/')
 

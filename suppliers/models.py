@@ -10,11 +10,11 @@ class Supplier(models.Model):
         ('Merchant', _('Merchant')),
     ]
     tin = models.CharField(max_length=20)
-    company_name = models.CharField(max_length=100)
-    legal_form = models.CharField(max_length=100)
-    nationality = models.CharField(max_length=100)
-    area_of_business = models.CharField(max_length=100)
-    sector = models.CharField(max_length=100, choices=SECTOR_CHOICES)
+    company_name = models.CharField(max_length=255,help_text="Make sure to submit a max of 255 characters.")
+    legal_form = models.CharField(max_length=100,help_text="Make sure to submit a max of 100 characters.")
+    nationality = models.CharField(max_length=100,help_text="Make sure to submit a max of 100 characters.")
+    area_of_business = models.CharField(max_length=255,help_text="Make sure to submit a max of 255 characters.")
+    sector = models.CharField(max_length=100, choices=SECTOR_CHOICES,help_text="Make sure to submit a max of 100 characters.")
     
     @property
     def get_name(self):
@@ -32,10 +32,3 @@ class Supplier(models.Model):
     list_fields = get_list_fields()
     
     
-class BlockedSupplier(models.Model):
-    supplier = models.ForeignKey(Supplier, on_delete=models.CASCADE)
-    reason = models.TextField()
-    blocked_at = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return f"{self.supplier.company_name} - Blocked at {self.blocked_at}"

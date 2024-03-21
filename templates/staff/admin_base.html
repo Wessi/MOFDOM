@@ -23,6 +23,15 @@
     <link rel="stylesheet" href="{% static 'dashboard/libs/jsvectormap/css/jsvectormap.min.css' %}">
     <link rel="stylesheet" href="{% static 'dashboard/libs/swiper/swiper-bundle.min.css' %}">
     <link rel="stylesheet" href="{% static 'dashboard/libs/choices.js/public/assets/styles/choices.min.css' %}">
+
+    <!-- Color Picker Css -->
+    <link rel="stylesheet" href="{% static 'dashboard/libs/flatpickr/flatpickr.min.css' %}">
+    <link rel="stylesheet" href="{% static 'dashboard/libs/@simonwep/pickr/themes/nano.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'dashboard/libs/@simonwep/pickr/themes/classic.min.css' %}">
+    <link rel="stylesheet" href="{% static 'dashboard/libs/@simonwep/pickr/themes/monolith.min.css' %}">
+    <link rel="stylesheet" href="{% static 'dashboard/libs/@simonwep/pickr/themes/nano.min.css' %}">
+
     <style>
         div.cms .cms-toolbar-item-logo a:before{
             content:none!important;
@@ -831,7 +840,7 @@
                         <li class="slide__category"><span class="category-name">User Manager</span></li>
                         
                         <li class="slide">
-                            <a href="{% url 'admin_dashboard' %}" class="side-menu__item">
+                            <a href="{% url 'list_view' model_name='UserProfile' %}" class="side-menu__item">
                                 <i class="bx bx-user side-menu__icon"></i>
                                 <span class="side-menu__label">Users</span>
                             </a>
@@ -843,9 +852,9 @@
                             </a>
                         </li> -->
                         <li class="slide">
-                            <a href="{% url 'admin_dashboard' %}" class="side-menu__item">
+                            <a href="{% url 'list_view' model_name='Group' %}" class="side-menu__item">
                                 <i class="bx bx-home side-menu__icon"></i>
-                                <span class="side-menu__label">Role Types</span>
+                                <span class="side-menu__label">User Groups</span>
                             </a>
                         </li>
                         
@@ -910,6 +919,12 @@ $("input[type='checkbox']").removeClass("form-control").addClass("form-check-inp
 <script src="{% static 'dashboard/js/custom.js' %}"></script>
 <script src="{% static 'dashboard/js/hrm-dashboard.js' "></script>
 <script src="{% static 'dashboard/js/custom-switcher.min.js' %}"></script>
+
+<!-- Color Picker JS -->
+<script src="{% static 'dashboard/libs/@simonwep/pickr/pickr.es5.min.js' %}"></script>
+<!-- Color Picker JS -->
+<script src="{% static 'dashboard/js/color-picker.js' %}"></script>
+
 <!-- 
 <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>

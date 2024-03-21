@@ -57,5 +57,12 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name'] # will appear at py manage.py createsuperuser thingy
 
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
     class Meta:
         ordering = ('-id',)
+
+    def get_list_fields():
+        return ['email', 'first_name', 'last_name', 'role', 'is_active', 'status', 'date_joined']
+    
+    list_fields = get_list_fields()

@@ -6,13 +6,22 @@ from django.shortcuts import render,redirect
 from django.utils.translation import gettext as _
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
+from django.contrib.auth.models import Group
+
+from blogs.models import Blog
 from core.forms import get_form
-from task_manager.models import Task 
-from vacancies.models import Job, Application
+from core.models import ContactUs
 from dashboard.models import Event 
+from news.models import NewsArticle
+from task_manager.models import Task 
+from documents.models import Document
+from suppliers.models import Supplier
+from vacancies.models import Job, Application
+from dashboard.models import GalleryImage, GalleryVideo
 
 def get_model(name):
     # app_labels = ['about_us','blogs','']
+    if name=='Group': return Group
     for app_label in settings.CUSTOM_INSTALLED_APPS:
         try:
             model = apps.get_model(app_label=app_label, model_name=name) 
@@ -22,8 +31,6 @@ def get_model(name):
             pass
             
 def get_conf(request, kwargs):
-    # if 'model_name' in kwargs and kwargs['model_name'] in model_conf.keys():
-        # conf = model_conf[kwargs['model_name']]
         model = get_model(kwargs['model_name'])
         if model: 
             model_name:str = model._meta.verbose_name or kwargs['model_name'].capitalize()
@@ -31,10 +38,7 @@ def get_conf(request, kwargs):
             is_single = getattr(model,'is_single',False)
             return {"model":model, "form":form, "model_name": model_name,"single": is_single}
     
-    # else:
-    #     # messages.error(request, "Page not found!")
-    #     return redirect("admin_dashboard")
-
+    
 
 class Dashboard(LoginRequiredMixin, View ):
     def get(self, request):
@@ -45,18 +49,31 @@ class Dashboard(LoginRequiredMixin, View ):
             'progress':tasks.filter(status ='Inprogress').count(),
             'pending':tasks.filter(status='Pending').count()
         }
-        jobs = Job.objects.all()
-        applications = Application.objects.count()
-        events = Event.objects.all()
-        return render(request, 'staff/admin_home.html', {'tasks':task_data, 'jobs':jobs, 'applications':applications, 'events':events})
+
+        return render(request, 'staff/admin_home.html', 
+                      {'tasks':task_data, 
+                       'jobs':Job.objects.count(), 
+                       'applications':Application.objects.count(), 
+                       'events':Event.objects.all(),
+                       'galleries':GalleryImage.objects.count(), 
+                       'videos':GalleryVideo.objects.count(),
+                       'docs':Document.objects.count(),
+                       'news':NewsArticle.objects.count(),
+                       'blogs':Blog.objects.count(),
+                       'contactus': ContactUs.objects.all()[:5],
+                       'blocked_supplier':Supplier.objects.all()[:5]
+                       }
+                    )
     
     
 
 class CreateView(LoginRequiredMixin, View):
     def get(self, *args, **kwargs):
         config = get_conf(self.request, self.kwargs)
-        if not isinstance(config,dict):
+        if not config:
+            messages.error(self.request, "Page not found!")
             return redirect("admin_dashboard")
+        
         
         # if config.isinstance()
         model, model_name  = config["model"], config["model_name"] 
@@ -69,6 +86,10 @@ class CreateView(LoginRequiredMixin, View):
     
     def post(self, *args, **kwargs):
         config = get_conf(self.request, self.kwargs)
+        if not config:
+            messages.error(self.request, "Page not found!")
+            return redirect("admin_dashboard")
+        
         model = config["model"]
         form = config["form"](self.request.POST, self.request.FILES)
         if form.is_valid():
@@ -89,6 +110,10 @@ class CreateView(LoginRequiredMixin, View):
 class ChangeView(LoginRequiredMixin, View):
     def get(self, *args, **kwargs):
         config = get_conf(self.request,self.kwargs)
+        if not config:
+            messages.error(self.request, "Page not found!")
+            return redirect("admin_dashboard")
+        
         model, model_name = config["model"], config["model_name"]
         
         # if model is single, just bring the first object
@@ -107,6 +132,10 @@ class ChangeView(LoginRequiredMixin, View):
     
     def post(self, *args, **kwargs):
         config = get_conf(self.request,self.kwargs)
+        if not config:
+            messages.error(self.request, "Page not found!")
+            return redirect("admin_dashboard")
+        
         model, model_name = config["model"], config["model_name"]
         obj = model.objects.get(id = self.kwargs['pk'])
         form = config["form"](self.request.POST,self.request.FILES,instance = obj)
@@ -123,8 +152,11 @@ class ChangeView(LoginRequiredMixin, View):
 
 class ListView(LoginRequiredMixin, View):
     def get(self, *args, **kwargs):
-        # messages.success(self.request, "yo man")
         config = get_conf(self.request,self.kwargs)
+        if not config:
+            messages.error(self.request, "Page not found!")
+            return redirect("admin_dashboard")
+        
         model, formal_name = config["model"], config["model_name"]
         # if model is single, just bring the first object
         if config['single']:

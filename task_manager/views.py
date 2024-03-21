@@ -1,13 +1,14 @@
-from django.shortcuts import render, redirect,get_object_or_404
-from .models import *
-from .forms import TaskForm
 from django.views import View
 from django.utils import timezone
-from .forms import CommentForm, TaskForm
-from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from django.http import HttpResponseRedirect
-from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect,get_object_or_404
+from django.core.mail import EmailMultiAlternatives, send_mail
+
+from .models import Task, Comment
+from .forms import CommentForm, TaskForm
 
 class ListTasks(LoginRequiredMixin, View):
     def get(self, *args, **kwargs):
@@ -25,42 +26,56 @@ class ListTasks(LoginRequiredMixin, View):
         return render(self.request, 'task-list-view.html', context)
     
 
-def create_task(request):
-    if request.method == 'POST':
+class AssignTask(LoginRequiredMixin, View):
+    def get(self, request):
+        return redirect('task_list_view', type="All")
+    
+    def post(self, request):
         form = TaskForm(request.POST)
         if form.is_valid():
-            form.save()
-        else:
+            task = form.save(commit=False)
+            task.created_by = request.user
+            task.save()
+            form.save_m2m()
+            messages.success(request, "Task assigned successfully!")
             
-            print("not working",form.errors)
+            # send email for assigned users
+            for u in task.assigned_to.all():
+                msg = f"You have been assigned on a new task named: {task.task_name}."
+                email = u.email
+                e = EmailMultiAlternatives(f"Assigned on new task : {task.task_name}", msg,
+                                           from_email="Finance Bureau",
+                                           to=[str(email)], )
+                m = e.send()
+            
+            messages.success(request, "Notification email sent to assigned users!")
+            
+            # send email for the monitors
+            for u in task.monitoring.all():
+                msg = f"You have been assigned to monitor a new task named: {task.task_name}."
+                email = u.email
+                e = EmailMultiAlternatives(f"Assigned as a monitor for a new task : {task.task_name}", msg,
+                                           from_email="Finance Bureau",
+                                           to=[str(email)], )
+                m = e.send()
+            
+            messages.success(request, "Notification email sent to users assigned as monitors!")
+            return redirect('task_list_view',type='All')
         
-        return redirect('task_list_view')
-
-    else:
-        print("+++++")
-        form = TaskForm()
-    return redirect('task_list_view')
+            
+        print(form.errors)
+        messages.error(request, "Invalid data detected. Please recheck your inputs!")
+        return redirect('task_list_view', type='All')
 
 
 def delete_task(request, task_id):
-    task = get_object_or_404(Task, id=task_id)
-
-    if request.method == 'POST':
-        task.delete()
-        return redirect('task_list_view')  # Redirect to your task list view after deletion
-
-    context = {
-        'task': task,
-    }
-    return render(request, 'delete_task.html', context)
-
-
-def task_details(request, task_id):
-    task = get_object_or_404(Task, id=task_id)
-    context = {
-        'task': task,
-    }
-    return render(request, 'task_details_admin.html', context)
+    try:
+        task = get_object_or_404(Task, id=task_id)
+        task.delete() 
+        messages.success(request, "Task deleted successfully!")
+    except Exception as e:
+        messages.error(request, str(e))
+    return redirect('task_list_view', type='All')
 
 
 class TaskDetailsView(View):
@@ -68,9 +83,8 @@ class TaskDetailsView(View):
 
     def get_context_data(self, task_id):
         task = get_object_or_404(Task, id=task_id)
-
         # Assuming you have the currently logged-in user
-        assigned_by_user = self.request.user
+        assigned_by_user = task.created_by
 
         # Calculate progress based on due date and current date
         total_days = (task.due_date - task.assigned_date).days
@@ -81,6 +95,7 @@ class TaskDetailsView(View):
             'task': task,
             'assigned_by_user': assigned_by_user,
             'progress': progress,
+            'comments':task.comments.filter(parent_comment= None)
         }
 
         return context
@@ -102,15 +117,12 @@ def add_comment(request, task_id):
         if form.is_valid():
             user_profile = request.user
             content = form.cleaned_data['comment_content']
-            comment = Comment.objects.create(task=task, user=user_profile, content=content)
-            return HttpResponseRedirect(request.path_info)  # Redirect to the same page after posting comment
-    else:
-        form = CommentForm()
-    context = {
-        'task': task,
-        'form': form,
-    }
-    return render(request, 'task_details_admin.html', context)
+            Comment.objects.create(task=task, user=user_profile, content=content)
+            messages.success(request, "Successfully commented on task.")
+            return redirect('task_details', task_id=task.id)  # Redirect to the same page after posting comment
+    
+    return redirect('task_details', task_id=task.id)
+    # return render(request, 'task_details_admin.html', context)
 
 
 @login_required

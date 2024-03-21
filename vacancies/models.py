@@ -2,7 +2,7 @@ from django.db import models
 
 class Job(models.Model):
     job_description = models.TextField(null=True, blank=True)
-    job_title = models.CharField(max_length=255)
+    job_title = models.CharField(max_length=255,help_text="Make sure to submit a max of 255 characters.")
     job_type = models.CharField(max_length=50, choices=[
         ('Contract', 'Contract'),
         ('Freelance', 'Freelance'),
@@ -20,9 +20,9 @@ class Job(models.Model):
         (5, 5),
         (10, 10),
     ])
-    skills = models.CharField(max_length=255)
+    skills = models.CharField(max_length=255,help_text="Make sure to submit a max of 255 characters.")
     job_deadline = models.DateField()
-    location = models.CharField(max_length=255, default='')  # Assuming location is a character field
+    location = models.CharField(max_length=255, default='',help_text="Make sure to submit a max of 255 characters.")  # Assuming location is a character field
 
     level = models.CharField(max_length=255, choices=[
         ('Junior', 'Junior'),

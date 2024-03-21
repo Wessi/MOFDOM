@@ -21,9 +21,10 @@ PRIORITY_CHOICES = (
 )
 
 class Task(models.Model):
+    created_by = models.ForeignKey(UserProfile, related_name = 'created_tasks',blank=True, null=True, on_delete=models.CASCADE)
     assigned_to = models.ManyToManyField(UserProfile, related_name='assigned_tasks')
     monitoring = models.ManyToManyField(UserProfile, related_name='monitoring_tasks')
-    task_name = models.CharField(max_length=255)
+    task_name = models.CharField(max_length=255,help_text="Make sure to submit a max of 255 characters.")
 
     assigned_date = models.DateTimeField(auto_now_add=True, editable = True)
     start_date = models.DateTimeField( blank=True, null=True)
@@ -32,6 +33,9 @@ class Task(models.Model):
     priority = models.CharField(max_length=20, choices=PRIORITY_CHOICES, default='Medium')
     task_description = models.TextField()
     key_tasks = models.TextField()
+    
+    class Meta:
+        ordering = ('-id',)
 
     def __str__(self):
         return self.task_name
@@ -51,26 +55,3 @@ class Comment(models.Model):
     def __str__(self):
         return f"Comment by {self.user.username} on {self.task.task_name}"
 
-
-class Notification(models.Model):
-    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='notifications')
-    message = models.CharField(max_length=255)
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return self.message
-# @receiver(post_save, sender=Comment)
-# def create_comment_notification(sender, instance, created, **kwargs):
-#     if created:
-#         Notification.objects.create(
-#             user=instance.task.assigned_to,
-#             message=f"New comment added to task: {instance.task.task_name}"
-#         )
-
-# @receiver(post_save, sender=Task)
-# def create_task_notification(sender, instance, created, **kwargs):
-#     if created:
-#         Notification.objects.create(
-#             user=instance.assigned_to,
-#             message=f"New task created: {instance.task_name}"
-#         )

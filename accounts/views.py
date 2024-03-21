@@ -61,8 +61,7 @@ class Login(View):
             return render(request, 'login.html', {'form':form})
 
 
-        # return render(request, 'front/registration/login.html', {'form':AuthenticationForm})
-
+       
     
 class Logout(View):
     def get(self, request):
@@ -70,48 +69,6 @@ class Logout(View):
         messages.success(request, 'Successfully logged out.')
         return redirect ( '/')
     
-
-def Login_Staff(request):
-    if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
-            return redirect('/')
-            
-        else:
-            # Handle invalid login
-            return render(request, 'login.html', {'error': 'Invalid login credentials'})
-
-    return render(request, 'login.html')
-
-
-def Logout_Staff(request):
-    logout(request)
-    return redirect('Login_Staff')
-
-
-def signup(request):
-    return render(request, 'signup.html')
-
-
-def Profile_view(request):
-    return render(request, 'admin/profile.html')
-
-
-# views.py
-def register(request):
-    if request.method == 'POST':
-        form = UserRegistrationForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            login(request, user)
-            return redirect('Login_Staff')
-    else:
-        form = UserRegistrationForm()
-    return render(request, 'signup.html', {'form': form})
-
 
 # @login_required
 
@@ -123,7 +80,7 @@ class Profile(View):
         password_form = ChangePasswordForm()
         tasks = Task.objects.filter(assigned_to=user)[:5]
         blogs = Blog.objects.all()[:3]
-        return render(request, 'admin/accounts/profile.html', {'user': user, 'tasks':tasks, 'blogs':blogs, 'form':form,'password_form':password_form })
+        return render(request, 'staff/profile.html', {'user': user, 'tasks':tasks, 'blogs':blogs, 'form':form,'password_form':password_form })
     
     def post(self,request, id):
         user = UserProfile.objects.get(id=id)
@@ -133,7 +90,7 @@ class Profile(View):
             return redirect( 'profile', id=id)
         else:
             
-            return render(request, 'admin/accounts/profile.html', {'user':user})
+            return render(request, 'staff/profile.html', {'user':user})
 
 
 
@@ -161,5 +118,5 @@ class ChangePassword(View):
         else:
             messages.warning(self.request,'recheck ur input')
             # return redirect ('change_password', pk=user.id)
-            return render(request, 'admin/accounts/profile.html',{'user':user, 'password_form':password_form})
+            return render(request, 'staff/profile.html',{'user':user, 'password_form':password_form})
     

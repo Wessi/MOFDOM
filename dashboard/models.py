@@ -76,9 +76,10 @@ class DirectorateMessage(models.Model):
 
 class FeaturedWork(models.Model):
     # Slider contents displayed at the home page
-    title = models.CharField(max_length=255)
-    background_image = models.ImageField(upload_to='featured_work_backgrounds/')
-    description = models.TextField()
+    title = models.CharField(max_length=150,help_text="Make sure to submit a max of 150 characters.")
+    background_image = models.ImageField(upload_to='featured_work_backgrounds/',
+                                         help_text="Make sure to submit an image of 720 X 400.")
+    description = models.TextField(help_text="Make sure to submit a max of 255 characters.")
 
     class Meta:
         ordering = ("-id",)
@@ -96,7 +97,7 @@ class FeaturedWork(models.Model):
     
 class FAQ(models.Model):
     # List of Frequently Asked Questions with their corresponding answers
-    question = models.CharField(max_length=255)
+    question = models.CharField(max_length=255,help_text="Make sure to submit a max of 255 characters.")
     answer = models.TextField()
     
     def __str__(self):
@@ -112,7 +113,7 @@ class FAQ(models.Model):
     
     
 class QuickLink(models.Model):
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=100,help_text="Make sure to submit a max of 100 characters.")
     url = models.URLField()
 
     def get_list_fields():
@@ -122,8 +123,9 @@ class QuickLink(models.Model):
 
 
 class Event(models.Model):
-    title = models.CharField(max_length=100)
-    image = models.ImageField(upload_to='event_images')
+    title = models.CharField(max_length=100,help_text="Make sure to submit a max of 100 characters.")
+    image = models.ImageField(upload_to='event_images',
+                              help_text="Make sure to submit an image of max of 400 X 300.")
     time = models.CharField(max_length=50)
     location = models.CharField(max_length=100)
     description = models.TextField()
