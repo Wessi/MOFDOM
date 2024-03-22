@@ -13,7 +13,7 @@ CATEGORY_CHOICES = (
 
 class GalleryCategory(models.Model):
     # List of categories for Gallery pages
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100,help_text="Make sure to submit a max of 100 characters.")
     def __str__(self):
         return self.name
     def get_list_fields():
@@ -22,7 +22,7 @@ class GalleryCategory(models.Model):
     list_fields = get_list_fields()
 
 class GalleryImage(models.Model):
-    title = models.CharField(max_length=255)
+    title = models.CharField(max_length=255,help_text="Make sure to submit a max of 255 characters.")
     image = models.ImageField(upload_to='gallery_images/', help_text="Please select an image with close width and height resolution (400p x 300px).")
     gallery_category = models.ForeignKey(GalleryCategory, on_delete = models.SET_NULL, null=True) 
     
@@ -41,7 +41,7 @@ class GalleryImage(models.Model):
     list_fields = get_list_fields()
 
 class GalleryVideo(models.Model):
-    title = models.CharField(max_length =255)
+    title = models.CharField(max_length =255,help_text="Make sure to submit a max of 255 characters.")
     video = models.FileField(upload_to="Gallery/Videos", blank=True, null=True)
     link = models.CharField(max_length=10000, blank=True,default="")
     gallery_category = models.ForeignKey(GalleryCategory, on_delete = models.SET_NULL, null=True) 
@@ -64,14 +64,13 @@ class DirectorateMessage(models.Model):
     # A message from the bureau director displayed at the homepage
     is_single = True # Tells if the model should have multiple or single objects
 
-    title = models.CharField(max_length=255)
+    title = models.CharField(max_length=255,help_text="Make sure to submit a max of 255 characters.")
     content = models.TextField()
-    button_text = models.CharField(max_length=250)
-    image = models.ImageField(upload_to='slider_images/')
+    button_text = models.CharField(max_length=80,help_text="Make sure to submit a max of 80 characters.")
+    image = models.ImageField(upload_to='slider_images/',help_text="Make sure to submit an image proportional with the height of the content.")
     
     def __str__(self):
         return self.title
-
 
 
 class FeaturedWork(models.Model):
