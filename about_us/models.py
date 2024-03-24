@@ -4,10 +4,10 @@ class About(models.Model):
     """ Model for the detail page of about us page"""
     is_single = True # Tells if the model should have multiple or single objects
     title = models.CharField(max_length=100, help_text= "Max of 100 Characters.")
-    content = models.TextField(help_text= "Make sure that the has a max of 500 words.")
-    mission = models.TextField(help_text= "Make sure that the has a max of 500 words.")
-    vision = models.TextField(help_text= "Make sure that the has a max of 500 words.")
-    values = models.TextField(help_text= "Make sure that the has a max of 500 words.")
+    content = models.TextField(help_text= "Make sure that the has a max of 100 words.")
+    mission = models.TextField(help_text= "Make sure that the has a max of 100 words.")
+    vision = models.TextField(help_text= "Make sure that the has a max of 100 words.")
+    values = models.TextField(help_text= "Make sure that the has a max of 100 words.")
     image_one = models.ImageField(upload_to='about_images/', blank=False, help_text="Make sure to submit 200 X 300 images.")
     image_two = models.ImageField(upload_to='about_images/', blank=False, help_text="Make sure to submit 200 X 300 images.")
     image_three = models.ImageField(upload_to='about_images/', blank=False, help_text="Make sure to submit 200 X 300 images.")
@@ -56,3 +56,19 @@ class BureauStructure(models.Model):
 
     def __str__(self):
         return f"Bureau Structure Content "
+    
+
+class Service(models.Model):
+    title = models.CharField(max_length=100, help_text="Make sure to submit a max of 50 characters.")
+    content = models.TextField(help_text="Make sure to submit a content that aligns with the height of the image")
+    created_date = models.DateTimeField(auto_now_add = True)
+
+    def __str__(self):
+        return self.title
+
+    def get_list_fields():
+        return ['title', ]
+    
+    list_fields = get_list_fields()
+
+    

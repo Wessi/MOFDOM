@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'blogs',
     'accounts',
     'core',
+    'visit_counter', #Track user visits
+    
 
     # 'jazzmin',
     'djangocms_admin_style',
@@ -82,12 +84,10 @@ INSTALLED_APPS = [
     "djangocms_snippet",
     "djangocms_style",
     'rosetta', #For generating language translating dashboard
-    'visit_counter', #Track user visits
     
 ]
 
 CUSTOM_INSTALLED_APPS = [
-    'django.contrib.auth',
     'about_us',
     'documents',
     'news',

@@ -1,4 +1,5 @@
 {% extends 'front/base.html' %}
+{% load i18n %}
 {% load static %}
 {% block blog %} active {% endblock %}
 {% block content %}
@@ -7,8 +8,8 @@
         <div class="row align-items-end pb-3 mb-5 mb-lg-4">
             <div class="d-flex align-items-end justify-content-end">
                 <ul class="breadcrumb d-block text-center">
-                    <li><a href="/">Home</a></li>
-                    <li class="active">Blogs</li>
+                    <li><a href="/">{% trans "Home" %}</a></li>
+                    <li class="active">{% trans "Blogs" %}</li>
                 </ul>        
             </div>
             <hr class="bg-light">
@@ -16,12 +17,12 @@
                 <div class="d-flex align-items-center mb-2  justify-content-center">
                     <div class="overflow-hidden text-center">
                         <h2 class="text-color-primary text-9 text-center font-weight-semibold line-height-3 text-5 mb-0 appear-animation"
-                            data-appear-animation="maskRight" data-appear-animation-delay="300">BLOGS
+                            data-appear-animation="maskRight" data-appear-animation-delay="300">{% trans "BLOGS" %}
                         </h2>
                     </div>
                 </div>
                 <p  class="appear-animation text-center"  data-appear-animation="maskRight" data-appear-animation-delay="400"> 
-                    YOU CAN FIND ALL THE RESOURCES IN THIS SECTION
+                    {% trans "YOU CAN FIND ALL THE RESOURCES IN THIS SECTION" %}
                 </p>
             </div>
         </div>
@@ -44,7 +45,7 @@
                                     <span><i class="far fa-calendar-alt "></i><a href="#">{{blog.publish_date}}</a></span>
                                     <span><i class="far fa-user"></i> By <a href="#"  title="{{blog.author}} : {{blog.author_email}}">{{blog.author}}</a></span>
                                     <span><i class="far fa-comments"></i> <a href="#">12 Comments</a></span>
-                                    <span class="d-block mt-2 float-end mb-3"><a href="{% url 'blog_detail' blog_id=blog.id %}" class="btn btn-md btn-primary ">Read More <i class="fa fa-angle-right"></i></a></span>
+                                    <span class="d-block mt-2 float-end mb-3"><a href="{% url 'blog_detail' blog_id=blog.id %}" class="btn btn-md btn-primary ">{% trans "Read More" %} <i class="fa fa-angle-right"></i></a></span>
                                 </div>
 
                             </div>

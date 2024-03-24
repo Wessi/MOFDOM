@@ -67,6 +67,3 @@ class Pages(models.Model):
         ordering =('-id',)
 
 
-class Visitors(models.Model):
-    created_date = models.DateTimeField(auto_now_add = True)
-    

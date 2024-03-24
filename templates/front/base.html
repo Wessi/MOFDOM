@@ -138,7 +138,7 @@
                                 <div class="header-row">
                                     <span class="text-light ">
                                         {% if stg.title %} {{stg.title}}
-                                        {% else %}Bureau of Finance{% endif %}
+                                        {% else %}{% trans "Bureau of Finance" %}{% endif %}
                                     </span>
 
                                 </div>
@@ -227,11 +227,11 @@
                             <div class="header-row">
                                 <div class="header-logo">
                                     {% if stg.logo %}
-                                    <a href="/">
+                                    <a href="{% url 'index' %}">
                                         <img src="{{stg.logo.url}}" class="img-fluid"  alt="Logo" style="width: 75px; height: 60px;" />
                                     </a>
                                     {% else %} 
-                                    <a href="/">
+                                    <a href="{% url 'index' %}">
                                         <img src="/static/front/imgs/logo/logo-addis.png" class="img-fluid"  alt="Logo" style="width: 75px; height: 60px;" />
                                     </a>
                                     {% endif %}
@@ -246,28 +246,23 @@
                                             <ul class="nav nav-pills" id="mainNav">
                                             {% if pages %}
                                             
-                                                <li><a class="nav-link {% block home_dynamic %} {% endblock %}" href="/">
+                                                <li><a class="nav-link {% block home_dynamic %} {% endblock %}" href="{% url 'index' %}">
                                                     {% trans "Home" %}
                                                 </a></li>
                                                 
                                                 {% if pages.about %}
-                                                
-                                                
-
                                                <li class="dropdown ">
                                                     <a class="dropdown-item dropdown-toggle {% block about_dynamic %} {% endblock %}" href="#">
                                                        {% trans "About Bureau" %}
                                                     </a>
                                                     <ul class="dropdown-menu">
                                                         {% if pages.about %}
-                                                        <li><a class="dropdown-item" href="{% url 'about' %}">About Us</a></li>
+                                                        <li><a class="dropdown-item" href="{% url 'about' %}">{% trans "About Us" %}</a></li>
                                                         {% endif %}
                                                         {% if pages.structure %}
-                                                        <li><a class="dropdown-item" href="{% url 'bureau_structure' %}">Structure</a></li>
+                                                        <li><a class="dropdown-item" href="{% url 'bureau_structure' %}">{% trans "Structure" %}</a></li>
                                                         {% endif %}
-                                                        {% if directorates %}
-                                                        <li><a class="dropdown-item" href="/">Directories</a></li>
-                                                        {% endif %}
+                                                      
                                                 
                                                     </ul>
                                                 </li>
@@ -278,11 +273,12 @@
                                                 
                                                 {% if pages.documents  %}
                                                 <li class="dropdown ">
-                                                    <a class="dropdown-item dropdown-toggle {% block resource_dynamic %} {% endblock %} " href="#">Resources</a>
+                                                    <a class="dropdown-item dropdown-toggle {% block resource_dynamic %} {% endblock %} " href="#">
+                                                        {% trans "Resources" %}</a>
                                                     <ul class="dropdown-menu">
                                                         {% if pages.documents %}
-                                                        <li><a class="dropdown-item" href="{% url  'list_docs' %}">Documents</a></li>
-                                                        <li><a class="dropdown-item" href="{% url 'supplier_list' %}">Blocked Suppliers </a></li>
+                                                        <li><a class="dropdown-item" href="{% url  'list_docs' %}">{% trans "Documents" %}</a></li>
+                                                        <li><a class="dropdown-item" href="{% url 'supplier_list' %}">{% trans "Blocked Suppliers" %} </a></li>
                                                         {% endif %}
                                                     </ul>
                                                 </li>
@@ -290,16 +286,17 @@
                                                 
                                                 {% if pages.vacancy or pages.events %}
                                                 <li class="dropdown ">
-                                                    <a class="dropdown-item dropdown-toggle {% block announcement_dynamic %} {% endblock %}" href="#">Announcements</a>
+                                                    <a class="dropdown-item dropdown-toggle {% block announcement_dynamic %} {% endblock %}" href="#">
+                                                        {% trans "Announcements" %}</a>
                                                     <ul class="dropdown-menu">
                                                         {% if pages.events %}
-                                                        <li><a class="dropdown-item" href="{% url 'bid' %}">Bids</a></li>
+                                                        <li><a class="dropdown-item" href="{% url 'bid' %}">{% trans "Bids" %}</a></li>
                                                         {% endif %}
                                                         {% if pages.events %}
-                                                        <li><a class="dropdown-item" href="{% url 'events_list' %}">Events</a></li>
+                                                        <li><a class="dropdown-item" href="{% url 'events_list' %}">{% trans "Events" %}</a></li>
                                                         {% endif %}
                                                         {% if pages.vacancy %}
-                                                        <li><a class="dropdown-item" href="{% url 'job_list' %}">Vacancies</a></li>
+                                                        <li><a class="dropdown-item" href="{% url 'job_list' %}">{% trans "Vacancies" %}</a></li>
                                                         {% endif %}
                                                         
                                                         
@@ -314,8 +311,8 @@
                                                         News
                                                     </a>
                                                     <ul class="dropdown-menu">
-                                                        <li><a class="dropdown-item" href="{% url 'news_list_visitor' %}">News</a></li>
-                                                        <li><a class="dropdown-item" href="{% url  'blog_list' %}">Blogs</a></li>
+                                                        <li><a class="dropdown-item" href="{% url 'news_list_visitor' %}">{% trans "News" %}</a></li>
+                                                        <li><a class="dropdown-item" href="{% url  'blog_list' %}">{% trans "Blogs" %}</a></li>
                                                     </ul>
                                                 </li>
                                                 {% endif %}
@@ -323,10 +320,12 @@
                                                 
                                                 {% if pages.gallery %}
                                                 <li class="dropdown ">
-                                                    <a class="dropdown-item dropdown-toggle {% block gallery_dynamic %} {% endblock %}" href="#">Gallery</a>
+                                                    <a class="dropdown-item dropdown-toggle {% block gallery_dynamic %} {% endblock %}" 
+                                                    href="#">{% trans "Gallery" %}</a>
                                                     <ul class="dropdown-menu">
-                                                        <li><a class="dropdown-item {% block gallery_page_dynamic %} {% endblock %}" href="{% url 'gallery_images' %}" >Images</a></li>
-                                                        <li><a class="dropdown-item" href="{% url 'gallery_videos' %}">Videos</a></li>
+                                                        <li><a class="dropdown-item {% block gallery_page_dynamic %} {% endblock %}" 
+                                                            href="{% url 'gallery_images' %}" >{% trans "Images" %}</a></li>
+                                                        <li><a class="dropdown-item" href="{% url 'gallery_videos' %}">{% trans "Videos" %}</a></li>
                                                     </ul>
                                                 </li>
                                                 
@@ -338,52 +337,50 @@
                                            
                                             {% else %}
                                             
-                                                <li><a class="nav-link {% block home %} {% endblock %}" href="/">{% trans "Home" %}</a></li>
+                                                <li><a class="nav-link {% block home %} {% endblock %}" href="{% url 'index' %}">{% trans "Home" %}</a></li>
                                                 
                                                <li class="dropdown d-ld-none d-md-none d-sm-block">
                                                     <a class="dropdown-item dropdown-toggle {% block about %} {% endblock %}" href="#">
-                                                        About Bureau
+                                                        {% trans "About Bureau" %}
                                                     </a>
                                                     <ul class="dropdown-menu">
-                                                        <li><a class="dropdown-item" href="{% url 'about' %}">About Us</a></li>
-                                                        <li><a class="dropdown-item" href="{% url 'bureau_structure' %}">Structure</a></li>
+                                                        <li><a class="dropdown-item" href="{% url 'about' %}">{% trans "About Us" %}</a></li>
+                                                        <li><a class="dropdown-item" href="{% url 'bureau_structure' %}">{% trans "Structure" %}</a></li>
                                                     </ul>
                                                 </li>
                                                 
                                                 <li class="dropdown ">
-                                                    <a class="dropdown-item dropdown-toggle {% block resource %} {% endblock %} " href="#">Resources</a>
+                                                    <a class="dropdown-item dropdown-toggle {% block resource %} {% endblock %} " href="#">{% trans "Resources" %}</a>
                                                     <ul class="dropdown-menu">
-                                                        <li><a class="dropdown-item" href="{% url 'list_docs' %}">Documents</a></li>
-                                                        <li><a class="dropdown-item" href="{% url 'supplier_list' %}">Blocked Suppliers </a></li>
-                                                        
-                                                          
+                                                        <li><a class="dropdown-item" href="{% url 'list_docs' %}">{% trans "Documents" %}</a></li>
+                                                        <li><a class="dropdown-item" href="{% url 'supplier_list' %}">{% trans "Blocked Suppliers" %} </a></li>
                                                     </ul>
                                                 </li>
                                                 
                                                 <li class="dropdown ">
-                                                    <a class="dropdown-item dropdown-toggle {% block announcement %} {% endblock %}" href="#">Announcements</a>
+                                                    <a class="dropdown-item dropdown-toggle {% block announcement %} {% endblock %}" href="#">{% trans "Announcements" %}</a>
                                                     <ul class="dropdown-menu">
-                                                        <li><a class="dropdown-item" href="{% url 'job_list' %}">Vacancies</a></li>
-                                                        <li><a class="dropdown-item" href="{% url 'events_list' %}">Events</a></li>
+                                                        <li><a class="dropdown-item" href="{% url 'job_list' %}">{% trans "Vacancies" %}</a></li>
+                                                        <li><a class="dropdown-item" href="{% url 'events_list' %}">{% trans "Events" %}</a></li>
                                                     </ul>
                                                 </li>
                                                 
                                                 <li class="dropdown">
                                                     <a class="dropdown-item dropdown-toggle {% block news %} {% endblock %}" href="#">
-                                                        News
+                                                        {% trans "News" %}
                                                     </a>
                                                     <ul class="dropdown-menu">
-                                                        <li><a class="dropdown-item" href="{% url 'news_list_visitor' %}">News</a></li>
-                                                        <li><a class="dropdown-item" href="{% url  'blog_list' %}">Blogs</a></li>
+                                                        <li><a class="dropdown-item" href="{% url 'news_list_visitor' %}">{% trans "News" %}</a></li>
+                                                        <li><a class="dropdown-item" href="{% url  'blog_list' %}">{% trans "Blogs" %}</a></li>
                                                     </ul>
                                                 </li>
 
                                                 
                                                 <li class="dropdown ">
-                                                    <a class="dropdown-item dropdown-toggle {% block gallery %} {% endblock %}" href="#">Gallery</a>
+                                                    <a class="dropdown-item dropdown-toggle {% block gallery %} {% endblock %}" href="#">{% trans "Gallery" %}</a>
                                                     <ul class="dropdown-menu">
-                                                        <li><a class="dropdown-item {% block gallery_page %} {% endblock %}" href="{% url 'gallery_images' %}" >Images</a></li>
-                                                        <li><a class="dropdown-item" href="{% url 'gallery_images' %}">Videos</a></li>
+                                                        <li><a class="dropdown-item {% block gallery_page %} {% endblock %}" href="{% url 'gallery_images' %}" >{% trans "Images" %}</a></li>
+                                                        <li><a class="dropdown-item" href="{% url 'gallery_images' %}">{% trans "Videos" %}</a></li>
                                                     </ul>
                                                 </li>
                                                 <li><a class="nav-link {% block contact_us %} {% endblock %}" href="/contact-us/">{% trans "Contact Us" %}</a></li>
@@ -427,7 +424,7 @@
                                         {% endfor %}
                                         
                                     </select>
-                                    <!-- <button  type="submit" style="display: none;"></button> -->
+
                                 </form>
                                 
                                 <button class="btn header-btn-collapse-nav"  data-bs-toggle="collapse"
@@ -448,7 +445,6 @@
             
         
         {% block content %} 
-         <!-- placeholder some_content  -->
             
     
         {% endblock %}

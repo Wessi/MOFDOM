@@ -1,19 +1,14 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect
-from .forms import JobForm
 from .models import Job
 def add_vacancy(request):
     return render(request, 'job_post_add.html')
 from django.shortcuts import render, redirect
-from .forms import JobForm, ApplicationForm  # Assuming your form is in a file named forms.py
-from .models import Job, Application
-from django.shortcuts import get_object_or_404
+from .forms import  ApplicationForm  # Assuming your form is in a file named forms.py
+from .models import Job
 from django.views import View
-from core.models import Settings 
-from django.core.mail import EmailMultiAlternatives, send_mail
+from django.core.mail import EmailMultiAlternatives
 
-
-#new from yismu
 
 def job_list(request):
     search = request.GET.get('search', None)

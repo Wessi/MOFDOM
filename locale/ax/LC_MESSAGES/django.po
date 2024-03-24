@@ -2,15 +2,15 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-21 15:27+0300\n"
-"PO-Revision-Date: 2024-02-26 13:38+0000\n"
-"Last-Translator: Admin User <adminuser@gmail.com>\n"
+"POT-Creation-Date: 2024-03-24 21:22+0300\n"
+"PO-Revision-Date: 2024-03-24 21:27+0000\n"
+"Last-Translator: Admin Userendite User <adminuser@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -57,7 +57,7 @@ msgstr ""
 
 #: .\task_manager\models.py:10
 msgid "New"
-msgstr ""
+msgstr "አዲስ"
 
 #: .\task_manager\models.py:11
 msgid "Completed"
@@ -83,220 +83,133 @@ msgstr ""
 msgid "Low"
 msgstr ""
 
-#: .\templates\front\base.html:108
-msgid "Success"
-msgstr "ስኬት"
-
-#: .\templates\front\base.html:109
-msgid "Warning"
-msgstr "ማሳሰቢያ"
-
-#: .\templates\front\base.html:110
-msgid "Error"
-msgstr "ችግር"
-
-#: .\templates\front\base.html:241 .\templates\front\base.html:332
-#: .\templates\rosetta\file-list.html:7 .\templates\rosetta\form.html:21
+#: .\templates\front\about.html:11 .\templates\front\base.html:250
+#: .\templates\front\base.html:342 .\templates\front\bid.html:10
+#: .\templates\front\structure.html:16
 msgid "Home"
 msgstr "ዋና ገጽ"
 
-#: .\templates\front\base.html:250
+#: .\templates\front\about.html:12
+#, fuzzy
+#| msgid "About Us"
+msgid "About"
+msgstr "ስለ እኛ"
+
+#: .\templates\front\about.html:25
+msgid "Detail about our bureau"
+msgstr "ስለቢሮአችን "
+
+#: .\templates\front\about.html:66 .\templates\front\about.html:76
+msgid "Mission"
+msgstr "አላማ"
+
+#: .\templates\front\about.html:67 .\templates\front\about.html:85
+msgid "Vision"
+msgstr "ራእይ"
+
+#: .\templates\front\about.html:68 .\templates\front\about.html:95
+msgid "Values"
+msgstr "እሴቶች"
+
+#: .\templates\front\about.html:107
+msgid "Management experts"
+msgstr "ከፍተኛ ባለሙያዎቻችን"
+
+#: .\templates\front\base.html:117
+msgid "Success"
+msgstr "ስኬት"
+
+#: .\templates\front\base.html:118
+msgid "Warning"
+msgstr "ማሳሰቢያ"
+
+#: .\templates\front\base.html:119
+msgid "Error"
+msgstr "ችግር"
+
+#: .\templates\front\base.html:141
+msgid "Bureau of Finance"
+msgstr ""
+
+#: .\templates\front\base.html:256 .\templates\front\base.html:346
 msgid "About Bureau"
 msgstr "ስለ ቢሯችን"
 
-#: .\templates\front\base.html:267
+#: .\templates\front\base.html:260 .\templates\front\base.html:349
+msgid "About Us"
+msgstr "ስለ እኛ"
+
+#: .\templates\front\base.html:263 .\templates\front\base.html:350
+#: .\templates\front\structure.html:17
+msgid "Structure"
+msgstr "ቅርጽ"
+
+#: .\templates\front\base.html:266
+msgid "Directories"
+msgstr ""
+
+#: .\templates\front\base.html:273
 msgid "Services"
+msgstr "አገልግሎቶች"
+
+#: .\templates\front\base.html:279 .\templates\front\base.html:355
+msgid "Resources"
+msgstr "ምንጮች"
+
+#: .\templates\front\base.html:282 .\templates\front\base.html:357
+msgid "Documents"
+msgstr "ዶክመንቶች"
+
+#: .\templates\front\base.html:283 .\templates\front\base.html:358
+msgid "Blocked Suppliers"
+msgstr "የታገዱ አቅራቢዎች"
+
+#: .\templates\front\base.html:292 .\templates\front\base.html:363
+msgid "Announcements"
+msgstr "መግለጫዎች"
+
+#: .\templates\front\base.html:295 .\templates\front\bid.html:11
+msgid "Bids"
+msgstr "ጨረታዎች"
+
+#: .\templates\front\base.html:298 .\templates\front\base.html:366
+msgid "Events"
 msgstr ""
 
-#: .\templates\front\base.html:326 .\templates\front\base.html:380
+#: .\templates\front\base.html:301 .\templates\front\base.html:365
+msgid "Vacancies"
+msgstr "የስራ ቦታዎች"
+
+#: .\templates\front\base.html:316 .\templates\front\base.html:372
+#: .\templates\front\base.html:375
+msgid "News"
+msgstr "ዜና"
+
+#: .\templates\front\base.html:317 .\templates\front\base.html:376
+msgid "Blogs"
+msgstr "ቦሎጎች"
+
+#: .\templates\front\base.html:326 .\templates\front\base.html:382
+msgid "Gallery"
+msgstr "ምስሎች"
+
+#: .\templates\front\base.html:329 .\templates\front\base.html:384
+msgid "Images"
+msgstr "ፎቶዎች"
+
+#: .\templates\front\base.html:330 .\templates\front\base.html:385
+msgid "Videos"
+msgstr "ተንቀሳቃሽ ምስሎች"
+
+#: .\templates\front\base.html:336 .\templates\front\base.html:388
 msgid "Contact Us"
-msgstr ""
-
-#: .\templates\rosetta\admin_index.html:14
-msgid "Translations"
-msgstr ""
-
-#: .\templates\rosetta\admin_index.html:15
-msgid "Change"
-msgstr ""
-
-#: .\templates\rosetta\file-list.html:4 .\templates\rosetta\file-list.html:7
-msgid "Language selection"
-msgstr ""
-
-#: .\templates\rosetta\file-list.html:8
-msgid ""
-"Couldn't load the specified language file. This usually happens when using "
-"the Encrypted Cookies Session Storage backend on Django 1.4 or higher.<br/"
-">Setting ROSETTA_STORAGE_CLASS = 'rosetta.storage.CacheRosettaStorage' in "
-"your settings file should fix this."
-msgstr ""
-
-#: .\templates\rosetta\file-list.html:14
-msgid "Filter"
-msgstr ""
-
-#: .\templates\rosetta\file-list.html:15
-msgid "Project"
-msgstr ""
-
-#: .\templates\rosetta\file-list.html:16
-msgid "Third party"
-msgstr ""
-
-#: .\templates\rosetta\file-list.html:18 .\templates\rosetta\form.html:44
-msgid "All"
-msgstr ""
-
-#: .\templates\rosetta\file-list.html:31
-msgid "Application"
-msgstr ""
-
-#: .\templates\rosetta\file-list.html:32
-msgid "Progress"
-msgstr ""
-
-#: .\templates\rosetta\file-list.html:33
-msgid "Messages"
-msgstr ""
-
-#: .\templates\rosetta\file-list.html:34
-msgid "Translated"
-msgstr ""
-
-#: .\templates\rosetta\file-list.html:35 .\templates\rosetta\form.html:78
-msgid "Fuzzy entries call for revision by the translator."
-msgstr ""
-
-#: .\templates\rosetta\file-list.html:35 .\templates\rosetta\form.html:78
-msgid "Fuzzy"
-msgstr ""
-
-#: .\templates\rosetta\file-list.html:36
-msgid "Obsolete"
-msgstr ""
-
-#: .\templates\rosetta\file-list.html:37
-msgid "File"
-msgstr ""
-
-#: .\templates\rosetta\file-list.html:60
-msgid "Nothing to translate!"
-msgstr ""
-
-#: .\templates\rosetta\file-list.html:61
-msgid ""
-"You haven't specified any languages in your settings file, or haven't yet "
-"generated a batch of translation catalogs."
-msgstr ""
-
-#: .\templates\rosetta\file-list.html:62
-#, python-format
-msgid ""
-"Please refer to <a href=\"%(i18n_doc_link)s\">Django's I18N documentation</"
-"a> for a guide on how to set up internationalization for your project."
-msgstr ""
-
-#: .\templates\rosetta\form.html:8
-msgid "Pick another file"
-msgstr ""
-
-#: .\templates\rosetta\form.html:9
-msgid "Download this catalog"
-msgstr ""
-
-#: .\templates\rosetta\form.html:24
-#, python-format
-msgid "Progress: %(percent_translated)s%%"
-msgstr ""
-
-#: .\templates\rosetta\form.html:26
-msgid "File is read-only: download the file when done editing!"
-msgstr ""
-
-#: .\templates\rosetta\form.html:37
-#, python-format
-msgid "Translate into %(rosetta_i18n_lang_name)s"
-msgstr ""
-
-#: .\templates\rosetta\form.html:40
-msgid "Display:"
-msgstr ""
-
-#: .\templates\rosetta\form.html:41
-msgid "Untranslated only"
-msgstr ""
-
-#: .\templates\rosetta\form.html:42
-msgid "Translated only"
-msgstr ""
-
-#: .\templates\rosetta\form.html:43
-msgid "Fuzzy only"
-msgstr ""
-
-#: .\templates\rosetta\form.html:52
-msgid "Search"
-msgstr ""
-
-#: .\templates\rosetta\form.html:54
-msgid "Go"
-msgstr ""
-
-#: .\templates\rosetta\form.html:61
-msgid "Reference language"
-msgstr ""
-
-#: .\templates\rosetta\form.html:75
-msgid "Original"
-msgstr ""
-
-#: .\templates\rosetta\form.html:79
-msgid "Occurrences(s)"
-msgstr ""
-
-#: .\templates\rosetta\form.html:109
-msgid "suggest"
-msgstr ""
-
-#: .\templates\rosetta\form.html:121
-#, python-format
-msgid "%(more_count)s more"
-msgid_plural "%(more_count)s more"
-msgstr[0] ""
-msgstr[1] ""
-
-#: .\templates\rosetta\form.html:125
-msgid "Context hint"
-msgstr ""
-
-#: .\templates\rosetta\form.html:145
-msgid "Save and translate next block"
-msgstr ""
-
-#: .\templates\rosetta\form.html:149
-msgid "Skip to page:"
-msgstr ""
-
-#: .\templates\rosetta\form.html:162
-msgid "Displaying:"
-msgstr ""
-
-#: .\templates\rosetta\form.html:166
-#, python-format
-msgid "%(hits)s/%(message_number)s message"
-msgid_plural "%(hits)s/%(message_number)s messages"
-msgstr[0] ""
-msgstr[1] ""
+msgstr "አግኙን"
 
 #~ msgid "Action successfully completed!"
 #~ msgstr "በሚገባ ተሳክቱል"
 
 #~ msgid "ABOUT BUREAU"
 #~ msgstr "ስለ ቢሯችን"
-
-#~ msgid "About Us"
-#~ msgstr "ስለ እኛ"
 
 #~ msgid "home/"
 #~ msgstr "ቤት"

@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import *  # Import the faqs_api view
+from .views import *  
 
 urlpatterns = [
     path('job_list/', job_list, name='job_list'),

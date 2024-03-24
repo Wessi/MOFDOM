@@ -1,7 +1,6 @@
 from django.contrib import admin
-
 from .models import *
-admin.site.register(ContactUs)
-admin.site.register(Settings)
-admin.site.register(Pages)
+# admin.site.register(ContactUs)
+# admin.site.register(Settings)
+# admin.site.register(Pages)
 

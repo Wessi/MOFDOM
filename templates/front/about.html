@@ -1,4 +1,5 @@
 {% extends 'front/base.html' %}
+{% load i18n %}
 {% block about %} active {% endblock %}
 {% block about_mega %} active {% endblock %}
 {% block content %} 
@@ -8,8 +9,8 @@
         <div class="row align-items-end pb-3 ">
             <div class="d-flex align-items-end justify-content-end">
                 <ul class="breadcrumb d-block text-center">
-                    <li><a href="/">Home</a></li>
-                    <li class="active">About</li>
+                    <li><a href="/">{% trans "Home" %}</a></li>
+                    <li class="active">{% trans "About" %}</li>
                 </ul>        
             </div>
             <hr class="bg-light">
@@ -17,12 +18,12 @@
                 <div class="d-flex align-items-center mb-2  justify-content-center">
                     <div class="overflow-hidden text-center">
                         <h2 class="text-color-primary text-9 text-center font-weight-semibold line-height-3 text-5 mb-0 appear-animation"
-                            data-appear-animation="maskRight" data-appear-animation-delay="300">About Us
+                            data-appear-animation="maskRight" data-appear-animation-delay="300">{% trans "About Us" %}
                         </h2>
                     </div>
                 </div>
                 <p  class="appear-animation text-center"  data-appear-animation="maskRight" data-appear-animation-delay="400"> 
-                    Detail about our bureau {{about_data.title}}
+                    {% trans "Detail about our bureau" %} {{about_data.title}}
                 </p>
             </div>
         </div>
@@ -62,14 +63,18 @@
 </section>
 <div class="bg-color-grey ">
     <div id="examples" class="container py-2 pt-5 ">
-        <h2 class="text-color-dark font-weight-normal text-8 mb-2">Mission <span class="font-weight-light">/</span>  Vision  <span class="font-weight-light">/</span> Values </h2>
+        <h2 class="text-color-dark font-weight-normal text-8 mb-2">
+            {% trans "Mission" %} 
+            <span class="font-weight-light">/</span>  {% trans "Vision" %}  
+            <span class="font-weight-light">/</span> {% trans "Values" %} 
+        </h2>
         <div class="row mb-5 pb-3" >
             <div class="col-lg-4 appear-animation mb-3" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="300">
 
                 <div class="aligned card border-0 border-shadow bg-color-light text-center" style="height: 300px; ">
                     <div class="card-body">
                         <img class="icons text-2 " style="height: 50px;" src="{% static 'front/imgs/about/value.svg' %}">
-                        <h4 class="card-title mt-2 mb-1 text-4 font-weight-bold">Mission</h4>
+                        <h4 class="card-title mt-2 mb-1 text-4 font-weight-bold">{% trans "Mission" %}</h4>
                         <p class="card-text">{{ about_data.mission }}</p>                    
                     </div>
                 </div>
@@ -78,7 +83,7 @@
                 <div class="aligned card border-0 border-shadow bg-color-light text-center" style="height: 300px;">
                     <div class="card-body">
                         <img class="icons text-2 " style="height: 50px;" src="{% static 'front/imgs/about/vision.svg' %}">
-                     <h4 class="card-title mt-2 mb-1 text-4 font-weight-bold">Vision</h4>
+                     <h4 class="card-title mt-2 mb-1 text-4 font-weight-bold">{% trans "Vision" %}</h4>
                         <p class="card-text">{{ about_data.vision }}</p>
                     </div>
                 </div>
@@ -88,7 +93,7 @@
                     <div class="card-body ">
                         <div class="text-center">
                             <img class="icons text-2 " style="height: 50px;" src="{% static 'front/imgs/about/value.svg' %}">
-                            <h4 class="card-title mt-2 mb-1 text-4 font-weight-bold ">Values </h4>
+                            <h4 class="card-title mt-2 mb-1 text-4 font-weight-bold ">{% trans "Values" %} </h4>
                         </div>
                         <p class="card-text">{{ about_data.values }}</p>
                     </div>
@@ -100,7 +105,7 @@
     </div>
 </div>
 <div id="" class="container py-2 pt-5 pb-5 px-5">
-    <h2 class="text-color-dark font-weight-normal text-8 mb-2">Management experts</h2>
+    <h2 class="text-color-dark font-weight-normal text-8 mb-2">{% trans "Management experts" %}</h2>
     <div class="row mt-lg-5">
         {% for member in team_members %}
         <div class="col-lg-3 mb-4">
