@@ -8,8 +8,8 @@
         <div class="row align-items-end mb-5 mb-lg-4">
             <div class="d-flex align-items-end justify-content-end">
                 <ul class="breadcrumb d-block text-center">
-                    <li><a href="/">Home</a></li>
-                    <li class="active">Contact Us</li>
+                    <li><a href="{% url 'index' %}">{% trans "Home" %}</a></li>
+                    <li class="active">{% trans "Contact Us" %}</li>
                 </ul>        
             </div>
             <hr class="bg-light">
@@ -17,12 +17,12 @@
                 <div class="d-flex align-items-center mb-2  justify-content-center">
                     <div class="overflow-hidden text-center">
                         <h2 class="text-color-primary text-9 text-center font-weight-semibold line-height-3 text-5 mb-0 appear-animation"
-                            data-appear-animation="maskRight" data-appear-animation-delay="300">CONTACT US
+                            data-appear-animation="maskRight" data-appear-animation-delay="300">{% trans "CONTACT US" %}
                         </h2>
                     </div>
                 </div>
                 <p  class="appear-animation text-center"  data-appear-animation="maskRight" data-appear-animation-delay="400"> 
-                    Keep in touch and send us your thoughts.
+                    {% trans "Keep in touch and send us your thoughts." %}
                 </p>
             </div>
         </div>
@@ -37,12 +37,12 @@
                             <div class="d-flex align-items-center mb-2">
                                 <div class="overflow-hidden">
                                     <h2 class="text-color-primary font-weight-semibold line-height-3 text-5 mb-0 appear-animation"
-                                        data-appear-animation="maskRight" data-appear-animation-delay="500">Our Office Location
+                                        data-appear-animation="maskRight" data-appear-animation-delay="500">{% trans "Our Office Location" %}
                                     </h2>
                                 </div>
                             </div>
                             <p  class="appear-animation"  data-appear-animation="maskRight" data-appear-animation-delay="600"> 
-                                HAVE SOMETHING TO SAY OR NEED ADDITIONAL INFORMATION? DROP BY TO OUR OFFICE
+                                {% trans "HAVE SOMETHING TO SAY OR NEED ADDITIONAL INFORMATION? DROP BY TO OUR OFFICE" %}
                             </p>
                         </div>
                         
@@ -56,8 +56,8 @@
                                 <div class="offset-anchor" id="contact-sent"></div>
 
                                 
-                                <h2 class="font-weight-bold text-7 mt-2 mb-0">Contact Us</h2>
-                                <p class="mb-4">WE'RE HERE TO ASSIST YOU!</p>
+                                <h2 class="font-weight-bold text-7 mt-2 mb-0">{% trans "Contact Us" %}</h2>
+                                <p class="mb-4">{% trans "WE'RE HERE TO ASSIST YOU!" %}</p>
 
                                 <form id="" action="{% url 'contact_us' %}" method="POST" enctype="multipart/form-data" >
                                     {% csrf_token %}
@@ -92,7 +92,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-md-12 mb-5 text-center">
-                                            <button type="submit" id="contactFormSubmit" class="btn btn-primary btn-modern pull-right" data-loading-text="Loading...">Send Message</button>
+                                            <button type="submit" id="contactFormSubmit" class="btn btn-primary btn-modern pull-right" data-loading-text="Loading...">{% trans "Send Message" %}</button>
                                         </div>
                                     </div>
                                 </form>

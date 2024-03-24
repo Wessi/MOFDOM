@@ -9,8 +9,8 @@
         <div class="row align-items-end pb-3 ">
             <div class="d-flex align-items-end justify-content-end">
                 <ul class="breadcrumb d-block text-center">
-                    <li><a href="/">Home</a></li>
-                    <li class="active">Services</li>
+                    <li><a href="{% url 'index' %}">{% trans "Home" %}</a></li>
+                    <li class="active">{% trans "Services" %}</li>
                 </ul>        
             </div>
             <hr class="bg-light">
@@ -18,12 +18,12 @@
                 <div class="d-flex align-items-center mb-2  justify-content-center">
                     <div class="overflow-hidden text-center">
                         <h2 class="text-color-primary text-9 text-center font-weight-semibold line-height-3 text-5 mb-0 appear-animation"
-                            data-appear-animation="maskRight" data-appear-animation-delay="300">Our Services
+                            data-appear-animation="maskRight" data-appear-animation-delay="300">{% trans "Our Services" %}
                         </h2>
                     </div>
                 </div>
                 <p  class="appear-animation text-center"  data-appear-animation="maskRight" data-appear-animation-delay="400"> 
-                    Detail about our services
+                    {% trans "Detail about our services" %}
                 </p>
             </div>
         </div>

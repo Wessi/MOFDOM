@@ -14,9 +14,9 @@
     <div class="row align-items-center text-center pb-3 mb-5 mb-lg-4">
         <div class="d-flex align-items-end justify-content-end">
             <ul class="breadcrumb d-block text-center">
-                <li ><a href="/" class="text-grey">Home</a></li>
-                <li class=" lsdf"><a href="{% url 'news_list_visitor' %}" class="text-grey">News List</a></li>
-                <li class="active text-primary" > <a href="">News Detail</a></li>
+                <li ><a href="{% url 'index' %}" class="text-grey">{% trans "Home" %}</a></li>
+                <li class=" lsdf"><a href="{% url 'news_list_visitor' %}" class="text-grey">{% trans "News List" %}</a></li>
+                <li class="active text-primary" > <a href="">{% trans "News Detail" %}</a></li>
                 
             </ul>        
         </div>
@@ -25,12 +25,12 @@
             <div class="d-flex align-items-center mb-2  justify-content-center">
                 <div class="overflow-hidden text-center">
                     <h2 class="text-color-primary text-9 text-center font-weight-semibold line-height-3 text-5 mb-0 appear-animation"
-                        data-appear-animation="maskRight" data-appear-animation-delay="300">NEWS DETAIL
+                        data-appear-animation="maskRight" data-appear-animation-delay="300">{% trans "NEWS DETAIL" %}
                     </h2>
                 </div>
             </div>
             <p  class="appear-animation text-center"  data-appear-animation="maskRight" data-appear-animation-delay="400"> 
-                News on '{{news_item.title|truncatechars:60}}'
+                {% trans "News on" %} '{{news_item.title|truncatechars:60}}'
             </p>
         </div>
         
@@ -88,11 +88,7 @@
                                 <a class="a2a_button_x"></a>
                             </div>
                             <script async src="https://static.addtoany.com/menu/page.js"></script>
-    
-
-
                             <p>{{news_item.content|safe}}</p>
-
                         </div>
                     </article>
 
@@ -102,7 +98,7 @@
             <div class="col-lg-4">
                 <div class="widget mb-5 latest-posts border border-transparent p-3" style="border-radius: 10px;">
                     <header>
-                        <h3 class="h6">Recent Posts</h3>
+                        <h3 class="h6">{% trans "Recent Posts" %}</h3>
                     </header>
                     <div class="blog-posts">
                         {% for recent_news_item in lastnews %}
@@ -125,17 +121,13 @@
 
                 <div class="widget twitter-feed border border-transparent p-3" style="border-radius: 10px;">
                     <header>
-                        <h3 class="h6">Twitter Feed</h3>
+                        <h3 class="h6">{% trans "Twitter Feed" %}</h3>
                     </header>
                     <div class="tweets">
-                        <a class="twitter-timeline" href="https://twitter.com/PMEthiopia?ref_src=twsrc%5Etfw" data-height="300">Tweets by PMEthiopia</a>
+                        <a class="twitter-timeline" href="https://twitter.com/PMEthiopia?ref_src=twsrc%5Etfw" data-height="300">{% trans "Tweets by PM Ethiopia" %}</a>
                     </div>
                 </div>
             </div>
-
-
-            
-
 
         </div>
 

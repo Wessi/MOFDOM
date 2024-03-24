@@ -7,8 +7,8 @@
     <div class="row justify-content-center">
         <div class="col-md-8 col-sm-12">
             <div class="offset-anchor" id="apply-form"></div>
-            <h2 class="font-weight-bold text-7 mt-2 mb-4 text-center">Apply for Vacancy</h2>
-            <p class="mb-4 text-center">Fill in the details to apply for the vacancy</p>
+            <h2 class="font-weight-bold text-7 mt-2 mb-4 text-center">{% trans "Apply for Vacancy" %}</h2>
+            <p class="mb-4 text-center">{% trans "Fill in the details to apply for the vacancy" %}</p>
 
             <form id="vacancyForm" action="" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
@@ -19,45 +19,12 @@
                         <label>{{field.label}}</label>
                         {{field}}
                         {{field.errors}}
-                        <!-- <input name="email" id="email" type="email" value="" placeholder="Email Address" data-msg-required="Please enter your email address." data-msg-email="Please enter a valid email address." maxlength="100" class="form-control text-3 h-auto py-2" required=""> -->
                     </div>
                     {% endfor %}
-                    <!-- <div class="form-group col-12">
-                        <input name="full_name" id="full_name" type="text" value="" placeholder="Full Name" data-msg-required="Please enter your full name." maxlength="100" class="form-control text-3 h-auto py-2" required="">
-                    </div>
-                    <div class="form-group col-md-6 col-sm-12">
-                        <input name="email" id="email" type="email" value="" placeholder="Email Address" data-msg-required="Please enter your email address." data-msg-email="Please enter a valid email address." maxlength="100" class="form-control text-3 h-auto py-2" required="">
-                    </div>
-                    <div class="form-group col-md-6 col-sm-12">
-                        <input type="number" name="phone" id="phone" placeholder="Phone Number" value="" data-msg-required="Please enter your phone number." data-msg-email="Please enter a valid phone number." maxlength="100" class="form-control text-3 h-auto py-2" required="">
-                    </div> -->
                 </div>
-                <!-- <div class="row">
-                    <div class="form-group col-md-6 col-sm-12">
-                        <label for="cv">CV File Upload</label>
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="cv" name="cv" accept=".pdf, .doc, .docx" required="">
-                            
-                        </div>
-                    </div>
-                
-                    <div class="form-group col-md-6 col-sm-12">
-                        <label for="cover_letter">Cover Letter File Upload</label>
-                        <input type="file" name="cover_letter" id="cover_letter" accept=".pdf, .doc, .docx" required="">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="form-group col-md-6 col-sm-12">
-                        <label for="other_documents">Other Documents File Upload</label>
-                        <input type="file" name="other_documents" id="other_documents" accept=".pdf, .doc, .docx" required="">
-                    </div>
-                </div> -->
-
-
-
                 <div class="row">
                     <div class="form-group col-md-12 mb-5 text-center">
-                        <button type="submit" id="applyFormSubmit" class="btn btn-primary btn-modern" data-loading-text="Loading...">Apply</button>
+                        <button type="submit" id="applyFormSubmit" class="btn btn-primary btn-modern" data-loading-text="Loading...">{% trans "Apply" %}</button>
                     </div>
                 </div>
             </form>

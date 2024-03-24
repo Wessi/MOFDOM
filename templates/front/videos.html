@@ -12,8 +12,8 @@
         <div class="row align-items-end">
             <div class="d-flex align-items-end justify-content-end">
                 <ul class="breadcrumb d-block text-center">
-                    <li><a href="/">Home</a></li>
-                    <li class="active">Gallery Videos</li>
+                    <li><a href="{% url 'index' %}">{% trans "Home" %}</a></li>
+                    <li class="active">{% trans "Gallery Videos" %}</li>
                 </ul>        
             </div>
             
@@ -22,10 +22,10 @@
                 <div class="d-flex align-items-center justify-content-center">
                     <div class="overflow-hidden text-center">
                         <h2 class="text-color-primary font-weight-semibold line-height-3 text-5 mb-0 appear-animation"
-                            data-appear-animation="maskRight" data-appear-animation-delay="500">GALLERY VIDEOS
+                            data-appear-animation="maskRight" data-appear-animation-delay="500">{% trans "GALLERY VIDEOS" %}
                         </h2>
                         <p  class="appear-animation"  data-appear-animation="maskRight" data-appear-animation-delay="600"> 
-                            VIDEOS TAKEN FROM PREVIOUS ACTIVITIES
+                            {% trans "VIDEOS TAKEN FROM PREVIOUS ACTIVITIES" %}
                         </p>
                     </div>
                 </div>
@@ -34,7 +34,7 @@
         <div class="row align-items-center justify-content-center">
             <div class="container py-2">
                 <ul class="nav nav-pills sort-source sort-source-style-3 justify-content-center" data-sort-id="portfolio" data-option-key="filter" data-plugin-options="{'layoutMode': 'masonry', 'filter': '*'}">
-                    <li class="nav-item active" data-option-value="*"><a class="nav-link text-2-5 text-uppercase active" href="#">All Categories</a></li>
+                    <li class="nav-item active" data-option-value="*"><a class="nav-link text-2-5 text-uppercase active" href="#">{% trans "All Categories" %}</a></li>
                     {% for category in categories %}
                     <li class="nav-item d-none d-md-block d-lg-block" data-option-value=".{{ category.0 }}"><a class="nav-link text-2-5 text-uppercase" href="#">{{ category.0 }}</a></li>
                     {% endfor %}
@@ -45,39 +45,8 @@
                         {% for video in gallery_videos %}
                             <div class="col-sm-12 col-lg-6 isotope-item {{ video.category }}">
                                 <div class="ratio ratio-16x9 ratio-borders">
-                                   
                                     {{video.link|safe}}
-                                    <!-- <iframe  frameborder="0" allowfullscreen   src="https://youtu.be/z7mnAuAIQMM" 
-                                    
-                                    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                    ></iframe> -->
-                                    <!-- <iframe frameborder="0" allowfullscreen="" src="http://www.youtube.com/embed/l-epKcOA7RQ?showinfo=0&amp;wmode=opaque"></iframe> -->
                                 </div>
-                                <!-- <div class="row mb-5">
-                
-                                    <div class="col-lg-6">
-                                        <video width='100%' controls>
-                                            <source src="video.video.url" type='video/mp4'>
-                                            Your browser does not support the video tag.
-                                        </video>                    
-                                    </div>
-                
-                                    <div class="col-lg-6">
-                                        
-                                            <div class="overflow-hidden mb-2">
-                                                <h2 class="text-color-dark font-weight-normal text-5 mb-0 appear-animation" data-appear-animation="maskUp" data-plugin-options="{'accY': -150}"> <strong class="font-weight-extra-bold">{{video.title}}</strong></h2>
-                                            </div>
-                                            <div class="overflow-hidden mb-3">
-                                                <p class="font-weight-bold text-primary text-uppercase mb-0 appear-animation" data-appear-animation="maskUp" data-appear-animation-delay="500">{{video.category}}</p>
-                                            </div>
-                
-                                            <p class="appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="200"> {{video.desc|safe}} </p>
-                
-                                    
-                                    </div>
-                
-                                </div> -->
-                
 
                             </div>
                         {% endfor %}

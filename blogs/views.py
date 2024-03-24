@@ -1,13 +1,13 @@
 from django.shortcuts import render,redirect
 from .models import *
-from django.http import JsonResponse
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render
 from django.views import View
-from .forms import BlogForm
 from django.contrib import messages
-def blog_list_admin(request):
-    blogs = Blog.objects.all()
-    return render(request, 'blog_list_admin.html', {'blogs': blogs})
+
+class BlogList(View):
+    def get(self, request):
+        blogs = Blog.objects.all()
+        return render(request, 'front/blog.html', {'blogs': blogs})
 
 class blog_detail(View):
     def get(self, *args, **kwargs):
@@ -24,66 +24,3 @@ class blog_detail(View):
         messages.success(self.request, "Successfully commented!")
         return redirect("blog_detail", blog_id= blog.id)
      
-def add_comment(request, blog_id):
-    if request.method == 'POST':
-        blog = get_object_or_404(Blog, pk=blog_id)
-        author = request.POST.get('author')
-        email = request.POST.get('email')
-        website = request.POST.get('website')
-        message = request.POST.get('message')
-        parent_id = request.POST.get('parent_id')  # If it's a reply, get the parent comment ID
-        parent_comment = None
-        if parent_id:
-            parent_comment = get_object_or_404(Comment, pk=parent_id)
-        comment = Comment.objects.create(blog=blog, author=author, email=email, website=website, message=message, parent=parent_comment)
-        return redirect('blog_detail', blog_id=blog_id)
-    else:
-        return redirect('blog_list')  # Redirect to blog list page if not a POST request
-def add_reply(request, comment_id):
-    if request.method == 'POST':
-        comment = get_object_or_404(Comment, pk=comment_id)
-        author = request.POST.get('author')
-        email = request.POST.get('email')
-        website = request.POST.get('website')
-        message = request.POST.get('message')
-        reply = Comment.objects.create(author=author, email=email, website=website, message=message, parent=comment)
-        return redirect('blog_detail', blog_id=comment.blog.pk)
-    else:
-        return redirect('blog_list')
-
-def delete_blog(request, blog_id):
-    blog = get_object_or_404(Blog, id=blog_id)  # Retrieve the Blog object
-
-    if request.method == 'POST':
-        blog.delete()  # Delete the Blog object
-        return redirect('blog_list_admin')  # Redirect to the blog list view
-
-    return render(request, 'delete_blog.html', {'blog': blog})
-
-def blog_list(request):
-    blogs = Blog.objects.all()
-    return render(request, 'front/blog.html', {'blogs': blogs})
-
-def Blogs_add(request):
-    if request.method == 'POST':
-        form = BlogForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('blog_list_admin')  # Redirect to the blog list view
-    else:
-        form = BlogForm()
-
-    return render(request, 'add_blogs.html', {'form': form})
-
-def update_blog(request, blog_id):
-    blog = get_object_or_404(Blog, id=blog_id)
-
-    if request.method == 'POST':
-        form = BlogForm(request.POST, request.FILES, instance=blog)
-        if form.is_valid():
-            form.save()
-            return redirect('blog_list_admin')  # Assuming you have a URL pattern named 'blog_list' for listing blogs
-    else:
-        form = BlogForm(instance=blog)
-
-    return render(request, 'update_blog.html', {'form': form, 'blog': blog})

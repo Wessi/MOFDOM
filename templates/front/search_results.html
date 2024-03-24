@@ -11,8 +11,8 @@
         <div class="row align-items-center text-center pb-3 mb-5 mb-lg-4">
             <div class="d-flex align-items-end justify-content-end">
                 <ul class="breadcrumb d-block text-center">
-                    <li><a href="/">Home</a></li>
-                    <li class="active">Search Results</li>
+                    <li><a href="{% url 'index' %}">{% trans "Home" %}</a></li>
+                    <li class="active">{% trans "Search Results" %}</li>
                 </ul>        
             </div>
             <hr class="bg-light">
@@ -21,12 +21,13 @@
                 <div class="d-flex align-items-center mb-2  justify-content-center">
                     <div class="overflow-hidden text-center">
                         <h2 class="text-color-primary text-9 text-center font-weight-semibold line-height-3 text-5 mb-0  appear-animation"
-                            data-appear-animation="maskRight" data-appear-animation-delay="300">{% if no_result %} No Result Found {% else %} Your Search Results {% endif %}
+                            data-appear-animation="maskRight" data-appear-animation-delay="300">
+                            {% if no_result %} {% trans "No Result Found" %} {% else %} {% trans "Your Search Results" %} {% endif %}
                         </h2>
                     </div>
                 </div>
                 <p  class="appear-animation text-center"  data-appear-animation="maskRight" data-appear-animation-delay="400"> 
-                    item searched in "news", "blogs", "gallery", "vacancies", "events" and "documents"
+                    {% trans "Searched our whole site" %} "news", "blogs", "gallery", "vacancies", "events" and "documents"
                 </p>
             </div>
             
@@ -42,7 +43,7 @@
                 <div class="blog-posts mb-3 ">
 
                     <h4 class="text-color-primary text-5  font-weight-semibold line-height-3  mb-3 appear-animation"
-                        data-appear-animation="maskLeft" data-appear-animation-delay="300">Result in News 
+                        data-appear-animation="maskLeft" data-appear-animation-delay="300">{% trans "Result in News" %}
                     </h4>
 
                     <div class="row mt-0">
@@ -64,7 +65,7 @@
 
                                     <div class="post-meta">
                                         <span><i class="far fa-clock"></i> <a href="#">{{ article.created_at }}</a></span>
-                                        <span class=" float-end"><a href="{% url 'news_detail' news_id=article.id %}" class=" text-uppercase">Read More</a></span>
+                                        <span class=" float-end"><a href="{% url 'news_detail' news_id=article.id %}" class=" text-uppercase">{% trans "Read More" %}</a></span>
                                     </div>
                                 </div>
                             </article>
@@ -86,7 +87,7 @@
                 <div class="blog-posts mb-3 ">
 
                     <h4 class="text-color-primary text-5  font-weight-semibold line-height-3  mb-3 appear-animation"
-                        data-appear-animation="maskLeft" data-appear-animation-delay="300">Result in Blogs 
+                        data-appear-animation="maskLeft" data-appear-animation-delay="300">{% trans "Result in Blogs" %}
                     </h4>
 
                     <div class="row mt-0">
@@ -106,8 +107,7 @@
                                     <div class="post-meta">
                                         <span><i class="far fa-calendar-alt "></i><a href="#">{{blog.publish_date}}</a></span>
                                         <span><i class="far fa-user"></i> By <a href="#">{{blog.author}}</a></span>
-                                        <span><i class="far fa-comments"></i> <a href="#">12 Comments</a></span>
-                                        <span class="d-block mt-2 float-end mb-3"><a href="{% url 'blog_detail' blog_id=blog.id %}" class="btn btn-md btn-primary ">Read More <i class="fa fa-angle-right"></i></a></span>
+                                        <span><i class="far fa-comments"></i> <a href="#">{% trans "Comments" %}</a></span>
                                     </div>
 
                                 </div>
@@ -130,7 +130,7 @@
                 <div class="blog-posts mb-3 ">
 
                     <h4 class="text-color-primary text-5  font-weight-semibold line-height-3  mb-3 appear-animation"
-                        data-appear-animation="maskLeft" data-appear-animation-delay="300">Result in Vacancies 
+                        data-appear-animation="maskLeft" data-appear-animation-delay="300">{% trans "Result in Vacancies" %}
                     </h4>
 
                     <div class="row mt-0">
@@ -142,9 +142,9 @@
                                     <div class="card-body">
                                         <h4 class="card-title mb-1 text-5 font-weight-bold d-inline-block">{{ job.job_title }}</h4>
                                         <span class="btn btn-sm {% if job.Status == 'Active' %}btn-success{% else %}btn-danger{% endif %} float-end">{{ job.Status }}</span>
-                                        <p><strong><i class="fa fa-calendar"></i> Deadline:</strong> {{ job.job_deadline }}</p>
+                                        <p><strong><i class="fa fa-calendar"></i> {% trans "Deadline" %}:</strong> {{ job.job_deadline }}</p>
                                         <p class="card-text">{{ job.job_description }}</p>
-                                        <p><strong><i class="fa fa-map-marker"></i> Location:</strong> {{ job.location }}</p>
+                                        <p><strong><i class="fa fa-map-marker"></i> {% trans "Location" %}:</strong> {{ job.location }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -166,7 +166,7 @@
                 <div class="blog-posts mb-5 ">
 
                     <h4 class="text-color-primary text-5  font-weight-semibold line-height-3  mb-3 appear-animation"
-                        data-appear-animation="maskLeft" data-appear-animation-delay="300">Result in Gallery 
+                        data-appear-animation="maskLeft" data-appear-animation-delay="300">{% trans "Result in Gallery" %} 
                     </h4>
 
                     <div class="row mt-0">
@@ -204,7 +204,7 @@
                 <div class="blog-posts mb-3 ">
 
                     <h4 class="text-color-primary text-5  font-weight-semibold line-height-3  mb-3 appear-animation"
-                        data-appear-animation="maskLeft" data-appear-animation-delay="300">Result in Documents 
+                        data-appear-animation="maskLeft" data-appear-animation-delay="300">{% trans "Result in Documents" %} 
                     </h4>
 
                     <div class="row mt-0">
@@ -247,7 +247,7 @@
                 <div class="blog-posts mb-3 ">
 
                     <h4 class="text-color-primary text-5  font-weight-semibold line-height-3  mb-3 appear-animation"
-                        data-appear-animation="maskLeft" data-appear-animation-delay="300">Result in Events 
+                        data-appear-animation="maskLeft" data-appear-animation-delay="300">{% trans "Result in Events" %}
                     </h4>
 
                     <div class="row mt-0">
@@ -271,9 +271,9 @@
                                         <h4 class="text-color-dark font-weight-bold text-4 mb-3 appear-animation" data-appear-animation="maskUp" data-appear-animation-delay="400">{{ event.title }}</h4>
                                     </div>
                                     <ul class="list list-icons list-primary list-borders text-2 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="800">
-                                        <li><i class="fas fa-calendar left-10"></i><strong>Date:</strong> {{ event.date }}</li>
-                                        <li><i class="fas fa-clock left-10"></i><strong>Time:</strong> {{ event.time }}</li>
-                                        <li><i class="fas fa-map-marker left-10"></i><strong>Location:</strong> {{ event.location }}</li>
+                                        <li><i class="fas fa-calendar left-10"></i><strong>{% trans "Date" %}:</strong> {{ event.date }}</li>
+                                        <li><i class="fas fa-clock left-10"></i><strong>{% trans "Time" %}:</strong> {{ event.time }}</li>
+                                        <li><i class="fas fa-map-marker left-10"></i><strong>{% trans "Location" %}:</strong> {{ event.location }}</li>
                                     </ul>
                                     
                                 </div>

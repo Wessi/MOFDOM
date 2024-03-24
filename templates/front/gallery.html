@@ -12,8 +12,8 @@
         <div class="row align-items-end">
             <div class="d-flex align-items-end justify-content-end">
                 <ul class="breadcrumb d-block text-center">
-                    <li><a href="/">Home</a></li>
-                    <li class="active">Gallery Images</li>
+                    <li><a href="{% url 'index' %}">{% trans "Home" %}</a></li>
+                    <li class="active">{% trans "Gallery Images" %}</li>
                 </ul>        
             </div>
             <hr class="bg-light">
@@ -21,10 +21,10 @@
                 <div class="d-flex align-items-center justify-content-center">
                     <div class="overflow-hidden text-center">
                         <h2 class="text-color-primary font-weight-semibold line-height-3 text-5 mb-0 appear-animation"
-                            data-appear-animation="maskRight" data-appear-animation-delay="500">GALLERY IMAGES
+                            data-appear-animation="maskRight" data-appear-animation-delay="500">{% trans "GALLERY IMAGES" %}
                         </h2>
                         <p  class="appear-animation"  data-appear-animation="maskRight" data-appear-animation-delay="600"> 
-                            PICTURES TAKEN FROM PREVIOUS ACTIVITIES
+                            {% trans "PICTURES TAKEN FROM PREVIOUS ACTIVITIES" %}
                         </p>
                     </div>
                 </div>
@@ -33,7 +33,7 @@
         <div class="row align-items-center justify-content-center">
             <div class="container py-2">
                 <ul class="nav nav-pills sort-source sort-source-style-3 justify-content-center" data-sort-id="portfolio" data-option-key="filter" data-plugin-options="{'layoutMode': 'masonry', 'filter': '*'}">
-                    <li class="nav-item active" data-option-value="*"><a class="nav-link text-2-5 text-uppercase active" href="#">All Categories</a></li>
+                    <li class="nav-item active" data-option-value="*"><a class="nav-link text-2-5 text-uppercase active" href="#">{% trans "All Categories" %}</a></li>
                     {% for category in categories %}
                     <li class="nav-item d-none d-md-block d-lg-block" data-option-value=".{{ category }}"><a class="nav-link text-2-5 text-uppercase" href="#">{{ category }}</a></li>
                     {% endfor %}

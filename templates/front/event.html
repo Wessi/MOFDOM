@@ -18,8 +18,8 @@
         <div class="row align-items-end pb-3">
             <div class="d-flex align-items-end justify-content-end">
                 <ul class="breadcrumb d-block text-center">
-                    <li><a href="/">Home</a></li>
-                    <li class="active">Event</li>
+                    <li><a href="{% url 'index' %}">{% trans "Home" %}</a></li>
+                    <li class="active">{% trans "Event" %}</li>
                 </ul>        
             </div>
             <hr class="bg-light">
@@ -27,12 +27,12 @@
                 <div class="d-flex align-items-center mb-2 justify-content-center">
                     <div class="overflow-hidden text-center">
                         <h2 class="text-color-primary text-9 text-center font-weight-semibold line-height-3 text-5 mb-0 appear-animation"
-                            data-appear-animation="maskRight" data-appear-animation-delay="300">Events
+                            data-appear-animation="maskRight" data-appear-animation-delay="300">{% trans "Events" %}
                         </h2>
                     </div>
                 </div>
                 <p class="appear-animation text-center" data-appear-animation="maskRight" data-appear-animation-delay="400"> 
-                    Here are the lists of upcoming events
+                    {% trans "Here are the lists of upcoming events" %}
                 </p>
             </div>
         </div>
@@ -58,9 +58,9 @@
                                 <h4 class="text-color-dark font-weight-bold text-4 mb-2 appear-animation" data-appear-animation="maskUp" data-appear-animation-delay="400">{{ event.title }}</h4>
                             </div>
                             <ul class="list list-icons list-primary list-borders text-2 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="800">
-                                <li><i class="fas fa-calendar left-10"></i><strong>Date:</strong> {{ event.date }}</li>
-                                <li><i class="fas fa-clock left-10"></i><strong>Time:</strong> {{ event.time }}</li>
-                                <li><i class="fas fa-map-marker left-10"></i><strong>Location:</strong> {{ event.location }}</li>
+                                <li><i class="fas fa-calendar left-10"></i><strong>{% trans "Date:" %}</strong> {{ event.date }}</li>
+                                <li><i class="fas fa-clock left-10"></i><strong>{% trans "Time:" %}</strong> {{ event.time }}</li>
+                                <li><i class="fas fa-map-marker left-10"></i><strong>{% trans "Location:" %}</strong> {{ event.location }}</li>
                             </ul>
                             
                         </div>

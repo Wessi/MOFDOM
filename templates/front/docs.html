@@ -14,12 +14,12 @@
                 <div class="d-flex align-items-center justify-content-center mb-2">
                     <div class="overflow-hidden">
                         <h2 class="text-color-primary font-weight-semibold line-height-3 text-5 mb-0 appear-animation"
-                            data-appear-animation="maskRight" data-appear-animation-delay="500">RESOURCES
+                            data-appear-animation="maskRight" data-appear-animation-delay="500">{% trans "RESOURCES" %}
                         </h2>
                     </div>
                 </div>
                 <p  class="appear-animation"  data-appear-animation="maskRight" data-appear-animation-delay="600"> 
-                    YOU CAN FIND ALL THE RESOURCES IN THIS SECTION
+                    {% trans "YOU CAN FIND ALL THE RESOURCES IN THIS SECTION" %}
                 </p>
             </div>
         </div>
@@ -74,7 +74,7 @@
                                         {% else %}
                                         <div class="feature-box py-2 px-1">
                                             <div class="border-radius-2">
-                                                <p>Document not found</p>
+                                                <p>{% trans "Document not found" %}</p>
                                             </div>
                                         </div>
                                         {% endif %}

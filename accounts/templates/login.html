@@ -18,14 +18,14 @@
                                 {% else %}
                                 <img class="text-center" style="height:100px" src="{% static 'front/imgs/logo/logo-addis.png' %}">
                                 {% endif %}
-                                <h4 class="color-primary font-weight-semibold text-4 text-uppercase mb-3 text-center">LogIn </h4>
+                                <h4 class="color-primary font-weight-semibold text-4 text-uppercase mb-3 text-center">{% trans "LogIn" %}</h4>
                                 
                             </div>
                             <form action=""  method="post" class="form-fields-rounded form-with-icons">
                                 {% csrf_token %}
                                 <div class="row">
                                     <div class="form-group col">
-                                        <label class="form-label">Email Address</label>
+                                        <label class="form-label">{% trans "Email Address" %}</label>
                                         <div class="position-relative">
                                             <i class="fa fa-envelope text-color-primary text-3 position-absolute left-2 top-50pct transform3dy-n50"></i>
                                             <input type="email" name="email" value="" class="form-control " required>
@@ -34,7 +34,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="form-group col">
-                                        <label class="form-label">Password</label>
+                                        <label class="form-label">{% trans "Password" %}</label>
                                         <div class="position-relative">
                                             <i class="fa fa-key text-color-primary text-3 position-absolute left-2 top-50pct transform3dy-n50"></i>
                                             <input type="password" name="password" value="" class="form-control " required>
@@ -45,11 +45,11 @@
                                     <div class="form-group col-lg-6">
                                         <div class="custom-control custom-checkbox">
                                             <input type="checkbox" name="rememberme" class="custom-control-input" id="rememberme">
-                                            <label class="custom-control-label text-2" for="rememberme">Remember Me</label>
+                                            <label class="custom-control-label text-2" for="rememberme">{% trans "Remember Me" %}</label>
                                         </div>
                                     </div>
                                     <div class="form-group col-lg-6">
-                                        <a class="float-end text-primary" href="{% url 'reset_password' %}"> <strong> Forgot Password?</strong></a>
+                                        <a class="float-end text-primary" href="{% url 'reset_password' %}"> <strong> {% trans "Forgot Password?" %}</strong></a>
                                     </div>
                                     
                                 <div class="row text-center">
@@ -61,7 +61,7 @@
                             </form>
                             
                             <div class="float-end">
-                                <span>Don't have account <a href="/accounts/signup/">Create Account</a></span>
+                                <span>{% trans "Don't have account" %} <a href="/accounts/signup/">{% trans "Create Account" %}</a></span>
                             </div>
                             
     

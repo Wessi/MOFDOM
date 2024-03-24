@@ -8,8 +8,8 @@
         <div class="row align-items-end mb-5 mb-lg-4">
             <div class="d-flex align-items-end justify-content-end">
                 <ul class="breadcrumb d-block text-center">
-                    <li><a href="/">Home</a></li>
-                    <li class="active">Vacancy</li>
+                    <li><a href="{% url 'index' %}">{% trans "Home" %}</a></li>
+                    <li class="active">{% trans "Vacancy" %}</li>
                 </ul>        
             </div>
             <hr class="bg-light">
@@ -17,12 +17,13 @@
                 <div class="d-flex align-items-center mb-2  justify-content-center">
                     <div class="overflow-hidden text-center">
                         <h2 class="text-color-primary text-9 text-center font-weight-semibold line-height-3 text-5 mb-0 appear-animation"
-                            data-appear-animation="maskRight" data-appear-animation-delay="300">{% if search %} RELATED {% else %} RECENT {% endif %} VACANCIES
+                            data-appear-animation="maskRight" data-appear-animation-delay="300">
+                            {% if search %} {% trans "RELATED" %} {% else %} {% trans "RECENT" %} {% endif %} {% trans "VACANCIES" %}
                         </h2>
                     </div>
                 </div>
                 <p  class="appear-animation text-center"  data-appear-animation="maskRight" data-appear-animation-delay="400"> 
-                    List of {% if search %} related {% else %} recent {% endif %} vacancies.
+                    {% trans "List of {% if search %} related {% else %} recent {% endif %} vacancies." %}
                 </p>
             </div>
         </div>
@@ -48,9 +49,9 @@
                 </div>
                 <div class="col-lg-1 col-md-4">
                     <select class="form-control mb-3">
-                        <option>All <i class="fa fa-angle-down"></i></option>
-                        <option>Active</option>
-                        <option>Closed </option>
+                        <option>{% trans "All" %} <i class="fa fa-angle-down"></i></option>
+                        <option>{% trans "Active" %}</option>
+                        <option>{% trans "Closed" %} </option>
                     </select>
                 </div>
             </div>
@@ -59,7 +60,7 @@
            
             <div class="row mb-2 pb-2">
                 {% if search and not jobs %}
-                <h5 class="text-center mt-4 mb-5">No related vacancies related with keyword <strong>'{{search}}'</strong></h5>
+                <h5 class="text-center mt-4 mb-5">{% trans "No related vacancies related with keyword" %} <strong>'{{search}}'</strong></h5>
                 {% endif %}
                 {% for job in jobs %}
                 <div class="col-lg-12 col-md-6 mb-4 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="600">
@@ -67,12 +68,12 @@
                         <div class="card-body">
                             <h4 class="card-title mb-1 text-5 font-weight-bold d-inline-block">{{ job.job_title }}</h4>
                             <span class="btn btn-sm {% if job.Status == 'Active' %}btn-success{% else %}btn-danger{% endif %} float-end">{{ job.Status }}</span>
-                            <p><strong><i class="fa fa-calendar"></i> Deadline:</strong> {{ job.job_deadline }}</p>
+                            <p><strong><i class="fa fa-calendar"></i> {% trans "Deadline" %}:</strong> {{ job.job_deadline }}</p>
                             <p class="card-text">{{ job.job_description }}</p>
-                            <p><strong><i class="fa fa-map-marker"></i> Location:</strong> {{ job.location }}</p>
+                            <p><strong><i class="fa fa-map-marker"></i> {% trans "Location" %}:</strong> {{ job.location }}</p>
                              <!-- Add Apply button -->
                             {% if job.Status == 'Active' %}
-                             <a href="{% url 'jobs_apply' pk=job.id %}" class="btn btn-primary btn-sm">Apply</a>
+                             <a href="{% url 'jobs_apply' pk=job.id %}" class="btn btn-primary btn-sm">{% trans "Apply" %}</a>
                              {% endif %}
                               
                         </div>
@@ -86,15 +87,7 @@
             <div class="row">
                 <div class="col-12">
                     <ul class="pagination text-center justify-content-center">
-                        <!-- <li class="page-item"><a class="page-link m-1" href="#"><i class="fas fa-angle-left"></i></a></li> -->
                         <li class="page-item active"><a class="page-link m-1" href="#">1</a></li>
-                        <!-- <li class="page-item"><a class="page-link m-1" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link m-1" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link m-1" href="#">4</a></li>
-                        <li class="page-item"><a class="page-link m-1" href="#">5</a></li>
-                        <li class="page-item"><a class="page-link m-1" href="#">...</a></li>
-                        <li class="page-item"><a class="page-link m-1" href="#">12</a></li>
-                        <li class="page-item"><a class="page-link m-1" href="#"><i class="fas fa-angle-right"></i></a></li> -->
                     </ul>
                 </div>
             </div>
