@@ -28,8 +28,8 @@ def index(request):
     about_us = DirectorateMessage.objects.first()
     featured_works = FeaturedWork.objects.all()
     
-    paragraphs = about_us.content[:800] + "..."
-    paragraphs = paragraphs.split('\n')
+    paragraphs = about_us.content[:800] + "..." if about_us else about_us
+    paragraphs = paragraphs.split('\n') if paragraphs else paragraphs
     context = {
         'recent_blogs': recent_blogs,
         'recent_news': recent_news,

@@ -38,7 +38,6 @@ def get_conf(request, kwargs):
             is_single = getattr(model,'is_single',False)
             return {"model":model, "form":form, "model_name": model_name,"single": is_single}
     
-    
 
 class Dashboard(LoginRequiredMixin, View ):
     def get(self, request):
@@ -51,22 +50,22 @@ class Dashboard(LoginRequiredMixin, View ):
         }
 
         return render(request, 'staff/admin_home.html', 
-                      {'tasks':task_data, 
-                       'jobs':Job.objects.count(), 
-                       'applications':Application.objects.count(), 
-                       'events':Event.objects.all(),
-                       'galleries':GalleryImage.objects.count(), 
-                       'videos':GalleryVideo.objects.count(),
-                       'docs':Document.objects.count(),
-                       'news':NewsArticle.objects.count(),
-                       'blogs':Blog.objects.count(),
-                       'contactus': ContactUs.objects.all()[:5],
-                       'blocked_supplier':Supplier.objects.all()[:5]
+                      { 'index':True,
+                        'tasks':task_data, 
+                        'jobs':Job.objects.count(), 
+                        'applications':Application.objects.count(), 
+                        'events':Event.objects.all(),
+                        'galleries':GalleryImage.objects.count(), 
+                        'videos':GalleryVideo.objects.count(),
+                        'docs':Document.objects.count(),
+                        'news':NewsArticle.objects.count(),
+                        'blogs':Blog.objects.count(),
+                        'contactus': ContactUs.objects.all()[:5],
+                        'blocked_supplier':Supplier.objects.all()[:5]
                        }
                     )
     
     
-
 class CreateView(LoginRequiredMixin, View):
     def get(self, *args, **kwargs):
         config = get_conf(self.request, self.kwargs)
@@ -128,7 +127,7 @@ class ChangeView(LoginRequiredMixin, View):
             obj = model.objects.get(id = self.kwargs['pk'])
         form = config["form"](instance = obj)
         return render(self.request, 'staff/create_page.html', { 'add':False,  'form':form, 'is_single':config['single'], 
-                                                                'model_name':model_name.capitalize(),})
+                                                                'model_name':model_name.capitalize(), 'model_code':self.kwargs['model_name'], 'pk':self.kwargs['pk']})
     
     def post(self, *args, **kwargs):
         config = get_conf(self.request,self.kwargs)

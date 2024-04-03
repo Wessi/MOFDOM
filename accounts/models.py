@@ -39,7 +39,7 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
     role = models.CharField(max_length=20, choices=USER_ROLES, default='visitor')
     profile_pic = models.ImageField(upload_to='profile_pics/', null=True, blank=True)
     phonenumber = models.CharField(max_length=15, null=True, blank=True)
-# Add related_name attributes to avoid clashes
+
     groups = models.ManyToManyField(Group, blank=True, related_name='user_profiles')
     user_permissions = models.ManyToManyField(
         Permission, blank=True, related_name='user_profiles_permissions'
@@ -55,7 +55,7 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
     objects = MyUserManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['first_name', 'last_name'] # will appear at py manage.py createsuperuser thingy
+    REQUIRED_FIELDS = ['first_name', 'last_name'] 
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"

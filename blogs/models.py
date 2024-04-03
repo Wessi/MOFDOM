@@ -27,7 +27,10 @@ class Blog(models.Model):
 
     def __str__(self):
         return self.title
-    
+
+    def comments(self):
+        return self.comment_set.filter(approved = True)
+
     def get_list_fields():
         return ['title', 'blog_category','author','publish_date','published_status' ]
     

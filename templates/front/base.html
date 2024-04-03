@@ -48,9 +48,7 @@
     <meta name="google-translate-customization" content="2a346d14a229c668-7e7397a8cc152430-g725eaceb7864f0fd-12"></meta>
 		
     <!-- Web Fonts  -->
-    <link id="googleFonts"
-        href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800%7CRoboto+Slab:300,400,700,900&amp;display=swap"
-        rel="stylesheet" type="text/css">
+    <!-- <link id="googleFonts" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800%7CRoboto+Slab:300,400,700,900&amp;display=swap" rel="stylesheet" type="text/css"> -->
 
     <!-- Vendor CSS -->
     <link rel="stylesheet" href="{% static 'front/vendor/bootstrap/css/bootstrap.min.css' %}">
@@ -308,7 +306,7 @@
                                                 {% if pages.news or pages.blogs %}
                                                 <li class="dropdown">
                                                     <a class="dropdown-item dropdown-toggle {% block news_dynamic %} {% endblock %}" href="#">
-                                                        News
+                                                        {% trans 'News' %}
                                                     </a>
                                                     <ul class="dropdown-menu">
                                                         <li><a class="dropdown-item" href="{% url 'news_list_visitor' %}">{% trans "News" %}</a></li>

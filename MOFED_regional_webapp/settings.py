@@ -182,7 +182,6 @@ LANGUAGE_CODE = 'en'
 LANGUAGES = (
     ('en', ('English')),
     ('ax', ('Amharic')),
- 
 )
 
 
@@ -194,12 +193,6 @@ EXTRA_LANG_INFO = {
         'name': 'አማርኛ',
         'name_local': u'አማርኛ',
     },
-    # 'tx': {
-    #     'bidi': False, # right-to-left
-    #     'code': 'tx',
-    #     'name': 'ትግርኛ',
-    #     'name_local': u'ትግርኛ',
-    # },
     
 }
 
@@ -211,7 +204,7 @@ django.conf.locale.LANG_INFO = LANG_INFO
 
 ## Settings for model translation
 MODELTRANSLATION_DEFAULT_LANGUAGE = 'en'
-MODELTRANSLATION_LANGUAGES = ('en','ax') # Only amharic fields will be created, skipping en fields
+MODELTRANSLATION_LANGUAGES = ('en','ax') 
 MODELTRANSLATION_ENABLE_FALLBACKS = True
 MODELTRANSLATION_FALLBACK_LANGUAGES = ('en',)
 

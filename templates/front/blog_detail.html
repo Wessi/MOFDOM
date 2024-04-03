@@ -127,7 +127,7 @@
                 <p>{{blog.content|safe}}</p>
 
                 <div id="comments" class="post-block mt-5 post-comments">
-                    <h4 class="mb-3">{% trans "Comments" %} ({{comments.count}})</h4>
+                    <h4 class="mb-3">{% trans "Comments" %} ({{blog.comments.count}})</h4>
 
                     <ul class="comments">
                         {% for c in comments %}

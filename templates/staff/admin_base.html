@@ -41,6 +41,10 @@
         .errorlist li{
             color: red;
         }
+        li.open a span{
+            color:red;
+        }
+        
     </style>
     {% render_block "css" %}
     {% block css %}  {% endblock %}
@@ -650,39 +654,46 @@
                     </div>
                     <ul class="main-menu">
                         <li class="slide">
-                            <a href="{% url 'admin_dashboard' %}" class="side-menu__item">
+                            <a href="{% url 'admin_dashboard' %}" class="side-menu__item {% if index %} active {% endif %}">
                                 <i class="bx bx-user-admin side-menu__icon"></i>
                                 <span class="side-menu__label">Dashboard</span>
                             </a>
                         </li>
+
                         <li class="slide__category"><span class="category-name">Web Manager</span></li>
 
                         <!-- Start::Home page -->
-                        <li class="slide has-sub">
-                            <a href="javascript:void(0);" class="side-menu__item">
+                        <li class="slide has-sub {% if model_code == 'FeaturedWork' or model_code == 'DirectorateMessage' %} active open {% endif %}">
+                            <a href="javascript:void(0);" class="side-menu__item {% if model_code == 'FeaturedWork' or model_code == 'DirectorateMessage' %} active {% endif %}">
                                 <i class="bx bx-home side-menu__icon"></i>
                                 <span class="side-menu__label">Home Page</span>
                                 <i class="fe fe-chevron-right side-menu__angle"></i>
                             </a>
                             <ul class="slide-menu child1">
-                                <li class="slide"><a href="{% url 'list_view' model_name='FeaturedWork' %}" class="side-menu__item">Sliders</a></li>
-                                <li class="slide"><a href="{% url 'list_view' model_name='DirectorateMessage' %}" class="side-menu__item">Director Message</a></li>
+                                <li class="slide"><a href="{% url 'list_view' model_name='FeaturedWork' %}" 
+                                    class="side-menu__item {% if model_code == 'FeaturedWork' %} active {% endif %}">Sliders</a></li>
+                                <li class="slide"><a href="{% url 'list_view' model_name='DirectorateMessage' %}" 
+                                    class="side-menu__item {% if model_code == 'DirectorateMessage' %} active {% endif %}" >Director Message</a></li>
                             </ul>
                         </li>
                         <!-- End -->
                         
                         <!-- Start::About Us -->
-                        <li class="slide has-sub">
-                            <a href="javascript:void(0);" class="side-menu__item">
+                        <li class="slide has-sub {% if model_code == 'TeamMember' or model_code == 'Service' or model_code == 'About' or model_code == 'BureauStructure' %} open {% endif %}">
+                            <a href="javascript:void(0);" class="side-menu__item {% if model_code == 'TeamMember' or model_code == 'FeaturedWork' or model_code == 'About' or model_code == 'BureauStructure' %} active {% endif %}">
                                 <i class="bx bx-medal side-menu__icon"></i>
                                 <span class="side-menu__label">About Us</span>
                                 <i class="fe fe-chevron-right side-menu__angle"></i>
                             </a>
                             <ul class="slide-menu child1">
-                                <li class="slide"><a href="{% url 'list_view' model_name='TeamMember' %}" class="side-menu__item">Team</a></li>
-                                <li class="slide"><a href="{% url 'list_view' model_name='FeaturedWork' %}" class="side-menu__item">Services</a></li>
-                                <li class="slide"><a href="{% url 'list_view' model_name='About' %}" class="side-menu__item">About Us</a></li>
-                                <li class="slide"><a href="{% url 'list_view' model_name='BureauStructure' %}" class="side-menu__item">Bureau Structure</a></li>
+                                <li class="slide"><a href="{% url 'list_view' model_name='TeamMember' %}" 
+                                    class="side-menu__item {% if model_code == 'DirectorateMessage' %} active {% endif %}">Team</a></li>
+                                <li class="slide"><a href="{% url 'list_view' model_name='Services' %}" 
+                                    class="side-menu__item {% if model_code == 'Service' %} active {% endif %}">Services</a></li>
+                                <li class="slide"><a href="{% url 'list_view' model_name='About' %}" 
+                                    class="side-menu__item {% if model_code == 'About' %} active {% endif %}">About Us</a></li>
+                                <li class="slide"><a href="{% url 'list_view' model_name='BureauStructure' %}" 
+                                    class="side-menu__item {% if model_code == 'BureauStructure' %} active {% endif %}">Bureau Structure</a></li>
 
                                 
                             </ul>
@@ -690,60 +701,70 @@
                         <!-- End -->
 
                         <!-- Start::Resources -->
-                        <li class="slide has-sub">
-                            <a href="javascript:void(0);" class="side-menu__item">
+                        <li class="slide has-sub {% if model_code == 'Document' or model_code == 'Supplier' %} active open {% endif %}">
+                            <a href="javascript:void(0);" class="side-menu__item {% if model_code == 'Document' or model_code == 'Supplier' %} active  {% endif %}">
                                 <i class="bx bx-file-blank side-menu__icon"></i>
                                 <span class="side-menu__label">Resources</span>
                                 <i class="fe fe-chevron-right side-menu__angle"></i>
                             </a>
                             <ul class="slide-menu child1">
-                                <li class="slide"><a href="{% url 'list_view' model_name='Document' %}" class="side-menu__item">Documents</a></li>
-                                <li class="slide"><a href="{% url 'list_view' model_name='Supplier' %}" class="side-menu__item">Blocked Suppliers</a></li>
+                                <li class="slide"><a href="{% url 'list_view' model_name='Document' %}" 
+                                    class="side-menu__item  {% if model_code == 'Document' %} active {% endif %}">Documents</a></li>
+                                <li class="slide"><a href="{% url 'list_view' model_name='Supplier' %}" 
+                                    class="side-menu__item {% if model_code == 'Supplier' %} active {% endif %}">Blocked Suppliers</a></li>
                             </ul>
                         </li>
                         <!-- End -->
 
                         <!-- Start::Announcements -->
-                        <li class="slide has-sub">
-                            <a href="javascript:void(0);" class="side-menu__item">
+                        <li class="slide has-sub {% if model_code == 'Bid' or model_code == 'Event' or model_code == 'Job' %} active open {% endif %}">
+                            <a href="javascript:void(0);" class="side-menu__item {% if model_code == 'Bid' or model_code == 'Event' or model_code == 'Job' %} active {% endif %}">
                                 <i class="bx bx-task side-menu__icon"></i>
                                 <span class="side-menu__label">Announcements </span>
                                 <i class="fe fe-chevron-right side-menu__angle"></i>
                             </a>
                             <ul class="slide-menu child1">
-                                <li class="slide"><a href="{% url 'list_view' model_name='Supplier' %}" class="side-menu__item">Bids</a></li>
-                                <li class="slide"><a href="{% url 'list_view' model_name='Event' %}" class="side-menu__item">Events</a></li>
-                                <li class="slide"><a href="{% url 'list_view' model_name='Job' %}" class="side-menu__item">Vacancies</a></li>
+                                <li class="slide"><a href="{% url 'list_view' model_name='Supplier' %}" 
+                                    class="side-menu__item {% if model_code == 'Bid' %} active {% endif %}">Bids</a></li>
+                                <li class="slide"><a href="{% url 'list_view' model_name='Event' %}" 
+                                    class="side-menu__item {% if model_code == 'Event' %} active {% endif %}">Events</a></li>
+                                <li class="slide"><a href="{% url 'list_view' model_name='Job' %}" 
+                                    class="side-menu__item {% if model_code == 'Job' %} active {% endif %}">Vacancies</a></li>
                                 
                             </ul>
                         </li>
                         <!-- End -->
 
                         <!-- Start::News & blogs -->
-                        <li class="slide has-sub">
-                            <a href="javascript:void(0);" class="side-menu__item">
+                        <li class="slide has-sub {% if model_code == 'NewsArticle' or model_code == 'NewsCategory' or model_code == 'Blog' or model_code == 'Comment' or model_code == 'BlogCategory' %}  active open {% endif %}">
+                            <a href="javascript:void(0);" class="side-menu__item  {% if model_code == 'NewsArticle' or model_code == 'NewsCategory' or model_code == 'Blog' or model_code == 'Comment' or model_code == 'BlogCategory' %}  active {% endif %}">
                                 <i class="bx bx-news side-menu__icon"></i>
                                 <span class="side-menu__label">News & Blogs </span>
                                 <i class="fe fe-chevron-right side-menu__angle"></i>
                             </a>
                             <ul class="slide-menu child1">
-                                <li class="slide has-sub">
-                                    <a href="javascript:void(0);" class="side-menu__item">News
+                                <li class="slide has-sub {% if model_code == 'NewsArticle' or model_code == 'NewsCategory'  %} active open {% endif %}">
+                                    <a href="javascript:void(0);" class="side-menu__item {% if model_code == 'NewsArticle' or model_code == 'NewsCategory'  %} active {% endif %}">News
                                         <i class="fe fe-chevron-right side-menu__angle"></i></a>
                                     <ul class="slide-menu child2">
-                                        <li class="slide"><a href="{% url 'list_view' model_name='NewsArticle' %}" class="side-menu__item">News</a></li>
-                                        <li class="slide"><a href="{% url 'list_view' model_name='NewsCategory' %}" class="side-menu__item">News Categories</a></li>
+                                        <li class="slide"><a href="{% url 'list_view' model_name='NewsArticle' %}" 
+                                            class="side-menu__item {% if model_code == 'NewsArticle' %} active {% endif %}">News</a></li>
+                                        <li class="slide"><a href="{% url 'list_view' model_name='NewsCategory' %}" 
+                                            class="side-menu__item {% if model_code == 'NewsCategory' %} active {% endif %}">News Categories</a></li>
                                         
                                     </ul>
                                 </li>
                                 
-                                <li class="slide has-sub">
-                                    <a href="javascript:void(0);" class="side-menu__item">Blogs
+                                <li class="slide has-sub {% if model_code == 'Blog' or model_code == 'Comment' or model_code == 'BlogCategory'  %} active open {% endif %}">
+                                    <a href="javascript:void(0);" class="side-menu__item {% if model_code == 'Blog' or model_code == 'Comment' or model_code == 'BlogCategory'  %} active {% endif %}">Blogs
                                         <i class="fe fe-chevron-right side-menu__angle"></i></a>
                                     <ul class="slide-menu child2">
-                                        <li class="slide"><a href="{% url 'list_view' model_name='Blog' %}" class="side-menu__item">Blogs</a></li>
-                                        <li class="slide"><a href="{% url 'list_view' model_name='Comment' %}" class="side-menu__item">Blog Comments</a></li>
-                                        <li class="slide"><a href="{% url 'list_view' model_name='BlogCategory' %}" class="side-menu__item">Blog Categories</a></li>
+                                        <li class="slide"><a href="{% url 'list_view' model_name='Blog' %}" 
+                                            class="side-menu__item {% if model_code == 'Blog' %} active {% endif %}">Blogs</a></li>
+                                        <li class="slide"><a href="{% url 'list_view' model_name='Comment' %}" 
+                                            class="side-menu__item {% if model_code == 'Comment' %} active {% endif %}">Blog Comments</a></li>
+                                        <li class="slide"><a href="{% url 'list_view' model_name='BlogCategory' %}" 
+                                            class="side-menu__item {% if model_code == 'BlogCategory' %} active {% endif %}">Blog Categories</a></li>
                                         
                                     </ul>
                                 </li>
@@ -752,32 +773,38 @@
                         <!-- End -->
 
                         <!-- Start::Gallery -->
-                        <li class="slide has-sub">
-                            <a href="javascript:void(0);" class="side-menu__item">
+                        <li class="slide has-sub  {% if model_code == 'GalleryImage' or model_code == 'GalleryVideo' or model_code == 'GalleryCategory' %} active open {% endif %}">
+                            <a href="javascript:void(0);" class="side-menu__item {% if model_code == 'GalleryImage' or model_code == 'GalleryVideo' or model_code == 'GalleryCategory' %} active {% endif %}">
                                 <i class="bx bx-image side-menu__icon"></i>
                                 <span class="side-menu__label">Gallery </span>
                                 <i class="fe fe-chevron-right side-menu__angle"></i>
                             </a>
                             <ul class="slide-menu child1">
-                                <li class="slide"><a href="{% url 'list_view' model_name='GalleryImage' %}" class="side-menu__item">Images</a></li>
-                                <li class="slide"><a href="{% url 'list_view' model_name='GalleryVideo' %}" class="side-menu__item">Videos</a></li>
-                                <li class="slide"><a href="{% url 'list_view' model_name='GalleryCategory' %}" class="side-menu__item">Categories</a></li>
+                                <li class="slide"><a href="{% url 'list_view' model_name='GalleryImage' %}" 
+                                    class="side-menu__item {% if model_code == 'GalleryImage' %} active {% endif %}">Images</a></li>
+                                <li class="slide"><a href="{% url 'list_view' model_name='GalleryVideo' %}" 
+                                    class="side-menu__item {% if model_code == 'GalleryVideo' %} active {% endif %}">Videos</a></li>
+                                <li class="slide"><a href="{% url 'list_view' model_name='GalleryCategory' %}" 
+                                    class="side-menu__item {% if model_code == 'GalleryCategory' %} active {% endif %}">Categories</a></li>
                                 
                             </ul>
                         </li>
                         <!-- End -->
 
                         <!-- Start::Contact Us -->
-                        <li class="slide has-sub">
-                            <a href="javascript:void(0);" class="side-menu__item">
+                        <li class="slide has-sub {% if model_code == 'FAQ' or model_code == 'QuickLink' or model_code == 'ContactUs' %} active open {% endif %}">
+                            <a href="javascript:void(0);" class="side-menu__item {% if model_code == 'FAQ' or model_code == 'QuickLink' or model_code == 'ContactUs' %} active {% endif %}">
                                 <i class="bx bxs-envelope side-menu__icon"></i>
                                 <span class="side-menu__label">Contact Us </span>
                                 <i class="fe fe-chevron-right side-menu__angle"></i>
                             </a>
                             <ul class="slide-menu child1">
-                                <li class="slide"><a href="{% url 'list_view' model_name='FAQ' %}" class="side-menu__item">FAQs</a></li>
-                                <li class="slide"><a href="{% url 'list_view' model_name='QuickLink' %}" class="side-menu__item">Quick Links</a></li>
-                                <li class="slide"><a href="{% url 'list_view' model_name='ContactUs' %}" class="side-menu__item">Contact Us Messages</a></li>
+                                <li class="slide"><a href="{% url 'list_view' model_name='FAQ' %}" 
+                                    class="side-menu__item {% if model_code == 'FAQ' %} active {% endif %}">FAQs</a></li>
+                                <li class="slide"><a href="{% url 'list_view' model_name='QuickLink' %}" 
+                                    class="side-menu__item {% if model_code == 'QuickLink' %} active {% endif %}">Quick Links</a></li>
+                                <li class="slide"><a href="{% url 'list_view' model_name='ContactUs' %}" 
+                                    class="side-menu__item {% if model_code == 'ContactUs' %} active {% endif %}">Contact Us Messages</a></li>
                                 
                             </ul>
                         </li>
@@ -786,28 +813,25 @@
                         
                         <li class="slide__category"><span class="category-name">Internal</span></li>
                         
-                        <li class="slide has-sub">
-                            <a href="javascript:void(0);" class="side-menu__item">
+                        <li class="slide has-sub {% if type %} open {% endif %}">
+                            <a href="javascript:void(0);" class="side-menu__item {% if type %} active {% endif %} ">
                                 <i class="bx bx-task side-menu__icon"></i>
                                 <span class="side-menu__label">Tasks</span>
                                 <i class="fe fe-chevron-right side-menu__angle"></i>
                             </a>
 
                             <ul class="slide-menu child1">
-                                <!-- <li class="slide side-menu__label1">
-                                    <a href="{% url 'task_list_view' type='All' %}">Task</a>
-                                </li> -->
-                                <!-- <li class="slide">
-                                    <a href="javascript:void(0);" class="side-menu__item">Create Task</a>
-                                </li> -->
                                 <li class="slide">
-                                    <a href="{% url 'task_list_view' type='All' %}" class="side-menu__item">All Tasks</a>
+                                    <a id="tab-Group"  href="{% url 'task_list_view' type='All' %}" 
+                                    class="side-menu__item {% if type == 'All' %} active {% endif %}">All Tasks</a>
                                 </li>
                                 <li class="slide">
-                                    <a href="{% url 'task_list_view' type='Assigned' %}" class="side-menu__item">Assigned Tasks</a>
+                                    <a id="tab-Assigned"  href="{% url 'task_list_view' type='Assigned' %}" 
+                                    class="side-menu__item {% if type == 'Assigned' %} active {% endif %}">Assigned Tasks</a>
                                 </li>
                                 <li class="slide">
-                                    <a href="{% url 'task_list_view' type='Monitoring' %}" class="side-menu__item">Monitoring Tasks</a>
+                                    <a id="tab-Monitoring" href="{% url 'task_list_view' type='Monitoring' %}" 
+                                    class="side-menu__item {% if type == 'Monitoring' %} active {% endif %}">Monitoring Tasks</a>
                                 </li>
                             </ul>
                         </li>
@@ -816,19 +840,21 @@
                     
                         <li class="slide__category"><span class="category-name">Web Settings</span></li>
                         <li class="slide">
-                            <a href="{% url 'list_view' model_name='Settings' %}" class="side-menu__item">
+                            <a id="tab-Settings" href="{% url 'list_view' model_name='Settings' %}" 
+                            class="side-menu__item {% if model_code == 'Settings' %} active {% endif %}">
                                 <i class="bx bx-cog side-menu__icon"></i>
                                 <span class="side-menu__label">Main Setting</span>
                             </a>
                         </li>
                         <li class="slide">
-                            <a href="{% url 'list_view' model_name='Pages' %}" class="side-menu__item">
+                            <a id="tab-Pages" href="{% url 'list_view' model_name='Pages' %}" 
+                                class="side-menu__item {% if model_code == 'Pages' %} active {% endif %}">
                                 <i class="bx bx-list-check side-menu__icon"></i>
                                 <span class="side-menu__label">Page Controller</span>
                             </a>
                         </li>
                         <li class="slide">
-                            <a href="/dashboard/translator/" class="side-menu__item">
+                            <a id="tab-translator" href="/dashboard/translator/" class="side-menu__item">
                                 <i class="bx bx-cog side-menu__icon"></i>
                                 <span class="side-menu__label">Translation Dictionary</span>
                             </a>
@@ -840,7 +866,8 @@
                         <li class="slide__category"><span class="category-name">User Manager</span></li>
                         
                         <li class="slide">
-                            <a href="{% url 'list_view' model_name='UserProfile' %}" class="side-menu__item">
+                            <a id="tab-UserProfile" href="{% url 'list_view' model_name='UserProfile' %}" 
+                                class="side-menu__item {% if model_code == 'UserProfile' %} active {% endif %}">
                                 <i class="bx bx-user side-menu__icon"></i>
                                 <span class="side-menu__label">Users</span>
                             </a>
@@ -852,7 +879,8 @@
                             </a>
                         </li> -->
                         <li class="slide">
-                            <a href="{% url 'list_view' model_name='Group' %}" class="side-menu__item">
+                            <a id="tab-Group" href="{% url 'list_view' model_name='Group' %}" 
+                                class="side-menu__item {% if model_code == 'Group' %} active {% endif %}">
                                 <i class="bx bx-home side-menu__icon"></i>
                                 <span class="side-menu__label">User Groups</span>
                             </a>
@@ -895,12 +923,18 @@
         <span class="arrow"><i class="fa fa-user"></i></span>
     </div>
 <div id="responsive-overlay"></div>
-<!-- <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script> -->
+
 <script src="{% static 'dashboard/js/jquery.min.js' %}"></script>
+
 <script>
-$("input,textarea,select").addClass("form-control");
-// <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked="">
-$("input[type='checkbox']").removeClass("form-control").addClass("form-check-input").attr("role", "switch")
+    $("input,textarea,select").addClass("form-control");
+    $("input[type='checkbox']").removeClass("form-control").addClass("form-check-input").attr("role", "switch");
+    const model_code = "{{model_code}}";
+
+    // alert($('a[href="/dashboard/list/{{model_code}}/"]').parent("li"));
+    // $('a[href="/dashboard/list/{{model_code}}/"]').addClass("active").parent("li").addClass("open"); 
+
+
 </script>
 <script src="{% static 'dashboard/libs/flatpickr/flatpickr.min.js' %}"></script>
 <script src="{% static 'dashboard/libs/@popperjs/core/umd/popper.min.js' %}"></script>
@@ -911,13 +945,8 @@ $("input[type='checkbox']").removeClass("form-control").addClass("form-check-inp
 <script src="{% static 'dashboard/libs/simplebar/simplebar.min.js' %}"></script>
 <script src="{% static 'dashboard/js/simplebar.js' %}"></script>
 <script src="{% static 'dashboard/libs/@simonwep/pickr/pickr.es5.min.js' %}"></script>
-<script src="{% static 'dashboard/libs/jsvectormap/js/jsvectormap.min.js' "></script>
-<script src="{% static 'dashboard/libs/jsvectormap/maps/world-merc.js'"></script>
 <script src="{% static 'dashboard/libs/apexcharts/apexcharts.min.js' %}"></script>
-<script src="{% static 'dashboard/libs/chart.js/chart.min.js' "></script>
-<script src="{% static 'dashboard/js/crm-dashboard.js' "></script>
 <script src="{% static 'dashboard/js/custom.js' %}"></script>
-<script src="{% static 'dashboard/js/hrm-dashboard.js' "></script>
 <script src="{% static 'dashboard/js/custom-switcher.min.js' %}"></script>
 
 <!-- Color Picker JS -->
@@ -925,17 +954,7 @@ $("input[type='checkbox']").removeClass("form-control").addClass("form-check-inp
 <!-- Color Picker JS -->
 <script src="{% static 'dashboard/js/color-picker.js' %}"></script>
 
-<!-- 
-<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
-<script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.6/pdfmake.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script> 
--->
+
 <script src="{% static 'dashboard/js/datatables.js' %}"></script>
 <script src="{% static 'dashboard/js/choices.js' %}"></script>
 <script src="{% static 'dashboard/js/jobs-post.js' %}"></script>

@@ -10,8 +10,8 @@
         <div class="row align-items-end mb-5 mb-lg-4">
             <div class="d-flex align-items-end justify-content-end">
                 <ul class="breadcrumb d-block text-center">
-                    <li><a href="{% url 'index' %}">Home</a></li>
-                    <li class="active">Blocked Suppliers</li>
+                    <li><a href="{% url 'index' %}">{% trans "Home" %}</a></li>
+                    <li class="active">{% trans "Blocked Suppliers" %}</li>
                 </ul>        
             </div>
             <hr class="bg-light">
@@ -19,12 +19,12 @@
                 <div class="d-flex align-items-center mb-2  justify-content-center">
                     <div class="overflow-hidden text-center">
                         <h2 class="text-color-primary text-9 text-center font-weight-semibold line-height-3 text-5 mb-0 appear-animation"
-                            data-appear-animation="maskRight" data-appear-animation-delay="300"> {% if not result %} No Suppler Found {% else %} BLOCKED SUPPLIERS LIST {% endif %}
+                            data-appear-animation="maskRight" data-appear-animation-delay="300"> {% if not result %} {% trans "No Suppler Found" %} {% else %} {% trans "BLOCKED SUPPLIERS LIST" %} {% endif %}
                         </h2>
                     </div>
                 </div>
                 <p  class="appear-animation text-center"  data-appear-animation="maskRight" data-appear-animation-delay="400"> 
-                    The following are list of suppliers registered as blocked suppliers by our bureau. 
+                    {% trans "The following are list of suppliers registered as blocked suppliers by our bureau." %} 
                 </p>
             </div>
         </div>
@@ -53,10 +53,10 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Company Name</th>
-                            <th>Tin Number</th>
-                            <th>Sector</th>
-                            <th>Business Area</th>    
+                            <th>{% trans "Company Name" %}</th>
+                            <th>{% trans "Tin Number" %}</th>
+                            <th>{% trans "Sector" %}</th>
+                            <th>{% trans "Business Area" %}</th>    
                         </tr>
                     </thead>
                     <tbody>
