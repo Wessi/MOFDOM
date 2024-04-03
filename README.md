@@ -1,5 +1,5 @@
 
-## Mofedmain: Dynamic web-app for regional finance bureaus
+## Mofedmain: Dynamic web app for regional finance bureaus
 
 ## Brief Description**
 
@@ -11,6 +11,7 @@ This web-based system is developed for MOFED (Ministry of Finance and Economic D
 # Dependencies: 
 # Getting Started: 
 # Running the Project: 
+# Branching :
 --------------------------------------------
 
 # Technology Stack
@@ -98,8 +99,8 @@ This section explains how to launch the development server and access your appli
     $ python manage.py flush
     ```
 
-    * The default database is Sqlite3 which will be generated when you run migration commands. You can configure any relational database supported by Django which includes PostgreSQL and MySQL. Configuration of PostgreSQL is show below as an example:
-    
+    * The default database is Sqlite3 which will be generated when you run migration commands. You can configure any relational database supported by Django which includes PostgreSQL and MySQL. 
+    Configuration of PostgreSQL:
     - Open the settings.py file and replace the default database setting for Sqlite with the following PostgreSQL conf replacing your database credentials
     
     'default': {
@@ -110,11 +111,28 @@ This section explains how to launch the development server and access your appli
         'HOST': '127.0.0.1',
         'PORT': 5432,
     }
+    For further reading on how to install MySql and integrate with Django use the following blog.
     
+    
+    Configuration of MySQL, 
+    - Open the settings.py file and replace the default database setting for Sqlite with the following MySQL conf replacing your database credentials
+    
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        ' NAME': $Your_DB_Name,
+        'USER': $Your_DB_Username,
+        'PASSWORD': $Your_DB_Password,
+        'HOST':'localhost',
+        'PORT':'3306',
+    }
+
+    For further reading on how to install MySql and integrate with Django use the following blog.
+    https://www.geeksforgeeks.org/how-to-integrate-mysql-database-with-django/
 
 
 
-##  To create a superuser account, use this command and fill the required fields:
+
+##  To create a superuser account, use this command and fill in the required fields:
 
 ```bash
 $ python manage.py createsuperuser
@@ -142,5 +160,11 @@ $ python manage.py createsuperuser
 
 
 # Deployment:
-The web app can be deployed on any hosting platform which supports python. These includes AWS, Azure, Heroku, Pythonanywhere, VPS (Linux and Windows). Deployment instructions can have some specific differs based on the deployment platform. 
+The web app can be deployed on any hosting platform that supports Python. These include AWS, Azure, Heroku, Pythonanywhere, and VPS (Linux and Windows). Deployment instructions can have some specific differences based on the deployment platform. 
 
+# Branching:
+As a git repo, our repo will follow the common branching strategies. There are 3 main categories, the master, development, and feature branches.
+1. The master branch is the deployment branch, which will only contain stable versions that will be used for deployment purposes
+2. The dev branch is the development branch, which is actively being updated and/or merged with feature branches hence having the latest updates from all. Any individual who wants to trach the development of the system should continuously pull from the dev branch
+3. The other branches are feature branching which are intended to update specific features of the system. After they are completed they will be merged with the dev branch.
+ 
