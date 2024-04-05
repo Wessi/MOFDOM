@@ -32,6 +32,10 @@ class EventTO(TranslationOptions):
     fields = ("title","location", "description")
 
 
+@register(Bid)
+class BidTO(TranslationOptions):
+    fields = ("title","description")
+
 
 
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-26 09:46+0300\n"
+"POT-Creation-Date: 2024-04-05 09:37+0300\n"
 "PO-Revision-Date: 2024-03-26 09:38+0000\n"
 "Last-Translator: Admin Userendite User <adminuser@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -153,7 +153,7 @@ msgstr "መለያ አለህ?"
 msgid "Sign In"
 msgstr "ግባ"
 
-#: .\dashboard\models.py:85 .\dashboard\models.py:86
+#: .\dashboard\models.py:92 .\dashboard\models.py:93
 msgid "Home Page Sliders"
 msgstr "መነሻ ገጽ ተንሸራታቾች"
 
@@ -368,6 +368,16 @@ msgstr "አግኙን"
 #: .\templates\front\bid.html:25
 msgid "List of Bids"
 msgstr "የጨረታዎች ዝርዝር"
+
+#: .\templates\front\bid.html:37
+#, fuzzy
+#| msgid "Date"
+msgid "Open Date"
+msgstr "ቀን"
+
+#: .\templates\front\bid.html:37
+msgid "Closing Date"
+msgstr ""
 
 #: .\templates\front\blog.html:20
 msgid "BLOGS"

@@ -18,26 +18,49 @@ from documents.models import Document
 from suppliers.models import Supplier
 from vacancies.models import Job, Application
 from dashboard.models import GalleryImage, GalleryVideo
+from django.forms.fields import DateField
+from django.contrib.auth.mixins import AccessMixin
+
 
 def get_model(name):
-    # app_labels = ['about_us','blogs','']
-    if name=='Group': return Group
+    if name=='Group': return (Group,"django.contrib.auth")
     for app_label in settings.CUSTOM_INSTALLED_APPS:
         try:
             model = apps.get_model(app_label=app_label, model_name=name) 
-            return model
-        except LookupError:
-            # no such model in this application
+            return (model, app_label)
+        except LookupError:# no such model in this application
             pass
-            
+    return (None, None)   
+
 def get_conf(request, kwargs):
-        model = get_model(kwargs['model_name'])
-        if model: 
-            model_name:str = model._meta.verbose_name or kwargs['model_name'].capitalize()
-            form =  get_form(model)
-            is_single = getattr(model,'is_single',False)
-            return {"model":model, "form":form, "model_name": model_name,"single": is_single}
-    
+    model,app_label = get_model(kwargs['model_name'])
+    if model: 
+        model_name:str = model._meta.verbose_name or kwargs['model_name'].capitalize()
+        excluded_fields = getattr(model, 'excluded_fields') if hasattr(model, 'excluded_fields') else None
+        form =  get_form(model, exclude = excluded_fields)
+        is_single = getattr(model,'is_single',False)
+        return {"model":model, "form":form, "model_name": model_name,"app_label":app_label,"single": is_single}
+    return None
+
+
+class PermissionRequiredMixin(AccessMixin):
+    """Verify that the current user has all specified permissions."""
+    permission_required = "view"
+
+    def dispatch(self, request, *args, **kwargs):
+        self.config = get_conf(self.request, self.kwargs)
+        if not self.config:
+            messages.error(self.request, "Page not found!")
+            return redirect("admin_dashboard")
+        
+        app_lebel = self.config["app_label"]
+        real_model_name = self.kwargs['model_name'].lower()
+        perm = f"{app_lebel}.{self.permission_required}_{real_model_name}"
+        
+        if not self.request.user.has_perm(perm):
+            return self.handle_no_permission()
+        return super().dispatch(request, *args, **kwargs)
+
 
 class Dashboard(LoginRequiredMixin, View ):
     def get(self, request):
@@ -66,29 +89,21 @@ class Dashboard(LoginRequiredMixin, View ):
                     )
     
     
-class CreateView(LoginRequiredMixin, View):
+class CreateView(LoginRequiredMixin,PermissionRequiredMixin, View):
+    permission_required = "add"
     def get(self, *args, **kwargs):
-        config = get_conf(self.request, self.kwargs)
-        if not config:
-            messages.error(self.request, "Page not found!")
-            return redirect("admin_dashboard")
-        
-        
-        # if config.isinstance()
+        config = self.config
         model, model_name  = config["model"], config["model_name"] 
         form = config["form"] 
         if config["single"] and model.objects.first(): # if model object has to be generated only once
             return redirect("change_view", model_name = kwargs['model_name'], pk=model.objects.first().id)
         
+        
         return render(self.request, 'staff/create_page.html', { 'add':True,  'form':form, 'is_single':config["single"], 
                                                                 'model_name':model_name.capitalize(),})
     
     def post(self, *args, **kwargs):
-        config = get_conf(self.request, self.kwargs)
-        if not config:
-            messages.error(self.request, "Page not found!")
-            return redirect("admin_dashboard")
-        
+        config = self.config
         model = config["model"]
         form = config["form"](self.request.POST, self.request.FILES)
         if form.is_valid():
@@ -106,13 +121,10 @@ class CreateView(LoginRequiredMixin, View):
                                                                 'model_name':model_name.capitalize(),})
         
 
-class ChangeView(LoginRequiredMixin, View):
+class ChangeView(LoginRequiredMixin,PermissionRequiredMixin, View):
+    permission_required = "change"
     def get(self, *args, **kwargs):
-        config = get_conf(self.request,self.kwargs)
-        if not config:
-            messages.error(self.request, "Page not found!")
-            return redirect("admin_dashboard")
-        
+        config = self.config
         model, model_name = config["model"], config["model_name"]
         
         # if model is single, just bring the first object
@@ -126,15 +138,14 @@ class ChangeView(LoginRequiredMixin, View):
         else: 
             obj = model.objects.get(id = self.kwargs['pk'])
         form = config["form"](instance = obj)
+        for name, field in form.fields.items():
+            if isinstance(field, DateField):
+                print(name)
         return render(self.request, 'staff/create_page.html', { 'add':False,  'form':form, 'is_single':config['single'], 
                                                                 'model_name':model_name.capitalize(), 'model_code':self.kwargs['model_name'], 'pk':self.kwargs['pk']})
     
     def post(self, *args, **kwargs):
-        config = get_conf(self.request,self.kwargs)
-        if not config:
-            messages.error(self.request, "Page not found!")
-            return redirect("admin_dashboard")
-        
+        config = self.config
         model, model_name = config["model"], config["model_name"]
         obj = model.objects.get(id = self.kwargs['pk'])
         form = config["form"](self.request.POST,self.request.FILES,instance = obj)
@@ -145,17 +156,15 @@ class ChangeView(LoginRequiredMixin, View):
                 return redirect("admin_dashboard" )
             return redirect("list_view", model_name = self.kwargs['model_name'])
         
+        messages.warning(self.request, "Invalid data detected. Please review your inputs and try again.")
         return render(self.request, 'staff/create_page.html', { 'add':False,  'form':form, 'is_single':config['single'], 
                                                                 'model_name':model_name.capitalize(),})
     
 
-class ListView(LoginRequiredMixin, View):
+class ListView(LoginRequiredMixin,PermissionRequiredMixin, View):
+    permission_required = "view"
     def get(self, *args, **kwargs):
-        config = get_conf(self.request,self.kwargs)
-        if not config:
-            messages.error(self.request, "Page not found!")
-            return redirect("admin_dashboard")
-        
+        config = self.config
         model, formal_name = config["model"], config["model_name"]
         # if model is single, just bring the first object
         if config['single']:
@@ -169,14 +178,15 @@ class ListView(LoginRequiredMixin, View):
                     ) 
 
 
-class DeleteView(LoginRequiredMixin, View):
+class DeleteView(LoginRequiredMixin,PermissionRequiredMixin, View):
+    permission_required = "delete"
     def get(self, *args, **kwargs):
-        config = get_conf(self.request,self.kwargs)
+        config = self.config
         model, model_name = config["model"], config["model_name"]
         
         # if model is single, just bring the first object
         if config['single']:
-            print("Can't be deleted!")
+            print("You can't delete this item, you can only update it's values!")
             return redirect("admin_dashboard")
     
         obj = model.objects.get(id=self.kwargs['pk'])

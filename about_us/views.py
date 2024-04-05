@@ -19,3 +19,8 @@ def bureau_structure(request):
     structure_data = BureauStructure.objects.first()
     return render(request, 'front/structure.html', {'structure_data': structure_data})
 
+
+class ServicesPage(View):
+    def get(self, request, **kwargs):
+        services = Service.objects.all()
+        return render(request, "front/services.html", {'services':services})

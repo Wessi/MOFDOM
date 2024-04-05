@@ -218,6 +218,7 @@ template_holder
 
 .vscode/*
 *.sqlite
+*.sqlite3
 
 /dvenv/
 some.html
