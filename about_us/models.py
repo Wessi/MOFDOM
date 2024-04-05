@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 class About(models.Model):
     """ Model for the detail page of about us page"""
@@ -59,16 +60,18 @@ class BureauStructure(models.Model):
     
 
 class Service(models.Model):
-    title = models.CharField(max_length=100, help_text="Make sure to submit a max of 50 characters.")
-    content = models.TextField(help_text="Make sure to submit a content that aligns with the height of the image")
+    title = models.CharField(max_length=100, help_text="Make sure to submit a max of 100 characters.")
+    content = models.TextField(help_text="Would be great if you can summarize the content with a max of 500 characters.")
     created_date = models.DateTimeField(auto_now_add = True)
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, blank=True, null=True) 
 
     def __str__(self):
         return self.title
 
     def get_list_fields():
-        return ['title', ]
+        return ['title', 'created_by', 'created_date']
     
     list_fields = get_list_fields()
+    excluded_fields = ['created_by']
 
     

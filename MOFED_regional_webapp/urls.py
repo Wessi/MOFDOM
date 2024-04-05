@@ -4,10 +4,11 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.views.generic import TemplateView
-from core.views import index, search, EventListPage, GalleryImagePage, GalleryVideoPage, Contact
+from core.views import index, search, EventListPage, GalleryImagePage, GalleryVideoPage, Contact, BidPage
 from django.views.i18n import JavaScriptCatalog
 from django.utils.translation import gettext_lazy as _
 from django.conf.urls.i18n import i18n_patterns
+from about_us.urls import ServicesPage
 
 admin.site.site_header = 'Super Administrator'
 
@@ -33,9 +34,7 @@ urlpatterns = [
     path('events/', EventListPage.as_view(), name='events_list'),
     path('gallery-images/', GalleryImagePage.as_view(), name='gallery_images'),
     path('gallery-videos/', GalleryVideoPage.as_view(), name='gallery_videos'),
-    path('bids/', TemplateView.as_view(template_name = "front/bid.html"), name='bid'),
-    path('services/', TemplateView.as_view(template_name = "front/services.html"), name='services'),
-    
+    path('bids/', BidPage.as_view(), name='bid'),
     path('jsi18n/', JavaScriptCatalog.as_view(), name='javascript-catalog'),
     path('i18n/', include('django.conf.urls.i18n')),
     

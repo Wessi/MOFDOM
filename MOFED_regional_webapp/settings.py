@@ -42,8 +42,8 @@ INSTALLED_APPS = [
     'visit_counter', #Track user visits
     
 
-    # 'jazzmin',
-    'djangocms_admin_style',
+    'jazzmin',
+    # 'djangocms_admin_style',
     'modeltranslation', # dynamic translation
     'django.contrib.admin', 
      
@@ -259,10 +259,10 @@ CMS_TEMPLATES = (
     ("front/cms_base.html", ("Cms Base Template")),
 )
 
-CMS_PERMISSION = True
+# CMS_PERMISSION = True
 
 CMS_CONFIRM_VERSION4 = True
-
+# FILER_ENABLE_PERMISSIONS = True
 # Allow admin sidebar to open admin URLs | Allow embedding from the same origin
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
@@ -284,54 +284,6 @@ DJANGOCMS_VERSIONING_ALLOW_DELETING_VERSIONS = True
 
 ## Roseta settings
 ROSETTA_MESSAGES_PER_PAGE = 100
-
-
-JAZZMIN_SETTINGS = {
-    # title of the window (Will default to current_admin_site.site_title if absent or None)
-    "site_title": "Finance Admin",
-
-    # Title on the login screen (19 chars max) (defaults to current_admin_site.site_header if absent or None)
-    "site_header": "Admin",
-
-    # Title on the brand (19 chars max) (defaults to current_admin_site.site_header if absent or None)
-    "site_brand": "Admin",
-
-    # Logo to use for your site, must be present in static files, used for brand on top left
-    "site_logo": "static/front/imgs/logo_south.jpg",
-
-    # Logo to use for your site, must be present in static files, used for login form logo (defaults to site_logo)
-    "login_logo": "static/front/imgs/lg.jpg",
-
-    # Logo to use for login form in dark themes (defaults to login_logo)
-    "login_logo_dark": None,
-
-    # CSS classes that are applied to the logo above
-    "site_logo_classes": "img-circle",
-
-    # Relative path to a favicon for your site, will default to site_logo if absent (ideally 32x32 px)
-    "site_icon": None,
-
-    # Welcome text on the login screen
-    "welcome_sign": "Welcome to Southern Ethiopia Finance Bureau ",
-
-    # Copyright on the footer
-    "copyright": "Acme Library Ltd",
-    "extra_css": ["static/front/css/custom_admin.css"],
-
-    # List of model admins to search from the search bar, search bar omitted if excluded
-    # If you want to use a single search field you dont need to use a list, you can use a simple string 
-    "search_model": ["suppliers.Supplier"],
-
-    # Field name on user model that contains avatar ImageField/URLField/Charfield or a callable that receives the user
-    "user_avatar": None,
-
-    ############
-    # Top Menu #
-    ############
-
-  
-}
-
 
 CORS_ORIGIN_ALLOW_ALL = True
 CSP_MIDDLEWARE = [

@@ -49,16 +49,15 @@
         <div class="col-xl-12">
             <form method="post" enctype="multipart/form-data">
                 <div class="card custom-card">
-                    <div class="card-body  col-md-8 col-sm-12">
-                        
+                    <div class="card-body  col-md-8 col-sm-12">               
                             {% csrf_token %}
                             {% for field in form %}
                             <div class="form-group mt-2 mb-4 form-check form-switch">
                                 <label class="form-label">{{forloop.counter}}. {{field.label}} </label>
                                 {% if field.field.widget.input_type == 'checkbox' %}
-                                <div class="form-check form-switch " style="display: inline-flex;margin-left: 1rem;">
-                                    {{field}}
-                                </div>
+                                    <div class="form-check form-switch " style="display: inline-flex;margin-left: 1rem;">
+                                        {{field}}
+                                    </div>
                                 {% else %}
                                     {{field}}
                                 {% endif %}

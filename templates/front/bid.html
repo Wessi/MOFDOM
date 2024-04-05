@@ -29,58 +29,31 @@
         
         <div id="examples" class="container ">
             <div class="row mb-2 pb-2">
+                {% for bid in bids %}
                 <div class="col-lg-12 col-md-6 mb-4 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="600">
                     <div class="card border-2 box-shadow-1 bg-color-light">
                         <div class="card-body">
-                            <h4 class="card-title mb-1 text-5 font-weight-bold d-inline-block">Bid 1</h4>
-                             <p><strong><i class="fa fa-calendar"></i> Deadline:</strong> 08-03-2024</p>
-                            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum molestiae praesentium velit. Ducimus, officiis tempora maxime a tempore similique saepe itaque esse inventore exercitationem libero iure suscipit dolorum doloribus natus!</p>
-                            <p><strong><i class="fa fa-map-marker"></i> Category:</strong> Category 1</p>
-                             <!-- Add Apply button -->
-                              
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-12 col-md-6 mb-4 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="600">
-                    <div class="card border-2 box-shadow-1 bg-color-light">
-                        <div class="card-body">
-                            <h4 class="card-title mb-1 text-5 font-weight-bold d-inline-block">Bid 2</h4>
-                             <p><strong><i class="fa fa-calendar"></i> Deadline:</strong> 08-03-2024</p>
-                            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum molestiae praesentium velit. Ducimus, officiis tempora maxime a tempore similique saepe itaque esse inventore exercitationem libero iure suscipit dolorum doloribus natus!</p>
-                            <p><strong><i class="fa fa-map-marker"></i> Category:</strong> Category 1</p>
-                             <!-- Add Apply button -->
-                              
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-12 col-md-6 mb-4 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="600">
-                    <div class="card border-2 box-shadow-1 bg-color-light">
-                        <div class="card-body">
-                            <h4 class="card-title mb-1 text-5 font-weight-bold d-inline-block">Bid 3</h4>
-                             <p><strong><i class="fa fa-calendar"></i> Deadline:</strong> 08-03-2024</p>
-                            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum molestiae praesentium velit. Ducimus, officiis tempora maxime a tempore similique saepe itaque esse inventore exercitationem libero iure suscipit dolorum doloribus natus!</p>
-                            <p><strong><i class="fa fa-map-marker"></i> Category:</strong> Category 1</p>
-                             <!-- Add Apply button -->
-                              
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-12 col-md-6 mb-4 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="600">
-                    <div class="card border-2 box-shadow-1 bg-color-light">
-                        <div class="card-body">
-                            <h4 class="card-title mb-1 text-5 font-weight-bold d-inline-block">Bid 4</h4>
-                             <p><strong><i class="fa fa-calendar"></i> Deadline:</strong> 08-03-2024</p>
-                            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum molestiae praesentium velit. Ducimus, officiis tempora maxime a tempore similique saepe itaque esse inventore exercitationem libero iure suscipit dolorum doloribus natus!</p>
-                            <p><strong><i class="fa fa-map-marker"></i> Category:</strong> Category 1</p>
-                             <!-- Add Apply button -->
-                              
-                        </div>
-                    </div>
-                </div>
-           
-            </div>
-            
+                            <h4 class="card-title mb-1 text-5 font-weight-bold d-inline-block">{{bid.title}}</h4>
+                            <p class="py-0 my-0"><strong><i class="fa fa-calendar"></i> {% trans "Open Date" %}:</strong>{{bid.bid_open_date}} - <strong>{% trans "Closing Date" %}:</strong>{{bid.bid_close_date}}</p>
+                            <p class="py-0 my-0">
+                                <strong><i class="fa fa-file"></i> Bid Document:</strong> 
+                                {% if bid.bid_document %} 
+                                <a download="" href="{{bid.bid_document.url}}"> Download Document</a>
+                                {% else %} 
+                                <a >No Attached Document</a>
+                                {% endif %}
 
+                            </p> 
+                            <p class="card-text">{{bid.description}}</p>
+                                
+                                                       
+                             <!-- Add Apply button -->
+                              
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
             <!-- pagination -->
             <div class="row">
                 <div class="col-12">

@@ -40,7 +40,7 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
     profile_pic = models.ImageField(upload_to='profile_pics/', null=True, blank=True)
     phonenumber = models.CharField(max_length=15, null=True, blank=True)
 
-    groups = models.ManyToManyField(Group, blank=True, related_name='user_profiles')
+    groups = models.ManyToManyField(Group, blank=True, related_name='user_group')
     user_permissions = models.ManyToManyField(
         Permission, blank=True, related_name='user_profiles_permissions'
     )
