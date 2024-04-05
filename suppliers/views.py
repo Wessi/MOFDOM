@@ -6,6 +6,7 @@ from django.db.models import Q
 def view_supplier(request):
     suppliers = Supplier.objects.all()
     return render(request, 'supplier_list.html', {'suppliers': suppliers, 'result':True})
+    # return render(request, 'table.html', {'suppliers': suppliers, 'result':True})
 
 
 def search_supplier(request):

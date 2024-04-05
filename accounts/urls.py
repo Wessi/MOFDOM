@@ -17,5 +17,12 @@ urlpatterns = [
     path('reset_password_sent/', pw_views.PasswordResetDoneView.as_view(template_name='pw_reset_done.html'), name='password_reset_done'),
     path('reset/<uidb64>/<token>/', password_manager.PasswordResetConfirmView.as_view(template_name='pw_reset_form.html'), name='password_reset_confirm'),
     path('reset_password_complete/', pw_views.PasswordResetCompleteView.as_view(template_name='pw_reset_complete.html'), name='password_reset_complete'),
+
+    # users
+    path('users_list', UsersList.as_view(), name='users_list'),
+    path('Add_user', AddUser.as_view(), name='add_user'),
+    path('reset_pw/<int:id>', ResetPassword.as_view(), name='reset_pw'),
+    path('delete-user/<int:id>', DeleteUser.as_view(), name='delete_user'),
+
 ]
 

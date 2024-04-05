@@ -63,20 +63,20 @@
                                     {% csrf_token %}
                                     <div class="row">
                                         <div class="form-group col-12">
-                                            <input name="name" id="name" type="text" value="" placeholder="Full Name" data-msg-required="Please enter your name." maxlength="100" class="form-control text-3 h-auto py-2"  required="">
+                                            <input name="name" id="name" type="text" value="" placeholder="{% trans 'Full Name' %}" data-msg-required="Please enter your name." maxlength="100" class="form-control text-3 h-auto py-2"  required="">
                                         </div>
                                         <div class="form-group col-md-6 col-sm-12">
                                             <!-- <label class="form-label mb-1 text-2">Email Address</label> -->
-                                            <input name="email" id="email" type="email" value="" placeholder="Email Address" data-msg-required="Please enter your email address." data-msg-email="Please enter a valid email address." maxlength="100" class="form-control text-3 h-auto py-2"  required="">
+                                            <input name="email" id="email" type="email" value="" placeholder="{% trans 'Email Address' %}" data-msg-required="Please enter your email address." data-msg-email="Please enter a valid email address." maxlength="100" class="form-control text-3 h-auto py-2"  required="">
                                         </div>
                                         <div class="form-group col-md-6 col-sm-12">
                                             <!-- <label class="form-label mb-1 text-2">Phone Number</label> -->
-                                            <input type="number"  name="phone" id="phone" placeholder="Phone Number" value="" data-msg-required="Please enter your phone number." data-msg-email="Please enter a valid phone number." maxlength="100" class="form-control text-3 h-auto py-2"  required="">
+                                            <input type="number"  name="phone" id="phone" placeholder="{% trans 'Phone Number' %}" value="" data-msg-required="Please enter your phone number." data-msg-email="Please enter a valid phone number." maxlength="100" class="form-control text-3 h-auto py-2"  required="">
                                         </div>
                                     </div>
                                     <div class="form-group col-md-12">
                                         <!-- <label class="form-label mb-1 text-2">Select Subject</label> -->
-                                        <input name="subject" placeholder="Subject" data-msg-required="Please enter the subject." class="form-control text-3 h-auto py-2" name="subject" id="subject" required="" />
+                                        <input name="subject" placeholder="{% trans 'Subject' %}" data-msg-required="Please enter the subject." class="form-control text-3 h-auto py-2" name="subject" id="subject" required="" />
                                         <!-- <select data-msg-required="Please enter the subject." class="form-control text-3 h-auto py-2" name="subject" id="subject" required="">
                                             <option value="">...</option>
                                             <option value="Option 1">General Inquiry</option>

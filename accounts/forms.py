@@ -42,7 +42,7 @@ class EditProfileForm(forms.ModelForm):
     email = forms.CharField(required=False, disabled=True, widget=forms.EmailInput(attrs={'class':'form-control form-control-light','placeholder':'Enter Email'}),)
     class Meta:
         model = UserProfile 
-        fields = ['email', 'first_name','last_name','role', 'profile_pic', 'phonenumber',  ]
+        fields = ['email', 'first_name','last_name','role', 'profile_pic', 'phonenumber', 'status' ]
         widgets = {
             # 'email':forms.EmailInput(attrs={'class':'form-control form-control-light','placeholder':'Enter Email'}),
             'first_name':forms.TextInput(attrs={'class':'form-control form-control-light','placeholder':'Enter First Name',}),
@@ -50,11 +50,21 @@ class EditProfileForm(forms.ModelForm):
             'role':forms.Select(attrs={'class':'form-control form-control-light', 'placeholder':'Select Role', 'type':'dropdown'}),
             'profile_pic':forms.FileInput(attrs={'class':'form-control form-control-light'}),
             'phonenumber':forms.TextInput(attrs={'class':'form-control form-control-light','placeholder':'Enter Phone number',}),
+            'status':forms.Select(attrs={'class':'form-control form-control-light', 'placeholder':'Select Status', 'type':'dropdown'}),
         }
 
 
 class ChangePasswordForm(forms.Form):
     current_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control form-control-light','placeholder': 'Current password','minlength': "8",}))
+    new_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control form-control-light','placeholder': 'New password','minlength': "8",}))
+    retype_new_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control form-control-light','placeholder': 'Confirm new password','minlength': "8",}))
+
+    class Meta:
+        fields = ['current_password', 'new_password', 'retype_new_password']
+
+
+
+class ResetPasswordForm(forms.Form):
     new_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control form-control-light','placeholder': 'New password','minlength': "8",}))
     retype_new_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control form-control-light','placeholder': 'Confirm new password','minlength': "8",}))
 

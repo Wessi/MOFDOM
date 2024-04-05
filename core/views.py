@@ -3,6 +3,9 @@ from django.views import View
 from django.contrib import messages
 from django.views import View
 from django.db.models import Q
+
+from django.core.paginator import Paginator
+
 from django.shortcuts import render
 from django.utils.translation import gettext as _
 
@@ -78,24 +81,42 @@ def search(request):
 
 class GalleryImagePage(View): 
     def get(self, request):
+        images= GalleryImage.objects.all()
+        
+        p = Paginator(images, 12)
+        page = self.request.GET.get('page')
+        images_list = p.get_page(page)
+
         context = {
-            'images':GalleryImage.objects.all(),
+            'images':images_list,
             'categories':[cat.name for cat in GalleryCategory.objects.all()],
         }
+
         return render(request, 'front/gallery.html', context)
     
     
 class GalleryVideoPage(View):
     def get(self, *args, **kwargs):
         gallery_videos = GalleryVideo.objects.all()
+        
+        p = Paginator(gallery_videos, 10)
+        page = self.request.GET.get('page')
+        gallery_videos_list = p.get_page(page)
+
+
         categories = [cat.name for cat in GalleryCategory.objects.all()]
-        return render(self.request, 'front/videos.html', {'gallery_videos':gallery_videos, 'categories':categories})
+        return render(self.request, 'front/videos.html', {'gallery_videos':gallery_videos_list, 'categories':categories})
 
     
 class EventListPage(View):
     def get(self,*args, **kwargs):
         events = Event.objects.all()
-        return render(self.request, 'front/event.html', {'events': events})
+        
+        p = Paginator(events, 6)
+        page = self.request.GET.get('page')
+        events_list = p.get_page(page)
+
+        return render(self.request, 'front/event.html', {'events': events_list})
 
 
 class Contact(View):
