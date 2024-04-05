@@ -196,8 +196,11 @@
                                                 <span class="badge bg-success-transparent">{{ task.priority }}</span>
                                             </td>
                                             <td>
+                                                <a href="{% url 'task_details' task_id=task.id %}"
+                                                    class=""><i class="bx bx-edit"></i></a>
+                                            
                                                 <a href="{% url 'delete_task' task_id=task.id %}"
-                                                    class="btn btn-danger">Delete</a>
+                                                    class="text-danger"><i class="bx bx-trash"></i></a>
                                             </td>
                                             <!-- Add more table data for other fields -->
                                         </tr>
@@ -247,8 +250,11 @@
                                                 <span class="badge bg-success-transparent">{{ task.priority }}</span>
                                             </td>
                                             <td>
+                                                <a href="{% url 'task_details' task_id=task.id %}"
+                                                    class=""><i class="bx bx-detail"></i></a>
+                                            
                                                 <a href="{% url 'delete_task' task_id=task.id %}"
-                                                    class="btn btn-danger">Delete</a>
+                                                    class="text-danger"><i class="bx bx-trash"></i></a>
                                             </td>
                                             <!-- Add more table data for other fields -->
                                         </tr>
@@ -299,8 +305,11 @@
                                                 <span class="badge bg-success-transparent">{{ task.priority }}</span>
                                             </td>
                                             <td>
+                                                <a href="{% url 'task_details' task_id=task.id %}"
+                                                    class=""><i class="bx bx-edit"></i></a>
+                                            
                                                 <a href="{% url 'delete_task' task_id=task.id %}"
-                                                    class="btn btn-danger">Delete</a>
+                                                    class="text-danger"><i class="bx bx-trash"></i></a>
                                             </td>
                                             <!-- Add more table data for other fields -->
                                         </tr>
@@ -351,8 +360,11 @@
                                                 <span class="badge bg-success-transparent">{{ task.priority }}</span>
                                             </td>
                                             <td>
+                                                <a href="{% url 'task_details' task_id=task.id %}"
+                                                    class=""><i class="bx bx-edit"></i></a>
+                                        
                                                 <a href="{% url 'delete_task' task_id=task.id %}"
-                                                    class="btn btn-danger">Delete</a>
+                                                    class="text-danger"><i class="bx bx-trash"></i></a>
                                             </td>
                                             <!-- Add more table data for other fields -->
                                         </tr>

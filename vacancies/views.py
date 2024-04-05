@@ -17,7 +17,14 @@ def job_list(request):
                                   job_description__icontains=search, skills__icontains = search )
     else:
         jobs = Job.objects.filter(Status = 'Active')
-    return render(request, 'front/vacancy.html', {'jobs': jobs, 'search':search})
+
+        
+    from django.core.paginator import Paginator
+    p = Paginator(jobs, 10)
+    page = request.GET.get('page')
+    jobs_list = p.get_page(page)
+
+    return render(request, 'front/vacancy.html', {'jobs': jobs_list, 'search':search})
     
     
 class jobs_apply(View):

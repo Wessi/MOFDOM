@@ -7,12 +7,12 @@
 
     <!-- Page Header -->
     <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
-        <h1 class="page-title fw-semibold fs-18 mb-0">My Profile</h1>
+        <h1 class="page-title fw-semibold fs-18 mb-0">{{title}} Profile</h1>
         <div class="ms-md-1 ms-0">
             <nav>
                 <ol class="breadcrumb mb-0">
                     <li class="breadcrumb-item"><a href="javascript:void(0);">Dashboard</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">My Profile</li>
+                    <li class="breadcrumb-item active" aria-current="page">{{title}} Profile</li>
                 </ol>
             </nav>
         </div>
@@ -25,21 +25,21 @@
                     <div class="d-sm-flex align-items-top p-4 border-bottom-0 main-profile-cover" style="background-color: #111c43;">
                         <div>
                             <span class="avatar avatar-xxl avatar-rounded online me-3">
-                            {% if user.profile_pic %} 
-                            <img src="{{ user.profile_pic.url }}" alt="Profile Picture">  
+                            {% if user_obj.profile_pic %} 
+                            <img src="{{ user_obj.profile_pic.url }}" alt="Profile Picture">  
                             {% else %}
-                            <img src="/static/front/imgs/team/user.png" >
+                            <img src="/static/front/imgs/team/user_obj.png" >
                             {% endif %}
                             </span>
                         </div>
                         <div class="flex-fill main-profile-info">
                             <div class="d-flex align-items-center justify-content-between">
-                                <h6 class="fw-semibold mb-1 text-fixed-white">{{ user.first_name }} {{ user.last_name}}</h6>
+                                <h6 class="fw-semibold mb-1 text-fixed-white">{{ user_obj.first_name }} {{ user_obj.last_name}}</h6>
                             </div>
-                            <p class="mb-1 text-muted text-fixed-white op-7"> Role: {{ user.role }}</p>
+                            <p class="mb-1 text-muted text-fixed-white op-7"> Role: {{ user_obj.role }}</p>
                             <div class="d-flex mb-0">
                                 <div class="me-4">
-                                    <p class="mb-0 fs-11 op-5 text-fixed-white">{{user.email}}</p>
+                                    <p class="mb-0 fs-11 op-5 text-fixed-white">{{user_obj.email}}</p>
                                     <!-- <p class="mb-0 fs-11 op-5 text-fixed-white">Assigned Tasks</p> -->
                                 </div>
                             </div>
@@ -91,12 +91,12 @@
                                 </div>
                                 <div class="card-body">
                                     <ul class="list-group">
-                                        <li class="list-group-item">
+                                        <li class="list-group-item" >
                                             <div class="d-flex flex-wrap align-items-center">
                                                 <div class="me-2 fw-semibold">
-                                                    Name :
+                                                    Full Name :
                                                 </div>
-                                                <span class="fs-12 text-muted">{{user.first_name}} {{user.last_name}}</span>
+                                                <span class="fs-12 text-muted">{{user_obj.first_name}} {{user_obj.last_name}}</span>
                                             </div>
                                         </li>
                                         <li class="list-group-item">
@@ -104,7 +104,7 @@
                                                 <div class="me-2 fw-semibold">
                                                     Email :
                                                 </div>
-                                                <span class="fs-12 text-muted">{{user.email}}</span>
+                                                <span class="fs-12 text-muted">{{user_obj.email}}</span>
                                             </div>
                                         </li>
                                         <li class="list-group-item">
@@ -112,7 +112,7 @@
                                                 <div class="me-2 fw-semibold">
                                                     Phone :
                                                 </div>
-                                                <span class="fs-12 text-muted">{{user.phonenumber}}</span>
+                                                <span class="fs-12 text-muted">{{user_obj.phonenumber}}</span>
                                             </div>
                                         </li>
                                         <li class="list-group-item">
@@ -120,7 +120,23 @@
                                                 <div class="me-2 fw-semibold">
                                                     Role:
                                                 </div>
-                                                <span class="fs-12 text-muted">{{user.role}}</span>
+                                                <span class="fs-12 text-muted">{{user_obj.role}}</span>
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <div class="d-flex flex-wrap align-items-center">
+                                                <div class="me-2 fw-semibold">
+                                                    Account Status:
+                                                </div>
+                                                <span class="fs-12 text-muted">{{user_obj.status}}</span>
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <div class="d-flex flex-wrap align-items-center">
+                                                <div class="me-2 fw-semibold">
+                                                    Date Joined:
+                                                </div>
+                                                <span class="fs-12 text-muted">{{user_obj.date_joined}}</span>
                                             </div>
                                         </li>
                                     </ul>
@@ -168,6 +184,11 @@
                                                 <label for="contact-address-role" class="form-label">Role :</label>
                                                 {{form.role}}   
                                             </div>
+                                            
+                                            <div class="col-xl-6">
+                                                <label for="contact-address-role" class="form-label">Status :</label>
+                                                {{form.status}}   
+                                            </div>
 
                                         </div>
                                     </div>
@@ -190,7 +211,7 @@
                                         Change Password
                                     </div>
                                 </div>
-                                <form class="form" action="{% url 'change_pw' id=user.id %} " method="post">
+                                <form class="form" action=" {% if user == user_obj %} {% url 'change_pw' id=user_obj.id %} {% else %} {% url 'reset_pw' id=user_obj.id %} {% endif %}" method="post">
                                     {% csrf_token %}
                                     <div class="card-body">
                                         <div class="row gy-3">

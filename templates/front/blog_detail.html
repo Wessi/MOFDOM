@@ -65,9 +65,9 @@
                             </div>
                             <div class="post-meta">
                                 <span><i class="far fa-clock"></i> <a href="#">{{blog.publish_date|date}}</a></span>
-                                <span><i class="far fa-user"></i> By <a href="#">{{blog.author}}</a> </span>
+                                <span><i class="far fa-user"></i> {% trans "By" %} <a href="#">{{blog.author}}</a> </span>
                                 <span><i class="far fa-folder"></i> <a href="#">{{blog.category}}</a></span>
-                                <span><i class="far fa-comments"></i> <a href="#">{{blog.comment_set.all.count}} Comments</a></span>
+                                <span><i class="far fa-comments"></i> <a href="#">{{blog.comment_set.all.count}} {% trans "Comments" %}</a></span>
                             </div>
 
                             <!-- AddToAny BEGIN -->
@@ -117,7 +117,7 @@
                             <h3 class="h6">{% trans "Twitter Feed" %}</h3>
                         </header>
                         <div class="tweets">
-                            <a class="twitter-timeline" href="https://twitter.com/PMEthiopia?ref_src=twsrc%5Etfw" data-height="300">Tweets by PMEthiopia</a>
+                            <a class="twitter-timeline" href="https://twitter.com/PMEthiopia?ref_src=twsrc%5Etfw" data-height="300"> {% trans "Tweets by PM Ethiopia" %}</a>
                         </div>
                     </div>
                 </div>
