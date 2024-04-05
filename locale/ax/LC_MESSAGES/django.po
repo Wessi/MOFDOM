@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-26 09:46+0300\n"
-"PO-Revision-Date: 2024-03-26 09:38+0000\n"
-"Last-Translator: Admin Userendite User <adminuser@gmail.com>\n"
+"POT-Creation-Date: 2024-04-05 11:35+0300\n"
+"PO-Revision-Date: 2024-04-04 15:09+0000\n"
+"Last-Translator: Admin User <admin@gmai.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -36,11 +36,13 @@ msgid "LogIn"
 msgstr "ግባ"
 
 #: .\accounts\templates\login.html:28 .\templates\front\blog_detail.html:170
+#: .\templates\front\contact.html:70
 msgid "Email Address"
 msgstr "የኢሜል አድራሻ"
 
 #: .\accounts\templates\login.html:37 .\accounts\templates\register.html:75
 #: .\accounts\templates\signup.html:60
+#: .\templates\staff\accounts\add_user.html:75
 #, fuzzy
 #| msgid "Reset Password"
 msgid "Password"
@@ -93,23 +95,28 @@ msgid "Register"
 msgstr "ይመዝገቡ"
 
 #: .\accounts\templates\register.html:33
+#: .\templates\staff\accounts\add_user.html:33
 msgid "First Name"
 msgstr "የመጀመሪያ ስም"
 
 #: .\accounts\templates\register.html:44
+#: .\templates\staff\accounts\add_user.html:44
 msgid "Last Name"
 msgstr "የአባት ስም"
 
 #: .\accounts\templates\register.html:55 .\accounts\templates\signup.html:55
 #: .\templates\front\footer.html:35
+#: .\templates\staff\accounts\add_user.html:55
 msgid "Email"
 msgstr "የኢሜል አድራሻ"
 
 #: .\accounts\templates\register.html:63 .\accounts\templates\signup.html:70
+#: .\templates\staff\accounts\add_user.html:63
 msgid "Role"
 msgstr "የመለያ አይነት"
 
 #: .\accounts\templates\register.html:85
+#: .\templates\staff\accounts\add_user.html:85
 #, fuzzy
 #| msgid "Reset Password"
 msgid "Reenter Password"
@@ -250,14 +257,8 @@ msgstr "መካከለኛ"
 msgid "Low"
 msgstr "ዝቅተኛ"
 
-#: .\templates\front\about.html:13
-#, fuzzy
-#| msgid "About Us"
-msgid "About"
-msgstr "ስለ እኛ"
-
-#: .\templates\front\about.html:21 .\templates\front\base.html:258
-#: .\templates\front\base.html:345
+#: .\templates\front\about.html:13 .\templates\front\about.html:21
+#: .\templates\front\base.html:258 .\templates\front\base.html:345
 msgid "About Us"
 msgstr "ስለ እኛ"
 
@@ -269,15 +270,25 @@ msgstr "ስለቢሮአችን "
 msgid "Mission"
 msgstr "አላማ"
 
-#: .\templates\front\about.html:68 .\templates\front\about.html:86
+#: .\templates\front\about.html:68 .\templates\front\about.html:99
 msgid "Vision"
 msgstr "ራእይ"
 
-#: .\templates\front\about.html:69 .\templates\front\about.html:96
+#: .\templates\front\about.html:69 .\templates\front\about.html:123
 msgid "Values"
 msgstr "እሴቶች"
 
-#: .\templates\front\about.html:108
+#: .\templates\front\about.html:88 .\templates\front\about.html:110
+#: .\templates\front\about.html:135 .\templates\front\blog.html:48
+#: .\templates\front\index.html:129 .\templates\front\index.html:187
+#: .\templates\front\index.html:257 .\templates\front\index.html:285
+#: .\templates\front\index.html:312 .\templates\front\index.html:337
+#: .\templates\front\index.html:366 .\templates\front\news.html:57
+#: .\templates\front\search_results.html:68
+msgid "Read More"
+msgstr "ተጨማሪ ያንብቡ"
+
+#: .\templates\front\about.html:148
 msgid "Management experts"
 msgstr "ከፍተኛ ባለሙያዎቻችን"
 
@@ -378,13 +389,18 @@ msgstr "ብሎጎች"
 msgid "YOU CAN FIND ALL THE RESOURCES IN THIS SECTION"
 msgstr "በዚህ ክፍል ውስጥ ያሉትን ሁሉንም ምንጮች ማግኘት ይችላሉ"
 
-#: .\templates\front\blog.html:48 .\templates\front\index.html:129
-#: .\templates\front\index.html:187 .\templates\front\index.html:257
-#: .\templates\front\index.html:285 .\templates\front\index.html:337
-#: .\templates\front\index.html:366 .\templates\front\news.html:57
-#: .\templates\front\search_results.html:68
-msgid "Read More"
-msgstr "ተጨማሪ ያንብቡ"
+#: .\templates\front\blog.html:46 .\templates\front\blog_detail.html:68
+#: .\templates\front\news_detail.html:77
+msgid "By"
+msgstr ""
+
+#: .\templates\front\blog.html:47 .\templates\front\blog_detail.html:70
+#: .\templates\front\blog_detail.html:130 .\templates\front\index.html:277
+#: .\templates\front\index.html:304 .\templates\front\search_results.html:110
+#, fuzzy
+#| msgid "Documents"
+msgid "Comments"
+msgstr "ዶክመንቶች"
 
 #: .\templates\front\blog_detail.html:11
 #, fuzzy
@@ -420,18 +436,16 @@ msgstr "የቅርብ ጊዜ ልጥፎች"
 msgid "Twitter Feed"
 msgstr "የትዊተር ምግብ"
 
-#: .\templates\front\blog_detail.html:130 .\templates\front\index.html:277
-#: .\templates\front\index.html:304 .\templates\front\search_results.html:110
-#, fuzzy
-#| msgid "Documents"
-msgid "Comments"
-msgstr "ዶክመንቶች"
+#: .\templates\front\blog_detail.html:120
+#: .\templates\front\news_detail.html:127
+msgid "Tweets by PM Ethiopia"
+msgstr "የሚኒስት ትዊቶች"
 
 #: .\templates\front\blog_detail.html:159
 msgid "Leave a comment"
 msgstr "አስተያየት ይስጡ"
 
-#: .\templates\front\blog_detail.html:166
+#: .\templates\front\blog_detail.html:166 .\templates\front\contact.html:66
 msgid "Full Name"
 msgstr "ሙሉ ስም"
 
@@ -465,6 +479,16 @@ msgstr "የሚናገሩት ነገር አለዎት ወይም ተጨማሪ መረ�
 #: .\templates\front\contact.html:60
 msgid "WE'RE HERE TO ASSIST YOU!"
 msgstr "እርስዎን ለመርዳት እንተጋለን!"
+
+#: .\templates\front\contact.html:74
+#, fuzzy
+#| msgid "Tin Number"
+msgid "Phone Number"
+msgstr "የቲን ቁጥር"
+
+#: .\templates\front\contact.html:79
+msgid "Subject"
+msgstr ""
 
 #: .\templates\front\contact.html:95 .\templates\front\index.html:646
 msgid "Send Message"
@@ -640,10 +664,6 @@ msgstr "የዜና ዝርዝር"
 msgid "News on"
 msgstr "ዜና"
 
-#: .\templates\front\news_detail.html:127
-msgid "Tweets by PM Ethiopia"
-msgstr "የሚኒስት ትዊቶች"
-
 #: .\templates\front\search_results.html:15
 msgid "Search Results"
 msgstr "የፍለጋ ውጤቶች"
@@ -723,15 +743,15 @@ msgstr "ስለቢሮአችን "
 msgid "Vacancy"
 msgstr "የስራ ቦታዎች"
 
-#: .\templates\front\vacancy.html:21
+#: .\templates\front\vacancy.html:21 .\templates\front\vacancy.html:26
 msgid "RELATED"
 msgstr "ተያያዝ"
 
-#: .\templates\front\vacancy.html:21
+#: .\templates\front\vacancy.html:21 .\templates\front\vacancy.html:26
 msgid "RECENT"
 msgstr "የቅርብ"
 
-#: .\templates\front\vacancy.html:21
+#: .\templates\front\vacancy.html:21 .\templates\front\vacancy.html:26
 msgid "VACANCIES"
 msgstr "ክፍት የስራ ቦታዎች"
 
@@ -741,10 +761,10 @@ msgstr "ክፍት የስራ ቦታዎች"
 msgid "List of"
 msgstr "የጨረታዎች ዝርዝር"
 
-#: .\templates\front\vacancy.html:26
+#: .\templates\front\vacancy.html:42
 #, fuzzy
-#| msgid "Vacancies"
-msgid "vacancies."
+#| msgid "vacancies."
+msgid "Search for vacancies"
 msgstr "የስራ ቦታዎች"
 
 #: .\templates\front\vacancy.html:52
@@ -786,6 +806,73 @@ msgstr "ተንቀሳቃሽ ምስሎች"
 #: .\templates\front\videos.html:28
 msgid "VIDEOS TAKEN FROM PREVIOUS ACTIVITIES"
 msgstr "ከቀደምት ተግባራት የተወሰዱ ተንቀሳቃሽ ምስሎች"
+
+#, fuzzy
+#~| msgid "Send Message"
+#~ msgid "Messages"
+#~ msgstr "መልዕክት ላክ"
+
+#, fuzzy
+#~| msgid "Location"
+#~ msgid "Syndication"
+#~ msgstr "አካባቢ"
+
+#, fuzzy
+#~| msgid "Location"
+#~ msgid "Duration"
+#~ msgstr "አካባቢ"
+
+#, fuzzy
+#~| msgid "Email Address"
+#~ msgid "Email address"
+#~ msgstr "የኢሜል አድራሻ"
+
+#, fuzzy
+#~| msgid "Address"
+#~ msgid "IPv4 address"
+#~ msgstr "አድራሻ"
+
+#, fuzzy
+#~| msgid "Address"
+#~ msgid "IP address"
+#~ msgstr "አድራሻ"
+
+#, fuzzy
+#~| msgid "Images"
+#~ msgid "Image"
+#~ msgstr "ፎቶዎች"
+
+#, fuzzy
+#~| msgid "Mission"
+#~ msgid "Mon"
+#~ msgstr "አላማ"
+
+#, fuzzy
+#~| msgid "Remember Me"
+#~ msgid "September"
+#~ msgstr "አስታውሰኝ"
+
+#, fuzzy
+#~| msgid "Remember Me"
+#~ msgid "December"
+#~ msgstr "አስታውሰኝ"
+
+#, fuzzy
+#~| msgid "Remember Me"
+#~ msgctxt "alt. month"
+#~ msgid "September"
+#~ msgstr "አስታውሰኝ"
+
+#, fuzzy
+#~| msgid "Remember Me"
+#~ msgctxt "alt. month"
+#~ msgid "December"
+#~ msgstr "አስታውሰኝ"
+
+#, fuzzy
+#~| msgid "About Us"
+#~ msgid "About"
+#~ msgstr "ስለ እኛ"
 
 #~ msgid "Action successfully completed!"
 #~ msgstr "በሚገባ ተሳክቱል"

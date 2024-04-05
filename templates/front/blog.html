@@ -43,8 +43,8 @@
                                 <p>{{blog.content|truncatechars:70}}
                                 <div class="post-meta">
                                     <span><i class="far fa-calendar-alt "></i><a href="#">{{blog.publish_date}}</a></span>
-                                    <span><i class="far fa-user"></i> By <a href="#"  title="{{blog.author}} : {{blog.author_email}}">{{blog.author}}</a></span>
-                                    <span><i class="far fa-comments"></i> <a href="#">{{blog.comments.count}} Comments</a></span>
+                                    <span><i class="far fa-user"></i> {% trans "By" %} <a href="#"  title="{{blog.author}} : {{blog.author_email}}">{{blog.author}}</a></span>
+                                    <span><i class="far fa-comments"></i> <a href="#">{{blog.comments.count}} {% trans "Comments" %} </a></span>
                                     <span class="d-block mt-2 float-end mb-3"><a href="{% url 'blog_detail' blog_id=blog.id %}" class="btn btn-md btn-primary ">{% trans "Read More" %} <i class="fa fa-angle-right"></i></a></span>
                                 </div>
 
@@ -58,6 +58,33 @@
                 </div>
 
             </div>
+            
+             <!-- pagination -->
+             <div class="row align-items-center text-center">
+                <div class="col-12">
+                    <ul class="pagination justify-content-center align-items-center">
+
+                        {% if blogs.has_previous %}
+                            <li class="page-item"><a href="?page={{blogs.previous_page_number}}" class="page-link"><i class="fas fa-angle-left"></i></a></li>
+                        {% else %}
+                            <li class="page-item disabled"><a href="" class="page-link"><i class="fas fa-angle-left"></i></a></li>
+                        {% endif %}
+
+                            <li class="page-item active"><a href="" class="page-link">{{blogs.number}}</a></li>
+                            <li class="page-item disabled"><a href="" class="page-link">of</a></li>
+                            <li class="page-item"><a href="?page={{blogs.paginator.num_pages}}" class="page-link">{{blogs.paginator.num_pages}}</a></li>
+                        
+                        {% if blogs.has_next %}
+                            <li class="page-item"><a href="?page={{blogs.next_page_number}}" class="page-link"><i class="fas fa-angle-right"></i></a></li>
+                        {% else %}
+                            <li class="page-item disabled"><a href="" class="page-link"><i class="fas fa-angle-right"></i></a></li>
+                        {% endif %}
+
+                    </ul>
+                </div>
+            </div>
+            <!-- end pagination -->
+            
            
         </div>
     </div>

@@ -60,12 +60,48 @@ class AssignTask(LoginRequiredMixin, View):
                 m = e.send()
             
             messages.success(request, "Notification email sent to users assigned as monitors!")
-            return redirect('task_list_view',type='All')
-        
+            return redirect('task_list_view',type='All')   
             
         print(form.errors)
         messages.error(request, "Invalid data detected. Please recheck your inputs!")
         return redirect('task_list_view', type='All')
+
+
+
+class EditTask(LoginRequiredMixin, View):
+    def get(self, request, task_id):
+        task = Task.objects.get(id=task_id)
+        form = TaskForm(instance=task, data=request.POST)
+        return redirect('task_details', task_id, {'form':form})
+    
+    def post(self, request, task_id):
+        task = Task.objects.get(id=task_id)
+        form = TaskForm(instance=task, data=request.POST)
+
+        if form.is_valid():
+            task = form.save(commit=False)
+            task.save()
+            form.save_m2m()
+            messages.success(request, "Task updated successfully!")
+            
+            # send email for assigner user
+           
+            updated_by= request.user
+            msg = f"A task named: {task.task_name}. is updated by {updated_by}."
+            email = task.created_by.email
+            e = EmailMultiAlternatives(f"Updated task : {task.task_name}", msg,
+                                        from_email="Finance Bureau",
+                                        to=[str(email)], )
+            m = e.send()
+            
+            messages.success(request, "Notification email sent to person who assigned the task!")
+            
+            return redirect('task_details', task_id)   
+            
+        print(form.errors)
+        messages.error(request, "Invalid data detected. Please recheck your inputs!")
+        return redirect('task_details', task_id=id)
+
 
 
 def delete_task(request, task_id):

@@ -13,11 +13,18 @@ def list_docs_view(request):
         documents_by_category[category] = Document.objects.filter(category=category)
 
 
+
+    from django.core.paginator import Paginator
+    p = Paginator(documents, 9)
+    page = request.GET.get('page')
+    documents_list = p.get_page(page)
+
     context = {
         'categories': categories,
         'documents_by_category': documents_by_category,
-        'documents':documents,
+        'documents':documents_list,
     }
+    
     return render(request, 'front/docs.html', context)
 
 def pdf_view(request, pk):

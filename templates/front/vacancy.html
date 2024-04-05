@@ -23,7 +23,7 @@
                     </div>
                 </div>
                 <p  class="appear-animation text-center"  data-appear-animation="maskRight" data-appear-animation-delay="400"> 
-                    {% trans "List of" %} {% if search %} related {% else %} recent {% endif %} {% trans "vacancies." %}
+                    {% trans "List of" %} {% if search %} {% trans "RELATED" %} {% else %} {% trans "RECENT" %} {% endif %} {% trans "VACANCIES" %}
                 </p>
             </div>
         </div>
@@ -39,7 +39,7 @@
                     <form action="" method="get">
                     <div class="input-group ">
                         
-                        <input type="text " name="search" class="form-control" placeholder="Search for vacancies">
+                        <input type="text " name="search" class="form-control" placeholder="{% trans 'Search for vacancies' %}">
                         <button type="submit" class="input-group-text">
                             <i class="fas fa-search"></i>
                         </button>
@@ -83,11 +83,28 @@
             </div>
             
 
-            <!-- pagination -->
-            <div class="row">
+            
+             <!-- pagination -->
+             <div class="row align-items-center text-center">
                 <div class="col-12">
-                    <ul class="pagination text-center justify-content-center">
-                        <li class="page-item active"><a class="page-link m-1" href="#">1</a></li>
+                    <ul class="pagination justify-content-center align-items-center">
+
+                        {% if jobs.has_previous %}
+                            <li class="page-item"><a href="?page={{jobs.previous_page_number}}" class="page-link"><i class="fas fa-angle-left"></i></a></li>
+                        {% else %}
+                            <li class="page-item disabled"><a href="" class="page-link"><i class="fas fa-angle-left"></i></a></li>
+                        {% endif %}
+
+                            <li class="page-item active"><a href="" class="page-link">{{jobs.number}}</a></li>
+                            <li class="page-item disabled"><a href="" class="page-link">of</a></li>
+                            <li class="page-item"><a href="?page={{jobs.paginator.num_pages}}" class="page-link">{{jobs.paginator.num_pages}}</a></li>
+                        
+                        {% if jobs.has_next %}
+                            <li class="page-item"><a href="?page={{jobs.next_page_number}}" class="page-link"><i class="fas fa-angle-right"></i></a></li>
+                        {% else %}
+                            <li class="page-item disabled"><a href="" class="page-link"><i class="fas fa-angle-right"></i></a></li>
+                        {% endif %}
+
                     </ul>
                 </div>
             </div>

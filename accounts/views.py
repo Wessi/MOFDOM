@@ -74,23 +74,29 @@ class Logout(View):
 
 class Profile(View):
     def get(self, request, id):
-
         user = UserProfile.objects.get(id=id)
         form = EditProfileForm(instance=user)
-        password_form = ChangePasswordForm()
         tasks = Task.objects.filter(assigned_to=user)[:5]
         blogs = Blog.objects.all()[:3]
-        return render(request, 'staff/profile.html', {'user': user, 'tasks':tasks, 'blogs':blogs, 'form':form,'password_form':password_form })
+        if self.request.user == user:
+            password_form = ChangePasswordForm()
+            title = 'My'
+        else:
+            password_form = ResetPasswordForm()
+            title = 'User'
+        return render(request, 'staff/profile.html', {'user_obj': user, 'tasks':tasks, 'blogs':blogs, 'form':form,'password_form':password_form, 'title':title })
     
     def post(self,request, id):
         user = UserProfile.objects.get(id=id)
         form = EditProfileForm(instance=user, data=self.request.POST, files=self.request.FILES)
         if form.is_valid():
             user.save()
+            messages.warning(self.request,'Profile updated successfully')
             return redirect( 'profile', id=id)
         else:
+            messages.warning(self.request,'unable to update profile')
             
-            return render(request, 'staff/profile.html', {'user':user})
+            return render(request, 'staff/profile.html', {'user_obj':user})
 
 
 
@@ -120,3 +126,65 @@ class ChangePassword(View):
             # return redirect ('change_password', pk=user.id)
             return render(request, 'staff/profile.html',{'user':user, 'password_form':password_form})
     
+
+
+# users
+class UsersList(View):
+    def get (self, *args, **kwargs):
+        model = UserProfile
+        if not model:
+            messages.error(self.request, "Page not found!")
+            return redirect("admin_dashboard")
+        
+        model, 
+        objs = model.objects.all()
+        list_fields = getattr(model, 'list_fields',[])
+        return render(self.request, "staff/accounts/list_user.html",  {'objs':objs,'fields':list_fields}) 
+
+
+
+class AddUser(View):
+    def get(self,*args, **kwargs):
+        return render(self.request, "staff/accounts/add_user.html", {'form':MyUserRegistrationForm()})
+    def post(self, *args, **kwargs):
+        form =  MyUserRegistrationForm(self.request.POST)
+        if form.is_valid():
+            user = form.save()
+            messages.success(self.request, "Successfully created user account")
+            return redirect("users_list") 
+    
+        messages.error(self.request, "Invalid data detected!")
+        return render(self.request, "staff/accounts/add_user.html", {'form':form})
+    
+
+
+class ResetPassword(View):
+
+    def post(self, request, id):
+        user = UserProfile.objects.get(id=id)
+        password_form = ResetPasswordForm(data=self.request.POST)
+        
+        if password_form.is_valid():
+            if password_form.data['new_password'] == password_form.data['retype_new_password']: 
+                new_pw = password_form.data['new_password']
+                user.set_password(new_pw)
+                user.save()
+                messages.success(self.request,'successfully changed user password')
+                return redirect ('profile', id=id)
+            
+            else:
+                messages.warning(self.request,'new password dont match')
+                return redirect ('profile', id=id)
+        else:
+            messages.warning(self.request,'recheck ur input')
+            # return redirect ('change_password', pk=user.id)
+            return render(request, 'staff/profile.html',{'user_obj':user, 'password_form':password_form})
+    
+
+
+class DeleteUser(View):
+    def get (self, request, id):
+        user = UserProfile.objects.get(id=id)
+        user.delete()
+        return redirect ('users_list') 
+
