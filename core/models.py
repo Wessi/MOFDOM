@@ -1,5 +1,8 @@
 from django.db import models
 
+allowed_image_extensions = ['png','jpg','jpeg','webp','jiff']
+allowed_file_extension = ['doc', 'docx', 'pdf', 'xlsx']
+
 class ContactUs(models.Model):
     full_name = models.CharField(max_length=100)
     email = models.EmailField()
@@ -39,9 +42,9 @@ class Settings(models.Model):
     working_hours = models.CharField(max_length=100)  # Adding working hours
     map_link = models.TextField( blank=True, null=True, help_text = "Embed the full 'iframe' tag from google maps" )
 
-    main_color = models.CharField(max_length=15, default="", blank=True)
-    main_reverse_color = models.CharField(max_length=15, default="", blank=True)
-    grey = models.CharField(max_length=15, default="", blank=True)
+    main_color = models.CharField(max_length=15, default="", blank=True, help_text = "Main background color of the website.")
+    main_reverse_color = models.CharField(max_length=15, default="", blank=True, help_text="A color shown on top of the main color, like text colors.")
+    grey = models.CharField(max_length=15, default="", blank=True, help_text="A grey color used for small help texts.")
     
     
 class Pages(models.Model):

@@ -34,6 +34,7 @@ def index(request):
     paragraphs = about_us.content[:800] + "..." if about_us else about_us
     paragraphs = paragraphs.split('\n') if paragraphs else paragraphs
     context = {
+        'index':True,
         'recent_blogs': recent_blogs,
         'recent_news': recent_news,
         'recent_documents': recent_documents,
@@ -134,3 +135,9 @@ class Contact(View):
         # e = send_mail(f"Visitor message : {data['subject']}", msg, from_email="Kanenus", recipient_list=['antenyismu@gmail.com'], fail_silently=False)
         print(e)
         return redirect(self.request.path)         
+
+
+class BidPage(View):
+    def get(self, request):
+        bids = Bid.objects.all()
+        return render(request, "front/bid.html", {'bids':bids})

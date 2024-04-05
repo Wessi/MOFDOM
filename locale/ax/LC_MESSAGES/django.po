@@ -11,6 +11,7 @@ msgstr ""
 "POT-Creation-Date: 2024-04-05 11:35+0300\n"
 "PO-Revision-Date: 2024-04-04 15:09+0000\n"
 "Last-Translator: Admin User <admin@gmai.com>\n"
+
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -160,7 +161,7 @@ msgstr "መለያ አለህ?"
 msgid "Sign In"
 msgstr "ግባ"
 
-#: .\dashboard\models.py:85 .\dashboard\models.py:86
+#: .\dashboard\models.py:92 .\dashboard\models.py:93
 msgid "Home Page Sliders"
 msgstr "መነሻ ገጽ ተንሸራታቾች"
 
@@ -379,6 +380,16 @@ msgstr "አግኙን"
 #: .\templates\front\bid.html:25
 msgid "List of Bids"
 msgstr "የጨረታዎች ዝርዝር"
+
+#: .\templates\front\bid.html:37
+#, fuzzy
+#| msgid "Date"
+msgid "Open Date"
+msgstr "ቀን"
+
+#: .\templates\front\bid.html:37
+msgid "Closing Date"
+msgstr ""
 
 #: .\templates\front\blog.html:20
 msgid "BLOGS"
