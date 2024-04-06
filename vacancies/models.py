@@ -1,18 +1,19 @@
 from django.db import models
+from django.utils.translation import gettext as _
 
 class Job(models.Model):
     job_description = models.TextField(null=True, blank=True)
     job_title = models.CharField(max_length=255,help_text="Make sure to submit a max of 255 characters.")
     job_type = models.CharField(max_length=50, choices=[
-        ('Contract', 'Contract'),
-        ('Freelance', 'Freelance'),
-        ('Full Time', 'Full Time'),
-        ('Part Time', 'Part Time'),
-        ('Internship', 'Internship'),
+        ('Contract', _('Contract')),
+        ('Freelance', _('Freelance')),
+        ('Full Time', _('Full Time')),
+        ('Part Time', _('Part Time')),
+        ('Internship', _('Internship')),
     ])
     Status = models.CharField(max_length=50, choices=[
-        ('Active', 'Active'),
-        ('CLosed', 'Closed'),
+        ('Active', _('Active')),
+        ('CLosed', _('CLosed')),
     ])
     vacancies = models.IntegerField(choices=[
         (1, 1),
@@ -25,10 +26,10 @@ class Job(models.Model):
     location = models.CharField(max_length=255, default='',help_text="Make sure to submit a max of 255 characters.")  # Assuming location is a character field
 
     level = models.CharField(max_length=255, choices=[
-        ('Junior', 'Junior'),
-        ('Mid-Level', 'Mid-Level'),  # Removed extra space
-        ('Senior', 'Senior'),  # Corrected capitalization
-        ('Expert', 'Expert'),
+        ('Junior', _('Junior')),
+        ('Mid-Level', _('Mid-Level')),  # Removed extra space
+        ('Senior', _('Senior')),  # Corrected capitalization
+        ('Expert', _('Expert')),
     ])
 
     class Meta:
@@ -52,3 +53,8 @@ class Application(models.Model):
     def __str__(self) -> str:
         return f"Application from '{self.name}' for : {self.job}"
 
+
+    def get_list_fields():
+        return ['name', 'email', 'cv', 'created_date']
+    
+    list_fields = get_list_fields()

@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.translation import gettext as _
 import os
 
 def get_file_extension(filename):
@@ -7,11 +8,11 @@ def get_file_extension(filename):
     
 class Document(models.Model):
     CATEGORY_CHOICES = (
-        ('BPR Documentations', 'BPR Documentations'),
-        ('Regulations', 'Regulations'),
-        ('Declarations', 'Declarations'),
-        ('Annual Report', 'Annual Report'),
-        ('Other', 'Other'),
+        ('BPR Documentations', _('BPR Documentations')),
+        ('Regulations', _('Regulations')),
+        ('Declarations', _('Declarations')),
+        ('Annual Report', _('Annual Report')),
+        ('Other', _('Other')),
     )
     title = models.CharField(max_length=200,help_text="Make sure to submit a max of 200 characters.")
     category = models.CharField(max_length=200, choices=CATEGORY_CHOICES, default='OTH')
