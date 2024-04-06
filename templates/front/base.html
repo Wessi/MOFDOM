@@ -265,13 +265,13 @@
                                                     </ul>
                                                 </li>
                                                 {% endif %}
-                                                <li><a class="nav-link {% block services %} {% endblock %}" href="{% url 'services' %}">
+                                                <li><a class="nav-link {% block services_dynamic %} {% endblock %}" href="{% url 'services' %}">
                                                     {% trans "Services" %}
                                                 </a></li>
                                                 
                                                 {% if pages.documents  %}
                                                 <li class="dropdown ">
-                                                    <a class="dropdown-item dropdown-toggle {% block resource_dynamic %} {% endblock %} " href="#">
+                                                    <a class="dropdown-item dropdown-toggle {% block resource_dynamic %} {% endblock %}" href="#">
                                                         {% trans "Resources" %}</a>
                                                     <ul class="dropdown-menu">
                                                         {% if pages.documents %}
@@ -337,16 +337,16 @@
                                             
                                                 <li><a class="nav-link {% block home %} {% endblock %}" href="{% url 'index' %}">{% trans "Home" %}</a></li>
                                                 
-                                               <li class="dropdown d-ld-none d-md-none d-sm-block">
-                                                    <a class="dropdown-item dropdown-toggle {% block about %} {% endblock %}" href="#">
-                                                        {% trans "About Bureau" %}
-                                                    </a>
+                                                <li class="dropdown ">
+                                                    <a class="dropdown-item dropdown-toggle {% block about %} {% endblock %} " href="#">{% trans "About Bureau" %}</a>
                                                     <ul class="dropdown-menu">
                                                         <li><a class="dropdown-item" href="{% url 'about' %}">{% trans "About Us" %}</a></li>
                                                         <li><a class="dropdown-item" href="{% url 'bureau_structure' %}">{% trans "Structure" %}</a></li>
                                                     </ul>
                                                 </li>
-                                                
+                                                <li><a class="nav-link {% block services %} {% endblock %}" href="{% url 'services' %}">
+                                                    {% trans "Services" %}
+                                                </a></li>
                                                 <li class="dropdown ">
                                                     <a class="dropdown-item dropdown-toggle {% block resource %} {% endblock %} " href="#">{% trans "Resources" %}</a>
                                                     <ul class="dropdown-menu">
@@ -439,9 +439,7 @@
          <!-- include 'front/header.html'  -->
 
        
-        <div role="main" class="main ">
-            
-        
+        <div role="main" class="main " >
         {% block content %} 
             
     

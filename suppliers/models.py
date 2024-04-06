@@ -9,7 +9,7 @@ class Supplier(models.Model):
         ('Retail', _('Retail')),
         ('Merchant', _('Merchant')),
     ]
-    tin = models.CharField(max_length=20)
+    tin = models.CharField(max_length=20, unique = True)
     company_name = models.CharField(max_length=255,help_text="Make sure to submit a max of 255 characters.")
     legal_form = models.CharField(max_length=100,help_text="Make sure to submit a max of 100 characters.")
     nationality = models.CharField(max_length=100,help_text="Make sure to submit a max of 100 characters.")

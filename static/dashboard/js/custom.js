@@ -3,12 +3,12 @@
 
   /* page loader */
   
-  function hideLoader() {
-    const loader = document.getElementById("loader");
-    loader.classList.add("d-none")
-  }
+  // function hideLoader() {
+  //   const loader = document.getElementById("loader");
+  //   loader.classList.add("d-none")
+  // }
 
-  window.addEventListener("load", hideLoader);
+  // window.addEventListener("load", hideLoader);
   /* page loader */
 
   /* tooltip */
@@ -290,8 +290,8 @@
       localStorage.removeItem("bodyBgRGB");
     }
   }
-  let layoutSetting = document.querySelector(".layout-setting");
-  layoutSetting.addEventListener("click", toggleTheme);
+  // let layoutSetting = document.querySelector(".layout-setting");
+  // layoutSetting.addEventListener("click", toggleTheme);
   /* header theme toggle */
 
   /* Choices JS */

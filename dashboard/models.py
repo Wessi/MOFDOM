@@ -1,6 +1,10 @@
 from django.db import models
 from django.db import models
 from django.utils.translation import gettext as _ 
+from django.conf import settings
+from django.core.validators import FileExtensionValidator
+from core.models import allowed_image_extensions, allowed_file_extension
+
 
 CATEGORY_CHOICES = (
         ('LEADERSHIP', 'LEADERSHIP'),
@@ -16,6 +20,7 @@ class GalleryCategory(models.Model):
     name = models.CharField(max_length=100,help_text="Make sure to submit a max of 100 characters.")
     def __str__(self):
         return self.name
+    
     def get_list_fields():
         return ['name']
     
@@ -23,7 +28,9 @@ class GalleryCategory(models.Model):
 
 class GalleryImage(models.Model):
     title = models.CharField(max_length=255,help_text="Make sure to submit a max of 255 characters.")
-    image = models.ImageField(upload_to='gallery_images/', help_text="Please select an image with close width and height resolution (400p x 300px).")
+    image = models.ImageField(upload_to='gallery_images/', 
+                              validators =[FileExtensionValidator(allowed_extensions=allowed_image_extensions)],
+                              help_text="Please select an image with close width and height resolution (400p x 300px).")
     gallery_category = models.ForeignKey(GalleryCategory, on_delete = models.SET_NULL, null=True) 
     
     class Meta:
@@ -59,6 +66,7 @@ class GalleryVideo(models.Model):
         return ['title', 'gallery_category']
     
     list_fields = get_list_fields()
+
 
 class DirectorateMessage(models.Model):
     # A message from the bureau director displayed at the homepage
@@ -125,12 +133,37 @@ class Event(models.Model):
     title = models.CharField(max_length=100,help_text="Make sure to submit a max of 100 characters.")
     image = models.ImageField(upload_to='event_images',
                               help_text="Make sure to submit an image of max of 400 X 300.")
-    time = models.CharField(max_length=50)
     location = models.CharField(max_length=100)
     description = models.TextField()
     date = models.DateField()
+    time = models.CharField(max_length=50)
+    
 
     def get_list_fields():
         return ['title', 'time', 'location', 'date']
     
     list_fields = get_list_fields()
+
+
+class Bid(models.Model):
+    title = models.CharField(max_length = 100, help_text="Make sure to submit a max of 100.")
+    description = models.TextField(help_text = 'Description would be better if it has a max of 500 characters.')
+    bid_open_date = models.DateTimeField(help_text="Make sure that the bid close date is greater than the bid open date.")
+    bid_close_date = models.DateTimeField(help_text="Make sure that the bid close date is greater than the bid open date.")
+    bid_document = models.FileField(upload_to='Bid document', blank=True)
+    created_date = models.DateTimeField(auto_now_add=True) 
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, blank=True, null=True) 
+
+    class Meta:
+        ordering = ("-id",)
+
+    def str(self):
+        return self.title
+    
+    def get_list_fields():
+        return ['title', 'bid_open_date', 'bid_close_date', 'created_date', 'created_by']
+    
+    excluded_fields = ['created_by']
+    list_fields = get_list_fields()
+
+    
