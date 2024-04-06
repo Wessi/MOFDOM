@@ -38,7 +38,7 @@
                 <div class="col-lg-5 col-md-8 ">
                     <form role="search" action="{% url 'search_supplier' %}" method="get">
                         <div class="input-group">
-                            <input class="form-control text-1"  name="searched_term" type="search" value="" placeholder="Search for blocked supplier">
+                            <input class="form-control text-1"  name="searched_term" type="search" value="" placeholder="{% trans 'Search for blocked supplier' %}">
                             <button class="btn bg-light" type="submit" aria-label="Search">
                                 <i class="fas fa-search header-nav-top-icon"></i>
                             </button>

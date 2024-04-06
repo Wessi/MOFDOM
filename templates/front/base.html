@@ -328,7 +328,7 @@
                                                 </li>
                                                 
                                                 {% endif %}
-                                                <li><a class="nav-link {% block contact_us_dynamic %} {% endblock %}" href="/contact-us/">
+                                                <li><a class="nav-link {% block contact_us_dynamic %} {% endblock %}" href="{% url 'contact_us' %}">
                                                     {% trans "Contact Us" %}
                                                 </a></li>
                                                 
@@ -381,7 +381,7 @@
                                                         <li><a class="dropdown-item" href="{% url 'gallery_images' %}">{% trans "Videos" %}</a></li>
                                                     </ul>
                                                 </li>
-                                                <li><a class="nav-link {% block contact_us %} {% endblock %}" href="/contact-us/">{% trans "Contact Us" %}</a></li>
+                                                <li><a class="nav-link {% block contact_us %} {% endblock %}" href="{% url 'contact_us' %}">{% trans "Contact Us" %}</a></li>
                                                 
                                             
                                             {% endif %}
