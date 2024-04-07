@@ -68,11 +68,11 @@
                         class="d-flex flex-column align-items-start justify-content-lg-center justify-content-end h-100 pt-5  px-lg-5 px-md-2 px-sm-0 py-5">
                         <h3 class="position-relative text-color-light text-4 line-height-2 font-weight-light  mb-2 appear-animation"
                             data-appear-animation="fadeInDownShorter" data-plugin-options="{'minWindowWidth': 0}">
-                            {% trans "FEATURED WORKS" %}</h3>
+                           {% trans "FEATURED WORKS" %}</h3>
                         <h1 class="text-color-light font-weight-bold text-9 mb-5  appear-animation col-lg-5 col-md-6 col-sm-12"
                             data-appear-animation="blurIn" data-appear-animation-delay="500"
                             data-plugin-options="{'minWindowWidth': 0}">
-                            More than 2500 Youths in the Somali Region have been given funding to pursue their Dreams</h1>
+                            {% trans "More than 2500 Youths in the Somali Region have been given funding to pursue their Dreams" %}</h1>
                     </div>
                 </div>
             </div>
@@ -601,20 +601,20 @@
                         <div class="row">
                             <div class="form-group col-12">
                                 <!-- <label class="form-label mb-1 text-2">Full Name</label> -->
-                                <input name="name" id="name" type="text" value="" placeholder="Full Name"
+                                <input name="name" id="name" type="text" value="" placeholder="{% trans 'Full Name' %}"
                                     data-msg-required="Please enter your name." maxlength="100"
                                     class="form-control text-3 h-auto py-2" required="">
                             </div>
                             <div class="form-group col-md-6 col-sm-12">
                                 <!-- <label class="form-label mb-1 text-2">Email Address</label> -->
-                                <input name="email" id="email" type="email" value="" placeholder="Email Address"
+                                <input name="email" id="email" type="email" value="" placeholder="{% trans 'Email Address' %}"
                                     data-msg-required="Please enter your email address."
                                     data-msg-email="Please enter a valid email address." maxlength="100"
                                     class="form-control text-3 h-auto py-2" required="">
                             </div>
                             <div class="form-group col-md-6 col-sm-12">
                                 <!-- <label class="form-label mb-1 text-2">Phone Number</label> -->
-                                <input type="number" name="phone" id="phone" placeholder="Phone Number" value=""
+                                <input type="number" name="phone" id="phone" placeholder="{% trans 'Phone Number' %}" value=""
                                     data-msg-required="Please enter your phone number."
                                     data-msg-email="Please enter a valid phone number." maxlength="100"
                                     class="form-control text-3 h-auto py-2" required="">
@@ -622,7 +622,7 @@
                         </div>
                         <div class="form-group col-md-12">
                             <!-- <label class="form-label mb-1 text-2">Select Subject</label> -->
-                            <input name="subject" placeholder="Subject" data-msg-required="Please enter the subject."
+                            <input name="subject" placeholder="{% trans 'Subject' %}" data-msg-required="Please enter the subject."
                                 class="form-control text-3 h-auto py-2" name="subject" id="subject" required="" />
                             <!-- <select data-msg-required="Please enter the subject." class="form-control text-3 h-auto py-2" name="subject" id="subject" required="">
                                 <option value="">...</option>
@@ -634,7 +634,7 @@
                         <div class="row">
                             <div class="form-group col-md-12 mb-4">
 
-                                <textarea maxlength="5000" placeholder="Message"
+                                <textarea maxlength="5000" placeholder="{% trans 'Message' %}"
                                     data-msg-required="Please enter your message." rows="6"
                                     class="form-control text-3 h-auto py-2" name="message" id="message"
                                     required=""></textarea>

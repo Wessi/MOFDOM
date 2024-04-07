@@ -44,7 +44,22 @@
                                 {% endif %}
 
                             </p> 
-                            <p class="card-text">{{bid.description}}</p>
+                            
+                            <div data-plugin-readmore="" data-plugin-options="{
+                                'buttonOpenLabel': 'Read More <i class=\'fas fa-chevron-down text-2 ms-1\'></i>',
+                                'buttonCloseLabel': 'Read Less <i class=\'fas fa-chevron-up text-2 ms-1\'></i>',
+                                'align': 'end'
+                                }" class="position-relative" style="height: 250px; overflow: hidden; max-height: none;">
+
+                                <p class="card-text">{{bid.description}}</p> 
+                                
+                                <div class="readmore-button-wrapper text-end" style="position: absolute; bottom: 0px; left: 0px; width: 100%; z-index: 2;">
+                                    <a href="#" class="text-decoration-none">{% trans "Read More" %} <i class="fas fa-chevron-down text-2 ms-1"></i></a>
+                                </div>
+                                <div class="readmore-overlay" style="background: linear-gradient(rgba(2, 0, 36, 0) 0%, rgb(255, 255, 255) 100%); position: absolute; bottom: 0px; left: 0px; width: 100%; height: 100px; z-index: 1;"></div>
+                            </div> 
+
+                            
                                 
                                                        
                              <!-- Add Apply button -->

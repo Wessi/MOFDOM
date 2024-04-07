@@ -2,7 +2,7 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
@@ -403,7 +403,7 @@ msgstr "በዚህ ክፍል ውስጥ ያሉትን ሁሉንም ምንጮች ማ
 #: .\templates\front\blog.html:46 .\templates\front\blog_detail.html:68
 #: .\templates\front\news_detail.html:77
 msgid "By"
-msgstr ""
+msgstr "በ"
 
 #: .\templates\front\blog.html:47 .\templates\front\blog_detail.html:70
 #: .\templates\front\blog_detail.html:130 .\templates\front\index.html:277
@@ -492,14 +492,13 @@ msgid "WE'RE HERE TO ASSIST YOU!"
 msgstr "እርስዎን ለመርዳት እንተጋለን!"
 
 #: .\templates\front\contact.html:74
-#, fuzzy
 #| msgid "Tin Number"
 msgid "Phone Number"
-msgstr "የቲን ቁጥር"
+msgstr "የስልክ ቁጥር"
 
 #: .\templates\front\contact.html:79
 msgid "Subject"
-msgstr ""
+msgstr "ዋና ሐሳብ"
 
 #: .\templates\front\contact.html:95 .\templates\front\index.html:646
 msgid "Send Message"
@@ -819,69 +818,56 @@ msgid "VIDEOS TAKEN FROM PREVIOUS ACTIVITIES"
 msgstr "ከቀደምት ተግባራት የተወሰዱ ተንቀሳቃሽ ምስሎች"
 
 #, fuzzy
-#~| msgid "Send Message"
 #~ msgid "Messages"
 #~ msgstr "መልዕክት ላክ"
 
 #, fuzzy
-#~| msgid "Location"
 #~ msgid "Syndication"
 #~ msgstr "አካባቢ"
 
 #, fuzzy
-#~| msgid "Location"
 #~ msgid "Duration"
 #~ msgstr "አካባቢ"
 
 #, fuzzy
-#~| msgid "Email Address"
 #~ msgid "Email address"
 #~ msgstr "የኢሜል አድራሻ"
 
 #, fuzzy
-#~| msgid "Address"
 #~ msgid "IPv4 address"
 #~ msgstr "አድራሻ"
 
 #, fuzzy
-#~| msgid "Address"
 #~ msgid "IP address"
 #~ msgstr "አድራሻ"
 
 #, fuzzy
-#~| msgid "Images"
 #~ msgid "Image"
 #~ msgstr "ፎቶዎች"
 
 #, fuzzy
-#~| msgid "Mission"
 #~ msgid "Mon"
 #~ msgstr "አላማ"
 
 #, fuzzy
-#~| msgid "Remember Me"
 #~ msgid "September"
 #~ msgstr "አስታውሰኝ"
 
 #, fuzzy
-#~| msgid "Remember Me"
 #~ msgid "December"
 #~ msgstr "አስታውሰኝ"
 
 #, fuzzy
-#~| msgid "Remember Me"
 #~ msgctxt "alt. month"
 #~ msgid "September"
 #~ msgstr "አስታውሰኝ"
 
 #, fuzzy
-#~| msgid "Remember Me"
 #~ msgctxt "alt. month"
 #~ msgid "December"
 #~ msgstr "አስታውሰኝ"
 
 #, fuzzy
-#~| msgid "About Us"
 #~ msgid "About"
 #~ msgstr "ስለ እኛ"
 

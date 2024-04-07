@@ -44,7 +44,7 @@
                                 <div class="post-meta">
                                     <span><i class="far fa-calendar-alt "></i><a href="#">{{blog.publish_date}}</a></span>
                                     <span><i class="far fa-user"></i> {% trans "By" %} <a href="#"  title="{{blog.author}} : {{blog.author_email}}">{{blog.author}}</a></span>
-                                    <span><i class="far fa-comments"></i> <a href="#">{{blog.comments.count}} {% trans "Comments" %} </a></span>
+                                    <span><i class="far fa-comments"></i> <a href="#">{{blog.comment_set.all.count}} {% trans "Comments" %} </a></span>
                                     <span class="d-block mt-2 float-end mb-3"><a href="{% url 'blog_detail' blog_id=blog.id %}" class="btn btn-md btn-primary ">{% trans "Read More" %} <i class="fa fa-angle-right"></i></a></span>
                                 </div>
 

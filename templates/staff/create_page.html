@@ -56,10 +56,68 @@
                         <button type="button" class="btn btn-light btn-outline float-end m-2" >Cancel</button>
                         
                     </div>
+                    
+                    <div class="card-footer px-5">
+
+                        {% if child_obj and not add %}
+                            <h1 class="page-title fw-semibold fs-18 mb-3 text-center"> {% if model_name == "Job" %}  Applicants {% elif model_name == "Blog" %} Comments {% endif %}</h1>
+
+                            <table id="file-export" class="table table-bordered text-nowrap w-100">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+
+                                        {% for field in child_obj_fields %}
+                                        <th>{{field|formalize }}</th>
+                                        {% endfor %}
+
+                                        {% if model_name == "Blog" %}
+                                        <th>Action</th>
+                                        {% endif %}
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    {% for obj in child_obj %}
+                                    <tr>
+                                        <td>{{forloop.counter}}</td>
+                                        {% for field in child_obj_fields %}
+                                            {% if field == 'approved'%}
+                                                <td >
+                                                    {% if obj.approved %} <span style="color: green;"> Approved </span>{% else %} <span style="color: red;"> Not Aproved </span> {% endif %}
+                                                </td>
+                                            {% else %}
+                                                <td>{% get_field_attr obj field %}</td>
+                                            {% endif %}
+                                        {% endfor %}
+                                        
+                                        {% if model_name == "Blog" %}
+                                        <td>
+                                            <a onclick="return confirm('confirm changes in this comment?')" 
+                                            href="{% url 'approve_comment' pk=obj.id %}">
+                                                {% if obj.approved %}
+                                                <span class="btn btn-danger"> Hide </span>
+                                                {% else %}
+                                                <span class="btn btn-success"> Show </span>
+                                                {% endif %}
+                                            </a>
+                                        </td>
+                                        {% endif %}
+                                    </tr>
+                                    {% endfor %}
+
+                                </tbody>
+                            </table>
+                        {% endif %}
+
+                    </div>
+
                 </div>
+                
+
             </form>
         </div>
-       
     </div>
 
 {% endblock %}

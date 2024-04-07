@@ -3,7 +3,7 @@ from .models import About, TeamMember, BureauStructure, Service
 
 @register(About)
 class AboutTranslationOption(TranslationOptions):
-    fields = ('title',"content")
+    fields = ('title',"content", "mission", "vision", "values")
 
 @register(TeamMember)
 class TeamMemberTranslationOption(TranslationOptions):
@@ -11,7 +11,7 @@ class TeamMemberTranslationOption(TranslationOptions):
 
 @register(BureauStructure)
 class StructureTranslationOption(TranslationOptions):
-    fields = ('title', 'content', 'management_board_title')
+    fields = ('title', 'content', 'management_board_title', 'management_board_content', 'execution_team_title', 'execution_team_content')
 
 
 @register(Service)

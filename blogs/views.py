@@ -7,13 +7,14 @@ from django.contrib import messages
 class BlogList(View):
     def get(self, request):
         blogs = Blog.objects.all()
+        comments = Comment.objects.filter(approved=True)
         
         from django.core.paginator import Paginator
         p = Paginator(blogs, 9)
         page = self.request.GET.get('page')
         blogs_list = p.get_page(page)
 
-        return render(request, 'front/blog.html', {'blogs': blogs_list})
+        return render(request, 'front/blog.html', {'blogs': blogs_list, 'comments':comments})
 
 class blog_detail(View):
     def get(self, *args, **kwargs):
