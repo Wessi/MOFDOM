@@ -1,7 +1,6 @@
 from django.db import models
 
 class Job(models.Model):
-    job_description = models.TextField(null=True, blank=True)
     job_title = models.CharField(max_length=255,help_text="Make sure to submit a max of 255 characters.")
     job_type = models.CharField(max_length=50, choices=[
         ('Contract', 'Contract'),
@@ -10,29 +9,24 @@ class Job(models.Model):
         ('Part Time', 'Part Time'),
         ('Internship', 'Internship'),
     ])
-    Status = models.CharField(max_length=50, choices=[
-        ('Active', 'Active'),
-        ('CLosed', 'Closed'),
-    ])
-    vacancies = models.IntegerField(choices=[
-        (1, 1),
-        (2, 2),
-        (5, 5),
-        (10, 10),
-    ])
+    Status = models.CharField(max_length=50, choices=[('Active', 'Active'),('CLosed', 'Closed'),])
+    vacancies = models.IntegerField(help_text="Number of open places.")
+    job_description = models.TextField(null=True, blank=True)
+    
     skills = models.CharField(max_length=255,help_text="Make sure to submit a max of 255 characters.")
     job_deadline = models.DateField()
     location = models.CharField(max_length=255, default='',help_text="Make sure to submit a max of 255 characters.")  # Assuming location is a character field
 
     level = models.CharField(max_length=255, choices=[
         ('Junior', 'Junior'),
-        ('Mid-Level', 'Mid-Level'),  # Removed extra space
-        ('Senior', 'Senior'),  # Corrected capitalization
+        ('Mid-Level', 'Mid-Level'),
+        ('Senior', 'Senior'),  
         ('Expert', 'Expert'),
     ])
-
+    
     class Meta:
         ordering = ("-id",)
+    
     def __str__(self):
         return self.job_title
 

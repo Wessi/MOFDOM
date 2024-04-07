@@ -3,12 +3,19 @@
     
     /* To choose date */
     flatpickr("#date", {});
-
+    flatpickr(".date", {});
+    
     /* To choose date and time */
     flatpickr("#datetime", {
         enableTime: true,
         dateFormat: "Y-m-d H:i",
     });
+
+    flatpickr(".datetime", {
+        enableTime: true,
+        dateFormat: "Y-m-d H:i",
+    });
+    
 
     /* For Human Friendly dates */
     flatpickr("#humanfrienndlydate", {
@@ -25,6 +32,11 @@
 
     /* For Time Picker */
     flatpickr("#timepikcr", {
+        enableTime: true,
+        noCalendar: true,
+        dateFormat: "H:i",
+    });
+    flatpickr(".timepikcr", {
         enableTime: true,
         noCalendar: true,
         dateFormat: "H:i",

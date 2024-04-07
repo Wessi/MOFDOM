@@ -136,7 +136,7 @@ class Event(models.Model):
     location = models.CharField(max_length=100)
     description = models.TextField()
     date = models.DateField()
-    time = models.CharField(max_length=50)
+    time = models.TimeField()
     
 
     def get_list_fields():

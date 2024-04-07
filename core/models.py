@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.sites.models import Site
 allowed_image_extensions = ['png','jpg','jpeg','webp','jiff']
 allowed_file_extension = ['doc', 'docx', 'pdf', 'xlsx']
 
@@ -46,23 +46,36 @@ class Settings(models.Model):
     main_reverse_color = models.CharField(max_length=15, default="", blank=True, help_text="A color shown on top of the main color, like text colors.")
     grey = models.CharField(max_length=15, default="", blank=True, help_text="A grey color used for small help texts.")
     
+    def save(self,*args, **kwargs) -> None:
+        super().save(*args, **kwargs)
+        try:
+            # Whenever there is an update on the title of main site, change the cms header site name and site domain
+            site = Site.objects.first() if Site.objects.first() else Site.objects.create(domain="Bureau of Finance", name="Bureau of Finance")
+            if site.name != self.title:
+                site.name = self.title
+                site.domain = str(self.title).replace(" ","").lower()+".com"
+                site.save()
+                print("Updated site name from the main setting.")
+        except Exception as e:
+            print("Exception occurred while updating site name & domain : ",e)
+
+        return self
     
 class Pages(models.Model):
     is_single = True # Tells if the model should have multiple or single objects
-
     about = models.BooleanField(default = True)
     structure = models.BooleanField(default = True)
-    directorate = models.BooleanField(default = True)
+    services = models.BooleanField(default = True)
     documents = models.BooleanField(default = True)
-    gallery = models.BooleanField(default = True)
+    blocked_suppliers = models.BooleanField(default = True)
     vacancy = models.BooleanField(default = True)
     events = models.BooleanField(default = True)
     news = models.BooleanField(default = True)
-    resource = models.BooleanField(default = True)
+    blogs = models.BooleanField(default = True)
+    gallery = models.BooleanField(default = True)
     contact_us = models.BooleanField(default = True)
-    privacy = models.BooleanField(default = True)
-
-
+    bid = models.BooleanField(default = True)
+    
     def __str__(self):
         return f"Page Controller {self.id}"
 

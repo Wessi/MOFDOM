@@ -97,7 +97,7 @@ CUSTOM_INSTALLED_APPS = [
     'task_manager',
     'blogs',
     'accounts',
-    'core',   
+    'core',
 ]
 
 
