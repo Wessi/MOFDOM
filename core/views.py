@@ -21,6 +21,17 @@ from news.models import NewsArticle
 from documents.models import Document
 
 
+from django.core.paginator import Paginator
+
+def paginate(object, number, request):
+    
+    p = Paginator(object, number)
+    page = request.GET.get('page')
+    obj_list = p.get_page(page)
+
+    return obj_list
+
+
 def index(request):
     recent_blogs = Blog.objects.order_by('-publish_date')[:4]
     recent_news = NewsArticle.objects.order_by('-created_at')[:4]
@@ -83,9 +94,7 @@ class GalleryImagePage(View):
     def get(self, request):
         images= GalleryImage.objects.all()
         
-        p = Paginator(images, 12)
-        page = self.request.GET.get('page')
-        images_list = p.get_page(page)
+        images_list = paginate( images, 12, request)
 
         context = {
             'images':images_list,
@@ -99,10 +108,7 @@ class GalleryVideoPage(View):
     def get(self, *args, **kwargs):
         gallery_videos = GalleryVideo.objects.all()
         
-        p = Paginator(gallery_videos, 10)
-        page = self.request.GET.get('page')
-        gallery_videos_list = p.get_page(page)
-
+        gallery_videos_list = paginate( gallery_videos, 5, self.request)
 
         categories = [cat.name for cat in GalleryCategory.objects.all()]
         return render(self.request, 'front/videos.html', {'gallery_videos':gallery_videos_list, 'categories':categories})
@@ -112,9 +118,7 @@ class EventListPage(View):
     def get(self,*args, **kwargs):
         events = Event.objects.all()
         
-        p = Paginator(events, 6)
-        page = self.request.GET.get('page')
-        events_list = p.get_page(page)
+        events_list = paginate( events, 6, self.request)
 
         return render(self.request, 'front/event.html', {'events': events_list})
 
@@ -140,4 +144,5 @@ class Contact(View):
 class BidPage(View):
     def get(self, request):
         bids = Bid.objects.all()
-        return render(request, "front/bid.html", {'bids':bids})
+        bids_list = paginate( bids, 5, self.request)
+        return render(request, "front/bid.html", {'bids':bids_list})
