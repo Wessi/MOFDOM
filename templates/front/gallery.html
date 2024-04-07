@@ -71,15 +71,19 @@
 
                         {% if images.has_previous %}
                             <li class="page-item"><a href="?page={{images.previous_page_number}}" class="page-link"><i class="fas fa-angle-left"></i></a></li>
+                            <li class="page-item"><a href="?page={{images.previous_page_number}}" class="page-link">{{images.previous_page_number}}</a></li>
                         {% else %}
                             <li class="page-item disabled"><a href="" class="page-link"><i class="fas fa-angle-left"></i></a></li>
                         {% endif %}
 
                             <li class="page-item active"><a href="" class="page-link">{{images.number}}</a></li>
-                            <li class="page-item disabled"><a href="" class="page-link">of</a></li>
-                            <li class="page-item"><a href="?page={{images.paginator.num_pages}}" class="page-link">{{images.paginator.num_pages}}</a></li>
                         
                         {% if images.has_next %}
+                            <li class="page-item"><a href="?page={{images.next_page_number}}" class="page-link">{{images.next_page_number}}</a></li>
+                            {% if images.next_page_number != images.paginator.num_pages %}
+                                <li class="page-item disabled"><a href="" class="page-link">...</a></li>
+                                <li class="page-item"><a href="?page={{images.paginator.num_pages}}" class="page-link">{{images.paginator.num_pages}}</a></li>
+                            {% endif %}
                             <li class="page-item"><a href="?page={{images.next_page_number}}" class="page-link"><i class="fas fa-angle-right"></i></a></li>
                         {% else %}
                             <li class="page-item disabled"><a href="" class="page-link"><i class="fas fa-angle-right"></i></a></li>

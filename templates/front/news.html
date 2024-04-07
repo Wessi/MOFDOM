@@ -73,15 +73,19 @@
 
                         {% if news_articles.has_previous %}
                             <li class="page-item"><a href="?page={{news_articles.previous_page_number}}" class="page-link"><i class="fas fa-angle-left"></i></a></li>
+                            <li class="page-item"><a href="?page={{news_articles.previous_page_number}}" class="page-link">{{news_articles.previous_page_number}}</a></li>
                         {% else %}
                             <li class="page-item disabled"><a href="" class="page-link"><i class="fas fa-angle-left"></i></a></li>
                         {% endif %}
 
                             <li class="page-item active"><a href="" class="page-link">{{news_articles.number}}</a></li>
-                            <li class="page-item disabled"><a href="" class="page-link">of</a></li>
-                            <li class="page-item"><a href="?page={{news_articles.paginator.num_pages}}" class="page-link">{{news_articles.paginator.num_pages}}</a></li>
                         
                         {% if news_articles.has_next %}
+                            <li class="page-item"><a href="?page={{news_articles.next_page_number}}" class="page-link">{{news_articles.next_page_number}}</a></li>
+                            {% if news_articles.next_page_number != news_articles.paginator.num_pages %}
+                                <li class="page-item disabled"><a href="" class="page-link">...</a></li>
+                                <li class="page-item"><a href="?page={{news_articles.paginator.num_pages}}" class="page-link">{{news_articles.paginator.num_pages}}</a></li>
+                            {% endif %}
                             <li class="page-item"><a href="?page={{news_articles.next_page_number}}" class="page-link"><i class="fas fa-angle-right"></i></a></li>
                         {% else %}
                             <li class="page-item disabled"><a href="" class="page-link"><i class="fas fa-angle-right"></i></a></li>
