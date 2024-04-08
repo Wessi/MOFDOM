@@ -143,14 +143,13 @@ class ChangeView(LoginRequiredMixin,PermissionRequiredMixin, View):
                 print(name)
 
         # list objects derived from other models (job & application, blog & comment)
-        child_obj_fields = []
+        child_obj_fields, child_obj = [], None
+
         if model == Job:
             child_obj = obj.application_set.all()
-            for c in child_obj:
-                print(type(c.cv))
         elif model == Blog:
             child_obj = obj.comment_set.all()
-        child_obj_fields = getattr(child_obj.model, 'list_fields',[])
+        child_obj_fields = getattr(child_obj.model, 'list_fields',[]) if child_obj else []
 
             
     
@@ -186,7 +185,7 @@ class ListView(LoginRequiredMixin,PermissionRequiredMixin, View):
         
         objs = model.objects.all()
         list_fields = getattr(model, 'list_fields',[])
-        print(list_fields)
+        
         return render (self.request, "staff/list_page.html", 
                       {'model_name':formal_name, 'model_code':self.kwargs['model_name'], 'single':config['single'],
                        'objs':objs,'fields':list_fields}

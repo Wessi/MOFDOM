@@ -97,7 +97,7 @@ CUSTOM_INSTALLED_APPS = [
     'task_manager',
     'blogs',
     'accounts',
-    'core',   
+    'core',
 ]
 
 
@@ -134,7 +134,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'core.context_processors.recent_news_mega',
                 'core.context_processors.stgs',
                 # cms
                 'sekizai.context_processors.sekizai',

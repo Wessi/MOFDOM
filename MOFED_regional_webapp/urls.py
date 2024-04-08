@@ -13,7 +13,7 @@ from about_us.urls import ServicesPage
 admin.site.site_header = 'Super Administrator'
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('superadmin/', admin.site.urls),
     path('', index, name="index"),
 
     # Include your app-specific URLs here
