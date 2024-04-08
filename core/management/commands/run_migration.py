@@ -26,12 +26,15 @@ class Command(BaseCommand):
         # check if pages are created
         if Pages.objects.first() is None:
             Pages.objects.create()
+            print("Created page controller setting.")
         
         # 
 
     def handle(self, *args, **options):
         self.stdout.write("Making migrations to all apps...")
         call_command('makemigrations', interactive=False)
+        # cmd = 'python manage.py makemigrations about_us accounts blogs core dashboard documents news supplier task_manager vacancies visit_counter'
+        # subprocess.run([s for s in cmd],check=True)
         self.stdout.write(" \nMigrating...")
         call_command('migrate', interactive=False)
         # subprocess.run(['python', 'manage.py', 'migrate'], check=True)

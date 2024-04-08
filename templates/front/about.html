@@ -41,20 +41,14 @@
                 <div class="col-sm-8 col-md-6 col-lg-4 offset-sm-4 offset-md-4 offset-lg-2 position-relative mt-sm-5" style="top: 1.7rem;">
                     {% if about_data.image_one %}
                     <img src="{{ about_data.image_one.url }}" class="img-fluid position-absolute d-none d-md-block d-lg-block appear-animation" data-appear-animation="expandIn" data-appear-animation-delay="300" style="top: 10%; left: -60%; width: 220px;" alt="" />
-                    {% else %}
-                    <img src="/static/front/imgs/about/addis-best-2.jpg" class="img-fluid position-absolute d-none d-sm-block appear-animation" data-appear-animation="expandIn" data-appear-animation-delay="300" style="top: 10%; left: -60%; width: 220px;" alt="" />
                     {% endif %}
 
                     {% if about_data.image_two %}
                     <img src="{{ about_data.image_two.url }}" class="img-fluid position-absolute d-none d-md-block d-lg-block appear-animation" data-appear-animation="expandIn" style="top: -33%; left: -40%; width: 270px;" alt="" />
-                    {% else %}
-                    <img src="/static/front/imgs/about/addis-best.jpg" class="img-fluid position-absolute d-none d-sm-block appear-animation" data-appear-animation="expandIn" style="top: -33%; left: -40%; width: 270px;" alt="" />
                     {% endif %}
                     
                     {% if about_data.image_three %}
                     <img src="{{ about_data.image_three.url }}" class="img-fluid position-relative appear-animation mb-2" data-appear-animation="expandIn" data-appear-animation-delay="600" alt="" />
-                    {% else %}
-                    <img src="/static/front/imgs/about/about-image.jpg" class="img-fluid position-relative appear-animation mb-2" data-appear-animation="expandIn" data-appear-animation-delay="600" alt="" />
                     {% endif %}
                 </div>
             </div>
