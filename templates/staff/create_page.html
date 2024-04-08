@@ -87,6 +87,8 @@
                                                 <td >
                                                     {% if obj.approved %} <span style="color: green;"> Approved </span>{% else %} <span style="color: red;"> Not Aproved </span> {% endif %}
                                                 </td>
+                                            {% elif field == 'cv'%}
+                                                <td> <a href="{{obj.cv.url}}" download ><span class="text-info">Download CV</span></a> </td>
                                             {% else %}
                                                 <td>{% get_field_attr obj field %}</td>
                                             {% endif %}

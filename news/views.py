@@ -1,16 +1,14 @@
 
 from django.shortcuts import render,  redirect
 from.models import NewsArticle
-from django.core.paginator import Paginator
+from core.views import paginate
 
 def news_list_visitor(request):
     news_articles = NewsArticle.objects.all()
     
-    p = Paginator(news_articles, 12)
-    page = request.GET.get('page')
-    news_article_list = p.get_page(page)
+    news_articles_list = paginate( news_articles, 12, request)
 
-    return render(request, 'front/news.html', {'news_articles': news_article_list})
+    return render(request, 'front/news.html', {'news_articles': news_articles_list})
 
 def news_detail(request, news_id):
     try:

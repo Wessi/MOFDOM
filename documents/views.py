@@ -4,6 +4,7 @@ from .models import Document
 from django.http import FileResponse
 from django.conf import settings
 
+from core.views import paginate
 
 def list_docs_view(request):
     documents = Document.objects.all()
@@ -13,11 +14,7 @@ def list_docs_view(request):
         documents_by_category[category] = Document.objects.filter(category=category)
 
 
-
-    from django.core.paginator import Paginator
-    p = Paginator(documents, 9)
-    page = request.GET.get('page')
-    documents_list = p.get_page(page)
+    documents_list = paginate( documents, 10, request)
 
     context = {
         'categories': categories,
