@@ -1,14 +1,15 @@
 from django.shortcuts import render
 from .models import Supplier
 from django.db.models import Q
+from core.views import paginate
 
 def view_supplier(request):
     suppliers = Supplier.objects.all()
+    suppliers = paginate( suppliers, 25, request)
     return render(request, 'supplier_list.html', {'suppliers': suppliers, 'result':True})
 
 
 def search_supplier(request):
-
     if "searched_term" in request.GET:
         searched_supplier= request.GET["searched_term"]
 
