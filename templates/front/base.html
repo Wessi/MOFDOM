@@ -243,7 +243,7 @@
                                         <nav class="collapse">
                                             <ul class="nav nav-pills" id="mainNav">
                                             {% if pages %}
-                                            
+                                                
                                                 <li><a class="nav-link {% block home_dynamic %} {% endblock %}" href="{% url 'index' %}">
                                                     {% trans "Home" %}
                                                 </a></li>
@@ -282,12 +282,12 @@
                                                 </li>
                                                 {% endif %}
                                                 
-                                                {% if pages.vacancy or pages.events %}
+                                                {% if pages.vacancy or pages.events or pages.bid %}
                                                 <li class="dropdown ">
                                                     <a class="dropdown-item dropdown-toggle {% block announcement_dynamic %} {% endblock %}" href="#">
                                                         {% trans "Announcements" %}</a>
                                                     <ul class="dropdown-menu">
-                                                        {% if pages.events %}
+                                                        {% if pages.bid %}
                                                         <li><a class="dropdown-item" href="{% url 'bid' %}">{% trans "Bids" %}</a></li>
                                                         {% endif %}
                                                         {% if pages.events %}
@@ -358,8 +358,10 @@
                                                 <li class="dropdown ">
                                                     <a class="dropdown-item dropdown-toggle {% block announcement %} {% endblock %}" href="#">{% trans "Announcements" %}</a>
                                                     <ul class="dropdown-menu">
-                                                        <li><a class="dropdown-item" href="{% url 'job_list' %}">{% trans "Vacancies" %}</a></li>
+                                                        <li><a class="dropdown-item" href="{% url 'bid' %}">{% trans "Bids" %}</a></li>
                                                         <li><a class="dropdown-item" href="{% url 'events_list' %}">{% trans "Events" %}</a></li>
+                                                        <li><a class="dropdown-item" href="{% url 'job_list' %}">{% trans "Vacancies" %}</a></li>
+                                                        
                                                     </ul>
                                                 </li>
                                                 
@@ -439,7 +441,7 @@
          <!-- include 'front/header.html'  -->
 
        
-        <div role="main" class="main " {% if not index %} style="padding-top:40px" {% endif %} >
+        <div role="main" class="main "  >
         {% block content %} 
             
     

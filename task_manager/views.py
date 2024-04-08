@@ -62,18 +62,36 @@ class AssignTask(LoginRequiredMixin, View):
             messages.success(request, "Notification email sent to users assigned as monitors!")
             return redirect('task_list_view',type='All')   
             
-        print(form.errors)
-        messages.error(request, "Invalid data detected. Please recheck your inputs!")
+        messages.error(request, f"Invalid data detected! \n {form.errors.as_text()}")
         return redirect('task_list_view', type='All')
 
 
 
-class EditTask(LoginRequiredMixin, View):
+def delete_task(request, task_id):
+    try:
+        task = get_object_or_404(Task, id=task_id)
+        task.delete() 
+        messages.success(request, "Task deleted successfully!")
+    except Exception as e:
+        messages.error(request, str(e))
+    return redirect('task_list_view', type='All')
+
+
+class TaskDetailsView(LoginRequiredMixin, View):
     def get(self, request, task_id):
-        task = Task.objects.get(id=task_id)
-        form = TaskForm(instance=task, data=request.POST)
-        return redirect('task_details', task_id, {'form':form})
-    
+        user = self.request.user
+        task = get_object_or_404(Task, id=task_id)
+        # A user can update a task if he is the creator and not an assigned member.
+        can_edit = True if task.created_by == user else False
+        context = {
+            'task': task,
+            'form':TaskForm(instance=task),
+            'can_edit':can_edit,
+            'comments':task.comments.filter(parent_comment= None)
+        }
+
+        return render(request, 'task_details_admin.html', context)
+
     def post(self, request, task_id):
         task = Task.objects.get(id=task_id)
         form = TaskForm(instance=task, data=request.POST)
@@ -102,43 +120,6 @@ class EditTask(LoginRequiredMixin, View):
         messages.error(request, "Invalid data detected. Please recheck your inputs!")
         return redirect('task_details', task_id=id)
 
-
-
-def delete_task(request, task_id):
-    try:
-        task = get_object_or_404(Task, id=task_id)
-        task.delete() 
-        messages.success(request, "Task deleted successfully!")
-    except Exception as e:
-        messages.error(request, str(e))
-    return redirect('task_list_view', type='All')
-
-
-class TaskDetailsView(View):
-    template_name = 'task_details_admin.html'
-
-    def get_context_data(self, task_id):
-        task = get_object_or_404(Task, id=task_id)
-        # Assuming you have the currently logged-in user
-        assigned_by_user = task.created_by
-
-        # Calculate progress based on due date and current date
-        total_days = (task.due_date - task.assigned_date).days
-        remaining_days = (task.due_date - timezone.now()).days
-        progress = int((total_days - remaining_days) / total_days * 100)
-
-        context = {
-            'task': task,
-            'assigned_by_user': assigned_by_user,
-            'progress': progress,
-            'comments':task.comments.filter(parent_comment= None)
-        }
-
-        return context
-
-    def get(self, request, task_id):
-        context = self.get_context_data(task_id)
-        return render(request, self.template_name, context)
 
 
 def get_key_tasks(task):

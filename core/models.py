@@ -68,13 +68,13 @@ class Pages(models.Model):
     services = models.BooleanField(default = True)
     documents = models.BooleanField(default = True)
     blocked_suppliers = models.BooleanField(default = True)
-    vacancy = models.BooleanField(default = True)
+    bid = models.BooleanField(default = True)
     events = models.BooleanField(default = True)
+    vacancy = models.BooleanField(default = True)
     news = models.BooleanField(default = True)
     blogs = models.BooleanField(default = True)
     gallery = models.BooleanField(default = True)
     contact_us = models.BooleanField(default = True)
-    bid = models.BooleanField(default = True)
     
     def __str__(self):
         return f"Page Controller {self.id}"

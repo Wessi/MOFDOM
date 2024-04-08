@@ -1,5 +1,4 @@
-from django.shortcuts import render, get_object_or_404, redirect
-from.forms import SupplierForm
+from django.shortcuts import render
 from .models import Supplier
 from django.db.models import Q
 

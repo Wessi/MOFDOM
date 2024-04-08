@@ -3,10 +3,8 @@ from django.db import models
 from django.utils import timezone
 USER_ROLES = (
         ('admin', 'Admin'),
+        ('staff', 'Staff'),
         ('teamleader', 'Team Leader'),
-        ('author', 'Author'),
-        ('editor', 'Editor'),
-        ('visitor', 'Visitor'),
     )
 STATUS = (('Pending','Pending'), ('Email Confirmation', 'Email Confirmation'), ('Account Activation', 'Account Activation'), ('Active', 'Active'))
 
@@ -36,7 +34,7 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(('first name'), max_length=150, blank=True)
     last_name = models.CharField(('last name'), max_length=150, blank=True)
     
-    role = models.CharField(max_length=20, choices=USER_ROLES, default='visitor')
+    role = models.CharField(max_length=20, choices=USER_ROLES, default='staff')
     profile_pic = models.ImageField(upload_to='profile_pics/', null=True, blank=True)
     phonenumber = models.CharField(max_length=15, null=True, blank=True)
 
