@@ -41,8 +41,8 @@ class MyUserRegistrationForm(forms.ModelForm):
     
 
 class EditProfileForm(forms.ModelForm):
-    user_permissions = forms.ModelMultipleChoiceField(Permission.objects.all(),widget = forms.SelectMultiple( attrs = { 'class': ' form-control-light form-control ', 'multiple':True}),)
-    groups = forms.ModelMultipleChoiceField(Group.objects.all(),widget = forms.SelectMultiple( attrs = { 'class': ' form-control-light form-control ', 'multiple':True}),)
+    user_permissions = forms.ModelMultipleChoiceField(Permission.objects.all(),required=False,widget = forms.SelectMultiple( attrs = { 'class': ' form-control-light form-control ', 'multiple':True}),)
+    groups = forms.ModelMultipleChoiceField( Group.objects.all(),required=False,widget = forms.SelectMultiple( attrs = { 'class': ' form-control-light form-control ', 'multiple':True}),)
     email = forms.CharField(required=False, disabled=True, widget=forms.EmailInput(attrs={'class':'form-control form-control-light','placeholder':'Enter Email'}),)
     class Meta:
         model = UserProfile 
@@ -67,7 +67,6 @@ class ChangePasswordForm(forms.Form):
 
     class Meta:
         fields = ['current_password', 'new_password', 'retype_new_password']
-
 
 
 class ResetPasswordForm(forms.Form):
