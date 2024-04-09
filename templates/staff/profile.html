@@ -53,7 +53,7 @@
         <div class="col-xxl-12 col-xl-12">
             <div class="row">
                 
-                <div class="col-xl-4 col-xl-4">
+                <div class="col-md-3 col-sm-12">
                     <div class="card custom-card">
                         <div class="card-header">
                             <div class="card-title">
@@ -79,7 +79,7 @@
                     </div>
                 </div>
                 
-                <div class="col-xl-8 col-xl-8">
+                <div class="col-md-9 col-sm-12">
                     
                     <div class="tab-content" id="v-pills-tabContent">
                         <div class="tab-pane show p-0 active" id="main-profile" role="tabpanel" tabindex="0">
@@ -183,6 +183,16 @@
                                                 <label for="contact-address-role" class="form-label">Status :</label>
                                                 {{form.status}}   
                                             </div>
+                                            <div class="col-xl-6 form-check form-switch">
+                                                <label for="contact-address-role" class="form-label">Is Active :</label>
+                                                <div class="form-check form-switch d-inline-block">{{form.is_active}}</div>
+                                                   
+                                            </div>
+                                            <div class="col-xl-6 ">
+                                                <label for="contact-address-role" class="form-label">Is Superuser :</label>
+                                                <div class="form-check form-switch d-inline-block">{{form.is_superuser}}</div>
+                                                   
+                                            </div>
                                             <div class="col-xl-6">
                                                 <label for="contact-address-role" class="form-label">Groups :</label>
                                                 {{form.groups}}   
@@ -217,9 +227,11 @@
                                     {% csrf_token %}
                                     <div class="card-body">
                                         <div class="row gy-3">
+                                            {% if user == user_obj %} 
                                             <div class="col-xl-9">
                                                 {{password_form.current_password}}
                                             </div>
+                                            {% endif %}
                                             <div class="col-xl-9">
                                                 {{password_form.new_password}}
                                             </div>
