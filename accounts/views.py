@@ -114,19 +114,24 @@ class Profile(View):
 
 
 class ChangePassword(View):
-
     def post(self, request, id):
         user = UserProfile.objects.get(id=id)
-        password_form = ChangePasswordForm(data=self.request.POST)
-        
+        updating = False
+        if self.request.user == user:
+            password_form = ChangePasswordForm(data=self.request.POST)
+            updating = True
+        else:
+            password_form = ResetPasswordForm(data=self.request.POST)
+
         if password_form.is_valid():
-            if check_password(password_form.data['current_password'],user.password): 
-                if password_form.data['new_password'] == password_form.data['retype_new_password']: 
-                    new_pw = password_form.data['new_password']
-                    user.set_password(new_pw)
-                    user.save()
-                    messages.success(self.request,'successfully changed ur pw')
-                    return redirect ('profile', id=id)
+            if updating:
+                if check_password(password_form.data['current_password'],user.password): 
+                    if password_form.data['new_password'] == password_form.data['retype_new_password']: 
+                        new_pw = password_form.data['new_password']
+                        user.set_password(new_pw)
+                        user.save()
+                        messages.success(self.request,'successfully changed ur pw')
+                        return redirect ('profile', id=id)
                 
                 else:
                     messages.warning(self.request,'new pw dont match')
