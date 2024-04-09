@@ -44,7 +44,22 @@
                                 {% endif %}
 
                             </p> 
-                            <p class="card-text">{{bid.description}}</p>
+                            
+                            <div data-plugin-readmore="" data-plugin-options="{
+                                'buttonOpenLabel': 'Read More <i class=\'fas fa-chevron-down text-2 ms-1\'></i>',
+                                'buttonCloseLabel': 'Read Less <i class=\'fas fa-chevron-up text-2 ms-1\'></i>',
+                                'align': 'end'
+                                }" class="position-relative" style="height: 250px; overflow: hidden; max-height: none;">
+
+                                <p class="card-text">{{bid.description}}</p> 
+                                
+                                <div class="readmore-button-wrapper text-end" style="position: absolute; bottom: 0px; left: 0px; width: 100%; z-index: 2;">
+                                    <a href="#" class="text-decoration-none">{% trans "Read More" %} <i class="fas fa-chevron-down text-2 ms-1"></i></a>
+                                </div>
+                                <div class="readmore-overlay" style="background: linear-gradient(rgba(2, 0, 36, 0) 0%, rgb(255, 255, 255) 100%); position: absolute; bottom: 0px; left: 0px; width: 100%; height: 100px; z-index: 1;"></div>
+                            </div> 
+
+                            
                                 
                                                        
                              <!-- Add Apply button -->
@@ -54,15 +69,33 @@
                 </div>
                 {% endfor %}
             </div>
+           
             <!-- pagination -->
-            <div class="row">
+            <div class="row align-items-center text-center">
                 <div class="col-12">
-                    <ul class="pagination text-center justify-content-center">
-                        <!-- <li class="page-item"><a class="page-link m-1" href="#"><i class="fas fa-angle-left"></i></a></li> -->
-                        <li class="page-item active"><a class="page-link m-1" href="#">1</a></li></ul>
+                    <ul class="pagination justify-content-center align-items-center">
+
+                        {% if bids.has_previous %}
+                            <li class="page-item"><a href="?page={{bids.previous_page_number}}" class="page-link"><i class="fas fa-angle-left"></i></a></li>
+                        {% else %}
+                            <li class="page-item disabled"><a href="" class="page-link"><i class="fas fa-angle-left"></i></a></li>
+                        {% endif %}
+
+                            <li class="page-item active"><a href="" class="page-link">{{bids.number}}</a></li>
+                            <li class="page-item disabled"><a href="" class="page-link">of</a></li>
+                            <li class="page-item"><a href="?page={{bids.paginator.num_pages}}" class="page-link">{{bids.paginator.num_pages}}</a></li>
+                        
+                        {% if bids.has_next %}
+                            <li class="page-item"><a href="?page={{bids.next_page_number}}" class="page-link"><i class="fas fa-angle-right"></i></a></li>
+                        {% else %}
+                            <li class="page-item disabled"><a href="" class="page-link"><i class="fas fa-angle-right"></i></a></li>
+                        {% endif %}
+
+                    </ul>
                 </div>
             </div>
             <!-- end pagination -->
+
         </div>
     </div>
 </section>

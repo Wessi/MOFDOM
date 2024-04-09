@@ -6,8 +6,8 @@ class TaskForm(forms.ModelForm):
     key_tasks = forms.CharField(widget=forms.Textarea(attrs={'rows': 3}), required=False)
 
     # Use DateTimeInput widget for start_date and due_date
-    start_date = forms.DateTimeField(widget=forms.DateTimeInput(attrs={'type': 'datetime-local'}))
-    due_date = forms.DateTimeField(widget=forms.DateTimeInput(attrs={'type': 'datetime-local'}))
+    start_date = forms.DateTimeField(widget=forms.DateTimeInput(attrs={'type': 'datetime-local', "class":"form-control flatpickr-input datetime"}))
+    due_date = forms.DateTimeField(widget=forms.DateTimeInput(attrs={'type': 'datetime-local', "class":"form-control flatpickr-input datetime"}))
     
     class Meta:
         model = Task

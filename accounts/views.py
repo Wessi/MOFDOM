@@ -90,7 +90,9 @@ class Profile(View):
         user = UserProfile.objects.get(id=id)
         form = EditProfileForm(instance=user, data=self.request.POST, files=self.request.FILES)
         if form.is_valid():
+            user = form.save(commit=False)
             user.save()
+            form.save_m2m()
             messages.warning(self.request,'Profile updated successfully')
             return redirect( 'profile', id=id)
         else:

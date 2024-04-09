@@ -2,15 +2,15 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-05 11:35+0300\n"
-"PO-Revision-Date: 2024-04-04 15:09+0000\n"
-"Last-Translator: Admin User <admin@gmai.com>\n"
+"POT-Creation-Date: 2024-04-07 23:04+0300\n"
+"PO-Revision-Date: 2024-04-07 23:22+0000\n"
+"Last-Translator: Admin User <adminuser@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -36,7 +36,7 @@ msgid "LogIn"
 msgstr "ግባ"
 
 #: .\accounts\templates\login.html:28 .\templates\front\blog_detail.html:170
-#: .\templates\front\contact.html:70
+#: .\templates\front\contact.html:70 .\templates\front\index.html:610
 msgid "Email Address"
 msgstr "የኢሜል አድራሻ"
 
@@ -160,9 +160,33 @@ msgstr "መለያ አለህ?"
 msgid "Sign In"
 msgstr "ግባ"
 
-#: .\dashboard\models.py:85 .\dashboard\models.py:86
+#: .\dashboard\models.py:93 .\dashboard\models.py:94
 msgid "Home Page Sliders"
 msgstr "መነሻ ገጽ ተንሸራታቾች"
+
+#: .\documents\models.py:11
+#, fuzzy
+#| msgid "Documents"
+msgid "BPR Documentations"
+msgstr "ዶክመንቶች"
+
+#: .\documents\models.py:12
+#, fuzzy
+msgid "Regulations"
+msgstr "አካባቢ"
+
+#: .\documents\models.py:13
+#, fuzzy
+msgid "Declarations"
+msgstr "አካባቢ"
+
+#: .\documents\models.py:14
+msgid "Annual Report"
+msgstr "አመታዊ ሪፖርት"
+
+#: .\documents\models.py:15
+msgid "Other"
+msgstr "ሌሎች"
 
 #: .\suppliers\models.py:7
 msgid "Private"
@@ -180,7 +204,8 @@ msgstr "ችርቻሮ"
 msgid "Merchant"
 msgstr "ነጋዴ"
 
-#: .\suppliers\templates\supplier_list.html:13 .\templates\front\about.html:12
+#: .\suppliers\templates\supplier_list.html:13 .\templates\403.html:10
+#: .\templates\404.html:10 .\templates\front\about.html:12
 #: .\templates\front\base.html:248 .\templates\front\base.html:338
 #: .\templates\front\bid.html:11 .\templates\front\blog.html:11
 #: .\templates\front\blog_detail.html:10 .\templates\front\contact.html:11
@@ -190,7 +215,7 @@ msgstr "ነጋዴ"
 #: .\templates\front\structure.html:17 .\templates\front\vacancy.html:11
 #: .\templates\front\videos.html:15
 msgid "Home"
-msgstr "ዋና ገጽ ተቀይሮ"
+msgstr "ዋና ገጽ"
 
 #: .\suppliers\templates\supplier_list.html:14 .\templates\front\base.html:279
 #: .\templates\front\base.html:354
@@ -212,6 +237,12 @@ msgid ""
 "The following are list of suppliers registered as blocked suppliers by our "
 "bureau."
 msgstr "በቢሮአችን በታገዱ አቅራቢዎች የተመዘገቡ አቅራቢዎች ዝርዝር የሚከተሉት ናቸው"
+
+#: .\suppliers\templates\supplier_list.html:41
+#, fuzzy
+#| msgid "Searched our whole site"
+msgid "Search for blocked supplier"
+msgstr "ከሙሉ ድህረገጻችን ፍለጋ የተገኙት"
 
 #: .\suppliers\templates\supplier_list.html:56
 msgid "Company Name"
@@ -257,8 +288,18 @@ msgstr "መካከለኛ"
 msgid "Low"
 msgstr "ዝቅተኛ"
 
+#: .\templates\403.html:11 .\templates\403.html:19
+msgid "Permission Denied"
+msgstr "የተከለከለ ተግባር"
+
+#: .\templates\404.html:11 .\templates\404.html:19
+#, fuzzy
+#| msgid "No Result Found"
+msgid "Page Not Found"
+msgstr "ምንም ውጤት አልተገኘም።"
+
 #: .\templates\front\about.html:13 .\templates\front\about.html:21
-#: .\templates\front\base.html:258 .\templates\front\base.html:345
+#: .\templates\front\base.html:258 .\templates\front\base.html:343
 msgid "About Us"
 msgstr "ስለ እኛ"
 
@@ -279,12 +320,13 @@ msgid "Values"
 msgstr "እሴቶች"
 
 #: .\templates\front\about.html:88 .\templates\front\about.html:110
-#: .\templates\front\about.html:135 .\templates\front\blog.html:48
-#: .\templates\front\index.html:129 .\templates\front\index.html:187
-#: .\templates\front\index.html:257 .\templates\front\index.html:285
-#: .\templates\front\index.html:312 .\templates\front\index.html:337
-#: .\templates\front\index.html:366 .\templates\front\news.html:57
-#: .\templates\front\search_results.html:68
+#: .\templates\front\about.html:135 .\templates\front\bid.html:57
+#: .\templates\front\blog.html:48 .\templates\front\index.html:129
+#: .\templates\front\index.html:187 .\templates\front\index.html:257
+#: .\templates\front\index.html:285 .\templates\front\index.html:312
+#: .\templates\front\index.html:337 .\templates\front\index.html:366
+#: .\templates\front\news.html:57 .\templates\front\search_results.html:68
+#: .\templates\front\services.html:55 .\templates\front\vacancy.html:83
 msgid "Read More"
 msgstr "ተጨማሪ ያንብቡ"
 
@@ -308,16 +350,17 @@ msgstr "ችግር"
 msgid "Bureau of Finance"
 msgstr "የፋይናንስ ቢሮ"
 
-#: .\templates\front\base.html:254 .\templates\front\base.html:342
+#: .\templates\front\base.html:254 .\templates\front\base.html:341
 msgid "About Bureau"
 msgstr "ስለ ቢሯችን"
 
-#: .\templates\front\base.html:261 .\templates\front\base.html:346
+#: .\templates\front\base.html:261 .\templates\front\base.html:344
 #: .\templates\front\structure.html:18
 msgid "Structure"
 msgstr "ቅርጽ"
 
-#: .\templates\front\base.html:269 .\templates\front\services.html:13
+#: .\templates\front\base.html:269 .\templates\front\base.html:348
+#: .\templates\front\services.html:13
 msgid "Services"
 msgstr "አገልግሎቶች"
 
@@ -380,6 +423,16 @@ msgstr "አግኙን"
 msgid "List of Bids"
 msgstr "የጨረታዎች ዝርዝር"
 
+#: .\templates\front\bid.html:37
+#, fuzzy
+#| msgid "Date"
+msgid "Open Date"
+msgstr "ቀን"
+
+#: .\templates\front\bid.html:37
+msgid "Closing Date"
+msgstr "የመዝጊያ ቀን"
+
 #: .\templates\front\blog.html:20
 msgid "BLOGS"
 msgstr "ብሎጎች"
@@ -392,7 +445,7 @@ msgstr "በዚህ ክፍል ውስጥ ያሉትን ሁሉንም ምንጮች ማ
 #: .\templates\front\blog.html:46 .\templates\front\blog_detail.html:68
 #: .\templates\front\news_detail.html:77
 msgid "By"
-msgstr ""
+msgstr "በ"
 
 #: .\templates\front\blog.html:47 .\templates\front\blog_detail.html:70
 #: .\templates\front\blog_detail.html:130 .\templates\front\index.html:277
@@ -446,12 +499,11 @@ msgid "Leave a comment"
 msgstr "አስተያየት ይስጡ"
 
 #: .\templates\front\blog_detail.html:166 .\templates\front\contact.html:66
+#: .\templates\front\index.html:604
 msgid "Full Name"
 msgstr "ሙሉ ስም"
 
 #: .\templates\front\blog_detail.html:176
-#, fuzzy
-#| msgid "Documents"
 msgid "Comment"
 msgstr "ዶክመንቶች"
 
@@ -480,15 +532,13 @@ msgstr "የሚናገሩት ነገር አለዎት ወይም ተጨማሪ መረ�
 msgid "WE'RE HERE TO ASSIST YOU!"
 msgstr "እርስዎን ለመርዳት እንተጋለን!"
 
-#: .\templates\front\contact.html:74
-#, fuzzy
-#| msgid "Tin Number"
+#: .\templates\front\contact.html:74 .\templates\front\index.html:617
 msgid "Phone Number"
-msgstr "የቲን ቁጥር"
+msgstr "የስልክ ቁጥር"
 
-#: .\templates\front\contact.html:79
+#: .\templates\front\contact.html:79 .\templates\front\index.html:625
 msgid "Subject"
-msgstr ""
+msgstr "ዋና ሐሳብ"
 
 #: .\templates\front\contact.html:95 .\templates\front\index.html:646
 msgid "Send Message"
@@ -586,9 +636,15 @@ msgstr "ከቀደምት ተግባራት የተወሰዱ ምስሎች"
 msgid "All Categories"
 msgstr "ሁሉም ምድቦች"
 
-#: .\templates\front\index.html:38
+#: .\templates\front\index.html:38 .\templates\front\index.html:71
 msgid "FEATURED WORKS"
 msgstr "ተለይተው የቀረቡ ስራዎች"
+
+#: .\templates\front\index.html:75
+msgid ""
+"More than 2500 Youths in the Somali Region have been given funding to pursue"
+" their Dreams"
+msgstr ""
 
 #: .\templates\front\index.html:148
 msgid "Recent News"
@@ -638,15 +694,15 @@ msgstr "የጥያቄዎ መልሶች"
 msgid "WE'RE HERE TO ASSIST YOU"
 msgstr "እርስዎን ለመርዳት እንተጋለን"
 
+#: .\templates\front\index.html:637
+msgid "Message"
+msgstr "መልዕክት ላክ"
+
 #: .\templates\front\news.html:24
-#, fuzzy
-#| msgid "News"
 msgid "Our News"
 msgstr "ዜና"
 
 #: .\templates\front\news_detail.html:18
-#, fuzzy
-#| msgid "News"
 msgid "News List"
 msgstr "ዜና"
 
@@ -659,8 +715,6 @@ msgid "NEWS DETAIL"
 msgstr "የዜና ዝርዝር"
 
 #: .\templates\front\news_detail.html:33
-#, fuzzy
-#| msgid "News"
 msgid "News on"
 msgstr "ዜና"
 
@@ -689,8 +743,6 @@ msgid "Result in Blogs"
 msgstr "የብሎግ ውጤቶች"
 
 #: .\templates\front\search_results.html:133
-#, fuzzy
-#| msgid "Vacancies"
 msgid "Result in Vacancies"
 msgstr "የስራ ቦታዎች"
 
@@ -699,7 +751,7 @@ msgid "Deadline"
 msgstr "ማለቂያ ሰአት"
 
 #: .\templates\front\search_results.html:147
-#: .\templates\front\search_results.html:276 .\templates\front\vacancy.html:73
+#: .\templates\front\search_results.html:276 .\templates\front\vacancy.html:88
 msgid "Location"
 msgstr "አካባቢ"
 
@@ -708,8 +760,6 @@ msgid "Result in Gallery"
 msgstr "በጋለሪ ውስጥ ያለው ውጤት"
 
 #: .\templates\front\search_results.html:207
-#, fuzzy
-#| msgid "Documents"
 msgid "Result in Documents"
 msgstr "ዶክመንቶች"
 
@@ -726,20 +776,14 @@ msgid "Time"
 msgstr "ሰአት"
 
 #: .\templates\front\services.html:21
-#, fuzzy
-#| msgid "Services"
 msgid "Our Services"
 msgstr "አገልግሎቶች"
 
 #: .\templates\front\services.html:26
-#, fuzzy
-#| msgid "Detail about our bureau"
 msgid "Detail about our services"
 msgstr "ስለቢሮአችን "
 
 #: .\templates\front\vacancy.html:12
-#, fuzzy
-#| msgid "Vacancies"
 msgid "Vacancy"
 msgstr "የስራ ቦታዎች"
 
@@ -755,15 +799,7 @@ msgstr "የቅርብ"
 msgid "VACANCIES"
 msgstr "ክፍት የስራ ቦታዎች"
 
-#: .\templates\front\vacancy.html:26
-#, fuzzy
-#| msgid "List of Bids"
-msgid "List of"
-msgstr "የጨረታዎች ዝርዝር"
-
 #: .\templates\front\vacancy.html:42
-#, fuzzy
-#| msgid "vacancies."
 msgid "Search for vacancies"
 msgstr "የስራ ቦታዎች"
 
@@ -771,7 +807,7 @@ msgstr "የስራ ቦታዎች"
 msgid "All"
 msgstr "ሁሉም"
 
-#: .\templates\front\vacancy.html:53
+#: .\templates\front\vacancy.html:53 .\vacancies\models.py:17
 msgid "Active"
 msgstr "ክፍት"
 
@@ -783,7 +819,7 @@ msgstr "ዝግ"
 msgid "No related vacancies related with keyword"
 msgstr "ከቁልፍ ቃል ጋር ምንም ተዛማጅ ክፍት ቦታዎች የሉም"
 
-#: .\templates\front\vacancy.html:76 .\templates\front\vacancy_apply.html:27
+#: .\templates\front\vacancy.html:91 .\templates\front\vacancy_apply.html:27
 msgid "Apply"
 msgstr "ያመልክቱ"
 
@@ -807,70 +843,108 @@ msgstr "ተንቀሳቃሽ ምስሎች"
 msgid "VIDEOS TAKEN FROM PREVIOUS ACTIVITIES"
 msgstr "ከቀደምት ተግባራት የተወሰዱ ተንቀሳቃሽ ምስሎች"
 
+#: .\vacancies\models.py:7
+msgid "Contract"
+msgstr "አግኙን"
+
+#: .\vacancies\models.py:8
+msgid "Freelance"
+msgstr "የግል ተቀጣሪ"
+
+#: .\vacancies\models.py:9
+msgid "Full Time"
+msgstr "ሙሉ ስም"
+
+#: .\vacancies\models.py:10
+msgid "Part Time"
+msgstr "ሰአት"
+
+#: .\vacancies\models.py:11
+msgid "Internship"
+msgstr "የስራ ልምምድ"
+
+#: .\vacancies\models.py:18
+msgid "CLosed"
+msgstr "ዝግ"
+
+#: .\vacancies\models.py:26
+msgid "Junior"
+msgstr "ጀማሪ"
+
+#: .\vacancies\models.py:27
+msgid "Mid-Level"
+msgstr "መካከለኛ የስራ ልምድ"
+
+#: .\vacancies\models.py:28
+msgid "Senior"
+msgstr "ከፍተኛ የስራ ልምድ"
+
+#: .\vacancies\models.py:29
+msgid "Expert"
+msgstr "ሊቅ"
+
 #, fuzzy
-#~| msgid "Send Message"
+#~ msgid "Translations"
+#~ msgstr "አካባቢ"
+
+#, fuzzy
+#~ msgid "Application"
+#~ msgstr "አካባቢ"
+
+#, fuzzy
+#~ msgid "Progress"
+#~ msgstr "በሂደት ላይ"
+
+#, fuzzy
 #~ msgid "Messages"
 #~ msgstr "መልዕክት ላክ"
 
 #, fuzzy
-#~| msgid "Location"
-#~ msgid "Syndication"
-#~ msgstr "አካባቢ"
+#~ msgid "Search"
+#~ msgstr "የፍለጋ ውጤቶች"
+
+#~ msgid "List of"
+#~ msgstr "የጨረታዎች ዝርዝር"
 
 #, fuzzy
-#~| msgid "Location"
-#~ msgid "Duration"
-#~ msgstr "አካባቢ"
-
-#, fuzzy
-#~| msgid "Email Address"
 #~ msgid "Email address"
 #~ msgstr "የኢሜል አድራሻ"
 
 #, fuzzy
-#~| msgid "Address"
 #~ msgid "IPv4 address"
 #~ msgstr "አድራሻ"
 
 #, fuzzy
-#~| msgid "Address"
 #~ msgid "IP address"
 #~ msgstr "አድራሻ"
 
 #, fuzzy
-#~| msgid "Images"
 #~ msgid "Image"
 #~ msgstr "ፎቶዎች"
 
 #, fuzzy
-#~| msgid "Mission"
 #~ msgid "Mon"
 #~ msgstr "አላማ"
 
 #, fuzzy
-#~| msgid "Remember Me"
 #~ msgid "September"
 #~ msgstr "አስታውሰኝ"
 
 #, fuzzy
-#~| msgid "Remember Me"
 #~ msgid "December"
 #~ msgstr "አስታውሰኝ"
 
 #, fuzzy
-#~| msgid "Remember Me"
 #~ msgctxt "alt. month"
 #~ msgid "September"
 #~ msgstr "አስታውሰኝ"
 
 #, fuzzy
-#~| msgid "Remember Me"
 #~ msgctxt "alt. month"
 #~ msgid "December"
 #~ msgstr "አስታውሰኝ"
 
 #, fuzzy
-#~| msgid "About Us"
 #~ msgid "About"
 #~ msgstr "ስለ እኛ"
 

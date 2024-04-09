@@ -8,7 +8,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.contrib.auth.models import Group
 
-from blogs.models import Blog
+from blogs.models import *
 from core.forms import get_form
 from core.models import ContactUs
 from dashboard.models import Event 
@@ -19,7 +19,7 @@ from suppliers.models import Supplier
 from vacancies.models import Job, Application
 from dashboard.models import GalleryImage, GalleryVideo
 from django.forms.fields import DateField
-from django.contrib.auth.mixins import AccessMixin
+from django.contrib.auth.mixins import AccessMixin, PermissionRequiredMixin as DjangoPermissionRequiredMixin
 
 
 def get_model(name):
@@ -141,8 +141,21 @@ class ChangeView(LoginRequiredMixin,PermissionRequiredMixin, View):
         for name, field in form.fields.items():
             if isinstance(field, DateField):
                 print(name)
+
+        # list objects derived from other models (job & application, blog & comment)
+        child_obj_fields, child_obj = [], None
+
+        if model == Job:
+            child_obj = obj.application_set.all()
+        elif model == Blog:
+            child_obj = obj.comment_set.all()
+        child_obj_fields = getattr(child_obj.model, 'list_fields',[]) if child_obj else []
+
+            
+    
         return render(self.request, 'staff/create_page.html', { 'add':False,  'form':form, 'is_single':config['single'], 
-                                                                'model_name':model_name.capitalize(), 'model_code':self.kwargs['model_name'], 'pk':self.kwargs['pk']})
+                                                                'model_name':model_name.capitalize(), 'model_code':self.kwargs['model_name'], 'pk':self.kwargs['pk'],
+                                                                'child_obj':child_obj, 'child_obj_fields':child_obj_fields})
     
     def post(self, *args, **kwargs):
         config = self.config
@@ -172,7 +185,8 @@ class ListView(LoginRequiredMixin,PermissionRequiredMixin, View):
         
         objs = model.objects.all()
         list_fields = getattr(model, 'list_fields',[])
-        return render(self.request, "staff/list_page.html", 
+        
+        return render (self.request, "staff/list_page.html", 
                       {'model_name':formal_name, 'model_code':self.kwargs['model_name'], 'single':config['single'],
                        'objs':objs,'fields':list_fields}
                     ) 
@@ -194,4 +208,15 @@ class DeleteView(LoginRequiredMixin,PermissionRequiredMixin, View):
         messages.success(self.request, f"Successfully deleted {model_name}")
         return redirect("list_view",model_name=self.kwargs['model_name'])
         
+
+class ApproveComment(LoginRequiredMixin,DjangoPermissionRequiredMixin, View):
+    permission_required = ("blogs.change_blog")
+    def get(self, *args, **kwargs):
+        comment = Comment.objects.get(id=self.kwargs['pk'])
+        comment.approved= True if not comment.approved else False
+        comment.save()
+        msg = f"Successfully approved comment to be seen" if comment.approved else f"Successfully hidden comment from being seen"
+        messages.success(self.request, msg)
+        return redirect("change_view", model_name='Blog', pk=comment.blog.id)
         
+           

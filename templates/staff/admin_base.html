@@ -35,6 +35,7 @@
 
 
     <style>
+        .h-200{height: 200px;}
         div.cms .cms-toolbar-item-logo a:before{
             content:none!important;
             font-size: medium;
@@ -901,7 +902,7 @@
                         {% endif %}   
                         {% if perms.core.view_settings %}
                         <li class="slide">
-                            <a id="tab-translator" href="/dashboard/translator/" class="side-menu__item">
+                            <a id="tab-translator" target="_blank" href="/dashboard/translator/" class="side-menu__item">
                                 <i class="bx bx-cog side-menu__icon"></i>
                                 <span class="side-menu__label">Translation Dictionary</span>
                             </a>
@@ -980,7 +981,7 @@
     
     $("input,textarea,select").addClass("form-control");
     $("input[type='checkbox']").removeClass("form-control").addClass("form-check-input").attr("role", "switch");
-
+    $("select[multiple='']").addClass("h-200")
 </script>
 <script src="{% static 'dashboard/libs/@popperjs/core/umd/popper.min.js' %}"></script>
 <script src="{% static 'dashboard/libs/bootstrap/js/bootstrap.bundle.min.js' %}"></script>

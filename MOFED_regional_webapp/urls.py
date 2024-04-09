@@ -13,7 +13,7 @@ from about_us.urls import ServicesPage
 admin.site.site_header = 'Super Administrator'
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('superadmin/', admin.site.urls),
     path('', index, name="index"),
 
     # Include your app-specific URLs here
@@ -40,6 +40,13 @@ urlpatterns = [
     
     path('filer/', include('filer.urls')),
     path('', include('cms.urls')),
+
+
+    
+    path('403', TemplateView.as_view(template_name="403.html"), name="403"),
+    path('404', TemplateView.as_view(template_name="404.html"), name="404"),
+    path('500', TemplateView.as_view(template_name="500.html"), name="500"),
+
 
 ]
 urlpatterns = [

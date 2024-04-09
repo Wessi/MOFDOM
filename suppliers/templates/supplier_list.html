@@ -5,7 +5,7 @@
 {% block resource_dynamic %} active {% endblock %}
 {% block content %} 
 
-<section class="section border-0 m-0 px-lg-5 pt-4">
+<section class="section border-0 m-0 px-lg-5 pt-4 mt-5">
     <div class="container">
         <div class="row align-items-end mb-5 mb-lg-4">
             <div class="d-flex align-items-end justify-content-end">
@@ -38,7 +38,7 @@
                 <div class="col-lg-5 col-md-8 ">
                     <form role="search" action="{% url 'search_supplier' %}" method="get">
                         <div class="input-group">
-                            <input class="form-control text-1"  name="searched_term" type="search" value="" placeholder="Search for blocked supplier">
+                            <input class="form-control text-1"  name="searched_term" type="search" value="" placeholder="{% trans 'Search for blocked supplier' %}">
                             <button class="btn bg-light" type="submit" aria-label="Search">
                                 <i class="fas fa-search header-nav-top-icon"></i>
                             </button>

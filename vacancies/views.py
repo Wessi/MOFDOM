@@ -9,6 +9,7 @@ from .models import Job
 from django.views import View
 from django.core.mail import EmailMultiAlternatives
 
+from core.views import paginate
 
 def job_list(request):
     search = request.GET.get('search', None)
@@ -18,11 +19,7 @@ def job_list(request):
     else:
         jobs = Job.objects.filter(Status = 'Active')
 
-        
-    from django.core.paginator import Paginator
-    p = Paginator(jobs, 10)
-    page = request.GET.get('page')
-    jobs_list = p.get_page(page)
+    jobs_list = paginate( jobs, 5, request)
 
     return render(request, 'front/vacancy.html', {'jobs': jobs_list, 'search':search})
     
