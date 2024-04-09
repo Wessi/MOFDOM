@@ -55,8 +55,9 @@ class EditProfileForm(forms.ModelForm):
             'profile_pic':forms.FileInput(attrs={'class':'form-control form-control-light'}),
             'phonenumber':forms.TextInput(attrs={'class':'form-control form-control-light','placeholder':'Enter Phone number',}),
             'status':forms.Select(attrs={'class':'form-control form-control-light', 'placeholder':'Select Status', 'type':'dropdown'}),
-            'is_active':forms.CheckboxInput(attrs={'class':'form-control form-control-light'}),
-            # 'is_superuser':forms.BooleanField()
+            'is_active':forms.CheckboxInput(attrs={'class':'form-control form-control-light','required':'false'}),
+            'is_superuser':forms.CheckboxInput(attrs={'class':'form-control form-control-light','required':'false'}),
+            
             # 'groups':forms.SelectMultiple(attrs={'class':'form-control form-control-light', 'placeholder':'Select Status', 'type':'dropdown', 'multiple':True}),
             # 'user_permissions':forms.SelectMultiple(attrs={'class':'form-control form-control-light', 'placeholder':'Select Status', 'type':'dropdown', 'multiple':True}),
         }

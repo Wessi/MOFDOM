@@ -1,3 +1,6 @@
+from typing import Any
+from django.http import HttpRequest
+from django.http.response import HttpResponse as HttpResponse
 from .forms import MyUserRegistrationForm
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
@@ -11,7 +14,7 @@ from.models import UserProfile
 from .forms import *
 from task_manager.models import Task
 from blogs.models import Blog
-
+from django.core.exceptions import ImproperlyConfigured, PermissionDenied
 
 
 class Signup(View):
@@ -73,11 +76,19 @@ class Logout(View):
 # @login_required
 
 class Profile(View):
+    def dispatch(self, request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse:
+        user = UserProfile.objects.get(id=self.kwargs['id'])
+        if self.request.user != user and not self.request.user.has_perm('accounts.change_userprofile'):
+            raise PermissionDenied("You can't access this page")
+        
+        return super().dispatch(request, *args, **kwargs)
     def get(self, request, id):
+        
         user = UserProfile.objects.get(id=id)
         form = EditProfileForm(instance=user)
         tasks = Task.objects.filter(assigned_to=user)[:5]
         blogs = Blog.objects.all()[:3]
+        password_form = None
         if self.request.user == user:
             password_form = ChangePasswordForm()
             title = 'My'

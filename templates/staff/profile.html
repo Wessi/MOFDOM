@@ -179,6 +179,7 @@
                                                 <label for="contact-address-phone" class="form-label">Profile :</label>
                                                 {{form.profile_pic}}
                                             </div>
+                                            {% if user != user_obj %} 
                                             <div class="col-xl-6">
                                                 <label for="contact-address-role" class="form-label">Status :</label>
                                                 {{form.status}}   
@@ -201,6 +202,7 @@
                                                 <label for="contact-address-role" class="form-label">Permissions :</label>
                                                 {{form.user_permissions}}   
                                             </div>
+                                            {% endif %}
 
                                         </div>
                                     </div>
