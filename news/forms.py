@@ -65,10 +65,10 @@ class NewsArticleForm(forms.ModelForm):
             
     class Meta:
         model = NewsArticle
-        fields = ['title', 'author', 'content', 'featured_image', 'minutes_read', 'news_category']
+        fields = ['title', 'created_by', 'content', 'featured_image', 'minutes_read', 'news_category']
         widgets = {
             'title':forms.TextInput(attrs={'class':'form-control', 'label':'Title'}),
-            'author':forms.TextInput(attrs={'class':'form-control', 'label':'Author'}),
+            'created_by':forms.TextInput(attrs={'class':'form-control', 'label':'created_by'}),
             'content':forms.Textarea(attrs={'class':'form-control', 'label':'Your Content'}),
             # 'category':forms.TextInput(attrs={'class':'form-control', 'label':'Category'}),
         }

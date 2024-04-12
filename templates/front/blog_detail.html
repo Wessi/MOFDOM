@@ -56,7 +56,7 @@
                             <div class="post-block mt-4 pt-2 post-author">
                                 <h4 class="text-4 mb-3">{% trans "Author" %}</h4>
                                 <div class="img-thumbnail img-thumbnail-no-borders d-block pb-3">
-                                    <a href="#" title="{{blog.author}} : {{blog.author_email}}">
+                                    <a href="#" title="{{blog.created_by}}">
                                         <img src="{% static 'front/imgs/team/user.png' %}" alt="">
                                     </a>
 
@@ -65,7 +65,7 @@
                             </div>
                             <div class="post-meta">
                                 <span><i class="far fa-clock"></i> <a href="#">{{blog.publish_date|date}}</a></span>
-                                <span><i class="far fa-user"></i> {% trans "By" %} <a href="#">{{blog.author}}</a> </span>
+                                <span><i class="far fa-user"></i> {% trans "By" %} <a href="#">{{blog.created_by}}</a> </span>
                                 <span><i class="far fa-folder"></i> <a href="#">{{blog.category}}</a></span>
                                 <span><i class="far fa-comments"></i> <a href="#">{{blog.comment_set.all.count}} {% trans "Comments" %}</a></span>
                             </div>
@@ -141,7 +141,7 @@
                                 <div class="comment-block">
                                     <div class="comment-arrow"></div>
                                     <span class="comment-by">
-                                        <strong>{{c.author}}</strong>
+                                        <strong>{{c.created_by}}</strong>
                                     </span>
                                     <p>{{c.message}}</p>
                                     <span class="date float-end">{{c.created_at}}</span>

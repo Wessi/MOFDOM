@@ -64,8 +64,8 @@ def search(request):
     if "searched_item" in request.GET:
         searched_term = request.GET["searched_item"]
 
-        news = NewsArticle.objects.filter(Q(title__icontains=searched_term) | Q(news_category__name__icontains=searched_term) | Q(author__icontains=searched_term))
-        blogs = Blog.objects.filter(Q(title__icontains=searched_term) | Q(blog_category__name__icontains=searched_term) | Q(author__icontains=searched_term))
+        news = NewsArticle.objects.filter(Q(title__icontains=searched_term) | Q(news_category__name__icontains=searched_term) | Q(created_by__icontains=searched_term))
+        blogs = Blog.objects.filter(Q(title__icontains=searched_term) | Q(blog_category__name__icontains=searched_term) | Q(created_by__icontains=searched_term))
         jobs = Job.objects.filter(Q(job_title__icontains=searched_term) | Q(job_type__icontains=searched_term) | Q(Status__icontains=searched_term), Status='Active')
         gallery = GalleryImage.objects.filter(Q(title__icontains=searched_term) | Q(gallery_category__name__icontains=searched_term))
         documents = Document.objects.filter(Q(title__icontains=searched_term) | Q(category__icontains=searched_term))

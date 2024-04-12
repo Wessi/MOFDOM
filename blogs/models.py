@@ -1,4 +1,5 @@
 from django.db import models
+from accounts.models import UserProfile as User
 
 class BlogCategory(models.Model):
     name = models.CharField(max_length=100,help_text="Make sure to submit a max of 100 characters.")
@@ -13,10 +14,12 @@ class BlogCategory(models.Model):
 class Blog(models.Model):
     title = models.CharField(max_length=255,help_text="Make sure to submit a max of 255 characters.")
     blog_category = models.ForeignKey(BlogCategory, on_delete = models.SET_NULL, null=True)
-    author = models.CharField(max_length=255)
-    author_email = models.EmailField()
-    publish_date = models.DateField()
-    publish_time = models.TimeField()
+    # author = models.CharField(max_length=255)
+    # author_email = models.EmailField()
+    # publish_date = models.DateField()
+    # publish_time = models.TimeField()
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE)
+    created_date = models.DateTimeField(auto_now_add=True)
     published_status = models.CharField(max_length=20, choices=[('Published', 'Published'), ('Hold', 'Hold')])
     content = models.TextField()
     blog_type = models.CharField(max_length=10, choices=[('Free', 'Free'), ('Paid', 'Paid')])
@@ -32,7 +35,7 @@ class Blog(models.Model):
         return self.comment_set.filter(approved = True)
 
     def get_list_fields():
-        return ['title', 'blog_category','author','publish_date','published_status' ]
+        return ['title', 'blog_category','created_by','created_date','published_status' ]
     
     list_fields = get_list_fields()
     
@@ -45,7 +48,7 @@ class Comment(models.Model):
     blog = models.ForeignKey(Blog, on_delete=models.CASCADE)
     author = models.CharField(max_length=100)
     email = models.EmailField()
-    website = models.URLField(blank=True)
+    # website = models.URLField(blank=True)
     message = models.TextField()
     approved = models.BooleanField(default=False)
     parent = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='replies')

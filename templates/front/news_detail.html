@@ -74,7 +74,7 @@
                             <blockquote class="blockquote-primary">
                                 <h2 class="font-weight-semi-bold"><a href="">{{news_item.title}}</a></h2>
                                 <div class="post-meta">
-                                    <span><i class="far fa-user"></i> {% trans "By" %} <a href="#" title="{{news_item.author}}">{{news_item.author|truncatechars:10}}</a> </span>
+                                    <span><i class="far fa-user"></i> {% trans "By" %} <a href="#" title="{{news_item.created_by}}">{{news_item.created_by|truncatechars:10}}</a> </span>
                                     <span><i class="far fa-folder"></i> <a href="#">{{news_item.category}}</a> </span>
                                     <span><i class="far fa-calendar"></i> <a href="#">{{news_item.created_at|date}}</a></span>
                                 </div>

@@ -14,7 +14,9 @@ from.models import UserProfile
 from .forms import *
 from task_manager.models import Task
 from blogs.models import Blog
-from django.core.exceptions import ImproperlyConfigured, PermissionDenied
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.exceptions import PermissionDenied
+from django.contrib.auth.mixins import AccessMixin, PermissionRequiredMixin as DjangoPermissionRequiredMixin
 
 
 class Signup(View):
@@ -63,19 +65,16 @@ class Login(View):
             messages.warning(request, 'Email or password is wrong!',)
             return render(request, 'login.html', {'form':form})
 
-
        
     
-class Logout(View):
+class Logout(LoginRequiredMixin,View):
     def get(self, request):
         logout(self.request)
         messages.success(request, 'Successfully logged out.')
         return redirect ( '/')
     
 
-# @login_required
-
-class Profile(View):
+class Profile(LoginRequiredMixin,View):
     def dispatch(self, request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse:
         user = UserProfile.objects.get(id=self.kwargs['id'])
         if self.request.user != user and not self.request.user.has_perm('accounts.change_userprofile'):
@@ -113,16 +112,11 @@ class Profile(View):
 
 
 
-class ChangePassword(View):
+class ChangePassword(LoginRequiredMixin,View):
     def post(self, request, id):
         user = UserProfile.objects.get(id=id)
+        password_form = ChangePasswordForm(data=self.request.POST)
         updating = False
-        if self.request.user == user:
-            password_form = ChangePasswordForm(data=self.request.POST)
-            updating = True
-        else:
-            password_form = ResetPasswordForm(data=self.request.POST)
-
         if password_form.is_valid():
             if updating:
                 if check_password(password_form.data['current_password'],user.password): 
@@ -147,7 +141,8 @@ class ChangePassword(View):
 
 
 # users
-class UsersList(View):
+class UsersList(LoginRequiredMixin,DjangoPermissionRequiredMixin,View):
+    permission_required =['accounts.view_userprofile']
     def get (self, *args, **kwargs):
         model = UserProfile
         if not model:
@@ -161,7 +156,8 @@ class UsersList(View):
 
 
 
-class AddUser(View):
+class AddUser(LoginRequiredMixin,DjangoPermissionRequiredMixin,View):
+    permission_required=['accounts.add_userprofile']
     def get(self,*args, **kwargs):
         return render(self.request, "staff/accounts/add_user.html", {'form':MyUserRegistrationForm()})
     def post(self, *args, **kwargs):
@@ -176,8 +172,8 @@ class AddUser(View):
     
 
 
-class ResetPassword(View):
-
+class ResetPassword(LoginRequiredMixin,DjangoPermissionRequiredMixin,View):
+    permission_required =['accounts.change_userprofile']
     def post(self, request, id):
         user = UserProfile.objects.get(id=id)
         password_form = ResetPasswordForm(data=self.request.POST)
@@ -200,7 +196,8 @@ class ResetPassword(View):
     
 
 
-class DeleteUser(View):
+class DeleteUser(LoginRequiredMixin,DjangoPermissionRequiredMixin, View):
+    permission_required =['accounts.delete_userprofile']
     def get (self, request, id):
         user = UserProfile.objects.get(id=id)
         user.delete()

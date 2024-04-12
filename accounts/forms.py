@@ -44,6 +44,7 @@ class EditProfileForm(forms.ModelForm):
     user_permissions = forms.ModelMultipleChoiceField(Permission.objects.all(),required=False,widget = forms.SelectMultiple( attrs = { 'class': ' form-control-light form-control ', 'multiple':True}),)
     groups = forms.ModelMultipleChoiceField( Group.objects.all(),required=False,widget = forms.SelectMultiple( attrs = { 'class': ' form-control-light form-control ', 'multiple':True}),)
     email = forms.CharField(required=False, disabled=True, widget=forms.EmailInput(attrs={'class':'form-control form-control-light','placeholder':'Enter Email'}),)
+    
     class Meta:
         model = UserProfile 
         fields = ['email', 'first_name','last_name', 'profile_pic', 'phonenumber', 'status', 'groups', 'user_permissions', 'is_active','is_superuser' ]
@@ -55,8 +56,8 @@ class EditProfileForm(forms.ModelForm):
             'profile_pic':forms.FileInput(attrs={'class':'form-control form-control-light'}),
             'phonenumber':forms.TextInput(attrs={'class':'form-control form-control-light','placeholder':'Enter Phone number',}),
             'status':forms.Select(attrs={'class':'form-control form-control-light', 'placeholder':'Select Status', 'type':'dropdown'}),
-            'is_active':forms.CheckboxInput(attrs={'class':'form-control form-control-light','required':'false'}),
-            'is_superuser':forms.CheckboxInput(attrs={'class':'form-control form-control-light','required':'false'}),
+            'is_active':forms.CheckboxInput(attrs={'class':'form-control form-control-light',}),
+            'is_superuser':forms.CheckboxInput(attrs={'class':'form-control form-control-light',}),
             
             # 'groups':forms.SelectMultiple(attrs={'class':'form-control form-control-light', 'placeholder':'Select Status', 'type':'dropdown', 'multiple':True}),
             # 'user_permissions':forms.SelectMultiple(attrs={'class':'form-control form-control-light', 'placeholder':'Select Status', 'type':'dropdown', 'multiple':True}),
